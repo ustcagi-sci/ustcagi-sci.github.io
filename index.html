@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" data-language="zh">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,24 +21,33 @@
       <div class="nav-inner">
         <a class="logo" href="#top">USTC AGI <span>AI for Science</span></a>
         <div class="nav-links">
-          <a href="#hierarchy">认知层级</a>
-          <a href="#projects">研究项目</a>
-          <a href="#timeline">时间线</a>
-          <a href="#vision">愿景</a>
-          <a href="#contact">联系</a>
+          <a href="#hierarchy" data-i18n="nav.hierarchy">Cognitive Hierarchy</a>
+          <a href="#projects" data-i18n="nav.projects">Research Projects</a>
+          <a href="#timeline" data-i18n="nav.timeline">Timeline</a>
+          <a href="#vision" data-i18n="nav.vision">Vision</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
         </div>
       </div>
     </nav>
 
     <header id="top" class="hero">
       <div class="hero-content">
-        <p class="eyebrow">Scientific Literature Mining</p>
-        <h1>AI for Scientific Literature Mining</h1>
-        <p class="hero-subtitle">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Scientific Literature Mining</p>
+        <h1 data-i18n="hero.title">AI for Scientific Literature Mining</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
           We are redefining how AI interacts with scientific literature, evolving from paper retrieval to autonomous discovery of science through a 5-level cognitive hierarchy.
         </p>
         <div class="hero-actions">
-          <a class="btn primary" href="#projects">查看研究项目</a>
+          <a class="btn primary" href="#projects" data-i18n="hero.projects">View Research Projects</a>
           <a class="btn ghost" href="https://github.com/USTCAGI" target="_blank">GitHub</a>
         </div>
       </div>
@@ -47,121 +56,122 @@
     <main>
       <section id="hierarchy" class="section">
         <div class="section-header">
-          <p class="eyebrow">研究愿景 · Our Vision</p>
-          <h2>The 5-Level Cognitive Hierarchy</h2>
-          <p>
+          <p class="eyebrow" data-i18n="hierarchy.eyebrow">Research Vision</p>
+          <h2 data-i18n="hierarchy.title">The 5-Level Cognitive Hierarchy</h2>
+          <p data-i18n="hierarchy.description">
             AI's capability in scientific literature mining follows a progressive path of cognitive depth.
           </p>
         </div>
-        
+
         <div class="hierarchy-grid">
           <div class="hierarchy-step">
             <span class="level">L1</span>
-            <h3>Paper Search</h3>
-            <p>Retrieval from massive literature pools (e.g., PaperScout).</p>
+            <h3 data-i18n="hierarchy.l1.title">Paper Search</h3>
+            <p data-i18n="hierarchy.l1.description">Retrieval from massive literature pools (e.g., PaperScout).</p>
           </div>
           <div class="hierarchy-arrow">→</div>
           <div class="hierarchy-step">
             <span class="level">L2</span>
-            <h3>Element Interpretation</h3>
-            <p>Parsing PDF into structured, machine-readable data (e.g., ChemTable).</p>
+            <h3 data-i18n="hierarchy.l2.title">Element Interpretation</h3>
+            <p data-i18n="hierarchy.l2.description">Parsing PDF into structured, machine-readable data (e.g., ChemTable).</p>
           </div>
           <div class="hierarchy-arrow">→</div>
           <div class="hierarchy-step">
             <span class="level">L3</span>
-            <h3>Information Extraction</h3>
-            <p>Understanding methods, tasks, and contributions (e.g., ScholarSum).</p>
+            <h3 data-i18n="hierarchy.l3.title">Information Extraction</h3>
+            <p data-i18n="hierarchy.l3.description">Understanding methods, tasks, and contributions (e.g., ScholarSum).</p>
           </div>
           <div class="hierarchy-arrow">→</div>
           <div class="hierarchy-step">
             <span class="level">L4</span>
-            <h3>Knowledge Comprehension</h3>
-            <p>Reasoning and multi-paper synthesis (e.g., PaperArena, Mind2Report).</p>
+            <h3 data-i18n="hierarchy.l4.title">Knowledge Comprehension</h3>
+            <p data-i18n="hierarchy.l4.description">Reasoning and multi-paper synthesis (e.g., PaperArena, Mind2Report).</p>
           </div>
           <div class="hierarchy-arrow">→</div>
           <div class="hierarchy-step">
             <span class="level">L5</span>
-            <h3>Hypothesis Discovery</h3>
-            <p>Autonomous discovery and research generation (Future Vision).</p>
+            <h3 data-i18n="hierarchy.l5.title">Hypothesis Discovery</h3>
+            <p data-i18n="hierarchy.l5.description">Autonomous discovery and research generation (Future Vision).</p>
           </div>
         </div>
       </section>
 
       <section id="projects" class="section research">
         <div class="section-header">
-          <p class="eyebrow">研究项目 · Research Projects</p>
-          <h2>Advancing the Frontiers of Science</h2>
-          <p>
+          <p class="eyebrow" data-i18n="projects.eyebrow">Research Projects</p>
+          <h2 data-i18n="projects.title">Advancing the Frontiers of Science</h2>
+          <p data-i18n="projects.description">
             Our work spans the entire hierarchy, providing tools and benchmarks for the next generation of scientific AI.
           </p>
         </div>
         <div class="research-grid">
           <article class="card focus" data-link="https://github.com/pty12345/PaperScout" tabindex="0">
-            <span class="eyebrow">L1 · Paper Search</span>
+            <span class="eyebrow" data-i18n="projects.paperscout.level">L1 · Paper Search</span>
             <h3>PaperScout</h3>
-            <p>
+            <p data-i18n="projects.paperscout.description">
               An autonomous LLM-based agent that reformulates academic paper search as a multi-turn decision-making process, dynamically deciding when and how to invoke search and citation expansion tools.
             </p>
-            <a href="https://github.com/pty12345/PaperScout" target="_blank">Project Repo →</a>
+            <a href="https://github.com/pty12345/PaperScout" target="_blank" data-i18n="projects.repo">Project Repo →</a>
           </article>
 
           <article class="card focus" data-link="https://github.com/lqzxt/ChemTable" tabindex="0">
-            <span class="eyebrow">L2 · Element Interpretation</span>
+            <span class="eyebrow" data-i18n="projects.chemtable.level">L2 · Element Interpretation</span>
             <h3>ChemTable</h3>
-            <p>
+            <p data-i18n="projects.chemtable.description">
               A large-scale benchmark for multimodal LLMs to recognize and understand complex chemical tables, combining symbolic chemical formulas, table structures, and visual molecule diagrams.
             </p>
-            <a href="https://github.com/lqzxt/ChemTable" target="_blank">Project Repo →</a>
+            <a href="https://github.com/lqzxt/ChemTable" target="_blank" data-i18n="projects.repo">Project Repo →</a>
           </article>
 
           <article class="card focus" data-link="https://openreview.net/pdf?id=pLvGIKeZtJ" tabindex="0">
-            <span class="eyebrow">L3 · Information Extraction</span>
+            <span class="eyebrow" data-i18n="projects.scholarsum.level">L3 · Information Extraction</span>
             <h3>ScholarSum</h3>
-            <p>
+            <p data-i18n="projects.scholarsum.description">
               Advancing scientific summarization through knowledge graph reasoning and reflective refinement, distilling complex research into structured, high-fidelity summaries.
             </p>
             <a href="https://openreview.net/pdf?id=pLvGIKeZtJ" target="_blank">OpenReview →</a>
           </article>
 
           <article class="card focus" data-link="https://github.com/Melmaphother/PaperArena" tabindex="0">
-            <span class="eyebrow">L4 · Knowledge Comprehension</span>
+            <span class="eyebrow" data-i18n="projects.paperarena.level">L4 · Knowledge Comprehension</span>
             <h3>PaperArena</h3>
-            <p>
+            <p data-i18n="projects.paperarena.description">
               An evaluation benchmark for tool-augmented agentic reasoning on scientific literature, requiring agents to integrate information across multiple papers with diverse tools.
             </p>
-            <a href="https://github.com/Melmaphother/PaperArena" target="_blank">Project Repo →</a>
+            <a href="https://github.com/Melmaphother/PaperArena" target="_blank" data-i18n="projects.repo">Project Repo →</a>
           </article>
 
           <article class="card focus" data-link="https://github.com/Melmaphother/Mind2Report" tabindex="0">
-            <span class="eyebrow">L4 · Knowledge Comprehension</span>
+            <span class="eyebrow" data-i18n="projects.mind2report.level">L4 · Knowledge Comprehension</span>
             <h3>Mind2Report</h3>
-            <p>
+            <p data-i18n="projects.mind2report.description">
               A cognitive deep research agent that emulates commercial analysts to synthesize expert-level reports from massive web sources through intent-driven search and iterative synthesis.
             </p>
-            <a href="https://github.com/Melmaphother/Mind2Report" target="_blank">Project Repo →</a>
+            <a href="https://github.com/Melmaphother/Mind2Report" target="_blank" data-i18n="projects.repo">Project Repo →</a>
           </article>
 
           <article class="card focus vision-card" tabindex="0">
-            <span class="eyebrow">L5 · Hypothesis Discovery</span>
-            <h3>AI Scientist Vision</h3>
-            <p>
+            <span class="eyebrow" data-i18n="projects.vision.level">L5 · Hypothesis Discovery</span>
+            <h3 data-i18n="projects.vision.title">AI Scientist Vision</h3>
+            <p data-i18n="projects.vision.description">
               Our ultimate goal: building agents that not only understand literature but also autonomously discover laws, generate new hypotheses, and propose novel research directions.
             </p>
-            <span class="status-badge">Visionary Research</span>
+            <span class="status-badge" data-i18n="projects.vision.status">Visionary Research</span>
           </article>
         </div>
       </section>
+
       <section id="timeline" class="section highlights">
         <div class="section-header">
-          <p class="eyebrow">研究时间线 · Timeline</p>
-          <h2>Milestones in Scientific Literature Mining</h2>
+          <p class="eyebrow" data-i18n="timeline.eyebrow">Research Timeline</p>
+          <h2 data-i18n="timeline.title">Milestones in Scientific Literature Mining</h2>
         </div>
         <div class="timeline">
           <article class="milestone">
             <div>
-              <p class="milestone-year">Jun. 2025</p>
-              <h3>ChemTable · Table Recognition Benchmark</h3>
-              <p>
+              <p class="milestone-year" data-i18n="timeline.chemtable.date">Jun. 2025</p>
+              <h3 data-i18n="timeline.chemtable.title">ChemTable · Table Recognition Benchmark</h3>
+              <p data-i18n="timeline.chemtable.description">
                 A large-scale benchmark designed to test MLLMs on real-world chemical tables, addressing structural complexity and domain-specific semantics.
               </p>
             </div>
@@ -169,9 +179,9 @@
           </article>
           <article class="milestone">
             <div>
-              <p class="milestone-year">Oct. 2025</p>
-              <h3>ScholarSum · Student-Teacher Summarization</h3>
-              <p>
+              <p class="milestone-year" data-i18n="timeline.scholarsum.date">Oct. 2025</p>
+              <h3 data-i18n="timeline.scholarsum.title">ScholarSum · Student-Teacher Summarization</h3>
+              <p data-i18n="timeline.scholarsum.description">
                 A novel Student-Teacher framework for scientific summarization, leveraging knowledge graph reasoning and reflective refinement to ensure structural coherence.
               </p>
             </div>
@@ -179,9 +189,9 @@
           </article>
           <article class="milestone">
             <div>
-              <p class="milestone-year">Oct. 2025</p>
-              <h3>PaperArena · Agentic Reasoning Benchmark</h3>
-              <p>
+              <p class="milestone-year" data-i18n="timeline.paperarena.date">Oct. 2025</p>
+              <h3 data-i18n="timeline.paperarena.title">PaperArena · Agentic Reasoning Benchmark</h3>
+              <p data-i18n="timeline.paperarena.description">
                 The first benchmark for tool-augmented agentic reasoning on scientific literature, evaluating cross-paper integration and multi-tool orchestration.
               </p>
             </div>
@@ -189,9 +199,9 @@
           </article>
           <article class="milestone">
             <div>
-              <p class="milestone-year">Jan. 2026</p>
-              <h3>PaperScout · Autonomous Paper Search</h3>
-              <p>
+              <p class="milestone-year" data-i18n="timeline.paperscout.date">Jan. 2026</p>
+              <h3 data-i18n="timeline.paperscout.title">PaperScout · Autonomous Paper Search</h3>
+              <p data-i18n="timeline.paperscout.description">
                 An adaptive agentic framework for academic paper search, optimized with Proximal Sequence Policy Optimization (PSPO) for multi-turn interactions.
               </p>
             </div>
@@ -199,9 +209,9 @@
           </article>
           <article class="milestone">
             <div>
-              <p class="milestone-year">Jan. 2026</p>
-              <h3>Mind2Report · Cognitive Deep Research</h3>
-              <p>
+              <p class="milestone-year" data-i18n="timeline.mind2report.date">Jan. 2026</p>
+              <h3 data-i18n="timeline.mind2report.title">Mind2Report · Cognitive Deep Research</h3>
+              <p data-i18n="timeline.mind2report.description">
                 A cognitive deep research agent that emulates commercial analysts to synthesize expert-level reports via intent-driven search and iterative synthesis.
               </p>
             </div>
@@ -212,27 +222,27 @@
 
       <section id="vision" class="section vision">
         <div class="vision-content">
-          <h2>Why AI for Scientific Literature Mining Matters?</h2>
-          <p>
+          <h2 data-i18n="vision.title">Why AI for Scientific Literature Mining Matters?</h2>
+          <p data-i18n="vision.description">
             The explosion of scientific literature has exceeded human cognitive limits. We aim to build AI systems that can autonomously navigate, understand, and synthesize scientific knowledge, ultimately accelerating the pace of human discovery.
           </p>
         </div>
         <div class="vision-points">
           <div>
-            <h3>Autonomous Reasoning</h3>
-            <p>
+            <h3 data-i18n="vision.reasoning.title">Autonomous Reasoning</h3>
+            <p data-i18n="vision.reasoning.description">
               Moving beyond keyword matching to deep semantic understanding and multi-hop reasoning across heterogeneous scientific documents.
             </p>
           </div>
           <div>
-            <h3>Multimodal Synthesis</h3>
-            <p>
+            <h3 data-i18n="vision.synthesis.title">Multimodal Synthesis</h3>
+            <p data-i18n="vision.synthesis.description">
               Integrating text, tables, figures, and equations to form a holistic understanding of scientific breakthroughs.
             </p>
           </div>
           <div>
-            <h3>Hypothesis Generation</h3>
-            <p>
+            <h3 data-i18n="vision.hypothesis.title">Hypothesis Generation</h3>
+            <p data-i18n="vision.hypothesis.description">
               Discovering novel connections between disparate research areas to propose and validate new scientific hypotheses.
             </p>
           </div>
@@ -242,24 +252,280 @@
 
     <footer id="contact" class="footer">
       <div>
-        <p class="eyebrow">联系合作 · Connect</p>
-        <h3>Work with USTC AGI AI for Scientific Literature Mining Group</h3>
-        <p>
+        <p class="eyebrow" data-i18n="footer.eyebrow">Connect</p>
+        <h3 data-i18n="footer.title">Work with USTC AGI AI for Scientific Literature Mining Group</h3>
+        <p data-i18n="footer.description">
           We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents.
         </p>
       </div>
       <div class="footer-actions">
-        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn">邮件联系</a>
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">Email Us</a>
         <a class="btn ghost" href="https://github.com/USTCAGI" target="_blank">GitHub</a>
       </div>
       <p class="footer-note">
-        © <span id="year"></span> USTC AGI · Licensed under
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · Licensed under</span>
         <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license">CC BY-SA 4.0</a>.
       </p>
     </footer>
 
     <script>
+      const translations = {
+        en: {
+          "meta.title": "AI for Scientific Literature Mining",
+          "meta.description":
+            "AI for Scientific Literature Mining research at USTC AGI, from paper search to scientific discovery.",
+          "nav.hierarchy": "Cognitive Hierarchy",
+          "nav.projects": "Research Projects",
+          "nav.timeline": "Timeline",
+          "nav.vision": "Vision",
+          "nav.contact": "Contact",
+          "hero.eyebrow": "Scientific Literature Mining",
+          "hero.title": "AI for Scientific Literature Mining",
+          "hero.subtitle":
+            "We are redefining how AI interacts with scientific literature, evolving from paper retrieval to autonomous discovery of science through a 5-level cognitive hierarchy.",
+          "hero.projects": "View Research Projects",
+          "hierarchy.eyebrow": "Research Vision",
+          "hierarchy.title": "The 5-Level Cognitive Hierarchy",
+          "hierarchy.description":
+            "AI's capability in scientific literature mining follows a progressive path of cognitive depth.",
+          "hierarchy.l1.title": "Paper Search",
+          "hierarchy.l1.description": "Retrieval from massive literature pools (e.g., PaperScout).",
+          "hierarchy.l2.title": "Element Interpretation",
+          "hierarchy.l2.description": "Parsing PDF into structured, machine-readable data (e.g., ChemTable).",
+          "hierarchy.l3.title": "Information Extraction",
+          "hierarchy.l3.description": "Understanding methods, tasks, and contributions (e.g., ScholarSum).",
+          "hierarchy.l4.title": "Knowledge Comprehension",
+          "hierarchy.l4.description": "Reasoning and multi-paper synthesis (e.g., PaperArena, Mind2Report).",
+          "hierarchy.l5.title": "Hypothesis Discovery",
+          "hierarchy.l5.description": "Autonomous discovery and research generation (Future Vision).",
+          "projects.eyebrow": "Research Projects",
+          "projects.title": "Advancing the Frontiers of Science",
+          "projects.description":
+            "Our work spans the entire hierarchy, providing tools and benchmarks for the next generation of scientific AI.",
+          "projects.paperscout.level": "L1 · Paper Search",
+          "projects.paperscout.description":
+            "An autonomous LLM-based agent that reformulates academic paper search as a multi-turn decision-making process, dynamically deciding when and how to invoke search and citation expansion tools.",
+          "projects.chemtable.level": "L2 · Element Interpretation",
+          "projects.chemtable.description":
+            "A large-scale benchmark for multimodal LLMs to recognize and understand complex chemical tables, combining symbolic chemical formulas, table structures, and visual molecule diagrams.",
+          "projects.scholarsum.level": "L3 · Information Extraction",
+          "projects.scholarsum.description":
+            "Advancing scientific summarization through knowledge graph reasoning and reflective refinement, distilling complex research into structured, high-fidelity summaries.",
+          "projects.paperarena.level": "L4 · Knowledge Comprehension",
+          "projects.paperarena.description":
+            "An evaluation benchmark for tool-augmented agentic reasoning on scientific literature, requiring agents to integrate information across multiple papers with diverse tools.",
+          "projects.mind2report.level": "L4 · Knowledge Comprehension",
+          "projects.mind2report.description":
+            "A cognitive deep research agent that emulates commercial analysts to synthesize expert-level reports from massive web sources through intent-driven search and iterative synthesis.",
+          "projects.vision.level": "L5 · Hypothesis Discovery",
+          "projects.vision.title": "AI Scientist Vision",
+          "projects.vision.description":
+            "Our ultimate goal: building agents that not only understand literature but also autonomously discover laws, generate new hypotheses, and propose novel research directions.",
+          "projects.vision.status": "Visionary Research",
+          "projects.repo": "Project Repo →",
+          "timeline.eyebrow": "Research Timeline",
+          "timeline.title": "Milestones in Scientific Literature Mining",
+          "timeline.chemtable.date": "Jun. 2025",
+          "timeline.chemtable.title": "ChemTable · Table Recognition Benchmark",
+          "timeline.chemtable.description":
+            "A large-scale benchmark designed to test MLLMs on real-world chemical tables, addressing structural complexity and domain-specific semantics.",
+          "timeline.scholarsum.date": "Oct. 2025",
+          "timeline.scholarsum.title": "ScholarSum · Student-Teacher Summarization",
+          "timeline.scholarsum.description":
+            "A novel Student-Teacher framework for scientific summarization, leveraging knowledge graph reasoning and reflective refinement to ensure structural coherence.",
+          "timeline.paperarena.date": "Oct. 2025",
+          "timeline.paperarena.title": "PaperArena · Agentic Reasoning Benchmark",
+          "timeline.paperarena.description":
+            "The first benchmark for tool-augmented agentic reasoning on scientific literature, evaluating cross-paper integration and multi-tool orchestration.",
+          "timeline.paperscout.date": "Jan. 2026",
+          "timeline.paperscout.title": "PaperScout · Autonomous Paper Search",
+          "timeline.paperscout.description":
+            "An adaptive agentic framework for academic paper search, optimized with Proximal Sequence Policy Optimization (PSPO) for multi-turn interactions.",
+          "timeline.mind2report.date": "Jan. 2026",
+          "timeline.mind2report.title": "Mind2Report · Cognitive Deep Research",
+          "timeline.mind2report.description":
+            "A cognitive deep research agent that emulates commercial analysts to synthesize expert-level reports via intent-driven search and iterative synthesis.",
+          "vision.title": "Why AI for Scientific Literature Mining Matters?",
+          "vision.description":
+            "The explosion of scientific literature has exceeded human cognitive limits. We aim to build AI systems that can autonomously navigate, understand, and synthesize scientific knowledge, ultimately accelerating the pace of human discovery.",
+          "vision.reasoning.title": "Autonomous Reasoning",
+          "vision.reasoning.description":
+            "Moving beyond keyword matching to deep semantic understanding and multi-hop reasoning across heterogeneous scientific documents.",
+          "vision.synthesis.title": "Multimodal Synthesis",
+          "vision.synthesis.description":
+            "Integrating text, tables, figures, and equations to form a holistic understanding of scientific breakthroughs.",
+          "vision.hypothesis.title": "Hypothesis Generation",
+          "vision.hypothesis.description":
+            "Discovering novel connections between disparate research areas to propose and validate new scientific hypotheses.",
+          "footer.eyebrow": "Connect",
+          "footer.title": "Work with USTC AGI AI for Scientific Literature Mining Group",
+          "footer.description":
+            "We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents.",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "面向科学文献挖掘的 AI",
+          "meta.description":
+            "中国科大 AGI 团队的面向科学文献挖掘的 AI 研究主页，覆盖论文检索、文献理解与自主科学发现。",
+          "nav.hierarchy": "认知层级",
+          "nav.projects": "研究项目",
+          "nav.timeline": "研究时间线",
+          "nav.vision": "愿景",
+          "nav.contact": "联系",
+          "hero.eyebrow": "科学文献挖掘",
+          "hero.title": "面向科学文献挖掘的 AI",
+          "hero.subtitle":
+            "我们正在重新定义 AI 与科学文献交互的方式：从论文检索出发，沿着五级认知层级迈向自主科学发现。",
+          "hero.projects": "查看研究项目",
+          "hierarchy.eyebrow": "研究愿景 · Our Vision",
+          "hierarchy.title": "五级认知层级",
+          "hierarchy.description":
+            "AI 在科学文献挖掘中的能力，沿着认知深度逐级演进。",
+          "hierarchy.l1.title": "论文检索",
+          "hierarchy.l1.description": "从海量文献池中检索目标论文，例如 PaperScout。",
+          "hierarchy.l2.title": "元素解析",
+          "hierarchy.l2.description": "将 PDF 解析为结构化、机器可读的数据，例如 ChemTable。",
+          "hierarchy.l3.title": "信息抽取",
+          "hierarchy.l3.description": "理解论文的方法、任务与贡献，例如 ScholarSum。",
+          "hierarchy.l4.title": "知识理解",
+          "hierarchy.l4.description": "进行推理与多论文综合，例如 PaperArena 和 Mind2Report。",
+          "hierarchy.l5.title": "假设发现",
+          "hierarchy.l5.description": "面向自主发现与研究生成的未来能力。",
+          "projects.eyebrow": "研究项目 · Research Projects",
+          "projects.title": "推进科学智能的前沿",
+          "projects.description":
+            "我们的工作覆盖完整认知层级，为下一代科学 AI 提供工具、基准与研究范式。",
+          "projects.paperscout.level": "L1 · 论文检索",
+          "projects.paperscout.description":
+            "一个自主 LLM 智能体，将学术论文搜索重新表述为多轮决策过程，动态决定何时以及如何调用搜索与引用扩展工具。",
+          "projects.chemtable.level": "L2 · 元素解析",
+          "projects.chemtable.description":
+            "一个面向多模态大模型的大规模化学表格识别与理解基准，覆盖化学公式、表格结构和分子图示等复杂信息。",
+          "projects.scholarsum.level": "L3 · 信息抽取",
+          "projects.scholarsum.description":
+            "通过知识图谱推理与反思式优化推进科学摘要生成，将复杂研究压缩为结构化、高保真的摘要。",
+          "projects.paperarena.level": "L4 · 知识理解",
+          "projects.paperarena.description":
+            "一个面向工具增强智能体科学文献推理的评测基准，要求智能体跨多篇论文整合信息并协调多种工具。",
+          "projects.mind2report.level": "L4 · 知识理解",
+          "projects.mind2report.description":
+            "一个认知型深度研究智能体，模拟商业分析师从大规模网络来源中进行意图驱动搜索与迭代综合，生成专家级报告。",
+          "projects.vision.level": "L5 · 假设发现",
+          "projects.vision.title": "AI Scientist 愿景",
+          "projects.vision.description":
+            "我们的终极目标是构建不仅能理解文献，还能自主发现规律、生成新假设并提出新研究方向的智能体。",
+          "projects.vision.status": "前瞻研究",
+          "projects.repo": "项目仓库 →",
+          "timeline.eyebrow": "研究时间线 · Timeline",
+          "timeline.title": "科学文献挖掘的重要里程碑",
+          "timeline.chemtable.date": "2025 年 6 月",
+          "timeline.chemtable.title": "ChemTable · 表格识别基准",
+          "timeline.chemtable.description":
+            "一个用于测试多模态大模型理解真实化学表格的大规模基准，聚焦结构复杂性与领域语义。",
+          "timeline.scholarsum.date": "2025 年 10 月",
+          "timeline.scholarsum.title": "ScholarSum · Student-Teacher 科学摘要",
+          "timeline.scholarsum.description":
+            "一个面向科学摘要的新型 Student-Teacher 框架，利用知识图谱推理和反思式优化保证结构一致性。",
+          "timeline.paperarena.date": "2025 年 10 月",
+          "timeline.paperarena.title": "PaperArena · 智能体推理基准",
+          "timeline.paperarena.description":
+            "首个面向科学文献工具增强智能体推理的基准，评估跨论文整合与多工具编排能力。",
+          "timeline.paperscout.date": "2026 年 1 月",
+          "timeline.paperscout.title": "PaperScout · 自主论文搜索",
+          "timeline.paperscout.description":
+            "一个自适应学术论文搜索智能体框架，通过近端序列策略优化 PSPO 提升多轮交互表现。",
+          "timeline.mind2report.date": "2026 年 1 月",
+          "timeline.mind2report.title": "Mind2Report · 认知型深度研究",
+          "timeline.mind2report.description":
+            "一个模拟商业分析师的认知型深度研究智能体，通过意图驱动搜索与迭代综合生成专家级报告。",
+          "vision.title": "为什么科学文献挖掘需要 AI？",
+          "vision.description":
+            "科学文献的爆炸式增长已经超出人类的认知负荷。我们希望构建能够自主浏览、理解并综合科学知识的 AI 系统，最终加速人类发现的进程。",
+          "vision.reasoning.title": "自主推理",
+          "vision.reasoning.description":
+            "从关键词匹配走向深层语义理解，在异构科学文档之间进行多跳推理。",
+          "vision.synthesis.title": "多模态综合",
+          "vision.synthesis.description":
+            "整合文本、表格、图像与公式，形成对科学突破的整体理解。",
+          "vision.hypothesis.title": "假设生成",
+          "vision.hypothesis.description":
+            "发现不同研究领域之间的新连接，提出并验证新的科学假设。",
+          "footer.eyebrow": "联系合作 · Connect",
+          "footer.title": "与中国科大 AGI 科学文献挖掘团队合作",
+          "footer.description":
+            "我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
       document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
+        setLanguage(nextLanguage, true);
+      });
     </script>
   </body>
 </html>

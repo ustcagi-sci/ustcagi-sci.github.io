@@ -104,24 +104,45 @@ a:hover {
   display: none;
 }
 
-.nav-links a {
+.nav-links a,
+.language-toggle {
   flex-shrink: 0;
   padding: 8px 14px;
   border: 1px solid transparent;
   border-radius: 999px;
   color: var(--text-muted);
+  font-family: inherit;
   font-size: 0.84rem;
   font-weight: 600;
+  line-height: 1.2;
   transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease,
     transform 0.18s ease;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.language-toggle:hover,
+.language-toggle:focus-visible {
   color: var(--accent);
   background: var(--accent-soft);
   border-color: #f2d2ce;
   text-decoration: none;
   transform: translateY(-1px);
+}
+
+.language-toggle {
+  min-width: 58px;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.language-toggle:hover,
+.language-toggle:focus-visible {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #ffffff;
+  outline: none;
 }
 
 .hero {
