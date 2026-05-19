@@ -131,6 +131,6 @@ const validatePage = (relativePath) => {
   }
 };
 
-for (const page of ["index.html", "directions/index.html", "papers/index.html"]) {
+for (const page of ["index.html", "knowledge_memory/index.html", "directions/index.html", "papers/index.html"]) {
   validatePage(page);
 }

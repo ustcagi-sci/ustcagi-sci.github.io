@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>自主科学知识获取关键技术研究</title>
+    <meta
+      name="description"
+      content="中国科大 AGI 团队面向科研智能体的自主科学知识获取关键技术研究，贯通 Lewen API、Academic Search、PaperScout、PaperArena 与学术乐问。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="自主科学知识获取关键技术研究" />
+    <meta
+      property="og:description"
+      content="中国科大 AGI 团队面向科研智能体的自主科学知识获取关键技术研究，贯通 Lewen API、Academic Search、PaperScout、PaperArena 与学术乐问。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="中国科大 AGI 科学文献智能">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" role="img">
+              <path d="M12 14h16M12 20h16M12 26h10" />
+              <circle cx="29" cy="26" r="4" />
+              <path d="M25.8 23.4 20 18.8" />
+            </svg>
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">中国科大 AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">科学文献智能</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="#intro" data-i18n="nav.intro">科技文献认知</a>
+          <a href="#architecture" data-i18n="nav.architecture">五层架构</a>
+          <a href="#resources" data-i18n="nav.resources">资源链接</a>
+          <a href="../directions/" data-i18n="nav.directions">研究方向</a>
+          <a href="../papers/" data-i18n="nav.papers">论文列表</a>
+          <span class="nav-break" aria-hidden="true"></span>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero">
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Agentic Scientific Knowledge Acquisition</p>
+        <h1 data-i18n="hero.title">自主科学知识获取关键技术研究</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          从静态文献检索走向自主证据获取，贯通科学知识接口、学术检索 Skill、知识获取智能体、过程评测与真实用户服务。
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#architecture" data-i18n="hero.stack">查看五层架构</a>
+          <a class="btn ghost" href="https://lewen.bdaa.pro/" target="_blank" rel="noopener" data-i18n="hero.lewen">进入学术乐问</a>
+          <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="intro" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="intro.eyebrow">Core Thesis</p>
+          <h2 data-i18n="intro.title">科研 Agent 的瓶颈正在转向知识获取</h2>
+          <p data-i18n="intro.description">
+            Scientific Knowledge Acquisition Stack 不是更大的论文搜索框，而是面向 Science Agent 和 Autonomous Research Agent 的知识获取基础设施。
+          </p>
+        </div>
+
+        <div class="tldr">
+          <strong data-i18n="intro.tldr.label">TL;DR:</strong>
+          <span data-i18n="intro.tldr.text">
+            Lewen API 提供数据底座，Academic Search 提供可调用技能，PaperScout 负责自主知识获取，PaperArena 负责过程评测与能力诊断，学术乐问面向真实用户提供学术知识问答与深度研究服务。
+          </span>
+        </div>
+
+        <div class="direction-stack">
+          <div>
+            <p data-i18n="intro.paragraph1">
+              Agentic AI 时代，科研智能体面对的核心挑战不只是生成答案，而是在复杂科学信息空间中主动获取、验证、组织和利用知识。科学文献、实验数据、代码资源、图表证据和领域知识持续增长，静态数据库、关键词检索和一次性 RAG 很难支撑真实科研过程中的多轮证据获取。
+            </p>
+            <p data-i18n="intro.paragraph2">
+              因此，Scientific Knowledge Acquisition 应从静态数据访问接口，推进为面向科研智能体的 Agentic Scientific Knowledge Acquisition Interface。它需要理解任务目标，识别知识缺口，规划检索路径，并在多轮交互中完成证据筛选、跨文档推理和结论修正。
+            </p>
+          </div>
+          <div class="quote-block">
+            <strong data-i18n="intro.quote.lead">科学知识获取不再是 Agent 工作流中的一个检索步骤，</strong>
+            <span data-i18n="intro.quote.text">而是一个可规划、可交互、可验证、可评估和可优化的智能行为过程。</span>
+          </div>
+        </div>
+
+        <div class="stack-stats">
+          <div class="stat-box">
+            <div class="stat-num">Data</div>
+            <div class="stat-label" data-i18n="stats.data">Lewen API · 科学数据支撑层</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Skill</div>
+            <div class="stat-label" data-i18n="stats.skill">Academic Search · Agent Runtime 技能层</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Agent</div>
+            <div class="stat-label" data-i18n="stats.agent">PaperScout · 自主知识获取层</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Arena</div>
+            <div class="stat-label" data-i18n="stats.arena">PaperArena · 过程评测与诊断</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">User</div>
+            <div class="stat-label" data-i18n="stats.user">学术乐问 · 真实用户应用层</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="position" class="section highlights">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="position.eyebrow">Positioning</p>
+          <h2 data-i18n="position.title">从静态检索到 Agentic Knowledge Acquisition</h2>
+          <p data-i18n="position.description">
+            传统系统通常回答“找到什么论文”，而科研智能体需要围绕任务状态规划知识获取过程，产出可验证证据链、结构化 claim、方法边界、实验依据和可复用记忆。
+          </p>
+        </div>
+
+        <div class="system-grid">
+          <article class="system-panel highlight">
+            <span class="label">Before</span>
+            <h3 data-i18n="position.before.title">静态信息检索</h3>
+            <p data-i18n="position.before.description">
+              给定 query 后返回论文列表，主要优化召回、排序和摘要呈现。系统输出通常停留在“找到什么论文”。
+            </p>
+          </article>
+          <article class="system-panel">
+            <span class="label">Now</span>
+            <h3 data-i18n="position.now.title">主动知识获取</h3>
+            <p data-i18n="position.now.description">
+              给定任务状态后规划知识获取过程，产出可验证证据链、结构化 claim、方法边界、实验依据和可复用记忆。
+            </p>
+          </article>
+        </div>
+
+        <div class="tag-cloud" aria-label="Evidence object examples">
+          <span>paper card</span>
+          <span>claim card</span>
+          <span>method card</span>
+          <span>dataset card</span>
+          <span>experiment card</span>
+          <span>limitation card</span>
+          <span>citation path</span>
+          <span>implementation clue</span>
+          <span>feedback signal</span>
+        </div>
+      </section>
+
+      <section id="architecture" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="architecture.eyebrow">System Stack</p>
+          <h2 data-i18n="architecture.title">五层 Stack：数据、技能、智能体、评测、应用</h2>
+          <p data-i18n="architecture.description">
+            从 Lewen API 到 Academic Search、PaperScout、PaperArena，再到学术乐问用户系统，形成可调用、可评测、可迭代的科研知识获取闭环。
+          </p>
+        </div>
+
+        <div class="stack-diagram" aria-label="Lewen API, Academic Search, PaperScout, PaperArena, 学术乐问 five-layer stack">
+          <div class="stack-layer app">
+            <div class="layer-index">Layer 5</div>
+            <div>
+              <strong data-i18n="architecture.layer5.title">学术乐问</strong>
+              <span data-i18n="architecture.layer5.description">面向科研用户的前端系统，支持学术问答、深度检索、文献调研、证据追踪和研究辅助。</span>
+            </div>
+          </div>
+          <div class="stack-connect"></div>
+          <div class="stack-layer eval">
+            <div class="layer-index">Layer 4</div>
+            <div>
+              <strong>PaperArena</strong>
+              <span data-i18n="architecture.layer4.description">评估智能体在工具链规划、多步推理、多模态理解、跨论文整合、数据库交互和过程级决策中的能力。</span>
+            </div>
+          </div>
+          <div class="stack-connect"></div>
+          <div class="stack-layer agent">
+            <div class="layer-index">Layer 3</div>
+            <div>
+              <strong>PaperScout</strong>
+              <span data-i18n="architecture.layer3.description">围绕科研任务自主规划检索路径，调用 Academic Search 等技能，完成证据获取、筛选、组织和知识综合。</span>
+            </div>
+          </div>
+          <div class="stack-connect"></div>
+          <div class="stack-layer skill">
+            <div class="layer-index">Layer 2</div>
+            <div>
+              <strong>Academic Search</strong>
+              <span data-i18n="architecture.layer2.description">封装多源学术检索、Query 扩展、元数据补全、开放获取判断、引用追踪、结果筛选等能力。</span>
+            </div>
+          </div>
+          <div class="stack-connect"></div>
+          <div class="stack-layer data">
+            <div class="layer-index">Layer 1</div>
+            <div>
+              <strong>Lewen API</strong>
+              <span data-i18n="architecture.layer1.description">提供科学文献、元数据、引用关系、开放全文、多模态证据等底层数据访问能力。</span>
+            </div>
+          </div>
+          <p class="stack-note" data-i18n="architecture.note">从底层科学数据到用户侧研究辅助，形成可调用、可评测、可迭代的科研知识获取闭环。</p>
+        </div>
+      </section>
+
+      <section id="lewen" class="section highlights">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="lewen.eyebrow">Data Layer</p>
+          <h2 data-i18n="lewen.title">Lewen API：数据支撑层</h2>
+          <p data-i18n="lewen.description">
+            Lewen API 把分散的科学信息资源转化为可组合、可追踪、可扩展的数据接口，是后续 Skill 调用、智能体规划和证据评测的基础。
+          </p>
+        </div>
+
+        <div class="system-grid">
+          <article class="system-panel highlight">
+            <span class="label">Data</span>
+            <h3 data-i18n="lewen.data.title">科学数据访问</h3>
+            <p data-i18n="lewen.data.description">围绕论文、元数据、引用关系、开放全文、图表证据和多模态材料提供统一接口。</p>
+          </article>
+          <article class="system-panel">
+            <span class="label">Evidence</span>
+            <h3 data-i18n="lewen.evidence.title">可追踪证据对象</h3>
+            <p data-i18n="lewen.evidence.description">为上层 Academic Search、PaperScout 和 PaperArena 提供可引用、可验证、可复用的科学证据来源。</p>
+          </article>
+        </div>
+
+        <div class="section-actions">
+          <a class="btn ghost" href="https://ustc-ai4science.github.io/Lewen-API/" target="_blank" rel="noopener">Lewen API Docs</a>
+          <a class="btn ghost" href="https://github.com/ustc-ai4science/Lewen-API" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn ghost" href="https://lewen.bdaa.pro/" target="_blank" rel="noopener" data-i18n="lewen.link.app">学术乐问</a>
+        </div>
+      </section>
+
+      <section id="skill" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="skill.eyebrow">Skill Layer</p>
+          <h2 data-i18n="skill.title">Academic Search：Skill 技能层</h2>
+          <p data-i18n="skill.description">
+            Academic Search 封装多源学术检索、Query 扩展、元数据补全、开放获取判断、引用追踪、结果筛选等能力，作为 Agent Runtime 可调用的学术检索 Skill。
+          </p>
+        </div>
+
+        <ul class="pillar-list">
+          <li>
+            <div class="pillar-num">1</div>
+            <div class="pillar-text">
+              <strong>Search and Expand</strong>
+              <span data-i18n="skill.search.description">执行多源学术检索、查询改写、Query 扩展和相关论文发现，提升复杂研究问题的召回覆盖。</span>
+            </div>
+          </li>
+          <li>
+            <div class="pillar-num">2</div>
+            <div class="pillar-text">
+              <strong>Complete and Filter</strong>
+              <span data-i18n="skill.filter.description">补全标题、作者、摘要、venue、年份、DOI、开放获取状态等元数据，并对结果进行去重和筛选。</span>
+            </div>
+          </li>
+          <li>
+            <div class="pillar-num">3</div>
+            <div class="pillar-text">
+              <strong>Trace and Ground</strong>
+              <span data-i18n="skill.trace.description">沿引用、被引、相关工作和开放全文路径追踪证据来源，为后续知识综合提供可验证依据。</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="section-actions">
+          <a class="btn ghost" href="https://github.com/ustc-ai4science/academic-search" target="_blank" rel="noopener">Academic Search GitHub</a>
+        </div>
+      </section>
+
+      <section id="agent" class="section highlights">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="agent.eyebrow">Agent Layer</p>
+          <h2 data-i18n="agent.title">PaperScout：自主交互驱动的文献检索智能体</h2>
+          <p data-i18n="agent.description">
+            PaperScout 围绕科研任务自主规划检索路径，调用 Academic Search 等技能，完成证据获取、筛选、组织和知识综合，把学术论文搜索转化为多轮序列决策过程。
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <article class="card">
+            <span class="eyebrow">Plan</span>
+            <h3 data-i18n="agent.plan.title">规划知识缺口</h3>
+            <p data-i18n="agent.plan.description">
+              围绕科研任务识别知识缺口，规划检索路径，决定调用哪些学术检索、引用追踪和证据工具。
+            </p>
+          </article>
+          <article class="card">
+            <span class="eyebrow">Call Skills</span>
+            <h3 data-i18n="agent.call.title">调用检索技能</h3>
+            <p data-i18n="agent.call.description">
+              调用 Academic Search 等技能完成多源检索、Query 扩展、元数据补全、开放获取判断和引用追踪。
+            </p>
+          </article>
+          <article class="card">
+            <span class="eyebrow">Verify</span>
+            <h3 data-i18n="agent.verify.title">验证证据可信度</h3>
+            <p data-i18n="agent.verify.description">
+              判断哪些论文值得深入阅读，检查引用链路、实验结论、适用边界和证据可信度。
+            </p>
+          </article>
+          <article class="card">
+            <span class="eyebrow">Synthesize</span>
+            <h3 data-i18n="agent.synthesize.title">综合结构化知识</h3>
+            <p data-i18n="agent.synthesize.description">
+              把候选结果整理为可交付证据链，并返回上层 Agent 可直接使用的结构化知识。
+            </p>
+          </article>
+        </div>
+
+        <div class="section-actions">
+          <a class="btn ghost" href="https://github.com/pty12345/PaperScout" target="_blank" rel="noopener" data-i18n="agent.link.project">查看 PaperScout</a>
+          <a class="btn ghost" href="https://arxiv.org/abs/2601.10029v1" target="_blank" rel="noopener" data-i18n="agent.link.paper">相关论文</a>
+        </div>
+      </section>
+
+      <section id="arena" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="arena.eyebrow">Evaluation Layer</p>
+          <h2 data-i18n="arena.title">PaperArena：过程评测与能力诊断</h2>
+          <p data-i18n="arena.description">
+            PaperArena 不只检查最后答案是否正确，还诊断智能体是否能正确选择技能、读取跨论文证据、处理多模态材料，并在证据不足时修正推理过程。
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <article class="card">
+            <h3>Tool Planning</h3>
+            <p data-i18n="arena.tool.description">
+              评估智能体是否能在 Academic Search、引用追踪、图表解析、代码执行和数据库查询之间做出合理选择。
+            </p>
+          </article>
+          <article class="card">
+            <h3>Cross-paper Reasoning</h3>
+            <p data-i18n="arena.reasoning.description">
+              诊断智能体能否整合多篇论文中的方法、实验、局限性和引用关系，形成一致结论。
+            </p>
+          </article>
+          <article class="card">
+            <h3>Evidence Grounding</h3>
+            <p data-i18n="arena.grounding.description">
+              检查答案是否有可追踪证据支撑，引用是否准确，关键 claim 是否来自可信来源。
+            </p>
+          </article>
+          <article class="card">
+            <h3>Process Feedback</h3>
+            <p data-i18n="arena.feedback.description">
+              把过程指标转化为训练信号，为 Agentic RL 提供可观测、可优化的科研任务环境。
+            </p>
+          </article>
+        </div>
+
+        <div class="section-actions">
+          <a class="btn ghost" href="https://arxiv.org/pdf/2510.10909" target="_blank" rel="noopener">PaperArena Paper</a>
+          <a class="btn ghost" href="https://github.com/Melmaphother/PaperArena" target="_blank" rel="noopener">PaperArena Code</a>
+        </div>
+      </section>
+
+      <section id="app" class="section highlights">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="app.eyebrow">Application Layer</p>
+          <h2 data-i18n="app.title">学术乐问：用户应用层</h2>
+          <p data-i18n="app.description">
+            学术乐问把底层数据、Academic Search 技能、PaperScout 智能体和 PaperArena 评测能力连接到真实科研使用场景中。
+          </p>
+        </div>
+
+        <div class="system-grid">
+          <article class="system-panel highlight">
+            <span class="label">QA</span>
+            <h3 data-i18n="app.qa.title">学术知识问答</h3>
+            <p data-i18n="app.qa.description">用户用自然语言提出研究问题，系统返回带证据来源、引用链路和可追踪依据的回答。</p>
+          </article>
+          <article class="system-panel">
+            <span class="label">Search</span>
+            <h3 data-i18n="app.search.title">深度检索与文献调研</h3>
+            <p data-i18n="app.search.description">围绕复杂主题执行多轮检索、相关工作发现、文献筛选、证据追踪和研究脉络整理。</p>
+          </article>
+          <article class="system-panel">
+            <span class="label">Assist</span>
+            <h3 data-i18n="app.assist.title">研究辅助</h3>
+            <p data-i18n="app.assist.description">为选题分析、方法比较、实验方案设计、相关工作梳理和科研写作提供证据支撑。</p>
+          </article>
+          <article class="system-panel">
+            <span class="label">Feedback</span>
+            <h3 data-i18n="app.feedback.title">真实用户反馈</h3>
+            <p data-i18n="app.feedback.description">通过用户查询、点击、追问和采纳行为反哺检索策略、智能体规划和评测任务构造。</p>
+          </article>
+        </div>
+
+        <div class="section-actions">
+          <a class="btn primary" href="https://lewen.bdaa.pro/" target="_blank" rel="noopener" data-i18n="app.link">进入学术乐问</a>
+        </div>
+      </section>
+
+      <section id="resources" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="resources.eyebrow">Resources</p>
+          <h2 data-i18n="resources.title">相关资源链接</h2>
+          <p data-i18n="resources.description">
+            以下项目共同构成当前 Agentic Scientific Knowledge Acquisition Stack，可分别服务开发者、智能体、评测环境和真实科研用户。
+          </p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="resources.table.module">模块</th>
+                <th data-i18n="resources.table.position">定位</th>
+                <th data-i18n="resources.table.links">链接</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Lewen-API</strong></td>
+                <td data-i18n="resources.lewen.position">数据支撑层：科学文献、元数据、引用关系、开放全文和多模态证据访问底座。</td>
+                <td><a href="https://github.com/ustc-ai4science/Lewen-API" target="_blank" rel="noopener">GitHub</a> · <a href="https://ustc-ai4science.github.io/Lewen-API/" target="_blank" rel="noopener">Docs</a></td>
+              </tr>
+              <tr>
+                <td><strong>Academic Search</strong></td>
+                <td data-i18n="resources.search.position">Skill 技能层：封装多源学术检索、Query 扩展、元数据补全、开放获取判断、引用追踪和结果筛选。</td>
+                <td><a href="https://github.com/ustc-ai4science/academic-search" target="_blank" rel="noopener">GitHub</a></td>
+              </tr>
+              <tr>
+                <td><strong>PaperScout</strong></td>
+                <td data-i18n="resources.paperscout.position">智能体层：围绕科研任务自主规划检索路径，调用 Academic Search 等技能完成知识获取。</td>
+                <td><a href="https://github.com/pty12345/PaperScout" target="_blank" rel="noopener" data-i18n="resources.link.project">Project</a> · <a href="https://arxiv.org/abs/2601.10029v1" target="_blank" rel="noopener" data-i18n="resources.link.paper">Paper</a></td>
+              </tr>
+              <tr>
+                <td><strong>PaperArena</strong></td>
+                <td data-i18n="resources.paperarena.position">评测层：评估工具链规划、多步推理、多模态理解、跨论文整合、数据库交互和过程级决策能力。</td>
+                <td><a href="https://arxiv.org/pdf/2510.10909" target="_blank" rel="noopener">Paper</a> · <a href="https://github.com/Melmaphother/PaperArena" target="_blank" rel="noopener">Code</a></td>
+              </tr>
+              <tr>
+                <td><strong data-i18n="resources.lewenapp.name">学术乐问</strong></td>
+                <td data-i18n="resources.lewenapp.position">用户应用层：面向科研用户的自然语言学术问答、深度检索、文献调研、证据追踪和研究辅助系统。</td>
+                <td><a href="https://lewen.bdaa.pro/" target="_blank" rel="noopener" data-i18n="resources.link.lewen">学术乐问</a></td>
+              </tr>
+              <tr>
+                <td><strong data-i18n="resources.luban.name">学术鲁班</strong></td>
+                <td data-i18n="resources.luban.position">面向科研场景的 Skills 管理、分发与共建平台，支撑科研能力单元的生态化扩展。</td>
+                <td><a href="https://luban.bdaa.pro/" target="_blank" rel="noopener">luban.bdaa.pro</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div>
+        <p class="eyebrow" data-i18n="footer.eyebrow">Connect</p>
+        <h3 data-i18n="footer.title">Work with USTC AGI Scientific Knowledge Acquisition Group</h3>
+        <p data-i18n="footer.description">
+          We welcome collaborations on agentic scientific knowledge acquisition, academic search skills, process evaluation, and research-facing AI systems.
+        </p>
+      </div>
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">Email Us</a>
+        <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · Licensed under</span>
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "Agentic Scientific Knowledge Acquisition",
+          "meta.description":
+            "Research from USTC AGI on agentic scientific knowledge acquisition for research agents, spanning Lewen API, Academic Search, PaperScout, PaperArena, and Lewen.",
+          "brand.title": "USTC AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.intro": "Scientific Literature Cognition",
+          "nav.architecture": "Five-Layer Stack",
+          "nav.resources": "Resources",
+          "nav.directions": "Research Directions",
+          "nav.papers": "Publications",
+          "hero.eyebrow": "Agentic Scientific Knowledge Acquisition",
+          "hero.title": "Autonomous Scientific Knowledge Acquisition",
+          "hero.subtitle":
+            "From static literature retrieval to autonomous evidence acquisition, connecting scientific knowledge APIs, academic-search skills, knowledge-acquisition agents, process evaluation, and real user services.",
+          "hero.stack": "View Five-Layer Stack",
+          "hero.lewen": "Open Lewen",
+          "hierarchy.eyebrow": "Research Vision",
+          "hierarchy.title": "The 5-Level Cognitive Hierarchy",
+          "hierarchy.description":
+            "AI's capability in scientific literature mining follows a progressive path of cognitive depth.",
+          "hierarchy.l1.title": "Paper Search",
+          "hierarchy.l1.description": "Retrieval from massive literature pools (e.g., PaperScout).",
+          "hierarchy.l2.title": "Element Interpretation",
+          "hierarchy.l2.description": "Parsing PDF into structured, machine-readable data (e.g., ChemTable).",
+          "hierarchy.l3.title": "Information Extraction",
+          "hierarchy.l3.description": "Understanding methods, tasks, and contributions (e.g., ScholarSum).",
+          "hierarchy.l4.title": "Knowledge Comprehension",
+          "hierarchy.l4.description": "Reasoning and multi-paper synthesis (e.g., PaperArena, Mind2Report).",
+          "hierarchy.l5.title": "Hypothesis Discovery",
+          "hierarchy.l5.description": "Autonomous discovery and research generation (Future Vision).",
+          "projects.eyebrow": "Research Projects",
+          "projects.title": "Advancing the Frontiers of Science",
+          "projects.description":
+            "Our work spans the entire hierarchy, providing tools and benchmarks for the next generation of scientific AI.",
+          "projects.paperscout.level": "L1 · Paper Search",
+          "projects.paperscout.description":
+            "An autonomous LLM-based agent that reformulates academic paper search as a multi-turn decision-making process, dynamically deciding when and how to invoke search and citation expansion tools.",
+          "projects.chemtable.level": "L2 · Element Interpretation",
+          "projects.chemtable.description":
+            "A large-scale benchmark for multimodal LLMs to recognize and understand complex chemical tables, combining symbolic chemical formulas, table structures, and visual molecule diagrams.",
+          "projects.scholarsum.level": "L3 · Information Extraction",
+          "projects.scholarsum.description":
+            "Advancing scientific summarization through knowledge graph reasoning and reflective refinement, distilling complex research into structured, high-fidelity summaries.",
+          "projects.paperarena.level": "L4 · Knowledge Comprehension",
+          "projects.paperarena.description":
+            "An evaluation benchmark for tool-augmented agentic reasoning on scientific literature, requiring agents to integrate information across multiple papers with diverse tools.",
+          "projects.mind2report.level": "L4 · Knowledge Comprehension",
+          "projects.mind2report.description":
+            "A cognitive deep research agent that emulates commercial analysts to synthesize expert-level reports from massive web sources through intent-driven search and iterative synthesis.",
+          "projects.vision.level": "L5 · Hypothesis Discovery",
+          "projects.vision.title": "AI Scientist Vision",
+          "projects.vision.description":
+            "Our ultimate goal: building agents that not only understand literature but also autonomously discover laws, generate new hypotheses, and propose novel research directions.",
+          "projects.vision.status": "Visionary Research",
+          "projects.repo": "Project Repo →",
+          "timeline.eyebrow": "Research Timeline",
+          "timeline.title": "Milestones in Scientific Literature Mining",
+          "timeline.chemtable.date": "Jun. 2025",
+          "timeline.chemtable.title": "ChemTable · Table Recognition Benchmark",
+          "timeline.chemtable.description":
+            "A large-scale benchmark designed to test MLLMs on real-world chemical tables, addressing structural complexity and domain-specific semantics.",
+          "timeline.scholarsum.date": "Oct. 2025",
+          "timeline.scholarsum.title": "ScholarSum · Student-Teacher Summarization",
+          "timeline.scholarsum.description":
+            "A novel Student-Teacher framework for scientific summarization, leveraging knowledge graph reasoning and reflective refinement to ensure structural coherence.",
+          "timeline.paperarena.date": "Oct. 2025",
+          "timeline.paperarena.title": "PaperArena · Agentic Reasoning Benchmark",
+          "timeline.paperarena.description":
+            "The first benchmark for tool-augmented agentic reasoning on scientific literature, evaluating cross-paper integration and multi-tool orchestration.",
+          "timeline.paperscout.date": "Jan. 2026",
+          "timeline.paperscout.title": "PaperScout · Autonomous Paper Search",
+          "timeline.paperscout.description":
+            "An adaptive agentic framework for academic paper search, optimized with Proximal Sequence Policy Optimization (PSPO) for multi-turn interactions.",
+          "timeline.mind2report.date": "Jan. 2026",
+          "timeline.mind2report.title": "Mind2Report · Cognitive Deep Research",
+          "timeline.mind2report.description":
+            "A cognitive deep research agent that emulates commercial analysts to synthesize expert-level reports via intent-driven search and iterative synthesis.",
+          "vision.title": "Why AI for Scientific Literature Mining Matters?",
+          "vision.description":
+            "The explosion of scientific literature has exceeded human cognitive limits. We aim to build AI systems that can autonomously navigate, understand, and synthesize scientific knowledge, ultimately accelerating the pace of human discovery.",
+          "vision.reasoning.title": "Autonomous Reasoning",
+          "vision.reasoning.description":
+            "Moving beyond keyword matching to deep semantic understanding and multi-hop reasoning across heterogeneous scientific documents.",
+          "vision.synthesis.title": "Multimodal Synthesis",
+          "vision.synthesis.description":
+            "Integrating text, tables, figures, and equations to form a holistic understanding of scientific breakthroughs.",
+          "vision.hypothesis.title": "Hypothesis Generation",
+          "vision.hypothesis.description":
+            "Discovering novel connections between disparate research areas to propose and validate new scientific hypotheses.",
+          "intro.eyebrow": "Core Thesis",
+          "intro.title": "Research Agents Are Bottlenecked by Knowledge Acquisition",
+          "intro.description":
+            "The Scientific Knowledge Acquisition Stack is not a larger paper search box. It is knowledge-acquisition infrastructure for Science Agents and Autonomous Research Agents.",
+          "intro.tldr.label": "TL;DR:",
+          "intro.tldr.text":
+            "Lewen API provides the data foundation, Academic Search provides callable skills, PaperScout handles autonomous knowledge acquisition, PaperArena evaluates and diagnoses the process, and Lewen serves real users with academic question answering and deep research.",
+          "intro.paragraph1":
+            "In the agentic AI era, the core challenge for research agents is not only generating answers, but actively acquiring, verifying, organizing, and using knowledge across complex scientific information spaces. Scientific papers, experimental data, code resources, figure evidence, and domain knowledge keep growing, while static databases, keyword retrieval, and one-shot RAG cannot support the multi-round evidence acquisition required in real research.",
+          "intro.paragraph2":
+            "Scientific Knowledge Acquisition should therefore evolve from static data access into an Agentic Scientific Knowledge Acquisition Interface for research agents. It needs to understand task goals, identify knowledge gaps, plan retrieval paths, and complete evidence filtering, cross-document reasoning, and conclusion revision through multi-round interaction.",
+          "intro.quote.lead": "Scientific knowledge acquisition is no longer just a retrieval step in an agent workflow,",
+          "intro.quote.text":
+            "but an intelligent behavior process that can be planned, interacted with, verified, evaluated, and optimized.",
+          "stats.data": "Lewen API · Scientific data layer",
+          "stats.skill": "Academic Search · Agent Runtime skill layer",
+          "stats.agent": "PaperScout · Autonomous acquisition layer",
+          "stats.arena": "PaperArena · Process evaluation and diagnostics",
+          "stats.user": "Lewen · Real-user application layer",
+          "position.eyebrow": "Positioning",
+          "position.title": "From Static Search to Agentic Knowledge Acquisition",
+          "position.description":
+            "Traditional systems usually answer which papers were found. Research agents need to plan knowledge acquisition around task state and produce verifiable evidence chains, structured claims, method boundaries, experimental grounding, and reusable memory.",
+          "position.before.title": "Static Information Retrieval",
+          "position.before.description":
+            "Given a query, the system returns a paper list and mostly optimizes recall, ranking, and summary presentation. The output usually stops at which papers were found.",
+          "position.now.title": "Active Knowledge Acquisition",
+          "position.now.description":
+            "Given the task state, the system plans the knowledge-acquisition process and produces verifiable evidence chains, structured claims, method boundaries, experimental grounding, and reusable memory.",
+          "architecture.eyebrow": "System Stack",
+          "architecture.title": "Five-Layer Stack: Data, Skills, Agents, Evaluation, Applications",
+          "architecture.description":
+            "From Lewen API to Academic Search, PaperScout, PaperArena, and the Lewen user system, the stack forms a callable, evaluable, and iterative loop for scientific knowledge acquisition.",
+          "architecture.layer5.title": "Lewen",
+          "architecture.layer5.description":
+            "A front-end system for research users, supporting academic question answering, deep search, literature review, evidence tracing, and research assistance.",
+          "architecture.layer4.description":
+            "Evaluates agents on tool-chain planning, multi-step reasoning, multimodal understanding, cross-paper integration, database interaction, and process-level decisions.",
+          "architecture.layer3.description":
+            "Plans retrieval paths around research tasks, calls skills such as Academic Search, and completes evidence acquisition, filtering, organization, and synthesis.",
+          "architecture.layer2.description":
+            "Wraps multi-source academic search, query expansion, metadata completion, open-access checks, citation tracing, and result filtering.",
+          "architecture.layer1.description":
+            "Provides low-level access to scientific papers, metadata, citation relations, open full text, and multimodal evidence.",
+          "architecture.note":
+            "From low-level scientific data to user-facing research assistance, the stack forms a callable, evaluable, and iterative knowledge-acquisition loop.",
+          "lewen.eyebrow": "Data Layer",
+          "lewen.title": "Lewen API: Data Support Layer",
+          "lewen.description":
+            "Lewen API turns distributed scientific information resources into composable, traceable, and extensible data interfaces. It is the foundation for skill calls, agent planning, and evidence evaluation.",
+          "lewen.data.title": "Scientific Data Access",
+          "lewen.data.description":
+            "Provides unified interfaces around papers, metadata, citation relations, open full text, figure evidence, and multimodal materials.",
+          "lewen.evidence.title": "Traceable Evidence Objects",
+          "lewen.evidence.description":
+            "Provides citable, verifiable, and reusable evidence sources for Academic Search, PaperScout, and PaperArena.",
+          "lewen.link.app": "Lewen",
+          "skill.eyebrow": "Skill Layer",
+          "skill.title": "Academic Search: Skill Layer",
+          "skill.description":
+            "Academic Search wraps multi-source academic retrieval, query expansion, metadata completion, open-access checks, citation tracing, and result filtering as an Agent Runtime callable academic-search skill.",
+          "skill.search.description":
+            "Run multi-source academic search, query rewriting, query expansion, and related-paper discovery to improve recall for complex research questions.",
+          "skill.filter.description":
+            "Complete metadata such as titles, authors, abstracts, venues, years, DOI, and open-access status, then deduplicate and filter results.",
+          "skill.trace.description":
+            "Trace evidence sources through references, citations, related work, and open full-text paths to provide verifiable grounding for later synthesis.",
+          "agent.eyebrow": "Agent Layer",
+          "agent.title": "PaperScout: Autonomous Interactive Literature Search Agent",
+          "agent.description":
+            "PaperScout plans retrieval paths around research tasks, calls skills such as Academic Search, and completes evidence acquisition, filtering, organization, and synthesis, turning paper search into a multi-round sequential decision process.",
+          "agent.plan.title": "Plan Knowledge Gaps",
+          "agent.plan.description":
+            "Identify knowledge gaps around a research task, plan retrieval paths, and decide which academic search, citation tracing, and evidence tools to call.",
+          "agent.call.title": "Call Search Skills",
+          "agent.call.description":
+            "Call skills such as Academic Search for multi-source retrieval, query expansion, metadata completion, open-access checks, and citation tracing.",
+          "agent.verify.title": "Verify Evidence Reliability",
+          "agent.verify.description":
+            "Decide which papers deserve deeper reading, and inspect citation paths, experimental conclusions, applicability boundaries, and evidence credibility.",
+          "agent.synthesize.title": "Synthesize Structured Knowledge",
+          "agent.synthesize.description":
+            "Organize candidate results into deliverable evidence chains and return structured knowledge that upper-level agents can use directly.",
+          "agent.link.project": "View PaperScout",
+          "agent.link.paper": "Related Paper",
+          "arena.eyebrow": "Evaluation Layer",
+          "arena.title": "PaperArena: Process Evaluation and Capability Diagnostics",
+          "arena.description":
+            "PaperArena checks more than final-answer correctness. It diagnoses whether agents choose skills correctly, read cross-paper evidence, handle multimodal materials, and revise reasoning when evidence is insufficient.",
+          "arena.tool.description":
+            "Evaluate whether agents can make reasonable choices among Academic Search, citation tracing, chart parsing, code execution, and database queries.",
+          "arena.reasoning.description":
+            "Diagnose whether agents can integrate methods, experiments, limitations, and citation relations across multiple papers into consistent conclusions.",
+          "arena.grounding.description":
+            "Check whether answers are backed by traceable evidence, whether citations are accurate, and whether key claims come from reliable sources.",
+          "arena.feedback.description":
+            "Turn process metrics into training signals and provide observable, optimizable research-task environments for Agentic RL.",
+          "app.eyebrow": "Application Layer",
+          "app.title": "Lewen: User Application Layer",
+          "app.description":
+            "Lewen connects low-level data, Academic Search skills, PaperScout agents, and PaperArena evaluation capabilities to real research usage.",
+          "app.qa.title": "Academic Knowledge QA",
+          "app.qa.description":
+            "Users ask research questions in natural language, and the system returns answers with evidence sources, citation paths, and traceable grounding.",
+          "app.search.title": "Deep Search and Literature Review",
+          "app.search.description":
+            "Run multi-round retrieval, related-work discovery, literature filtering, evidence tracing, and research-thread organization around complex topics.",
+          "app.assist.title": "Research Assistance",
+          "app.assist.description":
+            "Support topic analysis, method comparison, experiment design, related-work organization, and scientific writing with evidence grounding.",
+          "app.feedback.title": "Real User Feedback",
+          "app.feedback.description":
+            "Use queries, clicks, follow-up questions, and adoption behavior to improve retrieval strategies, agent planning, and evaluation-task construction.",
+          "app.link": "Open Lewen",
+          "resources.eyebrow": "Resources",
+          "resources.title": "Related Resources",
+          "resources.description":
+            "These projects jointly form the current Agentic Scientific Knowledge Acquisition Stack and serve developers, agents, evaluation environments, and real research users.",
+          "resources.table.module": "Module",
+          "resources.table.position": "Positioning",
+          "resources.table.links": "Links",
+          "resources.lewen.position":
+            "Data layer: access foundation for scientific papers, metadata, citation relations, open full text, and multimodal evidence.",
+          "resources.search.position":
+            "Skill layer: wraps multi-source academic search, query expansion, metadata completion, open-access checks, citation tracing, and result filtering.",
+          "resources.paperscout.position":
+            "Agent layer: plans retrieval paths around research tasks and calls skills such as Academic Search to acquire knowledge.",
+          "resources.link.project": "Project",
+          "resources.link.paper": "Paper",
+          "resources.paperarena.position":
+            "Evaluation layer: evaluates tool-chain planning, multi-step reasoning, multimodal understanding, cross-paper integration, database interaction, and process-level decisions.",
+          "resources.lewenapp.name": "Lewen",
+          "resources.lewenapp.position":
+            "User application layer: natural-language academic QA, deep search, literature review, evidence tracing, and research assistance for research users.",
+          "resources.link.lewen": "Lewen",
+          "resources.luban.name": "Academic Luban",
+          "resources.luban.position":
+            "A skills management, distribution, and collaboration platform for research scenarios, supporting ecosystem expansion of scientific capability units.",
+          "footer.eyebrow": "Connect",
+          "footer.title": "Work with USTC AGI Scientific Knowledge Acquisition Group",
+          "footer.description":
+            "We welcome collaborations on agentic scientific knowledge acquisition, academic search skills, process evaluation, and research-facing AI systems.",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "自主科学知识获取关键技术研究",
+          "meta.description":
+            "中国科大 AGI 团队面向科研智能体的自主科学知识获取关键技术研究，贯通 Lewen API、Academic Search、PaperScout、PaperArena 与学术乐问。",
+          "brand.title": "中国科大 AGI",
+          "brand.subtitle": "科学文献智能",
+          "nav.intro": "科技文献认知",
+          "nav.architecture": "五层架构",
+          "nav.resources": "资源链接",
+          "nav.directions": "研究方向",
+          "nav.papers": "论文列表",
+          "hero.eyebrow": "自主科学知识获取",
+          "hero.title": "自主科学知识获取关键技术研究",
+          "hero.subtitle":
+            "从静态文献检索走向自主证据获取，贯通科学知识接口、学术检索 Skill、知识获取智能体、过程评测与真实用户服务。",
+          "hero.stack": "查看五层架构",
+          "hero.lewen": "进入学术乐问",
+          "hierarchy.eyebrow": "研究愿景 · Our Vision",
+          "hierarchy.title": "五级认知层级",
+          "hierarchy.description":
+            "AI 在科学文献挖掘中的能力，沿着认知深度逐级演进。",
+          "hierarchy.l1.title": "论文检索",
+          "hierarchy.l1.description": "从海量文献池中检索目标论文，例如 PaperScout。",
+          "hierarchy.l2.title": "元素解析",
+          "hierarchy.l2.description": "将 PDF 解析为结构化、机器可读的数据，例如 ChemTable。",
+          "hierarchy.l3.title": "信息抽取",
+          "hierarchy.l3.description": "理解论文的方法、任务与贡献，例如 ScholarSum。",
+          "hierarchy.l4.title": "知识理解",
+          "hierarchy.l4.description": "进行推理与多论文综合，例如 PaperArena 和 Mind2Report。",
+          "hierarchy.l5.title": "假设发现",
+          "hierarchy.l5.description": "面向自主发现与研究生成的未来能力。",
+          "projects.eyebrow": "研究项目 · Research Projects",
+          "projects.title": "推进科学智能的前沿",
+          "projects.description":
+            "我们的工作覆盖完整认知层级，为下一代科学 AI 提供工具、基准与研究范式。",
+          "projects.paperscout.level": "L1 · 论文检索",
+          "projects.paperscout.description":
+            "一个自主 LLM 智能体，将学术论文搜索重新表述为多轮决策过程，动态决定何时以及如何调用搜索与引用扩展工具。",
+          "projects.chemtable.level": "L2 · 元素解析",
+          "projects.chemtable.description":
+            "一个面向多模态大模型的大规模化学表格识别与理解基准，覆盖化学公式、表格结构和分子图示等复杂信息。",
+          "projects.scholarsum.level": "L3 · 信息抽取",
+          "projects.scholarsum.description":
+            "通过知识图谱推理与反思式优化推进科学摘要生成，将复杂研究压缩为结构化、高保真的摘要。",
+          "projects.paperarena.level": "L4 · 知识理解",
+          "projects.paperarena.description":
+            "一个面向工具增强智能体科学文献推理的评测基准，要求智能体跨多篇论文整合信息并协调多种工具。",
+          "projects.mind2report.level": "L4 · 知识理解",
+          "projects.mind2report.description":
+            "一个认知型深度研究智能体，模拟商业分析师从大规模网络来源中进行意图驱动搜索与迭代综合，生成专家级报告。",
+          "projects.vision.level": "L5 · 假设发现",
+          "projects.vision.title": "AI Scientist 愿景",
+          "projects.vision.description":
+            "我们的终极目标是构建不仅能理解文献，还能自主发现规律、生成新假设并提出新研究方向的智能体。",
+          "projects.vision.status": "前瞻研究",
+          "projects.repo": "项目仓库 →",
+          "timeline.eyebrow": "研究时间线 · Timeline",
+          "timeline.title": "科学文献挖掘的重要里程碑",
+          "timeline.chemtable.date": "2025 年 6 月",
+          "timeline.chemtable.title": "ChemTable · 表格识别基准",
+          "timeline.chemtable.description":
+            "一个用于测试多模态大模型理解真实化学表格的大规模基准，聚焦结构复杂性与领域语义。",
+          "timeline.scholarsum.date": "2025 年 10 月",
+          "timeline.scholarsum.title": "ScholarSum · Student-Teacher 科学摘要",
+          "timeline.scholarsum.description":
+            "一个面向科学摘要的新型 Student-Teacher 框架，利用知识图谱推理和反思式优化保证结构一致性。",
+          "timeline.paperarena.date": "2025 年 10 月",
+          "timeline.paperarena.title": "PaperArena · 智能体推理基准",
+          "timeline.paperarena.description":
+            "首个面向科学文献工具增强智能体推理的基准，评估跨论文整合与多工具编排能力。",
+          "timeline.paperscout.date": "2026 年 1 月",
+          "timeline.paperscout.title": "PaperScout · 自主论文搜索",
+          "timeline.paperscout.description":
+            "一个自适应学术论文搜索智能体框架，通过近端序列策略优化 PSPO 提升多轮交互表现。",
+          "timeline.mind2report.date": "2026 年 1 月",
+          "timeline.mind2report.title": "Mind2Report · 认知型深度研究",
+          "timeline.mind2report.description":
+            "一个模拟商业分析师的认知型深度研究智能体，通过意图驱动搜索与迭代综合生成专家级报告。",
+          "vision.title": "为什么科学文献挖掘需要 AI？",
+          "vision.description":
+            "科学文献的爆炸式增长已经超出人类的认知负荷。我们希望构建能够自主浏览、理解并综合科学知识的 AI 系统，最终加速人类发现的进程。",
+          "vision.reasoning.title": "自主推理",
+          "vision.reasoning.description":
+            "从关键词匹配走向深层语义理解，在异构科学文档之间进行多跳推理。",
+          "vision.synthesis.title": "多模态综合",
+          "vision.synthesis.description":
+            "整合文本、表格、图像与公式，形成对科学突破的整体理解。",
+          "vision.hypothesis.title": "假设生成",
+          "vision.hypothesis.description":
+            "发现不同研究领域之间的新连接，提出并验证新的科学假设。",
+          "intro.eyebrow": "核心判断",
+          "intro.title": "科研 Agent 的瓶颈正在转向知识获取",
+          "intro.description":
+            "Scientific Knowledge Acquisition Stack 不是更大的论文搜索框，而是面向 Science Agent 和 Autonomous Research Agent 的知识获取基础设施。",
+          "intro.tldr.label": "TL;DR:",
+          "intro.tldr.text":
+            "Lewen API 提供数据底座，Academic Search 提供可调用技能，PaperScout 负责自主知识获取，PaperArena 负责过程评测与能力诊断，学术乐问面向真实用户提供学术知识问答与深度研究服务。",
+          "intro.paragraph1":
+            "Agentic AI 时代，科研智能体面对的核心挑战不只是生成答案，而是在复杂科学信息空间中主动获取、验证、组织和利用知识。科学文献、实验数据、代码资源、图表证据和领域知识持续增长，静态数据库、关键词检索和一次性 RAG 很难支撑真实科研过程中的多轮证据获取。",
+          "intro.paragraph2":
+            "因此，Scientific Knowledge Acquisition 应从静态数据访问接口，推进为面向科研智能体的 Agentic Scientific Knowledge Acquisition Interface。它需要理解任务目标，识别知识缺口，规划检索路径，并在多轮交互中完成证据筛选、跨文档推理和结论修正。",
+          "intro.quote.lead": "科学知识获取不再是 Agent 工作流中的一个检索步骤，",
+          "intro.quote.text": "而是一个可规划、可交互、可验证、可评估和可优化的智能行为过程。",
+          "stats.data": "Lewen API · 科学数据支撑层",
+          "stats.skill": "Academic Search · Agent Runtime 技能层",
+          "stats.agent": "PaperScout · 自主知识获取层",
+          "stats.arena": "PaperArena · 过程评测与诊断",
+          "stats.user": "学术乐问 · 真实用户应用层",
+          "position.eyebrow": "技术定位",
+          "position.title": "从静态检索到 Agentic Knowledge Acquisition",
+          "position.description":
+            "传统系统通常回答“找到什么论文”，而科研智能体需要围绕任务状态规划知识获取过程，产出可验证证据链、结构化 claim、方法边界、实验依据和可复用记忆。",
+          "position.before.title": "静态信息检索",
+          "position.before.description":
+            "给定 query 后返回论文列表，主要优化召回、排序和摘要呈现。系统输出通常停留在“找到什么论文”。",
+          "position.now.title": "主动知识获取",
+          "position.now.description":
+            "给定任务状态后规划知识获取过程，产出可验证证据链、结构化 claim、方法边界、实验依据和可复用记忆。",
+          "architecture.eyebrow": "五层架构",
+          "architecture.title": "五层 Stack：数据、技能、智能体、评测、应用",
+          "architecture.description":
+            "从 Lewen API 到 Academic Search、PaperScout、PaperArena，再到学术乐问用户系统，形成可调用、可评测、可迭代的科研知识获取闭环。",
+          "architecture.layer5.title": "学术乐问",
+          "architecture.layer5.description": "面向科研用户的前端系统，支持学术问答、深度检索、文献调研、证据追踪和研究辅助。",
+          "architecture.layer4.description":
+            "评估智能体在工具链规划、多步推理、多模态理解、跨论文整合、数据库交互和过程级决策中的能力。",
+          "architecture.layer3.description":
+            "围绕科研任务自主规划检索路径，调用 Academic Search 等技能，完成证据获取、筛选、组织和知识综合。",
+          "architecture.layer2.description": "封装多源学术检索、Query 扩展、元数据补全、开放获取判断、引用追踪、结果筛选等能力。",
+          "architecture.layer1.description": "提供科学文献、元数据、引用关系、开放全文、多模态证据等底层数据访问能力。",
+          "architecture.note": "从底层科学数据到用户侧研究辅助，形成可调用、可评测、可迭代的科研知识获取闭环。",
+          "lewen.eyebrow": "数据底座",
+          "lewen.title": "Lewen API：数据支撑层",
+          "lewen.description":
+            "Lewen API 把分散的科学信息资源转化为可组合、可追踪、可扩展的数据接口，是后续 Skill 调用、智能体规划和证据评测的基础。",
+          "lewen.data.title": "科学数据访问",
+          "lewen.data.description": "围绕论文、元数据、引用关系、开放全文、图表证据和多模态材料提供统一接口。",
+          "lewen.evidence.title": "可追踪证据对象",
+          "lewen.evidence.description": "为上层 Academic Search、PaperScout 和 PaperArena 提供可引用、可验证、可复用的科学证据来源。",
+          "lewen.link.app": "学术乐问",
+          "skill.eyebrow": "Skill 技能层",
+          "skill.title": "Academic Search：Skill 技能层",
+          "skill.description":
+            "Academic Search 封装多源学术检索、Query 扩展、元数据补全、开放获取判断、引用追踪、结果筛选等能力，作为 Agent Runtime 可调用的学术检索 Skill。",
+          "skill.search.description": "执行多源学术检索、查询改写、Query 扩展和相关论文发现，提升复杂研究问题的召回覆盖。",
+          "skill.filter.description": "补全标题、作者、摘要、venue、年份、DOI、开放获取状态等元数据，并对结果进行去重和筛选。",
+          "skill.trace.description": "沿引用、被引、相关工作和开放全文路径追踪证据来源，为后续知识综合提供可验证依据。",
+          "agent.eyebrow": "智能体层",
+          "agent.title": "PaperScout：自主交互驱动的文献检索智能体",
+          "agent.description":
+            "PaperScout 围绕科研任务自主规划检索路径，调用 Academic Search 等技能，完成证据获取、筛选、组织和知识综合，把学术论文搜索转化为多轮序列决策过程。",
+          "agent.plan.title": "规划知识缺口",
+          "agent.plan.description": "围绕科研任务识别知识缺口，规划检索路径，决定调用哪些学术检索、引用追踪和证据工具。",
+          "agent.call.title": "调用检索技能",
+          "agent.call.description": "调用 Academic Search 等技能完成多源检索、Query 扩展、元数据补全、开放获取判断和引用追踪。",
+          "agent.verify.title": "验证证据可信度",
+          "agent.verify.description": "判断哪些论文值得深入阅读，检查引用链路、实验结论、适用边界和证据可信度。",
+          "agent.synthesize.title": "综合结构化知识",
+          "agent.synthesize.description": "把候选结果整理为可交付证据链，并返回上层 Agent 可直接使用的结构化知识。",
+          "agent.link.project": "查看 PaperScout",
+          "agent.link.paper": "相关论文",
+          "arena.eyebrow": "评测层",
+          "arena.title": "PaperArena：过程评测与能力诊断",
+          "arena.description":
+            "PaperArena 不只检查最后答案是否正确，还诊断智能体是否能正确选择技能、读取跨论文证据、处理多模态材料，并在证据不足时修正推理过程。",
+          "arena.tool.description": "评估智能体是否能在 Academic Search、引用追踪、图表解析、代码执行和数据库查询之间做出合理选择。",
+          "arena.reasoning.description": "诊断智能体能否整合多篇论文中的方法、实验、局限性和引用关系，形成一致结论。",
+          "arena.grounding.description": "检查答案是否有可追踪证据支撑，引用是否准确，关键 claim 是否来自可信来源。",
+          "arena.feedback.description": "把过程指标转化为训练信号，为 Agentic RL 提供可观测、可优化的科研任务环境。",
+          "app.eyebrow": "用户应用层",
+          "app.title": "学术乐问：用户应用层",
+          "app.description": "学术乐问把底层数据、Academic Search 技能、PaperScout 智能体和 PaperArena 评测能力连接到真实科研使用场景中。",
+          "app.qa.title": "学术知识问答",
+          "app.qa.description": "用户用自然语言提出研究问题，系统返回带证据来源、引用链路和可追踪依据的回答。",
+          "app.search.title": "深度检索与文献调研",
+          "app.search.description": "围绕复杂主题执行多轮检索、相关工作发现、文献筛选、证据追踪和研究脉络整理。",
+          "app.assist.title": "研究辅助",
+          "app.assist.description": "为选题分析、方法比较、实验方案设计、相关工作梳理和科研写作提供证据支撑。",
+          "app.feedback.title": "真实用户反馈",
+          "app.feedback.description": "通过用户查询、点击、追问和采纳行为反哺检索策略、智能体规划和评测任务构造。",
+          "app.link": "进入学术乐问",
+          "resources.eyebrow": "资源链接",
+          "resources.title": "相关资源链接",
+          "resources.description": "以下项目共同构成当前 Agentic Scientific Knowledge Acquisition Stack，可分别服务开发者、智能体、评测环境和真实科研用户。",
+          "resources.table.module": "模块",
+          "resources.table.position": "定位",
+          "resources.table.links": "链接",
+          "resources.lewen.position": "数据支撑层：科学文献、元数据、引用关系、开放全文和多模态证据访问底座。",
+          "resources.search.position": "Skill 技能层：封装多源学术检索、Query 扩展、元数据补全、开放获取判断、引用追踪和结果筛选。",
+          "resources.paperscout.position": "智能体层：围绕科研任务自主规划检索路径，调用 Academic Search 等技能完成知识获取。",
+          "resources.link.project": "项目",
+          "resources.link.paper": "论文",
+          "resources.paperarena.position": "评测层：评估工具链规划、多步推理、多模态理解、跨论文整合、数据库交互和过程级决策能力。",
+          "resources.lewenapp.name": "学术乐问",
+          "resources.lewenapp.position": "用户应用层：面向科研用户的自然语言学术问答、深度检索、文献调研、证据追踪和研究辅助系统。",
+          "resources.link.lewen": "学术乐问",
+          "resources.luban.name": "学术鲁班",
+          "resources.luban.position": "面向科研场景的 Skills 管理、分发与共建平台，支撑科研能力单元的生态化扩展。",
+          "footer.eyebrow": "联系合作 · Connect",
+          "footer.title": "与中国科大 AGI 科学知识获取团队合作",
+          "footer.description":
+            "我们欢迎围绕自主科学知识获取、学术检索 Skill、过程评测和科研用户侧 AI 系统展开合作。",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
+        setLanguage(nextLanguage, true);
+      });
+    </script>
+  </body>
+</html>
