@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>论文列表 | 科学知识认知</title>
+    <meta
+      name="description"
+      content="中国科大 AGI 团队科学知识认知方向论文列表，覆盖论文检索、科学文档解析、信息抽取、证据推理与深度研究智能体。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="论文列表 | 科学知识认知" />
+    <meta
+      property="og:description"
+      content="中国科大 AGI 团队科学知识认知方向论文列表，覆盖论文检索、科学文档解析、信息抽取、证据推理与深度研究智能体。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="中国科大 AGI 科学文献智能">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" role="img">
+              <path d="M12 14h16M12 20h16M12 26h10" />
+              <circle cx="29" cy="26" r="4" />
+              <path d="M25.8 23.4 20 18.8" />
+            </svg>
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">中国科大 AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">科学文献智能</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html#hierarchy" data-i18n="nav.hierarchy">认知层级</a>
+          <a href="../directions/" data-i18n="nav.directions">研究方向</a>
+          <a href="./" aria-current="page" data-i18n="nav.papers">论文列表</a>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero page-hero">
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Publications</p>
+        <h1 data-i18n="hero.title">论文列表</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          汇集科学知识认知方向代表性论文，保留论文标题、作者、能力层级、PDF、代码与项目外链。
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#paper-list" data-i18n="hero.explore">查看论文</a>
+          <a class="btn ghost" href="../index.html" data-i18n="hero.home">返回首页</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="overview.eyebrow">Publication Index</p>
+          <h2 data-i18n="overview.title">从文献检索到自主深度研究</h2>
+          <p data-i18n="overview.description">
+            页面沿用参考站点的论文列表结构，并以当前站点的卡片、细边框和红色强调系统呈现。
+          </p>
+        </div>
+        <div class="paper-overview" aria-label="论文列表概览">
+          <div class="paper-stat">
+            <strong>5</strong>
+            <span data-i18n="stats.papers">代表性论文与预印本</span>
+          </div>
+          <div class="paper-stat">
+            <strong>5</strong>
+            <span data-i18n="stats.layers">覆盖认知能力层级</span>
+          </div>
+          <div class="paper-stat">
+            <strong>4</strong>
+            <span data-i18n="stats.repos">开源项目入口</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="paper-list" class="section highlights">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="list.eyebrow">Papers</p>
+          <h2 data-i18n="list.title">论文列表</h2>
+          <p data-i18n="list.note">* Equal Contribution, † Corresponding Author. 本页优先使用当前仓库已有 PDF 与项目链接。</p>
+        </div>
+
+        <div class="publication-list">
+          <section class="paper-year" aria-labelledby="papers-2026">
+            <div class="paper-year-header">
+              <h2 id="papers-2026" data-i18n="year.2026">2026 · Preprint</h2>
+              <p data-i18n="year.2026.note">Agentic paper search, evidence reasoning, and cognitive deep research</p>
+            </div>
+            <div class="paper-items">
+              <article class="paper-card">
+                <div>
+                  <p class="paper-meta" data-i18n="papers.paperscout.meta">2026 · arXiv Preprint · L1 Paper Search</p>
+                  <h3>PaperScout: An Autonomous Agent for Academic Paper Search with Process-Aware Sequence-Level Policy Optimization</h3>
+                  <p class="paper-authors">Tingyue Pan*, Jie Ouyang*, Mingyue Cheng†, Qingchuan Li, Zirui Liu, Mingfan Pan, Shuo Yu, Qi Liu</p>
+                  <p class="paper-abstract" data-i18n="papers.paperscout.abstract">
+                    将学术论文搜索建模为多轮序列决策过程，让智能体根据检索上下文动态决定查询、搜索与引用扩展策略。
+                  </p>
+                  <div class="paper-tags">
+                    <span>Paper Search</span>
+                    <span>Agentic Workflow</span>
+                    <span>PSPO</span>
+                  </div>
+                </div>
+                <div class="paper-links">
+                  <a href="../pdfs/PaperScout-%20An%20Autonomous%20Agent%20for%20Academic%20Paper%20Search%20with%20Process-Aware%20Sequence-Level%20Policy%20Optimization.pdf" target="_blank" rel="noopener">PDF</a>
+                  <a href="https://arxiv.org/abs/2601.10029v1" target="_blank" rel="noopener">ArXiv</a>
+                  <a href="https://github.com/pty12345/PaperScout" target="_blank" rel="noopener">Code</a>
+                </div>
+              </article>
+
+              <article class="paper-card">
+                <div>
+                  <p class="paper-meta" data-i18n="papers.paperarena.meta">2026 · arXiv Preprint · L4 Knowledge Reasoning</p>
+                  <h3>PaperArena: An Evaluation Benchmark for Tool-Augmented Agentic Reasoning on Scientific Literature</h3>
+                  <p class="paper-authors">Daoyu Wang, Mingyue Cheng†, Shuo Yu, Zirui Liu, Ze Guo, Xin Li, Qi Liu</p>
+                  <p class="paper-abstract" data-i18n="papers.paperarena.abstract">
+                    构建面向科学文献工具增强推理的评测基准，要求智能体跨论文整合信息、调用工具并形成有证据支撑的答案。
+                  </p>
+                  <div class="paper-tags">
+                    <span>Benchmark</span>
+                    <span>Tool-Augmented Reasoning</span>
+                    <span>Scientific Agents</span>
+                  </div>
+                </div>
+                <div class="paper-links">
+                  <a href="../pdfs/PaperArena-%20An%20Evaluation%20Benchmark%20for%20Tool-Augmented%20Agentic%20Reasoning%20on%20Scientific%20Literature.pdf" target="_blank" rel="noopener">PDF</a>
+                  <a href="https://arxiv.org/abs/2510.10909v4" target="_blank" rel="noopener">ArXiv</a>
+                  <a href="https://github.com/Melmaphother/PaperArena" target="_blank" rel="noopener">Code</a>
+                </div>
+              </article>
+
+              <article class="paper-card">
+                <div>
+                  <p class="paper-meta" data-i18n="papers.mind2report.meta">2026 · arXiv Preprint · L4 Research Synthesis</p>
+                  <h3>Mind2Report: A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis</h3>
+                  <p class="paper-authors">Mingyue Cheng, Daoyu Wang, Qi Liu†, Shuo Yu, Xiaoyu Tao, Yuqian Wang, Chengzhong Chu, Yu Duan, Mingkang Long, Enhong Chen</p>
+                  <p class="paper-abstract" data-i18n="papers.mind2report.abstract">
+                    模拟商业分析师的认知型深度研究流程，通过意图澄清、动态记忆和迭代综合生成专家级报告。
+                  </p>
+                  <div class="paper-tags">
+                    <span>Deep Research</span>
+                    <span>Dynamic Memory</span>
+                    <span>Report Synthesis</span>
+                  </div>
+                </div>
+                <div class="paper-links">
+                  <a href="../pdfs/Mind2Report-%20A%20Cognitive%20Deep%20Research%20Agent%20for%20Expert-Level%20Commercial%20Report%20Synthesis.pdf" target="_blank" rel="noopener">PDF</a>
+                  <a href="https://arxiv.org/abs/2601.04879v1" target="_blank" rel="noopener">ArXiv</a>
+                  <a href="https://github.com/Melmaphother/Mind2Report" target="_blank" rel="noopener">Code</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="paper-year" aria-labelledby="papers-2025">
+            <div class="paper-year-header">
+              <h2 id="papers-2025" data-i18n="year.2025">2025 · Preprint and Under Review</h2>
+              <p data-i18n="year.2025.note">Scientific document parsing and structured summarization</p>
+            </div>
+            <div class="paper-items">
+              <article class="paper-card">
+                <div>
+                  <p class="paper-meta" data-i18n="papers.chemtable.meta">2025 · arXiv Preprint · L2 Element Interpretation</p>
+                  <h3>Benchmarking Multimodal LLMs on Recognition and Understanding over Chemical Tables</h3>
+                  <p class="paper-authors">Yitong Zhou, Mingyue Cheng, Qingyang Mao, Yucong Luo, Qi Liu, Yupeng Li, Xiaohan Zhang, Deguang Liu, Xin Li, Enhong Chen</p>
+                  <p class="paper-abstract" data-i18n="papers.chemtable.abstract">
+                    提出面向化学表格识别与理解的大规模基准，评估多模态大模型处理结构、符号与分子图示的能力边界。
+                  </p>
+                  <div class="paper-tags">
+                    <span>Chemical Tables</span>
+                    <span>Multimodal LLMs</span>
+                    <span>Scientific Parsing</span>
+                  </div>
+                </div>
+                <div class="paper-links">
+                  <a href="../pdfs/Benchmarking%20Multimodal%20LLMs%20on%20Recognition%20and%20Understanding%20over%20Chemical%20Tables.pdf" target="_blank" rel="noopener">PDF</a>
+                  <a href="https://arxiv.org/abs/2506.11375v2" target="_blank" rel="noopener">ArXiv</a>
+                  <a href="https://github.com/lqzxt/ChemTable" target="_blank" rel="noopener">Code</a>
+                </div>
+              </article>
+
+              <article class="paper-card">
+                <div>
+                  <p class="paper-meta" data-i18n="papers.scholarsum.meta">2025 · Under Review · L3 Information Extraction</p>
+                  <h3>ScholarSum: Student-Teacher Abstractive Summarization via Knowledge Graph Reasoning and Reflective Refinement</h3>
+                  <p class="paper-authors" data-i18n="papers.scholarsum.authors">Anonymous authors under double-blind review</p>
+                  <p class="paper-abstract" data-i18n="papers.scholarsum.abstract">
+                    以 Student-Teacher 框架进行科学论文摘要生成，通过知识图谱推理、关键事实检索和反思式评估提升结构一致性与事实完整性。
+                  </p>
+                  <div class="paper-tags">
+                    <span>Scientific Summarization</span>
+                    <span>Knowledge Graph</span>
+                    <span>Reflective Refinement</span>
+                  </div>
+                </div>
+                <div class="paper-links">
+                  <a href="../pdfs/ScholarSum-%20Student-Teacher%20Abstractive%20Summarization%20via%20Knowledge%20Graph%20Reasoning%20and%20Reflective%20Refinement.pdf" target="_blank" rel="noopener">PDF</a>
+                  <a href="https://openreview.net/pdf?id=pLvGIKeZtJ" target="_blank" rel="noopener">OpenReview</a>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div>
+        <p class="eyebrow" data-i18n="footer.eyebrow">联系合作 · Connect</p>
+        <h3 data-i18n="footer.title">与中国科大 AGI 科学文献挖掘团队合作</h3>
+        <p data-i18n="footer.description">
+          我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。
+        </p>
+      </div>
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "Publications | Scientific Knowledge Cognition",
+          "meta.description":
+            "Publications from USTC AGI on scientific knowledge cognition, covering paper search, scientific document parsing, information extraction, evidence reasoning, and deep research agents.",
+          "brand.title": "USTC AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.hierarchy": "Cognitive Hierarchy",
+          "nav.directions": "Research Directions",
+          "nav.papers": "Publications",
+          "hero.eyebrow": "Publications",
+          "hero.title": "Publications",
+          "hero.subtitle":
+            "A curated list of representative papers in scientific knowledge cognition, with titles, authors, capability layers, PDFs, code, and project links.",
+          "hero.explore": "View Papers",
+          "hero.home": "Back Home",
+          "overview.eyebrow": "Publication Index",
+          "overview.title": "From Literature Search to Autonomous Deep Research",
+          "overview.description":
+            "This page follows the reference publication-list structure while using the current site's card system, fine borders, and red accent language.",
+          "stats.papers": "Representative papers and preprints",
+          "stats.layers": "Cognitive capability layers covered",
+          "stats.repos": "Open-source project entries",
+          "list.eyebrow": "Papers",
+          "list.title": "Publication List",
+          "list.note": "* Equal Contribution, † Corresponding Author. This page prioritizes PDFs and project links already present in the repository.",
+          "year.2026": "2026 · Preprint",
+          "year.2026.note": "Agentic paper search, evidence reasoning, and cognitive deep research",
+          "year.2025": "2025 · Preprint and Under Review",
+          "year.2025.note": "Scientific document parsing and structured summarization",
+          "papers.paperscout.meta": "2026 · arXiv Preprint · L1 Paper Search",
+          "papers.paperscout.abstract":
+            "Models academic paper search as a multi-turn sequential decision process where agents adaptively choose queries, search actions, and citation expansion strategies from retrieval context.",
+          "papers.paperarena.meta": "2026 · arXiv Preprint · L4 Knowledge Reasoning",
+          "papers.paperarena.abstract":
+            "Builds a benchmark for tool-augmented reasoning on scientific literature, requiring agents to integrate cross-paper evidence, call tools, and produce grounded answers.",
+          "papers.mind2report.meta": "2026 · arXiv Preprint · L4 Research Synthesis",
+          "papers.mind2report.abstract":
+            "Emulates commercial analyst workflows through intent clarification, dynamic memory, and iterative synthesis to produce expert-level reports.",
+          "papers.chemtable.meta": "2025 · arXiv Preprint · L2 Element Interpretation",
+          "papers.chemtable.abstract":
+            "Introduces a large-scale benchmark for chemical table recognition and understanding, testing multimodal LLMs on structures, symbols, and molecular diagrams.",
+          "papers.scholarsum.meta": "2025 · Under Review · L3 Information Extraction",
+          "papers.scholarsum.authors": "Anonymous authors under double-blind review",
+          "papers.scholarsum.abstract":
+            "Uses a Student-Teacher framework for scientific paper summarization, improving structural coherence and factual completeness through knowledge graph reasoning, fact retrieval, and reflective assessment.",
+          "footer.eyebrow": "Connect",
+          "footer.title": "Work with USTC AGI AI for Scientific Literature Mining Group",
+          "footer.description":
+            "We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents.",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "论文列表 | 科学知识认知",
+          "meta.description":
+            "中国科大 AGI 团队科学知识认知方向论文列表，覆盖论文检索、科学文档解析、信息抽取、证据推理与深度研究智能体。",
+          "brand.title": "中国科大 AGI",
+          "brand.subtitle": "科学文献智能",
+          "nav.hierarchy": "认知层级",
+          "nav.directions": "研究方向",
+          "nav.papers": "论文列表",
+          "hero.eyebrow": "论文列表 · Publications",
+          "hero.title": "论文列表",
+          "hero.subtitle":
+            "汇集科学知识认知方向代表性论文，保留论文标题、作者、能力层级、PDF、代码与项目外链。",
+          "hero.explore": "查看论文",
+          "hero.home": "返回首页",
+          "overview.eyebrow": "论文索引 · Publication Index",
+          "overview.title": "从文献检索到自主深度研究",
+          "overview.description":
+            "页面沿用参考站点的论文列表结构，并以当前站点的卡片、细边框和红色强调系统呈现。",
+          "stats.papers": "代表性论文与预印本",
+          "stats.layers": "覆盖认知能力层级",
+          "stats.repos": "开源项目入口",
+          "list.eyebrow": "论文 · Papers",
+          "list.title": "论文列表",
+          "list.note": "* Equal Contribution, † Corresponding Author. 本页优先使用当前仓库已有 PDF 与项目链接。",
+          "year.2026": "2026 · Preprint",
+          "year.2026.note": "智能体论文检索、证据推理与认知型深度研究",
+          "year.2025": "2025 · Preprint and Under Review",
+          "year.2025.note": "科学文档解析与结构化摘要",
+          "papers.paperscout.meta": "2026 · arXiv Preprint · L1 论文检索",
+          "papers.paperscout.abstract":
+            "将学术论文搜索建模为多轮序列决策过程，让智能体根据检索上下文动态决定查询、搜索与引用扩展策略。",
+          "papers.paperarena.meta": "2026 · arXiv Preprint · L4 知识推理",
+          "papers.paperarena.abstract":
+            "构建面向科学文献工具增强推理的评测基准，要求智能体跨论文整合信息、调用工具并形成有证据支撑的答案。",
+          "papers.mind2report.meta": "2026 · arXiv Preprint · L4 研究综合",
+          "papers.mind2report.abstract":
+            "模拟商业分析师的认知型深度研究流程，通过意图澄清、动态记忆和迭代综合生成专家级报告。",
+          "papers.chemtable.meta": "2025 · arXiv Preprint · L2 元素解析",
+          "papers.chemtable.abstract":
+            "提出面向化学表格识别与理解的大规模基准，评估多模态大模型处理结构、符号与分子图示的能力边界。",
+          "papers.scholarsum.meta": "2025 · Under Review · L3 信息抽取",
+          "papers.scholarsum.authors": "双盲审稿匿名作者",
+          "papers.scholarsum.abstract":
+            "以 Student-Teacher 框架进行科学论文摘要生成，通过知识图谱推理、关键事实检索和反思式评估提升结构一致性与事实完整性。",
+          "footer.eyebrow": "联系合作 · Connect",
+          "footer.title": "与中国科大 AGI 科学文献挖掘团队合作",
+          "footer.description":
+            "我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
+        setLanguage(nextLanguage, true);
+      });
+    </script>
+  </body>
+</html>

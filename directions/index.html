@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>研究方向 | 科学知识认知</title>
+    <meta
+      name="description"
+      content="中国科大 AGI 团队科学知识认知研究方向，覆盖文献检索、多模态解析、信息抽取、科学推理与自主发现。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="研究方向 | 科学知识认知" />
+    <meta
+      property="og:description"
+      content="中国科大 AGI 团队科学知识认知研究方向，覆盖文献检索、多模态解析、信息抽取、科学推理与自主发现。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="中国科大 AGI 科学文献智能">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" role="img">
+              <path d="M12 14h16M12 20h16M12 26h10" />
+              <circle cx="29" cy="26" r="4" />
+              <path d="M25.8 23.4 20 18.8" />
+            </svg>
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">中国科大 AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">科学文献智能</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html#hierarchy" data-i18n="nav.hierarchy">认知层级</a>
+          <a href="./" aria-current="page" data-i18n="nav.directions">研究方向</a>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero page-hero">
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Research Directions</p>
+        <h1 data-i18n="hero.title">研究方向</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          围绕科学文献智能，我们将论文检索、多模态解析、信息抽取、知识推理与自主发现组织成连续的研究方向。
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#directions" data-i18n="hero.explore">查看方向</a>
+          <a class="btn ghost" href="../index.html" data-i18n="hero.home">返回首页</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="directions" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="directions.eyebrow">Capability Map</p>
+          <h2 data-i18n="directions.title">从文献获取到自主发现</h2>
+          <p data-i18n="directions.description">
+            每个方向对应一个关键能力层，并通过工具、基准和智能体系统逐步支撑科学知识认知。
+          </p>
+        </div>
+
+        <div class="direction-grid">
+          <article class="card direction-card">
+            <span class="eyebrow" data-i18n="directions.search.level">L1 · 论文检索</span>
+            <h3 data-i18n="directions.search.title">智能体文献检索</h3>
+            <p data-i18n="directions.search.description">
+              将学术搜索建模为多轮决策过程，让智能体自主决定查询、引用扩展和证据收集策略。
+            </p>
+            <p class="direction-meta" data-i18n="directions.search.meta">代表项目：PaperScout</p>
+            <div class="direction-links">
+              <a href="https://github.com/pty12345/PaperScout" target="_blank">PaperScout</a>
+            </div>
+          </article>
+
+          <article class="card direction-card">
+            <span class="eyebrow" data-i18n="directions.parsing.level">L2 · 元素解析</span>
+            <h3 data-i18n="directions.parsing.title">多模态科学文档解析</h3>
+            <p data-i18n="directions.parsing.description">
+              面向表格、公式、图像和化学结构，构建可评测、可复用的科学文档机器理解能力。
+            </p>
+            <p class="direction-meta" data-i18n="directions.parsing.meta">代表项目：ChemTable</p>
+            <div class="direction-links">
+              <a href="https://github.com/lqzxt/ChemTable" target="_blank">ChemTable</a>
+            </div>
+          </article>
+
+          <article class="card direction-card">
+            <span class="eyebrow" data-i18n="directions.extraction.level">L3 · 信息抽取</span>
+            <h3 data-i18n="directions.extraction.title">科学信息抽取与摘要</h3>
+            <p data-i18n="directions.extraction.description">
+              通过知识图谱推理与反思式优化，把论文中的任务、方法、证据和贡献转化为结构化知识。
+            </p>
+            <p class="direction-meta" data-i18n="directions.extraction.meta">代表项目：ScholarSum</p>
+            <div class="direction-links">
+              <a href="https://openreview.net/pdf?id=pLvGIKeZtJ" target="_blank">ScholarSum</a>
+            </div>
+          </article>
+
+          <article class="card direction-card">
+            <span class="eyebrow" data-i18n="directions.reasoning.level">L4 · 知识推理</span>
+            <h3 data-i18n="directions.reasoning.title">工具增强科学推理</h3>
+            <p data-i18n="directions.reasoning.description">
+              评测和提升智能体跨论文整合、多工具编排、多跳证据推理和复杂问题求解能力。
+            </p>
+            <p class="direction-meta" data-i18n="directions.reasoning.meta">代表项目：PaperArena</p>
+            <div class="direction-links">
+              <a href="https://github.com/Melmaphother/PaperArena" target="_blank">PaperArena</a>
+            </div>
+          </article>
+
+          <article class="card direction-card">
+            <span class="eyebrow" data-i18n="directions.synthesis.level">L4 · 研究综合</span>
+            <h3 data-i18n="directions.synthesis.title">深度研究与报告生成</h3>
+            <p data-i18n="directions.synthesis.description">
+              模拟专家分析流程，从大规模信息源中进行意图驱动搜索、迭代综合和高质量报告生成。
+            </p>
+            <p class="direction-meta" data-i18n="directions.synthesis.meta">代表项目：Mind2Report</p>
+            <div class="direction-links">
+              <a href="https://github.com/Melmaphother/Mind2Report" target="_blank">Mind2Report</a>
+            </div>
+          </article>
+
+          <article class="card direction-card vision-card">
+            <span class="eyebrow" data-i18n="directions.discovery.level">L5 · 假设发现</span>
+            <h3 data-i18n="directions.discovery.title">自主科学发现</h3>
+            <p data-i18n="directions.discovery.description">
+              面向 AI Scientist，探索从文献理解走向规律发现、假设生成、实验设计和研究闭环的下一代智能体。
+            </p>
+            <p class="direction-meta" data-i18n="directions.discovery.meta">前瞻方向：AI Scientist</p>
+            <div class="direction-links">
+              <span data-i18n="directions.discovery.status">前瞻研究</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section direction-stack">
+        <div class="vision-content">
+          <h2 data-i18n="strategy.title">共同研究主线</h2>
+          <p data-i18n="strategy.description">
+            这些方向不是孤立项目，而是服务于同一个目标：让 AI 能够可靠地获取、理解、组织并扩展科学知识。
+          </p>
+        </div>
+        <div class="vision-points">
+          <div>
+            <h3 data-i18n="strategy.agent.title">Agentic Workflow</h3>
+            <p data-i18n="strategy.agent.description">
+              将检索、阅读、推理、工具调用和生成组织为可追踪、可评测的智能体流程。
+            </p>
+          </div>
+          <div>
+            <h3 data-i18n="strategy.benchmark.title">Benchmark-Driven Research</h3>
+            <p data-i18n="strategy.benchmark.description">
+              通过领域基准和过程级评测暴露能力边界，推动模型和系统共同迭代。
+            </p>
+          </div>
+          <div>
+            <h3 data-i18n="strategy.science.title">Science-Centered Design</h3>
+            <p data-i18n="strategy.science.description">
+              围绕科学问题、证据链和研究产物设计系统，而不是只优化通用对话体验。
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div>
+        <p class="eyebrow" data-i18n="footer.eyebrow">联系合作 · Connect</p>
+        <h3 data-i18n="footer.title">与中国科大 AGI 科学文献挖掘团队合作</h3>
+        <p data-i18n="footer.description">
+          我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。
+        </p>
+      </div>
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "Research Directions | Scientific Knowledge Cognition",
+          "meta.description":
+            "Research directions from USTC AGI on scientific knowledge cognition, spanning paper search, multimodal parsing, information extraction, scientific reasoning, and autonomous discovery.",
+          "brand.title": "USTC AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.hierarchy": "Cognitive Hierarchy",
+          "nav.directions": "Research Directions",
+          "hero.eyebrow": "Research Directions",
+          "hero.title": "Research Directions",
+          "hero.subtitle":
+            "We organize paper search, multimodal parsing, information extraction, knowledge reasoning, and autonomous discovery into a continuous research agenda for scientific literature intelligence.",
+          "hero.explore": "Explore Directions",
+          "hero.home": "Back Home",
+          "directions.eyebrow": "Capability Map",
+          "directions.title": "From Literature Access to Autonomous Discovery",
+          "directions.description":
+            "Each direction corresponds to a key capability layer, advancing scientific knowledge cognition through tools, benchmarks, and agent systems.",
+          "directions.search.level": "L1 · Paper Search",
+          "directions.search.title": "Agentic Literature Search",
+          "directions.search.description":
+            "Model academic search as a multi-turn decision process where agents decide how to query, expand citations, and collect evidence.",
+          "directions.search.meta": "Representative project: PaperScout",
+          "directions.parsing.level": "L2 · Element Interpretation",
+          "directions.parsing.title": "Multimodal Scientific Document Parsing",
+          "directions.parsing.description":
+            "Build measurable and reusable machine understanding of scientific documents across tables, formulas, figures, and chemical structures.",
+          "directions.parsing.meta": "Representative project: ChemTable",
+          "directions.extraction.level": "L3 · Information Extraction",
+          "directions.extraction.title": "Scientific Information Extraction and Summarization",
+          "directions.extraction.description":
+            "Use knowledge graph reasoning and reflective refinement to convert tasks, methods, evidence, and contributions into structured knowledge.",
+          "directions.extraction.meta": "Representative project: ScholarSum",
+          "directions.reasoning.level": "L4 · Knowledge Reasoning",
+          "directions.reasoning.title": "Tool-Augmented Scientific Reasoning",
+          "directions.reasoning.description":
+            "Evaluate and improve cross-paper integration, multi-tool orchestration, multi-hop evidence reasoning, and complex question solving.",
+          "directions.reasoning.meta": "Representative project: PaperArena",
+          "directions.synthesis.level": "L4 · Research Synthesis",
+          "directions.synthesis.title": "Deep Research and Report Generation",
+          "directions.synthesis.description":
+            "Emulate expert analysis workflows through intent-driven search, iterative synthesis, and high-quality report generation over massive sources.",
+          "directions.synthesis.meta": "Representative project: Mind2Report",
+          "directions.discovery.level": "L5 · Hypothesis Discovery",
+          "directions.discovery.title": "Autonomous Scientific Discovery",
+          "directions.discovery.description":
+            "Explore the next generation of AI Scientist agents that move from literature understanding to law discovery, hypothesis generation, experiment design, and research loops.",
+          "directions.discovery.meta": "Forward-looking direction: AI Scientist",
+          "directions.discovery.status": "Visionary Research",
+          "strategy.title": "Shared Research Threads",
+          "strategy.description":
+            "These directions are not isolated projects. They serve one goal: enabling AI to reliably acquire, understand, organize, and extend scientific knowledge.",
+          "strategy.agent.title": "Agentic Workflow",
+          "strategy.agent.description":
+            "Organize retrieval, reading, reasoning, tool use, and generation into traceable and evaluable agent workflows.",
+          "strategy.benchmark.title": "Benchmark-Driven Research",
+          "strategy.benchmark.description":
+            "Expose capability boundaries through domain benchmarks and process-level evaluation, driving joint iteration of models and systems.",
+          "strategy.science.title": "Science-Centered Design",
+          "strategy.science.description":
+            "Design systems around scientific questions, evidence chains, and research artifacts instead of optimizing only for generic conversation.",
+          "footer.eyebrow": "Connect",
+          "footer.title": "Work with USTC AGI AI for Scientific Literature Mining Group",
+          "footer.description":
+            "We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents.",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "研究方向 | 科学知识认知",
+          "meta.description":
+            "中国科大 AGI 团队科学知识认知研究方向，覆盖文献检索、多模态解析、信息抽取、科学推理与自主发现。",
+          "brand.title": "中国科大 AGI",
+          "brand.subtitle": "科学文献智能",
+          "nav.hierarchy": "认知层级",
+          "nav.directions": "研究方向",
+          "hero.eyebrow": "研究方向 · Research Directions",
+          "hero.title": "研究方向",
+          "hero.subtitle":
+            "围绕科学文献智能，我们将论文检索、多模态解析、信息抽取、知识推理与自主发现组织成连续的研究方向。",
+          "hero.explore": "查看方向",
+          "hero.home": "返回首页",
+          "directions.eyebrow": "能力图谱 · Capability Map",
+          "directions.title": "从文献获取到自主发现",
+          "directions.description":
+            "每个方向对应一个关键能力层，并通过工具、基准和智能体系统逐步支撑科学知识认知。",
+          "directions.search.level": "L1 · 论文检索",
+          "directions.search.title": "智能体文献检索",
+          "directions.search.description":
+            "将学术搜索建模为多轮决策过程，让智能体自主决定查询、引用扩展和证据收集策略。",
+          "directions.search.meta": "代表项目：PaperScout",
+          "directions.parsing.level": "L2 · 元素解析",
+          "directions.parsing.title": "多模态科学文档解析",
+          "directions.parsing.description":
+            "面向表格、公式、图像和化学结构，构建可评测、可复用的科学文档机器理解能力。",
+          "directions.parsing.meta": "代表项目：ChemTable",
+          "directions.extraction.level": "L3 · 信息抽取",
+          "directions.extraction.title": "科学信息抽取与摘要",
+          "directions.extraction.description":
+            "通过知识图谱推理与反思式优化，把论文中的任务、方法、证据和贡献转化为结构化知识。",
+          "directions.extraction.meta": "代表项目：ScholarSum",
+          "directions.reasoning.level": "L4 · 知识推理",
+          "directions.reasoning.title": "工具增强科学推理",
+          "directions.reasoning.description":
+            "评测和提升智能体跨论文整合、多工具编排、多跳证据推理和复杂问题求解能力。",
+          "directions.reasoning.meta": "代表项目：PaperArena",
+          "directions.synthesis.level": "L4 · 研究综合",
+          "directions.synthesis.title": "深度研究与报告生成",
+          "directions.synthesis.description":
+            "模拟专家分析流程，从大规模信息源中进行意图驱动搜索、迭代综合和高质量报告生成。",
+          "directions.synthesis.meta": "代表项目：Mind2Report",
+          "directions.discovery.level": "L5 · 假设发现",
+          "directions.discovery.title": "自主科学发现",
+          "directions.discovery.description":
+            "面向 AI Scientist，探索从文献理解走向规律发现、假设生成、实验设计和研究闭环的下一代智能体。",
+          "directions.discovery.meta": "前瞻方向：AI Scientist",
+          "directions.discovery.status": "前瞻研究",
+          "strategy.title": "共同研究主线",
+          "strategy.description":
+            "这些方向不是孤立项目，而是服务于同一个目标：让 AI 能够可靠地获取、理解、组织并扩展科学知识。",
+          "strategy.agent.title": "Agentic Workflow",
+          "strategy.agent.description":
+            "将检索、阅读、推理、工具调用和生成组织为可追踪、可评测的智能体流程。",
+          "strategy.benchmark.title": "Benchmark-Driven Research",
+          "strategy.benchmark.description":
+            "通过领域基准和过程级评测暴露能力边界，推动模型和系统共同迭代。",
+          "strategy.science.title": "Science-Centered Design",
+          "strategy.science.description":
+            "围绕科学问题、证据链和研究产物设计系统，而不是只优化通用对话体验。",
+          "footer.eyebrow": "联系合作 · Connect",
+          "footer.title": "与中国科大 AGI 科学文献挖掘团队合作",
+          "footer.description":
+            "我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
+        setLanguage(nextLanguage, true);
+      });
+    </script>
+  </body>
+</html>

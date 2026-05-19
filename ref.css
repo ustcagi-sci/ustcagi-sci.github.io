@@ -192,6 +192,12 @@ a:hover {
   transform: translateY(-1px);
 }
 
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: #f2d2ce;
+}
+
 .language-toggle {
   min-width: 58px;
   background: var(--accent);
@@ -294,6 +300,14 @@ a:hover {
   gap: 10px;
 }
 
+.page-hero {
+  padding-bottom: 58px;
+}
+
+.page-hero .hero-subtitle {
+  max-width: 780px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -386,6 +400,70 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
+}
+
+.direction-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.direction-card {
+  min-height: 260px;
+}
+
+.direction-card .eyebrow {
+  margin-bottom: 6px;
+}
+
+.direction-card h3 {
+  min-height: 3.2em;
+}
+
+.direction-meta {
+  color: var(--text-faint);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.direction-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.direction-links a,
+.direction-links span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.direction-links a:hover {
+  color: var(--accent);
+  border-color: #f2d2ce;
+  background: var(--accent-soft);
+  text-decoration: none;
+}
+
+.direction-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.direction-stack .vision-points {
+  gap: 14px;
 }
 
 .card {
@@ -666,8 +744,13 @@ a:hover {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .vision {
+  .vision,
+  .direction-stack {
     grid-template-columns: 1fr;
+  }
+
+  .direction-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -737,8 +820,13 @@ a:hover {
   }
 
   .research-grid,
-  .hierarchy-grid {
+  .hierarchy-grid,
+  .direction-grid {
     grid-template-columns: 1fr;
+  }
+
+  .direction-card h3 {
+    min-height: 0;
   }
 
   .hierarchy-step {
