@@ -15,7 +15,7 @@
       content="中国科大 AGI 团队的科技文献智能挖掘研究主页，覆盖论文检索、文献理解与自主科学发现。"
     />
     <meta property="og:type" content="website" />
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./literature-mining-logo.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,11 +29,7 @@
       <div class="nav-inner">
         <a class="logo" href="#top" aria-label="中国科大 AGI 科学文献智能">
           <span class="logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 40 40" role="img">
-              <path d="M12 14h16M12 20h16M12 26h10" />
-              <circle cx="29" cy="26" r="4" />
-              <path d="M25.8 23.4 20 18.8" />
-            </svg>
+            <img src="./literature-mining-logo.svg" alt="" />
           </span>
           <span class="logo-copy">
             <span class="logo-title" data-i18n="brand.title">中国科大 AGI</span>
@@ -41,9 +37,8 @@
           </span>
         </a>
         <div class="nav-links">
-          <a href="./knowledge_memory/" data-i18n="nav.knowledge">科技文献认知</a>
-          <a href="#hierarchy" data-i18n="nav.hierarchy">认知层级</a>
           <a href="./directions/" data-i18n="nav.directions">研究方向</a>
+          <a href="./knowledge_memory/" data-i18n="nav.knowledge">科学知识获取</a>
           <a href="./papers/" data-i18n="nav.papers">论文列表</a>
           <span class="nav-break" aria-hidden="true"></span>
           <button
@@ -61,14 +56,13 @@
 
     <header id="top" class="hero">
       <div class="hero-content">
-        <p class="eyebrow" data-i18n="hero.eyebrow">科学文献挖掘</p>
         <h1 data-i18n="hero.title">科技文献智能挖掘</h1>
         <p class="hero-subtitle" data-i18n="hero.subtitle">
           我们正在构建 Agent 时代的科技文献基础设施：从论文检索出发，支撑科学知识获取、证据推理与自主发现。
         </p>
         <div class="hero-actions">
           <a class="btn primary" href="./directions/" data-i18n="hero.directions">查看研究方向</a>
-          <a class="btn ghost" href="./knowledge_memory/" data-i18n="hero.knowledge">查看科技文献认知</a>
+          <a class="btn ghost" href="./knowledge_memory/" data-i18n="hero.knowledge">查看科学知识获取</a>
           <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank">GitHub</a>
         </div>
       </div>
@@ -77,7 +71,6 @@
     <main>
       <section id="hierarchy" class="section">
         <div class="section-header">
-          <p class="eyebrow" data-i18n="hierarchy.eyebrow">Research Vision</p>
           <h2 data-i18n="hierarchy.title">The 5-Level Cognitive Hierarchy</h2>
           <p data-i18n="hierarchy.description">
             AI's capability in scientific literature mining follows a progressive path of cognitive depth.
@@ -119,7 +112,6 @@
 
       <section id="projects" class="section research">
         <div class="section-header">
-          <p class="eyebrow" data-i18n="projects.eyebrow">Research Projects</p>
           <h2 data-i18n="projects.title">Advancing the Frontiers of Science</h2>
           <p data-i18n="projects.description">
             Our work spans the entire hierarchy, providing tools and benchmarks for the next generation of scientific AI.
@@ -184,7 +176,6 @@
 
       <section id="timeline" class="section highlights">
         <div class="section-header">
-          <p class="eyebrow" data-i18n="timeline.eyebrow">Research Timeline</p>
           <h2 data-i18n="timeline.title">Milestones in Scientific Literature Mining</h2>
         </div>
         <div class="timeline">
@@ -196,7 +187,7 @@
                 A large-scale benchmark designed to test MLLMs on real-world chemical tables, addressing structural complexity and domain-specific semantics.
               </p>
             </div>
-            <a href="https://arxiv.org/abs/2506.11375v2" target="_blank">ArXiv →</a>
+            <a href="https://arxiv.org/abs/2506.11375v2" target="_blank">KDD2026 →</a>
           </article>
           <article class="milestone">
             <div>
@@ -206,7 +197,7 @@
                 A novel Student-Teacher framework for scientific summarization, leveraging knowledge graph reasoning and reflective refinement to ensure structural coherence.
               </p>
             </div>
-            <a href="https://openreview.net/pdf?id=pLvGIKeZtJ" target="_blank">OpenReview →</a>
+            <a href="https://openreview.net/pdf?id=pLvGIKeZtJ" target="_blank">IJCAI2026 →</a>
           </article>
           <article class="milestone">
             <div>
@@ -274,7 +265,7 @@
     <footer id="contact" class="footer">
       <div>
         <p class="eyebrow" data-i18n="footer.eyebrow">Connect</p>
-        <h3 data-i18n="footer.title">Work with USTC AGI AI for Scientific Literature Mining Group</h3>
+        <h3 data-i18n="footer.title">中国科学技术大学 认知智能全国重点实验室 AGI研究组</h3>
         <p data-i18n="footer.description">
           We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents.
         </p>
@@ -297,7 +288,7 @@
             "AI for Scientific Literature Mining research at USTC AGI, from paper search to scientific discovery.",
           "brand.title": "USTC AGI",
           "brand.subtitle": "AI for Science",
-          "nav.knowledge": "Scientific Literature Cognition",
+          "nav.knowledge": "Scientific Knowledge Acquisition",
           "nav.hierarchy": "Cognitive Hierarchy",
           "nav.directions": "Research Directions",
           "nav.papers": "Publications",
@@ -306,7 +297,7 @@
           "hero.subtitle":
             "We are redefining how AI interacts with scientific literature, evolving from paper retrieval to autonomous discovery of science through a 5-level cognitive hierarchy.",
           "hero.directions": "View Research Directions",
-          "hero.knowledge": "View Knowledge Stack",
+          "hero.knowledge": "View Scientific Knowledge Acquisition",
           "hierarchy.eyebrow": "Research Vision",
           "hierarchy.title": "The 5-Level Cognitive Hierarchy",
           "hierarchy.description":
@@ -381,7 +372,7 @@
           "vision.hypothesis.description":
             "Discovering novel connections between disparate research areas to propose and validate new scientific hypotheses.",
           "footer.eyebrow": "Connect",
-          "footer.title": "Work with USTC AGI AI for Scientific Literature Mining Group",
+          "footer.title": "AGI Research Group, National Key Laboratory of Cognitive Intelligence, University of Science and Technology of China",
           "footer.description":
             "We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents.",
           "footer.email": "Email Us",
@@ -393,7 +384,7 @@
             "中国科大 AGI 团队的科技文献智能挖掘研究主页，覆盖论文检索、文献理解与自主科学发现。",
           "brand.title": "中国科大 AGI",
           "brand.subtitle": "科学文献智能",
-          "nav.knowledge": "科技文献认知",
+          "nav.knowledge": "科学知识获取",
           "nav.hierarchy": "认知层级",
           "nav.directions": "研究方向",
           "nav.papers": "论文列表",
@@ -402,7 +393,7 @@
           "hero.subtitle":
             "我们正在构建 Agent 时代的科技文献基础设施：从论文检索出发，支撑科学知识获取、证据推理与自主发现。",
           "hero.directions": "查看研究方向",
-          "hero.knowledge": "查看科技文献认知",
+          "hero.knowledge": "查看科学知识获取",
           "hierarchy.eyebrow": "研究愿景 · Our Vision",
           "hierarchy.title": "五级认知层级",
           "hierarchy.description":
@@ -477,7 +468,7 @@
           "vision.hypothesis.description":
             "发现不同研究领域之间的新连接，提出并验证新的科学假设。",
           "footer.eyebrow": "联系合作 · Connect",
-          "footer.title": "与中国科大 AGI 科学文献挖掘团队合作",
+          "footer.title": "中国科学技术大学 认知智能全国重点实验室 AGI研究组",
           "footer.description":
             "我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。",
           "footer.email": "邮件联系",

@@ -81,36 +81,23 @@ a:hover {
 }
 
 .logo-mark {
-  display: none;
-  width: 42px;
-  height: 42px;
+  display: inline-grid;
+  width: 48px;
+  height: 48px;
   place-items: center;
   border: 1px solid rgba(17, 17, 17, 0.08);
-  border-radius: 8px;
-  background: #111111;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
-  transition: background 0.18s ease, transform 0.18s ease;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 75, 150, 0.14);
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.logo-mark svg {
-  width: 26px;
-  height: 26px;
-  overflow: visible;
-}
-
-.logo-mark path {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.4;
-}
-
-.logo-mark circle {
-  fill: var(--accent);
-  stroke: #ffffff;
-  stroke-width: 1.4;
+.logo-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .logo-copy {
@@ -132,7 +119,7 @@ a:hover {
 
 .logo-subtitle {
   color: var(--accent);
-  font-size: 0.72rem;
+  font-size: 0.98rem;
   font-weight: 700;
   letter-spacing: 0;
   white-space: nowrap;
@@ -144,8 +131,8 @@ a:hover {
 }
 
 .logo:hover .logo-mark {
-  background: var(--accent);
-  transform: rotate(-2deg);
+  box-shadow: 0 10px 24px rgba(0, 104, 177, 0.2);
+  transform: rotate(-2deg) translateY(-1px);
 }
 
 .logo:hover .logo-title {
@@ -780,46 +767,14 @@ td strong {
   color: var(--text-strong);
 }
 
-.paper-overview {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 26px;
-}
-
-.paper-stat {
-  padding: 18px 20px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
-  box-shadow: var(--shadow-soft);
-}
-
-.paper-stat strong {
-  display: block;
-  color: var(--accent);
-  font-size: 1.45rem;
-  font-weight: 800;
-  line-height: 1.1;
-}
-
-.paper-stat span {
-  display: block;
-  margin-top: 6px;
-  color: var(--text-muted);
-  font-size: 0.84rem;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
 .publication-list {
   display: grid;
-  gap: 28px;
+  gap: 22px;
 }
 
 .paper-year {
   display: grid;
-  gap: 14px;
+  gap: 10px;
 }
 
 .paper-year-header {
@@ -846,17 +801,17 @@ td strong {
 
 .paper-items {
   display: grid;
-  gap: 12px;
+  gap: 8px;
 }
 
 .paper-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
-  padding: 20px 22px;
+  gap: 14px;
+  padding: 16px 18px;
   border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: 10px;
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
   background: var(--surface);
   box-shadow: var(--shadow-soft);
   transition: transform 0.22s ease, box-shadow 0.22s ease,
@@ -890,36 +845,8 @@ td strong {
 .paper-authors {
   margin-top: 6px;
   color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.65;
-}
-
-.paper-abstract {
-  margin-top: 9px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
-
-.paper-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 12px;
-}
-
-.paper-tags span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 26px;
-  padding: 3px 8px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface-soft);
-  color: var(--text-faint);
-  font-size: 0.74rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: 0.84rem;
+  line-height: 1.5;
 }
 
 .paper-links {
@@ -928,7 +855,7 @@ td strong {
   justify-content: flex-end;
   align-content: flex-start;
   gap: 8px;
-  min-width: 178px;
+  min-width: 152px;
 }
 
 .paper-links a,
@@ -1245,10 +1172,6 @@ td strong {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .paper-overview {
-    grid-template-columns: 1fr;
-  }
-
   .paper-card {
     grid-template-columns: 1fr;
   }
@@ -1300,13 +1223,8 @@ td strong {
   }
 
   .logo-mark {
-    width: 38px;
-    height: 38px;
-  }
-
-  .logo-mark svg {
-    width: 24px;
-    height: 24px;
+    width: 42px;
+    height: 42px;
   }
 
   .logo-title {
@@ -1314,7 +1232,7 @@ td strong {
   }
 
   .logo-subtitle {
-    font-size: 0.68rem;
+    font-size: 0.92rem;
   }
 
   .hero {

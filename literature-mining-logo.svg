@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Technology Literature Intelligence Mining Logo</title>
+  <desc id="desc">An open book with a magnifying glass, connected knowledge nodes, orbiting dots, and data pixels.</desc>
+  <defs>
+    <linearGradient id="blueCyan" x1="24" y1="226" x2="224" y2="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#053c90"/>
+      <stop offset="0.52" stop-color="#0067b1"/>
+      <stop offset="1" stop-color="#12b8c5"/>
+    </linearGradient>
+    <linearGradient id="softBlue" x1="58" y1="80" x2="158" y2="208" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9db4cb"/>
+      <stop offset="1" stop-color="#0a4a98"/>
+    </linearGradient>
+    <radialGradient id="nodeCyan" cx="35%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#18cad4"/>
+      <stop offset="1" stop-color="#075aa6"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="256" height="256" rx="34" fill="#ffffff"/>
+
+  <path d="M23 162C22 83 89 31 170 31c33 0 59 9 76 23" fill="none" stroke="url(#blueCyan)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M61 68c41-24 105-28 153 2" fill="none" stroke="url(#blueCyan)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 12"/>
+  <circle cx="171" cy="54" r="7" fill="#0d66b4"/>
+  <circle cx="190" cy="78" r="6" fill="#075aa6"/>
+  <circle cx="207" cy="43" r="7" fill="#13b8c4"/>
+
+  <path d="M30 96c17-6 40-10 66 0 22 8 38 24 48 47v80c-28-25-62-34-114-22V96Z" fill="#fff" stroke="url(#softBlue)" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M144 143c11-22 29-36 53-42 13-3 25-3 36-1v101c-38-9-66-2-89 22v-80Z" fill="#fff" stroke="url(#blueCyan)" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M30 96v105c42-11 80-3 114 22M144 223c25-29 56-38 89-22" fill="none" stroke="#063f91" stroke-width="10" stroke-linecap="round"/>
+
+  <path d="M55 111h46M55 127h61M55 143h70M55 159h72M55 175h68" fill="none" stroke="#7f9ab8" stroke-width="5" stroke-linecap="round"/>
+  <rect x="70" y="91" width="28" height="18" rx="2" fill="#8da6bf"/>
+
+  <circle cx="168" cy="146" r="41" fill="#ffffff" stroke="#063f91" stroke-width="8"/>
+  <path d="M198 176l27 27" fill="none" stroke="#063f91" stroke-width="13" stroke-linecap="round"/>
+  <path d="M151 141l16 20 18-28M151 141l-12 26M167 161v25M167 161l27 11" fill="none" stroke="#075aa6" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="151" cy="141" r="8" fill="url(#nodeCyan)"/>
+  <circle cx="185" cy="133" r="8" fill="#075aa6"/>
+  <circle cx="139" cy="167" r="8" fill="#075aa6"/>
+  <circle cx="167" cy="161" r="8" fill="#053f94"/>
+  <circle cx="167" cy="186" r="7" fill="#12aebb"/>
+  <circle cx="194" cy="172" r="7" fill="url(#nodeCyan)"/>
+
+  <rect x="216" y="84" width="10" height="10" fill="#7e97b2"/>
+  <rect x="229" y="103" width="10" height="10" fill="#0b5fa8"/>
+  <rect x="214" y="121" width="7" height="7" fill="#7e97b2"/>
+  <rect x="232" y="134" width="8" height="8" fill="#12aebb"/>
+  <rect x="198" y="99" width="9" height="9" fill="#13aebb"/>
+</svg>
