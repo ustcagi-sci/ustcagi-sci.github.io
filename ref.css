@@ -115,8 +115,9 @@ a:hover {
 
 .logo-copy {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 8px;
   min-width: 0;
   line-height: 1.1;
 }
@@ -130,7 +131,6 @@ a:hover {
 }
 
 .logo-subtitle {
-  margin-top: 4px;
   color: var(--accent);
   font-size: 0.72rem;
   font-weight: 700;
