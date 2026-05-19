@@ -52,49 +52,112 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.97);
-  border-bottom: 1px solid #e4e4e4;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(210, 210, 210, 0.72);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(18px) saturate(1.05);
+  -webkit-backdrop-filter: blur(18px) saturate(1.05);
 }
 
 .nav-inner {
+  position: relative;
   width: min(1180px, calc(100% - 40px));
-  min-height: 64px;
+  min-height: 72px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 20px;
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
   flex-shrink: 0;
+  gap: 10px;
   color: var(--text-strong);
-  font-size: 0.92rem;
+  text-decoration: none;
+  transition: transform 0.18s ease;
+}
+
+.logo-mark {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 8px;
+  background: #111111;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.logo-mark svg {
+  width: 26px;
+  height: 26px;
+  overflow: visible;
+}
+
+.logo-mark path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+}
+
+.logo-mark circle {
+  fill: var(--accent);
+  stroke: #ffffff;
+  stroke-width: 1.4;
+}
+
+.logo-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  line-height: 1.1;
+}
+
+.logo-title {
+  color: var(--text-strong);
+  font-size: 0.98rem;
   font-weight: 800;
   letter-spacing: 0;
   white-space: nowrap;
-  transition: color 0.18s ease, transform 0.18s ease;
 }
 
-.logo span {
+.logo-subtitle {
+  margin-top: 4px;
   color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  white-space: nowrap;
 }
 
 .logo:hover {
-  color: var(--accent);
   text-decoration: none;
   transform: translateY(-1px);
+}
+
+.logo:hover .logo-mark {
+  background: var(--accent);
+  transform: rotate(-2deg);
+}
+
+.logo:hover .logo-title {
+  color: var(--accent);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
-  width: 100%;
+  gap: 6px;
+  min-width: 0;
   overflow-x: auto;
   padding: 10px 0;
   scrollbar-width: none;
@@ -146,13 +209,40 @@ a:hover {
 }
 
 .hero {
-  padding: 72px 24px 58px;
-  background: linear-gradient(160deg, #ffffff 55%, #fff5f4 100%);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 84px 24px 66px;
+  background: linear-gradient(180deg, #ffffff 0%, #fff8f7 100%);
   border-bottom: 1px solid #e8e8e8;
   text-align: center;
 }
 
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(110deg, rgba(192, 57, 43, 0.12), transparent 44%),
+    linear-gradient(250deg, rgba(17, 17, 17, 0.06), transparent 48%);
+  content: "";
+}
+
+.hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(192, 57, 43, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192, 57, 43, 0.08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.82), transparent 78%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.82), transparent 78%);
+  content: "";
+}
+
 .hero-content {
+  position: relative;
   max-width: 860px;
   margin: 0 auto;
 }
@@ -181,10 +271,12 @@ a:hover {
 
 .hero h1 {
   color: var(--text-strong);
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: 3.15rem;
   font-weight: 800;
   line-height: 1.25;
-  margin-bottom: 14px;
+  max-width: 800px;
+  margin: 0 auto 14px;
+  text-wrap: balance;
 }
 
 .hero-subtitle {
@@ -589,16 +681,45 @@ a:hover {
   }
 
   .nav-links {
+    width: 100%;
     justify-content: flex-start;
     padding: 0 0 4px;
   }
 
+  .language-toggle {
+    position: absolute;
+    top: 14px;
+    right: 0;
+  }
+
+  .logo {
+    gap: 9px;
+  }
+
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logo-mark svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .logo-title {
+    font-size: 0.92rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.68rem;
+  }
+
   .hero {
-    padding: 54px 18px 44px;
+    padding: 56px 18px 46px;
   }
 
   .hero h1 {
-    font-size: 2rem;
+    font-size: 2.08rem;
   }
 
   .hero-actions {

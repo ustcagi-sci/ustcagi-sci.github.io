@@ -3,11 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI for Scientific Literature Mining</title>
+    <title>科学知识认知</title>
     <meta
       name="description"
-      content="AI for Scientific Literature Mining research at USTC AGI, from paper search to scientific discovery."
+      content="中国科大 AGI 团队的科学知识认知研究主页，覆盖论文检索、文献理解与自主科学发现。"
     />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="科学知识认知" />
+    <meta
+      property="og:description"
+      content="中国科大 AGI 团队的科学知识认知研究主页，覆盖论文检索、文献理解与自主科学发现。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,13 +27,25 @@
   <body>
     <nav class="nav">
       <div class="nav-inner">
-        <a class="logo" href="#top">USTC AGI <span>AI for Science</span></a>
+        <a class="logo" href="#top" aria-label="中国科大 AGI 科学文献智能">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" role="img">
+              <path d="M12 14h16M12 20h16M12 26h10" />
+              <circle cx="29" cy="26" r="4" />
+              <path d="M25.8 23.4 20 18.8" />
+            </svg>
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">中国科大 AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">科学文献智能</span>
+          </span>
+        </a>
         <div class="nav-links">
-          <a href="#hierarchy" data-i18n="nav.hierarchy">Cognitive Hierarchy</a>
-          <a href="#projects" data-i18n="nav.projects">Research Projects</a>
-          <a href="#timeline" data-i18n="nav.timeline">Timeline</a>
-          <a href="#vision" data-i18n="nav.vision">Vision</a>
-          <a href="#contact" data-i18n="nav.contact">Contact</a>
+          <a href="#hierarchy" data-i18n="nav.hierarchy">认知层级</a>
+          <a href="#projects" data-i18n="nav.projects">研究项目</a>
+          <a href="#timeline" data-i18n="nav.timeline">研究时间线</a>
+          <a href="#vision" data-i18n="nav.vision">愿景</a>
+          <a href="#contact" data-i18n="nav.contact">联系</a>
           <button
             class="language-toggle"
             id="language-toggle"
@@ -41,14 +61,14 @@
 
     <header id="top" class="hero">
       <div class="hero-content">
-        <p class="eyebrow" data-i18n="hero.eyebrow">Scientific Literature Mining</p>
-        <h1 data-i18n="hero.title">AI for Scientific Literature Mining</h1>
+        <p class="eyebrow" data-i18n="hero.eyebrow">科学文献挖掘</p>
+        <h1 data-i18n="hero.title">科学知识认知</h1>
         <p class="hero-subtitle" data-i18n="hero.subtitle">
-          We are redefining how AI interacts with scientific literature, evolving from paper retrieval to autonomous discovery of science through a 5-level cognitive hierarchy.
+          我们正在构建 Agent 时代的科技文献基础设施：从论文检索出发，支撑科学知识获取、证据推理与自主发现。
         </p>
         <div class="hero-actions">
-          <a class="btn primary" href="#projects" data-i18n="hero.projects">View Research Projects</a>
-          <a class="btn ghost" href="https://github.com/USTCAGI" target="_blank">GitHub</a>
+          <a class="btn primary" href="#projects" data-i18n="hero.projects">查看研究项目</a>
+          <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank">GitHub</a>
         </div>
       </div>
     </header>
@@ -260,7 +280,7 @@
       </div>
       <div class="footer-actions">
         <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">Email Us</a>
-        <a class="btn ghost" href="https://github.com/USTCAGI" target="_blank">GitHub</a>
+        <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank">GitHub</a>
       </div>
       <p class="footer-note">
         © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · Licensed under</span>
@@ -274,6 +294,8 @@
           "meta.title": "AI for Scientific Literature Mining",
           "meta.description":
             "AI for Scientific Literature Mining research at USTC AGI, from paper search to scientific discovery.",
+          "brand.title": "USTC AGI",
+          "brand.subtitle": "AI for Science",
           "nav.hierarchy": "Cognitive Hierarchy",
           "nav.projects": "Research Projects",
           "nav.timeline": "Timeline",
@@ -365,18 +387,20 @@
           "footer.note": "USTC AGI · Licensed under"
         },
         zh: {
-          "meta.title": "面向科学文献挖掘的 AI",
+          "meta.title": "科学知识认知",
           "meta.description":
-            "中国科大 AGI 团队的面向科学文献挖掘的 AI 研究主页，覆盖论文检索、文献理解与自主科学发现。",
+            "中国科大 AGI 团队的科学知识认知研究主页，覆盖论文检索、文献理解与自主科学发现。",
+          "brand.title": "中国科大 AGI",
+          "brand.subtitle": "科学文献智能",
           "nav.hierarchy": "认知层级",
           "nav.projects": "研究项目",
           "nav.timeline": "研究时间线",
           "nav.vision": "愿景",
           "nav.contact": "联系",
           "hero.eyebrow": "科学文献挖掘",
-          "hero.title": "面向科学文献挖掘的 AI",
+          "hero.title": "科学知识认知",
           "hero.subtitle":
-            "我们正在重新定义 AI 与科学文献交互的方式：从论文检索出发，沿着五级认知层级迈向自主科学发现。",
+            "我们正在构建 Agent 时代的科技文献基础设施：从论文检索出发，支撑科学知识获取、证据推理与自主发现。",
           "hero.projects": "查看研究项目",
           "hierarchy.eyebrow": "研究愿景 · Our Vision",
           "hierarchy.title": "五级认知层级",
