@@ -81,7 +81,7 @@ a:hover {
 }
 
 .logo-mark {
-  display: inline-grid;
+  display: none;
   width: 42px;
   height: 42px;
   place-items: center;
