@@ -131,6 +131,112 @@ const validatePage = (relativePath) => {
   }
 };
 
+const validatePapersNavigation = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const navMatch = html.match(/<div class="nav-links">([\s\S]*?)<span class="nav-break"/);
+
+  assert.ok(navMatch, "papers/index.html: missing navigation links");
+
+  const navKeys = [...navMatch[1].matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]);
+
+  assert.deepEqual(
+    navKeys,
+    ["nav.knowledge", "nav.papers"],
+    "papers/index.html: navigation should match the main page link set"
+  );
+};
+
+const validatePapersHero = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const heroMatch = html.match(/<header id="top" class="hero">([\s\S]*?)<\/header>/);
+
+  assert.ok(heroMatch, "papers/index.html: missing top hero banner");
+  assert.ok(/class="hero-content"/.test(heroMatch[1]), "papers/index.html: hero should match subpage layout");
+  assert.ok(!/class="eyebrow"/.test(heroMatch[1]), "papers/index.html: hero eyebrow should be removed");
+  assert.ok(!/data-i18n="hero\.eyebrow"/.test(heroMatch[1]), "papers/index.html: removed hero eyebrow should not be translatable");
+  assert.ok(/data-i18n="hero\.title"/.test(heroMatch[1]), "papers/index.html: hero title should be translatable");
+  assert.ok(/data-i18n="hero\.subtitle"/.test(heroMatch[1]), "papers/index.html: hero subtitle should be translatable");
+  assert.ok(/class="hero-actions"/.test(heroMatch[1]), "papers/index.html: hero should include the subpage action row");
+};
+
+const validatePapersYearLabels = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const year2026Match = html.match(/<h2 id="papers-2026" data-i18n="year\.2026">([^<]+)<\/h2>/);
+  const year2025Match = html.match(/<h2 id="papers-2025" data-i18n="year\.2025">([^<]+)<\/h2>/);
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(year2026Match, "papers/index.html: missing 2026 year heading");
+  assert.equal(year2026Match[1], "Preprint", "papers/index.html: 2026 heading should be Preprint");
+  assert.ok(year2025Match, "papers/index.html: missing 2025 year heading");
+  assert.equal(year2025Match[1], "2025", "papers/index.html: 2025 heading should be concise");
+
+  assert.ok(objectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  assert.equal(context.translations.en["year.2026"], "Preprint", "papers/index.html: English 2026 heading should be Preprint");
+  assert.equal(context.translations.zh["year.2026"], "Preprint", "papers/index.html: Chinese 2026 heading should be Preprint");
+  assert.equal(context.translations.en["year.2025"], "2025", "papers/index.html: English 2025 heading should be concise");
+  assert.equal(context.translations.zh["year.2025"], "2025", "papers/index.html: Chinese 2025 heading should be concise");
+};
+
+const validatePapersListHeaderRemoved = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const paperListIntroMatch = html.match(
+    /<section id="paper-list" class="section highlights">([\s\S]*?)<div class="publication-list">/
+  );
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(paperListIntroMatch, "papers/index.html: missing paper list section");
+  assert.ok(
+    !/class="section-header"/.test(paperListIntroMatch[1]),
+    "papers/index.html: paper list section should not repeat a section-header title"
+  );
+
+  assert.ok(objectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(context.translations.en["list.title"], undefined, "papers/index.html: removed list title should not keep English translation");
+  assert.equal(context.translations.zh["list.title"], undefined, "papers/index.html: removed list title should not keep Chinese translation");
+};
+
+const validateChemTableVenueLink = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const chemTableMatch = html.match(
+    /<h3>Benchmarking Multimodal LLMs on Recognition and Understanding over Chemical Tables<\/h3>[\s\S]*?<div class="paper-links">([\s\S]*?)<\/div>/
+  );
+
+  assert.ok(chemTableMatch, "papers/index.html: missing ChemTable paper links");
+  assert.ok(
+    /href="https:\/\/arxiv\.org\/abs\/2506\.11375v2"[\s\S]*?>KDD2026<\/a>/.test(chemTableMatch[1]),
+    "papers/index.html: ChemTable venue link should be labeled KDD2026"
+  );
+};
+
+const validateScholarSumVenueLink = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const scholarSumMatch = html.match(
+    /<h3>ScholarSum: Student-Teacher Abstractive Summarization via Knowledge Graph Reasoning and Reflective Refinement<\/h3>[\s\S]*?<div class="paper-links">([\s\S]*?)<\/div>/
+  );
+
+  assert.ok(scholarSumMatch, "papers/index.html: missing ScholarSum paper links");
+  assert.ok(
+    /href="https:\/\/openreview\.net\/pdf\?id=pLvGIKeZtJ"[\s\S]*?>IJCAI2026<\/a>/.test(scholarSumMatch[1]),
+    "papers/index.html: ScholarSum venue link should be labeled IJCAI2026"
+  );
+};
+
 for (const page of ["index.html", "knowledge_memory/index.html", "directions/index.html", "papers/index.html"]) {
   validatePage(page);
 }
+
+validatePapersNavigation();
+validatePapersHero();
+validatePapersYearLabels();
+validatePapersListHeaderRemoved();
+validateChemTableVenueLink();
+validateScholarSumVenueLink();
