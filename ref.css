@@ -1220,6 +1220,15 @@ td strong {
 
   .logo {
     gap: 9px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .logo-copy {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+    max-width: calc(100% - 51px);
   }
 
   .logo-mark {
@@ -1233,6 +1242,8 @@ td strong {
 
   .logo-subtitle {
     font-size: 0.92rem;
+    line-height: 1.15;
+    white-space: normal;
   }
 
   .hero {

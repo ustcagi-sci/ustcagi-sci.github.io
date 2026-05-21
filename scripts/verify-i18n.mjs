@@ -131,6 +131,44 @@ const validatePage = (relativePath) => {
   }
 };
 
+const validateBrandLabels = (relativePath) => {
+  const html = readFileSync(resolve(root, relativePath), "utf8");
+  const label = relativePath;
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    /aria-label="USTC-AGI Scientific Knowledge Cognition"/.test(html),
+    `${label}: logo aria label should match the visible brand`
+  );
+  assert.ok(
+    /<span class="logo-title" data-i18n="brand\.title">USTC-AGI<\/span>/.test(html),
+    `${label}: initial logo title should be USTC-AGI`
+  );
+  assert.ok(
+    /<span class="logo-subtitle" data-i18n="brand\.subtitle">Scientific Knowledge Cognition<\/span>/.test(html),
+    `${label}: initial logo subtitle should be Scientific Knowledge Cognition`
+  );
+
+  assert.ok(objectMatch, `${label}: missing translations object`);
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["brand.title"],
+      "USTC-AGI",
+      `${label}: ${language} logo title should remain USTC-AGI`
+    );
+    assert.equal(
+      context.translations[language]["brand.subtitle"],
+      "Scientific Knowledge Cognition",
+      `${label}: ${language} logo subtitle should remain Scientific Knowledge Cognition`
+    );
+  }
+};
+
 const validatePapersNavigation = () => {
   const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
   const navMatch = html.match(/<div class="nav-links">([\s\S]*?)<span class="nav-break"/);
@@ -141,7 +179,7 @@ const validatePapersNavigation = () => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.knowledge", "nav.papers"],
+    ["nav.directions", "nav.knowledge", "nav.papers"],
     "papers/index.html: navigation should match the main page link set"
   );
 };
@@ -232,6 +270,7 @@ const validateScholarSumVenueLink = () => {
 
 for (const page of ["index.html", "knowledge_memory/index.html", "directions/index.html", "papers/index.html"]) {
   validatePage(page);
+  validateBrandLabels(page);
 }
 
 validatePapersNavigation();
