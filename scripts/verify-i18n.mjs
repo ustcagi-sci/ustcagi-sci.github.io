@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const pages = ["index.html", "knowledge_memory/index.html", "directions/index.html", "papers/index.html"];
 
 const validatePage = (relativePath) => {
   const html = readFileSync(resolve(root, relativePath), "utf8");
@@ -169,19 +170,71 @@ const validateBrandLabels = (relativePath) => {
   }
 };
 
-const validatePapersNavigation = () => {
-  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+const validateNavigation = (relativePath) => {
+  const html = readFileSync(resolve(root, relativePath), "utf8");
+  const label = relativePath;
   const navMatch = html.match(/<div class="nav-links">([\s\S]*?)<span class="nav-break"/);
 
-  assert.ok(navMatch, "papers/index.html: missing navigation links");
+  assert.ok(navMatch, `${label}: missing navigation links`);
 
   const navKeys = [...navMatch[1].matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]);
 
   assert.deepEqual(
     navKeys,
     ["nav.directions", "nav.knowledge", "nav.papers"],
-    "papers/index.html: navigation should match the main page link set"
+    `${label}: navigation should match the main page link set`
   );
+
+  const currentMatches = [...navMatch[1].matchAll(/aria-current="page"[^>]*data-i18n="([^"]+)"/g)].map(
+    (match) => match[1]
+  );
+  const expectedCurrent = {
+    "directions/index.html": "nav.directions",
+    "knowledge_memory/index.html": "nav.knowledge",
+    "papers/index.html": "nav.papers",
+  }[relativePath];
+
+  assert.deepEqual(
+    currentMatches,
+    expectedCurrent ? [expectedCurrent] : [],
+    `${label}: active navigation marker should match the current page`
+  );
+};
+
+const validateNoStaleNavTranslations = (relativePath) => {
+  const html = readFileSync(resolve(root, relativePath), "utf8");
+  const label = relativePath;
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const staleKeys = ["nav.intro", "nav.architecture", "nav.resources", "nav.hierarchy"];
+
+  assert.ok(objectMatch, `${label}: missing translations object`);
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    for (const key of staleKeys) {
+      assert.equal(
+        context.translations[language][key],
+        undefined,
+        `${label}: stale ${language} translation should be removed for ${key}`
+      );
+    }
+  }
+};
+
+const validateTargetBlankSafety = (relativePath) => {
+  const html = readFileSync(resolve(root, relativePath), "utf8");
+  const label = relativePath;
+
+  for (const [tag] of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) {
+    const relMatch = tag.match(/\brel="([^"]+)"/);
+    const relTokens = new Set((relMatch?.[1] ?? "").split(/\s+/).filter(Boolean));
+
+    assert.ok(relTokens.has("noopener"), `${label}: target="_blank" link is missing noopener: ${tag}`);
+    assert.ok(relTokens.has("noreferrer"), `${label}: target="_blank" link is missing noreferrer: ${tag}`);
+  }
 };
 
 const validatePapersHero = () => {
@@ -268,12 +321,14 @@ const validateScholarSumVenueLink = () => {
   );
 };
 
-for (const page of ["index.html", "knowledge_memory/index.html", "directions/index.html", "papers/index.html"]) {
+for (const page of pages) {
   validatePage(page);
   validateBrandLabels(page);
+  validateNavigation(page);
+  validateNoStaleNavTranslations(page);
+  validateTargetBlankSafety(page);
 }
 
-validatePapersNavigation();
 validatePapersHero();
 validatePapersYearLabels();
 validatePapersListHeaderRemoved();
