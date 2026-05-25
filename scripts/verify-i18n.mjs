@@ -237,6 +237,34 @@ const validateTargetBlankSafety = (relativePath) => {
   }
 };
 
+const validateHomeHeroRefresh = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    /<header id="top" class="hero" role="button" tabindex="0" aria-label="刷新首页视觉效果">/.test(html),
+    "index.html: hero should expose a clickable refresh affordance"
+  );
+  assert.ok(/hero\.classList\.add\("hero-refreshing"\)/.test(html), "index.html: hero click should replay the refresh class");
+  assert.ok(/hero\.addEventListener\("keydown"/.test(html), "index.html: hero refresh should support keyboard activation");
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["hero.refreshLabel"],
+    "Replay the homepage hero refresh effect",
+    "index.html: English hero refresh label should be present"
+  );
+  assert.equal(
+    context.translations.zh["hero.refreshLabel"],
+    "刷新首页视觉效果",
+    "index.html: Chinese hero refresh label should be present"
+  );
+};
+
 const validatePapersHero = () => {
   const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
   const heroMatch = html.match(/<header id="top" class="hero">([\s\S]*?)<\/header>/);
@@ -329,6 +357,7 @@ for (const page of pages) {
   validateTargetBlankSafety(page);
 }
 
+validateHomeHeroRefresh();
 validatePapersHero();
 validatePapersYearLabels();
 validatePapersListHeaderRemoved();

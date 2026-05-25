@@ -54,7 +54,7 @@
       </div>
     </nav>
 
-    <header id="top" class="hero">
+    <header id="top" class="hero" role="button" tabindex="0" aria-label="刷新首页视觉效果">
       <div class="hero-content">
         <h1 data-i18n="hero.title">科技文献智能挖掘</h1>
         <p class="hero-subtitle" data-i18n="hero.subtitle">
@@ -290,6 +290,7 @@
           "hero.title": "AI for Scientific Literature Mining",
           "hero.subtitle":
             "We are redefining how AI interacts with scientific literature, evolving from paper retrieval to autonomous discovery of science through a 5-level cognitive hierarchy.",
+          "hero.refreshLabel": "Replay the homepage hero refresh effect",
           "hierarchy.eyebrow": "Research Vision",
           "hierarchy.title": "The 5-Level Cognitive Hierarchy",
           "hierarchy.description":
@@ -383,6 +384,7 @@
           "hero.title": "科技文献智能挖掘",
           "hero.subtitle":
             "构建 Agent 时代的科技文献智能挖掘基础设施，支撑论文检索、知识获取、证据推理与自主发现。",
+          "hero.refreshLabel": "刷新首页视觉效果",
           "hierarchy.eyebrow": "研究愿景 · Our Vision",
           "hierarchy.title": "五级认知层级",
           "hierarchy.description":
@@ -496,6 +498,7 @@
       const setLanguage = (language, persist = false) => {
         const copy = translations[language] || translations.en;
         const toggle = document.getElementById("language-toggle");
+        const hero = document.getElementById("top");
         const description = document.querySelector('meta[name="description"]');
 
         document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
@@ -520,6 +523,10 @@
           toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
         }
 
+        if (hero) {
+          hero.setAttribute("aria-label", copy["hero.refreshLabel"]);
+        }
+
         if (persist) {
           storeLanguage(language);
         }
@@ -531,6 +538,37 @@
         const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
         setLanguage(nextLanguage, true);
       });
+
+      const hero = document.getElementById("top");
+      const replayHeroRefresh = () => {
+        if (!hero) {
+          return;
+        }
+
+        hero.classList.remove("hero-refreshing");
+        void hero.offsetWidth;
+        hero.classList.add("hero-refreshing");
+        window.setTimeout(() => hero.classList.remove("hero-refreshing"), 900);
+      };
+
+      if (hero) {
+        hero.addEventListener("click", (event) => {
+          if (event.target.closest("a, button")) {
+            return;
+          }
+
+          replayHeroRefresh();
+        });
+
+        hero.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" && event.key !== " ") {
+            return;
+          }
+
+          event.preventDefault();
+          replayHeroRefresh();
+        });
+      }
     </script>
   </body>
 </html>
