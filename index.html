@@ -37,8 +37,8 @@
           </span>
         </a>
         <div class="nav-links">
-          <a href="./knowledge_memory/" data-i18n="nav.knowledge">科技文献</a>
           <a href="./data_modeling/" data-i18n="nav.data">科学数据</a>
+          <a href="./knowledge_memory/" data-i18n="nav.knowledge">科技文献</a>
           <a href="./papers/" data-i18n="nav.papers">论文列表</a>
           <span class="nav-break" aria-hidden="true"></span>
           <button
@@ -64,9 +64,43 @@
     </header>
 
     <main>
+      <section id="ai4science-importance" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="importance.eyebrow">AI for Science</p>
+          <h2 data-i18n="importance.title">AI for Science 的必要性、迫切性与重要性</h2>
+          <p data-i18n="importance.description">
+            科学知识、实验数据和计算工具正在高速增长，传统依赖人工阅读、手动建模和单点工具的科研流程难以跟上问题复杂度。AI for Science 以 LLMs and Agentic AI 为核心，把文献、数据、模型和实验反馈连接起来，成为提升科研效率、发现新规律和构建自主科学系统的关键基础设施。
+          </p>
+        </div>
+
+        <div class="direction-grid">
+          <article class="card direction-card">
+            <span class="eyebrow">Necessity</span>
+            <h3 data-i18n="importance.necessity.title">必要性</h3>
+            <p data-i18n="importance.necessity.description">
+              现代科学问题跨越文献、数据、实验和计算，需要智能系统组织证据、理解变量关系并辅助研究决策。
+            </p>
+          </article>
+          <article class="card direction-card">
+            <span class="eyebrow">Urgency</span>
+            <h3 data-i18n="importance.urgency.title">迫切性</h3>
+            <p data-i18n="importance.urgency.description">
+              论文、实验记录和观测数据持续爆发增长，人工筛选、复现和建模成本快速上升，科研流程需要更自动化、可追踪和可协同。
+            </p>
+          </article>
+          <article class="card direction-card">
+            <span class="eyebrow">Importance</span>
+            <h3 data-i18n="importance.importance.title">重要性</h3>
+            <p data-i18n="importance.importance.description">
+              AI for Science 推动从知识获取、数据建模到证据推理和假设发现的闭环，支撑基础理论、方法技术与智能系统突破。
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section id="hierarchy" class="section">
         <div class="section-header">
-          <h2 data-i18n="hierarchy.title">科技文献五层认知理论</h2>
+          <h2 data-i18n="hierarchy.title">科技文献认知</h2>
           <p data-i18n="hierarchy.description">
             AI's capability in scientific literature mining follows a progressive path of cognitive depth.
           </p>
@@ -103,46 +137,7 @@
             <p data-i18n="hierarchy.l5.description">Autonomous discovery and research generation (Future Vision).</p>
           </div>
         </div>
-      </section>
 
-      <section id="data-modeling" class="section highlights">
-        <div class="section-header">
-          <p class="eyebrow" data-i18n="dataModeling.eyebrow">结构化科学数据</p>
-          <h2 data-i18n="dataModeling.title">结构化科学数据建模</h2>
-          <p data-i18n="dataModeling.description">
-            结构化科学数据建模关注表格、时间序列、实验记录和科学观测数据，把科学数据转化为可学习、可预测、可推理的模型表示。
-          </p>
-        </div>
-
-        <div class="system-grid">
-          <article class="system-panel highlight">
-            <span class="label">Tabular Data</span>
-            <h3 data-i18n="dataModeling.tabular.title">Tabular Data</h3>
-            <p data-i18n="dataModeling.tabular.description">
-              面向属性表、实验矩阵、材料/分子性质表，处理小样本、缺失值、异构字段和科学上下文。
-            </p>
-          </article>
-          <article class="system-panel">
-            <span class="label">Time Series</span>
-            <h3 data-i18n="dataModeling.series.title">Time Series</h3>
-            <p data-i18n="dataModeling.series.description">
-              面向实验曲线、传感器序列和仿真轨迹，建模趋势、周期、突变和动态过程。
-            </p>
-          </article>
-        </div>
-
-        <div class="section-actions">
-          <a class="btn ghost" href="./data_modeling/" data-i18n="dataModeling.cta">了解科学数据建模</a>
-        </div>
-      </section>
-
-      <section id="projects" class="section research">
-        <div class="section-header">
-          <h2 data-i18n="projects.title">Advancing the Frontiers of Science</h2>
-          <p data-i18n="projects.description">
-            Our work spans the entire hierarchy, providing tools and benchmarks for the next generation of scientific AI.
-          </p>
-        </div>
         <div class="research-grid">
           <article class="card focus" data-link="https://github.com/pty12345/PaperScout" tabindex="0">
             <span class="eyebrow" data-i18n="projects.paperscout.level">L1 · Paper Search</span>
@@ -200,101 +195,11 @@
         </div>
       </section>
 
-      <section id="timeline" class="section highlights">
-        <div class="section-header">
-          <h2 data-i18n="timeline.title">相关工作</h2>
-        </div>
-        <div class="timeline">
-          <article class="milestone">
-            <div>
-              <p class="milestone-year" data-i18n="timeline.chemtable.date">Jun. 2025</p>
-              <h3 data-i18n="timeline.chemtable.title">ChemTable · Table Recognition Benchmark</h3>
-              <p data-i18n="timeline.chemtable.description">
-                A large-scale benchmark designed to test MLLMs on real-world chemical tables, addressing structural complexity and domain-specific semantics.
-              </p>
-            </div>
-            <a href="https://arxiv.org/abs/2506.11375v2" target="_blank" rel="noopener noreferrer">KDD2026 →</a>
-          </article>
-          <article class="milestone">
-            <div>
-              <p class="milestone-year" data-i18n="timeline.scholarsum.date">Oct. 2025</p>
-              <h3 data-i18n="timeline.scholarsum.title">ScholarSum · Student-Teacher Summarization</h3>
-              <p data-i18n="timeline.scholarsum.description">
-                A novel Student-Teacher framework for scientific summarization, leveraging knowledge graph reasoning and reflective refinement to ensure structural coherence.
-              </p>
-            </div>
-            <a href="https://openreview.net/pdf?id=pLvGIKeZtJ" target="_blank" rel="noopener noreferrer">IJCAI2026 →</a>
-          </article>
-          <article class="milestone">
-            <div>
-              <p class="milestone-year" data-i18n="timeline.paperarena.date">Oct. 2025</p>
-              <h3 data-i18n="timeline.paperarena.title">PaperArena · Agentic Reasoning Benchmark</h3>
-              <p data-i18n="timeline.paperarena.description">
-                The first benchmark for tool-augmented agentic reasoning on scientific literature, evaluating cross-paper integration and multi-tool orchestration.
-              </p>
-            </div>
-            <a href="https://arxiv.org/abs/2510.10909v4" target="_blank" rel="noopener noreferrer">ArXiv →</a>
-          </article>
-          <article class="milestone">
-            <div>
-              <p class="milestone-year" data-i18n="timeline.paperscout.date">Jan. 2026</p>
-              <h3 data-i18n="timeline.paperscout.title">PaperScout · Autonomous Paper Search</h3>
-              <p data-i18n="timeline.paperscout.description">
-                An adaptive agentic framework for academic paper search, optimized with Proximal Sequence Policy Optimization (PSPO) for multi-turn interactions.
-              </p>
-            </div>
-            <a href="https://arxiv.org/abs/2601.10029v1" target="_blank" rel="noopener noreferrer">ArXiv →</a>
-          </article>
-          <article class="milestone">
-            <div>
-              <p class="milestone-year" data-i18n="timeline.mind2report.date">Jan. 2026</p>
-              <h3 data-i18n="timeline.mind2report.title">Mind2Report · Cognitive Deep Research</h3>
-              <p data-i18n="timeline.mind2report.description">
-                A cognitive deep research agent that emulates commercial analysts to synthesize expert-level reports via intent-driven search and iterative synthesis.
-              </p>
-            </div>
-            <a href="https://arxiv.org/abs/2601.04879v1" target="_blank" rel="noopener noreferrer">ArXiv →</a>
-          </article>
-        </div>
-      </section>
-
-      <section id="vision" class="section vision">
-        <div class="vision-content">
-          <h2 data-i18n="vision.title">Why AI for Science Matters?</h2>
-          <p data-i18n="vision.description">
-            The explosion of scientific literature has exceeded human cognitive limits. We aim to build AI systems that can autonomously navigate, understand, and synthesize scientific knowledge, ultimately accelerating the pace of human discovery.
-          </p>
-        </div>
-        <div class="vision-points">
-          <div>
-            <h3 data-i18n="vision.reasoning.title">Autonomous Reasoning</h3>
-            <p data-i18n="vision.reasoning.description">
-              Moving beyond keyword matching to deep semantic understanding and multi-hop reasoning across heterogeneous scientific documents.
-            </p>
-          </div>
-          <div>
-            <h3 data-i18n="vision.synthesis.title">Multimodal Synthesis</h3>
-            <p data-i18n="vision.synthesis.description">
-              Integrating text, tables, figures, and equations to form a holistic understanding of scientific breakthroughs.
-            </p>
-          </div>
-          <div>
-            <h3 data-i18n="vision.hypothesis.title">Hypothesis Generation</h3>
-            <p data-i18n="vision.hypothesis.description">
-              Discovering novel connections between disparate research areas to propose and validate new scientific hypotheses.
-            </p>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer id="contact" class="footer">
       <div>
-        <p class="eyebrow" data-i18n="footer.eyebrow">Connect</p>
         <h3 data-i18n="footer.title">中国科学技术大学 认知智能全国重点实验室 AGI研究组</h3>
-        <p data-i18n="footer.description">
-          We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents.
-        </p>
       </div>
       <div class="footer-actions">
         <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">Email Us</a>
@@ -322,8 +227,21 @@
           "hero.subtitle":
             "With LLMs and Agentic AI as core technologies, we focus on scientific knowledge mining and scientific data modeling to drive coordinated breakthroughs in AI for Science theories, methods, and intelligent systems.",
           "hero.refreshLabel": "Replay the homepage hero refresh effect",
+          "importance.eyebrow": "AI for Science",
+          "importance.title": "Necessity, Urgency, and Importance of AI for Science",
+          "importance.description":
+            "Scientific knowledge, experimental data, and computational tools are growing rapidly. Research workflows that rely on manual reading, hand-built models, and isolated tools can no longer keep pace with scientific complexity. Centered on LLMs and Agentic AI, AI for Science connects literature, data, models, and experimental feedback into critical infrastructure for efficient research, new law discovery, and autonomous scientific systems.",
+          "importance.necessity.title": "Necessity",
+          "importance.necessity.description":
+            "Modern scientific problems span literature, data, experiments, and computation, requiring intelligent systems to organize evidence, understand variable relationships, and support research decisions.",
+          "importance.urgency.title": "Urgency",
+          "importance.urgency.description":
+            "Papers, experimental records, and observation data continue to grow explosively, while manual screening, reproduction, and modeling costs rise quickly. Research workflows need more automation, traceability, and collaboration.",
+          "importance.importance.title": "Importance",
+          "importance.importance.description":
+            "AI for Science closes the loop from knowledge acquisition and data modeling to evidence reasoning and hypothesis discovery, supporting breakthroughs in theories, methods, and intelligent systems.",
           "hierarchy.eyebrow": "Research Vision",
-          "hierarchy.title": "Five-Layer Cognitive Theory for Scientific Literature",
+          "hierarchy.title": "Scientific Literature Cognition",
           "hierarchy.description":
             "AI's capability in scientific literature mining follows a progressive path of cognitive depth.",
           "hierarchy.l1.title": "Paper Search",
@@ -336,21 +254,6 @@
           "hierarchy.l4.description": "Reasoning and multi-paper synthesis (e.g., PaperArena, Mind2Report).",
           "hierarchy.l5.title": "Hypothesis Discovery",
           "hierarchy.l5.description": "Autonomous discovery and research generation (Future Vision).",
-          "dataModeling.eyebrow": "Structured Scientific Data",
-          "dataModeling.title": "Structured Scientific Data Modeling",
-          "dataModeling.description":
-            "Structured scientific data modeling focuses on tables, time series, experimental records, and scientific observations, turning scientific data into learnable, predictive, and reasoned model representations.",
-          "dataModeling.tabular.title": "Tabular Data",
-          "dataModeling.tabular.description":
-            "Model property tables, experimental matrices, and material or molecular property tables under small samples, missing values, heterogeneous fields, and scientific context.",
-          "dataModeling.series.title": "Time Series",
-          "dataModeling.series.description":
-            "Model experimental curves, sensor sequences, and simulation trajectories to capture trends, cycles, change points, and dynamic processes.",
-          "dataModeling.cta": "Explore Scientific Data Modeling",
-          "projects.eyebrow": "Research Projects",
-          "projects.title": "Advancing the Frontiers of Science",
-          "projects.description":
-            "Our work spans the entire hierarchy, providing tools and benchmarks for the next generation of scientific AI.",
           "projects.paperscout.level": "L1 · Paper Search",
           "projects.paperscout.description":
             "An autonomous LLM-based agent that reformulates academic paper search as a multi-turn decision-making process, dynamically deciding when and how to invoke search and citation expansion tools.",
@@ -372,44 +275,7 @@
             "Our ultimate goal: building agents that not only understand literature but also autonomously discover laws, generate new hypotheses, and propose novel research directions.",
           "projects.vision.status": "Visionary Research",
           "projects.repo": "Project Repo →",
-          "timeline.eyebrow": "Research Timeline",
-          "timeline.title": "Related Work",
-          "timeline.chemtable.date": "Jun. 2025",
-          "timeline.chemtable.title": "ChemTable · Table Recognition Benchmark",
-          "timeline.chemtable.description":
-            "A large-scale benchmark designed to test MLLMs on real-world chemical tables, addressing structural complexity and domain-specific semantics.",
-          "timeline.scholarsum.date": "Oct. 2025",
-          "timeline.scholarsum.title": "ScholarSum · Student-Teacher Summarization",
-          "timeline.scholarsum.description":
-            "A novel Student-Teacher framework for scientific summarization, leveraging knowledge graph reasoning and reflective refinement to ensure structural coherence.",
-          "timeline.paperarena.date": "Oct. 2025",
-          "timeline.paperarena.title": "PaperArena · Agentic Reasoning Benchmark",
-          "timeline.paperarena.description":
-            "The first benchmark for tool-augmented agentic reasoning on scientific literature, evaluating cross-paper integration and multi-tool orchestration.",
-          "timeline.paperscout.date": "Jan. 2026",
-          "timeline.paperscout.title": "PaperScout · Autonomous Paper Search",
-          "timeline.paperscout.description":
-            "An adaptive agentic framework for academic paper search, optimized with Proximal Sequence Policy Optimization (PSPO) for multi-turn interactions.",
-          "timeline.mind2report.date": "Jan. 2026",
-          "timeline.mind2report.title": "Mind2Report · Cognitive Deep Research",
-          "timeline.mind2report.description":
-            "A cognitive deep research agent that emulates commercial analysts to synthesize expert-level reports via intent-driven search and iterative synthesis.",
-          "vision.title": "Why AI for Science Matters?",
-          "vision.description":
-            "The explosion of scientific literature has exceeded human cognitive limits. We aim to build AI systems that can autonomously navigate, understand, and synthesize scientific knowledge, ultimately accelerating the pace of human discovery.",
-          "vision.reasoning.title": "Autonomous Reasoning",
-          "vision.reasoning.description":
-            "Moving beyond keyword matching to deep semantic understanding and multi-hop reasoning across heterogeneous scientific documents.",
-          "vision.synthesis.title": "Multimodal Synthesis",
-          "vision.synthesis.description":
-            "Integrating text, tables, figures, and equations to form a holistic understanding of scientific breakthroughs.",
-          "vision.hypothesis.title": "Hypothesis Generation",
-          "vision.hypothesis.description":
-            "Discovering novel connections between disparate research areas to propose and validate new scientific hypotheses.",
-          "footer.eyebrow": "Connect",
           "footer.title": "AGI Research Group, National Key Laboratory of Cognitive Intelligence, University of Science and Technology of China",
-          "footer.description":
-            "We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents.",
           "footer.email": "Email Us",
           "footer.note": "USTC AGI · Licensed under"
         },
@@ -427,8 +293,21 @@
           "hero.subtitle":
             "以 LLMs and Agentic AI 为核心技术，面向科学知识挖掘与科学数据建模，推动 AI for Science 基础理论、方法技术与智能系统的协同突破。",
           "hero.refreshLabel": "刷新首页视觉效果",
+          "importance.eyebrow": "AI for Science",
+          "importance.title": "AI for Science 的必要性、迫切性与重要性",
+          "importance.description":
+            "科学知识、实验数据和计算工具正在高速增长，传统依赖人工阅读、手动建模和单点工具的科研流程难以跟上问题复杂度。AI for Science 以 LLMs and Agentic AI 为核心，把文献、数据、模型和实验反馈连接起来，成为提升科研效率、发现新规律和构建自主科学系统的关键基础设施。",
+          "importance.necessity.title": "必要性",
+          "importance.necessity.description":
+            "现代科学问题跨越文献、数据、实验和计算，需要智能系统组织证据、理解变量关系并辅助研究决策。",
+          "importance.urgency.title": "迫切性",
+          "importance.urgency.description":
+            "论文、实验记录和观测数据持续爆发增长，人工筛选、复现和建模成本快速上升，科研流程需要更自动化、可追踪和可协同。",
+          "importance.importance.title": "重要性",
+          "importance.importance.description":
+            "AI for Science 推动从知识获取、数据建模到证据推理和假设发现的闭环，支撑基础理论、方法技术与智能系统突破。",
           "hierarchy.eyebrow": "研究愿景 · Our Vision",
-          "hierarchy.title": "科技文献五层认知理论",
+          "hierarchy.title": "科技文献认知",
           "hierarchy.description":
             "AI 在科学文献挖掘中的能力，沿着认知深度逐级演进。",
           "hierarchy.l1.title": "论文检索",
@@ -441,21 +320,6 @@
           "hierarchy.l4.description": "进行推理与多论文综合，例如 PaperArena 和 Mind2Report。",
           "hierarchy.l5.title": "假设发现",
           "hierarchy.l5.description": "面向自主发现与研究生成的未来能力。",
-          "dataModeling.eyebrow": "结构化科学数据",
-          "dataModeling.title": "结构化科学数据建模",
-          "dataModeling.description":
-            "结构化科学数据建模关注表格、时间序列、实验记录和科学观测数据，把科学数据转化为可学习、可预测、可推理的模型表示。",
-          "dataModeling.tabular.title": "Tabular Data",
-          "dataModeling.tabular.description":
-            "面向属性表、实验矩阵、材料/分子性质表，处理小样本、缺失值、异构字段和科学上下文。",
-          "dataModeling.series.title": "Time Series",
-          "dataModeling.series.description":
-            "面向实验曲线、传感器序列和仿真轨迹，建模趋势、周期、突变和动态过程。",
-          "dataModeling.cta": "了解科学数据建模",
-          "projects.eyebrow": "研究项目 · Research Projects",
-          "projects.title": "推进科学智能的前沿",
-          "projects.description":
-            "我们的工作覆盖完整认知层级，为下一代科学 AI 提供工具、基准与研究范式。",
           "projects.paperscout.level": "L1 · 论文检索",
           "projects.paperscout.description":
             "一个自主 LLM 智能体，将学术论文搜索重新表述为多轮决策过程，动态决定何时以及如何调用搜索与引用扩展工具。",
@@ -477,44 +341,7 @@
             "我们的终极目标是构建不仅能理解文献，还能自主发现规律、生成新假设并提出新研究方向的智能体。",
           "projects.vision.status": "前瞻研究",
           "projects.repo": "项目仓库 →",
-          "timeline.eyebrow": "研究时间线 · Timeline",
-          "timeline.title": "相关工作",
-          "timeline.chemtable.date": "2025 年 6 月",
-          "timeline.chemtable.title": "ChemTable · 表格识别基准",
-          "timeline.chemtable.description":
-            "一个用于测试多模态大模型理解真实化学表格的大规模基准，聚焦结构复杂性与领域语义。",
-          "timeline.scholarsum.date": "2025 年 10 月",
-          "timeline.scholarsum.title": "ScholarSum · Student-Teacher 科学摘要",
-          "timeline.scholarsum.description":
-            "一个面向科学摘要的新型 Student-Teacher 框架，利用知识图谱推理和反思式优化保证结构一致性。",
-          "timeline.paperarena.date": "2025 年 10 月",
-          "timeline.paperarena.title": "PaperArena · 智能体推理基准",
-          "timeline.paperarena.description":
-            "首个面向科学文献工具增强智能体推理的基准，评估跨论文整合与多工具编排能力。",
-          "timeline.paperscout.date": "2026 年 1 月",
-          "timeline.paperscout.title": "PaperScout · 自主论文搜索",
-          "timeline.paperscout.description":
-            "一个自适应学术论文搜索智能体框架，通过近端序列策略优化 PSPO 提升多轮交互表现。",
-          "timeline.mind2report.date": "2026 年 1 月",
-          "timeline.mind2report.title": "Mind2Report · 认知型深度研究",
-          "timeline.mind2report.description":
-            "一个模拟商业分析师的认知型深度研究智能体，通过意图驱动搜索与迭代综合生成专家级报告。",
-          "vision.title": "为什么 AI for Science 重要？",
-          "vision.description":
-            "科学文献的爆炸式增长已经超出人类的认知负荷。我们希望构建能够自主浏览、理解并综合科学知识的 AI 系统，最终加速人类发现的进程。",
-          "vision.reasoning.title": "自主推理",
-          "vision.reasoning.description":
-            "从关键词匹配走向深层语义理解，在异构科学文档之间进行多跳推理。",
-          "vision.synthesis.title": "多模态综合",
-          "vision.synthesis.description":
-            "整合文本、表格、图像与公式，形成对科学突破的整体理解。",
-          "vision.hypothesis.title": "假设生成",
-          "vision.hypothesis.description":
-            "发现不同研究领域之间的新连接，提出并验证新的科学假设。",
-          "footer.eyebrow": "联系合作 · Connect",
           "footer.title": "中国科学技术大学 认知智能全国重点实验室 AGI研究组",
-          "footer.description":
-            "我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。",
           "footer.email": "邮件联系",
           "footer.note": "USTC AGI · 采用协议"
         }

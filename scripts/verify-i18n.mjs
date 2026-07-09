@@ -192,7 +192,7 @@ const validateNavigation = (relativePath) => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.knowledge", "nav.data", "nav.papers"],
+    ["nav.data", "nav.knowledge", "nav.papers"],
     `${label}: navigation should match the main page link set`
   );
 
@@ -297,61 +297,181 @@ const validateHomeHeroRefresh = () => {
   );
 };
 
-const validateHomeDataModelingModule = () => {
+const validateHomeDataModelingModuleRemoved = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
   const context = {};
+
+  assert.ok(!/<section id="data-modeling"/.test(html), "index.html: data modeling homepage module should be removed");
+  assert.ok(!/data-i18n="dataModeling\./.test(html), "index.html: data modeling translation markers should be removed");
+  assert.ok(!/>结构化科学数据<\/p>/.test(html), "index.html: structured scientific data eyebrow should be removed");
+  assert.ok(!/>结构化科学数据建模<\/h2>/.test(html), "index.html: structured scientific data modeling heading should be removed");
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    for (const key of Object.keys(context.translations[language])) {
+      assert.ok(
+        !key.startsWith("dataModeling."),
+        `index.html: stale ${language} data modeling translation should be removed for ${key}`
+      );
+    }
+  }
+};
+
+const validateHomeHierarchyTitle = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    /<h2 data-i18n="hierarchy\.title">科技文献认知<\/h2>/.test(html),
+    "index.html: hierarchy title should be 科技文献认知"
+  );
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["hierarchy.title"],
+    "Scientific Literature Cognition",
+    "index.html: English hierarchy title should be Scientific Literature Cognition"
+  );
+  assert.equal(
+    context.translations.zh["hierarchy.title"],
+    "科技文献认知",
+    "index.html: Chinese hierarchy title should be 科技文献认知"
+  );
+};
+
+const validateHomeProjectsIntegratedIntoHierarchy = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const css = readFileSync(resolve(root, "ref.css"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
   const hierarchyIndex = html.indexOf('<section id="hierarchy"');
-  const dataModelingIndex = html.indexOf('<section id="data-modeling"');
-  const projectsIndex = html.indexOf('<section id="projects"');
+  const researchGridIndex = html.indexOf('<div class="research-grid">');
+  const hierarchyEndIndex = hierarchyIndex >= 0 ? html.indexOf("</section>", researchGridIndex) : -1;
+  const footerIndex = html.indexOf('<footer id="contact"');
+
+  assert.ok(hierarchyIndex >= 0, "index.html: missing hierarchy section");
+  assert.equal(
+    html.indexOf('<section id="projects"'),
+    -1,
+    "index.html: project cards should not remain in a standalone projects section"
+  );
+  assert.ok(
+    researchGridIndex > hierarchyIndex,
+    "index.html: project card grid should be placed inside the hierarchy section"
+  );
+  assert.ok(
+    hierarchyEndIndex > researchGridIndex,
+    "index.html: hierarchy section should wrap the project card grid"
+  );
+  assert.ok(
+    footerIndex > hierarchyEndIndex,
+    "index.html: hierarchy section with project cards should stay before the footer"
+  );
+  assert.ok(!/data-i18n="projects\.title"/.test(html), "index.html: projects title marker should be removed");
+  assert.ok(
+    !/data-i18n="projects\.description"/.test(html),
+    "index.html: projects description marker should be removed"
+  );
+  assert.ok(!/推进科学智能的前沿/.test(html), "index.html: Chinese projects title should be removed");
+  assert.ok(
+    !/我们的工作覆盖完整认知层级，为下一代科学 AI 提供工具、基准与研究范式。/.test(html),
+    "index.html: Chinese projects description should be removed"
+  );
+  assert.ok(!/Advancing the Frontiers of Science/.test(html), "index.html: English projects title should be removed");
+  assert.ok(
+    !/Our work spans the entire hierarchy, providing tools and benchmarks for the next generation of scientific AI\./.test(html),
+    "index.html: English projects description should be removed"
+  );
+  assert.ok(
+    /\.hierarchy-grid\s*\+\s*\.research-grid\s*{[\s\S]*?margin-top:\s*28px;[\s\S]*?}/.test(css),
+    "ref.css: project cards should keep spacing when integrated after the hierarchy grid"
+  );
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    for (const key of ["projects.eyebrow", "projects.title", "projects.description"]) {
+      assert.equal(
+        context.translations[language][key],
+        undefined,
+        `index.html: stale ${language} translation should be removed for ${key}`
+      );
+    }
+  }
+};
+
+const validateHomeAiForScienceImportanceModule = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const heroIndex = html.indexOf('<header id="top"');
+  const importanceIndex = html.indexOf('<section id="ai4science-importance"');
+  const hierarchyIndex = html.indexOf('<section id="hierarchy"');
   const expectedTranslations = {
     en: {
-      "dataModeling.eyebrow": "Structured Scientific Data",
-      "dataModeling.title": "Structured Scientific Data Modeling",
-      "dataModeling.description":
-        "Structured scientific data modeling focuses on tables, time series, experimental records, and scientific observations, turning scientific data into learnable, predictive, and reasoned model representations.",
-      "dataModeling.tabular.title": "Tabular Data",
-      "dataModeling.tabular.description":
-        "Model property tables, experimental matrices, and material or molecular property tables under small samples, missing values, heterogeneous fields, and scientific context.",
-      "dataModeling.series.title": "Time Series",
-      "dataModeling.series.description":
-        "Model experimental curves, sensor sequences, and simulation trajectories to capture trends, cycles, change points, and dynamic processes.",
-      "dataModeling.cta": "Explore Scientific Data Modeling",
+      "importance.eyebrow": "AI for Science",
+      "importance.title": "Necessity, Urgency, and Importance of AI for Science",
+      "importance.description":
+        "Scientific knowledge, experimental data, and computational tools are growing rapidly. Research workflows that rely on manual reading, hand-built models, and isolated tools can no longer keep pace with scientific complexity. Centered on LLMs and Agentic AI, AI for Science connects literature, data, models, and experimental feedback into critical infrastructure for efficient research, new law discovery, and autonomous scientific systems.",
+      "importance.necessity.title": "Necessity",
+      "importance.necessity.description":
+        "Modern scientific problems span literature, data, experiments, and computation, requiring intelligent systems to organize evidence, understand variable relationships, and support research decisions.",
+      "importance.urgency.title": "Urgency",
+      "importance.urgency.description":
+        "Papers, experimental records, and observation data continue to grow explosively, while manual screening, reproduction, and modeling costs rise quickly. Research workflows need more automation, traceability, and collaboration.",
+      "importance.importance.title": "Importance",
+      "importance.importance.description":
+        "AI for Science closes the loop from knowledge acquisition and data modeling to evidence reasoning and hypothesis discovery, supporting breakthroughs in theories, methods, and intelligent systems.",
     },
     zh: {
-      "dataModeling.eyebrow": "结构化科学数据",
-      "dataModeling.title": "结构化科学数据建模",
-      "dataModeling.description":
-        "结构化科学数据建模关注表格、时间序列、实验记录和科学观测数据，把科学数据转化为可学习、可预测、可推理的模型表示。",
-      "dataModeling.tabular.title": "Tabular Data",
-      "dataModeling.tabular.description":
-        "面向属性表、实验矩阵、材料/分子性质表，处理小样本、缺失值、异构字段和科学上下文。",
-      "dataModeling.series.title": "Time Series",
-      "dataModeling.series.description":
-        "面向实验曲线、传感器序列和仿真轨迹，建模趋势、周期、突变和动态过程。",
-      "dataModeling.cta": "了解科学数据建模",
+      "importance.eyebrow": "AI for Science",
+      "importance.title": "AI for Science 的必要性、迫切性与重要性",
+      "importance.description":
+        "科学知识、实验数据和计算工具正在高速增长，传统依赖人工阅读、手动建模和单点工具的科研流程难以跟上问题复杂度。AI for Science 以 LLMs and Agentic AI 为核心，把文献、数据、模型和实验反馈连接起来，成为提升科研效率、发现新规律和构建自主科学系统的关键基础设施。",
+      "importance.necessity.title": "必要性",
+      "importance.necessity.description":
+        "现代科学问题跨越文献、数据、实验和计算，需要智能系统组织证据、理解变量关系并辅助研究决策。",
+      "importance.urgency.title": "迫切性",
+      "importance.urgency.description":
+        "论文、实验记录和观测数据持续爆发增长，人工筛选、复现和建模成本快速上升，科研流程需要更自动化、可追踪和可协同。",
+      "importance.importance.title": "重要性",
+      "importance.importance.description":
+        "AI for Science 推动从知识获取、数据建模到证据推理和假设发现的闭环，支撑基础理论、方法技术与智能系统突破。",
     },
   };
 
-  assert.ok(hierarchyIndex >= 0, "index.html: missing hierarchy section");
-  assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling module should follow hierarchy section");
-  assert.ok(projectsIndex > dataModelingIndex, "index.html: data modeling module should appear before projects section");
+  assert.ok(heroIndex >= 0, "index.html: missing hero section");
+  assert.ok(importanceIndex > heroIndex, "index.html: AI for Science importance module should follow the hero section");
   assert.ok(
-    /<section id="data-modeling" class="section highlights">/.test(html),
-    "index.html: data modeling module should use the homepage section style"
+    hierarchyIndex > importanceIndex,
+    "index.html: AI for Science importance module should appear before hierarchy section"
   );
   assert.ok(
-    /<h2 data-i18n="dataModeling\.title">结构化科学数据建模<\/h2>/.test(html),
-    "index.html: data modeling title should match the requested Chinese heading"
+    /<section id="ai4science-importance" class="section">/.test(html),
+    "index.html: AI for Science importance module should use the homepage section style"
   );
-  assert.ok(/Tabular Data/.test(html), "index.html: data modeling module should include a Tabular Data card");
-  assert.ok(/Time Series/.test(html), "index.html: data modeling module should include a Time Series card");
   assert.ok(
-    /<a class="btn ghost" href="\.\/data_modeling\/" data-i18n="dataModeling\.cta">了解科学数据建模<\/a>/.test(html),
-    "index.html: data modeling module should link to the data modeling subpage"
+    /<h2 data-i18n="importance\.title">AI for Science 的必要性、迫切性与重要性<\/h2>/.test(html),
+    "index.html: AI for Science importance title should match the requested focus"
   );
+
+  for (const requiredText of ["必要性", "迫切性", "重要性"]) {
+    assert.ok(html.includes(requiredText), `index.html: AI for Science importance module should include ${requiredText}`);
+  }
 
   assert.ok(objectMatch, "index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
@@ -362,6 +482,99 @@ const validateHomeDataModelingModule = () => {
         context.translations[language][key],
         value,
         `index.html: ${language} translation should match for ${key}`
+      );
+    }
+  }
+};
+
+const validateHomeVisionRemoved = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(!/<section id="vision"/.test(html), "index.html: vision section should be removed");
+  assert.ok(!/data-i18n="vision\./.test(html), "index.html: vision translation markers should be removed");
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    for (const key of Object.keys(context.translations[language])) {
+      assert.ok(
+        !key.startsWith("vision."),
+        `index.html: stale ${language} vision translation should be removed for ${key}`
+      );
+    }
+  }
+};
+
+const validateHomeFooterDescriptionRemoved = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    !/data-i18n="footer\.eyebrow"/.test(html),
+    "index.html: footer eyebrow text should be removed"
+  );
+  assert.ok(
+    !/联系合作 · Connect/.test(html),
+    "index.html: Chinese footer eyebrow should be removed"
+  );
+  assert.ok(!/>Connect<\/p>/.test(html), "index.html: English footer eyebrow should be removed");
+  assert.ok(
+    !/data-i18n="footer\.description"/.test(html),
+    "index.html: footer description text should be removed"
+  );
+  assert.ok(
+    !/我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。/.test(html),
+    "index.html: Chinese footer description should be removed"
+  );
+  assert.ok(
+    !/We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents\./.test(html),
+    "index.html: English footer description should be removed"
+  );
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["footer.eyebrow"],
+      undefined,
+      `index.html: stale ${language} footer eyebrow translation should be removed`
+    );
+    assert.equal(
+      context.translations[language]["footer.description"],
+      undefined,
+      `index.html: stale ${language} footer description translation should be removed`
+    );
+  }
+};
+
+const validateHomeTimelineRemoved = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(!/<section id="timeline"/.test(html), "index.html: timeline section should be removed");
+  assert.ok(!/data-i18n="timeline\./.test(html), "index.html: timeline translation markers should be removed");
+  assert.ok(!/>相关工作<\/h2>/.test(html), "index.html: related work heading should be removed");
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    for (const key of Object.keys(context.translations[language])) {
+      assert.ok(
+        !key.startsWith("timeline."),
+        `index.html: stale ${language} timeline translation should be removed for ${key}`
       );
     }
   }
@@ -495,7 +708,13 @@ for (const page of pages) {
 }
 
 validateHomeHeroRefresh();
-validateHomeDataModelingModule();
+validateHomeAiForScienceImportanceModule();
+validateHomeDataModelingModuleRemoved();
+validateHomeHierarchyTitle();
+validateHomeProjectsIntegratedIntoHierarchy();
+validateHomeVisionRemoved();
+validateHomeFooterDescriptionRemoved();
+validateHomeTimelineRemoved();
 validatePapersHero();
 validatePapersYearLabels();
 validatePapersListHeaderRemoved();

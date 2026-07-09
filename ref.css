@@ -524,6 +524,10 @@ a:hover {
   gap: 20px;
 }
 
+.hierarchy-grid + .research-grid {
+  margin-top: 28px;
+}
+
 .direction-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
