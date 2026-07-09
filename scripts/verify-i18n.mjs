@@ -630,7 +630,8 @@ const validatePapersHero = () => {
   assert.ok(!/data-i18n="hero\.eyebrow"/.test(heroMatch[1]), "papers/index.html: removed hero eyebrow should not be translatable");
   assert.ok(/data-i18n="hero\.title"/.test(heroMatch[1]), "papers/index.html: hero title should be translatable");
   assert.ok(/data-i18n="hero\.subtitle"/.test(heroMatch[1]), "papers/index.html: hero subtitle should be translatable");
-  assert.ok(/class="hero-actions"/.test(heroMatch[1]), "papers/index.html: hero should include the subpage action row");
+  assert.ok(!/class="hero-actions"/.test(heroMatch[1]), "papers/index.html: hero GitHub action row should be removed");
+  assert.ok(!/>GitHub<\/a>/.test(heroMatch[1]), "papers/index.html: hero GitHub button should be removed");
 };
 
 const validatePapersYearLabels = () => {
@@ -704,6 +705,46 @@ const validateScholarSumVenueLink = () => {
   );
 };
 
+const validateKnowledgeMemoryHeroGitHubRemoved = () => {
+  const html = readFileSync(resolve(root, "knowledge_memory/index.html"), "utf8");
+  const heroMatch = html.match(/<header id="top" class="hero">([\s\S]*?)<\/header>/);
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(heroMatch, "knowledge_memory/index.html: missing hero section");
+  assert.ok(
+    !/class="eyebrow"/.test(heroMatch[1]),
+    "knowledge_memory/index.html: hero eyebrow button should be removed"
+  );
+  assert.ok(
+    !/data-i18n="hero\.eyebrow"/.test(heroMatch[1]),
+    "knowledge_memory/index.html: removed hero eyebrow should not be translatable"
+  );
+  assert.ok(
+    !/class="hero-actions"/.test(heroMatch[1]),
+    "knowledge_memory/index.html: hero GitHub action row should be removed"
+  );
+  assert.ok(
+    !/>GitHub<\/a>/.test(heroMatch[1]),
+    "knowledge_memory/index.html: hero GitHub button should be removed"
+  );
+
+  assert.ok(objectMatch, "knowledge_memory/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["hero.eyebrow"],
+    undefined,
+    "knowledge_memory/index.html: stale English hero eyebrow translation should be removed"
+  );
+  assert.equal(
+    context.translations.zh["hero.eyebrow"],
+    undefined,
+    "knowledge_memory/index.html: stale Chinese hero eyebrow translation should be removed"
+  );
+};
+
 const validateDataModelingPage = () => {
   const html = readFileSync(resolve(root, "data_modeling/index.html"), "utf8");
   const objectMatch = html.match(
@@ -712,6 +753,10 @@ const validateDataModelingPage = () => {
   const context = {};
 
   assert.ok(/<h1 data-i18n="hero\.title">科学数据建模<\/h1>/.test(html), "data_modeling/index.html: hero title should introduce scientific data modeling");
+  assert.ok(
+    !/data-i18n="hero\.eyebrow"/.test(html),
+    "data_modeling/index.html: hero eyebrow button should be removed"
+  );
   assert.ok(/Tabular Data/.test(html), "data_modeling/index.html: page should foreground tabular data modeling");
   assert.ok(/Time Series/.test(html), "data_modeling/index.html: page should foreground time series modeling");
   assert.ok(/结构化科学数据建模/.test(html), "data_modeling/index.html: Chinese copy should foreground structured scientific data modeling");
@@ -728,6 +773,16 @@ const validateDataModelingPage = () => {
     context.translations.zh["nav.data"],
     "科学数据",
     "data_modeling/index.html: Chinese navigation label should name the new section"
+  );
+  assert.equal(
+    context.translations.en["hero.eyebrow"],
+    undefined,
+    "data_modeling/index.html: stale English hero eyebrow translation should be removed"
+  );
+  assert.equal(
+    context.translations.zh["hero.eyebrow"],
+    undefined,
+    "data_modeling/index.html: stale Chinese hero eyebrow translation should be removed"
   );
 };
 
@@ -760,5 +815,6 @@ validatePapersYearLabels();
 validatePapersListHeaderRemoved();
 validateChemTableVenueLink();
 validateScholarSumVenueLink();
+validateKnowledgeMemoryHeroGitHubRemoved();
 validateDataModelingPage();
 validateDirectionsPageRemoved();
