@@ -141,7 +141,7 @@ const validateBrandLabels = (relativePath) => {
   const context = {};
 
   assert.ok(
-    /aria-label="USTC-AGI Scientific Knowledge Cognition"/.test(html),
+    /aria-label="USTC-AGI AI for Science"/.test(html),
     `${label}: logo aria label should match the visible brand`
   );
   assert.ok(
@@ -149,8 +149,8 @@ const validateBrandLabels = (relativePath) => {
     `${label}: initial logo title should be USTC-AGI`
   );
   assert.ok(
-    /<span class="logo-subtitle" data-i18n="brand\.subtitle">Scientific Knowledge Cognition<\/span>/.test(html),
-    `${label}: initial logo subtitle should be Scientific Knowledge Cognition`
+    /<span class="logo-subtitle" data-i18n="brand\.subtitle">AI for Science<\/span>/.test(html),
+    `${label}: initial logo subtitle should be AI for Science`
   );
 
   assert.ok(objectMatch, `${label}: missing translations object`);
@@ -164,8 +164,8 @@ const validateBrandLabels = (relativePath) => {
     );
     assert.equal(
       context.translations[language]["brand.subtitle"],
-      "Scientific Knowledge Cognition",
-      `${label}: ${language} logo subtitle should remain Scientific Knowledge Cognition`
+      "AI for Science",
+      `${label}: ${language} logo subtitle should remain AI for Science`
     );
   }
 };
