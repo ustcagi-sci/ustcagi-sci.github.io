@@ -5,7 +5,13 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const pages = ["index.html", "knowledge_memory/index.html", "directions/index.html", "papers/index.html"];
+const pages = [
+  "index.html",
+  "knowledge_memory/index.html",
+  "data_modeling/index.html",
+  "directions/index.html",
+  "papers/index.html",
+];
 
 const validatePage = (relativePath) => {
   const html = readFileSync(resolve(root, relativePath), "utf8");
@@ -181,7 +187,7 @@ const validateNavigation = (relativePath) => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.directions", "nav.knowledge", "nav.papers"],
+    ["nav.directions", "nav.knowledge", "nav.data", "nav.papers"],
     `${label}: navigation should match the main page link set`
   );
 
@@ -191,6 +197,7 @@ const validateNavigation = (relativePath) => {
   const expectedCurrent = {
     "directions/index.html": "nav.directions",
     "knowledge_memory/index.html": "nav.knowledge",
+    "data_modeling/index.html": "nav.data",
     "papers/index.html": "nav.papers",
   }[relativePath];
 
@@ -349,6 +356,33 @@ const validateScholarSumVenueLink = () => {
   );
 };
 
+const validateDataModelingPage = () => {
+  const html = readFileSync(resolve(root, "data_modeling/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(/<h1 data-i18n="hero\.title">科学数据建模<\/h1>/.test(html), "data_modeling/index.html: hero title should introduce scientific data modeling");
+  assert.ok(/Tabular Data/.test(html), "data_modeling/index.html: page should foreground tabular data modeling");
+  assert.ok(/Time Series/.test(html), "data_modeling/index.html: page should foreground time series modeling");
+  assert.ok(/结构化科学数据建模/.test(html), "data_modeling/index.html: Chinese copy should foreground structured scientific data modeling");
+
+  assert.ok(objectMatch, "data_modeling/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  assert.equal(
+    context.translations.en["nav.data"],
+    "Scientific Data Modeling",
+    "data_modeling/index.html: English navigation label should name the new section"
+  );
+  assert.equal(
+    context.translations.zh["nav.data"],
+    "科学数据建模",
+    "data_modeling/index.html: Chinese navigation label should name the new section"
+  );
+};
+
 for (const page of pages) {
   validatePage(page);
   validateBrandLabels(page);
@@ -363,3 +397,4 @@ validatePapersYearLabels();
 validatePapersListHeaderRemoved();
 validateChemTableVenueLink();
 validateScholarSumVenueLink();
+validateDataModelingPage();

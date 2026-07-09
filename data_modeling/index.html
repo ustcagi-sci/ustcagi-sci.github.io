@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>科学数据建模</title>
+    <meta
+      name="description"
+      content="中国科大 AGI 团队面向 AI for Science 的结构化科学数据建模研究，关注 Tabular Data、Time Series、实验记录和科学观测序列。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="科学数据建模" />
+    <meta
+      property="og:description"
+      content="中国科大 AGI 团队面向 AI for Science 的结构化科学数据建模研究，关注 Tabular Data、Time Series、实验记录和科学观测序列。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="USTC-AGI AI for Science">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="../literature-mining-logo.svg" alt="" />
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">USTC-AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">AI for Science</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../directions/" data-i18n="nav.directions">研究方向</a>
+          <a href="../knowledge_memory/" data-i18n="nav.knowledge">科学知识挖掘</a>
+          <a href="./" aria-current="page" data-i18n="nav.data">科学数据建模</a>
+          <a href="../papers/" data-i18n="nav.papers">论文列表</a>
+          <span class="nav-break" aria-hidden="true"></span>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero">
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Structured Scientific Data Modeling</p>
+        <h1 data-i18n="hero.title">科学数据建模</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          面向结构化科学数据建模，重点关注 Tabular Data、Time Series、实验记录和科学观测序列，支撑性质预测、趋势建模和规律发现。
+        </p>
+        <div class="hero-actions">
+          <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="intro" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="intro.eyebrow">Core Thesis</p>
+          <h2 data-i18n="intro.title">结构化科学数据正在成为 AI for Science 的关键入口</h2>
+          <p data-i18n="intro.description">
+            科学数据建模关注表格、时间序列、实验记录和多源观测数据，把离散实验事实与连续动态过程转化为可学习、可推理、可迁移的模型表示。
+          </p>
+        </div>
+
+        <div class="tldr">
+          <strong data-i18n="intro.tldr.label">TL;DR:</strong>
+          <span data-i18n="intro.tldr.text">
+            我们关注 Tabular Data 和 Time Series 两类结构化科学数据，围绕数据表示、上下文建模、缺失噪声处理、科学约束和跨数据源泛化构建建模能力。
+          </span>
+        </div>
+
+        <div class="direction-stack">
+          <div>
+            <p data-i18n="intro.paragraph1">
+              在材料、化学、能源、生命科学和工程系统中，大量关键知识不是以自然语言出现，而是沉淀在属性表、实验矩阵、传感器曲线、仿真轨迹和长期观测序列中。这类数据规模不一定最大，但结构强、上下文复杂、噪声和缺失普遍存在。
+            </p>
+            <p data-i18n="intro.paragraph2">
+              因此，结构化科学数据建模不只是把通用表格模型或时序模型迁移到科研数据上，而是要理解变量语义、实验条件、单位约束、时间尺度、领域先验和数据生成过程，让模型真正服务科学预测与发现。
+            </p>
+          </div>
+          <div class="quote-block">
+            <strong data-i18n="intro.quote.lead">科学数据建模连接实验观测与科学规律，</strong>
+            <span data-i18n="intro.quote.text">目标是在有限、异构且带有物理约束的数据中学习可解释、可泛化的预测能力。</span>
+          </div>
+        </div>
+
+        <div class="stack-stats">
+          <div class="stat-box">
+            <div class="stat-num">Table</div>
+            <div class="stat-label" data-i18n="stats.table">Tabular Data · 属性表与实验矩阵</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Series</div>
+            <div class="stat-label" data-i18n="stats.series">Time Series · 观测曲线与动态过程</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Context</div>
+            <div class="stat-label" data-i18n="stats.context">实验条件 · 单位 · 元数据</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Model</div>
+            <div class="stat-label" data-i18n="stats.model">表示学习 · 预测 · 推理</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Science</div>
+            <div class="stat-label" data-i18n="stats.science">性质预测 · 趋势发现 · 决策支持</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scope" class="section highlights">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="scope.eyebrow">Modeling Objects</p>
+          <h2 data-i18n="scope.title">两类核心结构化科学数据</h2>
+          <p data-i18n="scope.description">
+            Tabular Data 强调变量、样本和属性之间的结构关系；Time Series 强调随时间变化的状态、趋势和动态机制。
+          </p>
+        </div>
+
+        <div class="system-grid">
+          <article class="system-panel highlight">
+            <span class="label">Tabular Data</span>
+            <h3 data-i18n="scope.table.title">科学表格与属性数据建模</h3>
+            <p data-i18n="scope.table.description">
+              面向材料性质表、化合物属性表、实验设计矩阵和多源观测记录，处理小样本、异构字段、缺失值、单位差异和领域先验。
+            </p>
+          </article>
+          <article class="system-panel">
+            <span class="label">Time Series</span>
+            <h3 data-i18n="scope.series.title">科学时间序列与动态过程建模</h3>
+            <p data-i18n="scope.series.description">
+              面向传感器序列、实验曲线、仿真轨迹和长期观测数据，建模周期性、趋势变化、突变、外生变量和跨尺度动态。
+            </p>
+          </article>
+        </div>
+
+        <div class="tag-cloud" aria-label="Structured scientific data examples">
+          <span>Tabular Data</span>
+          <span>Time Series</span>
+          <span>property table</span>
+          <span>experiment matrix</span>
+          <span>sensor curve</span>
+          <span>simulation trajectory</span>
+          <span>missing values</span>
+          <span>scientific constraints</span>
+          <span>context metadata</span>
+        </div>
+      </section>
+
+      <section id="capabilities" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="capabilities.eyebrow">Capability Map</p>
+          <h2 data-i18n="capabilities.title">从数据表示到科学预测</h2>
+          <p data-i18n="capabilities.description">
+            我们把结构化科学数据建模组织为数据理解、表示学习、预测推理和科学应用四个层次。
+          </p>
+        </div>
+
+        <ul class="pillar-list">
+          <li>
+            <div class="pillar-num">1</div>
+            <div class="pillar-text">
+              <strong data-i18n="capability.context.title">上下文感知的数据理解</strong>
+              <span data-i18n="capability.context.description">
+                识别变量语义、单位、实验条件、采样频率、时间窗口和数据来源，避免把科学上下文压扁成普通数值矩阵。
+              </span>
+            </div>
+          </li>
+          <li>
+            <div class="pillar-num">2</div>
+            <div class="pillar-text">
+              <strong data-i18n="capability.representation.title">表格与时序统一表示</strong>
+              <span data-i18n="capability.representation.description">
+                为属性表、实验矩阵和动态序列构建可迁移表示，支持跨任务、跨数据源和跨领域的建模复用。
+              </span>
+            </div>
+          </li>
+          <li>
+            <div class="pillar-num">3</div>
+            <div class="pillar-text">
+              <strong data-i18n="capability.robust.title">有限样本与噪声鲁棒建模</strong>
+              <span data-i18n="capability.robust.description">
+                处理缺失值、异常点、测量噪声、分布偏移和样本稀缺，提升模型在真实科研数据上的可靠性。
+              </span>
+            </div>
+          </li>
+          <li>
+            <div class="pillar-num">4</div>
+            <div class="pillar-text">
+              <strong data-i18n="capability.science.title">科学约束与机制先验融合</strong>
+              <span data-i18n="capability.science.description">
+                将守恒关系、单调性、物理边界、反应条件和领域规则注入建模过程，降低纯数据拟合带来的不稳定性。
+              </span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="applications" class="section direction-stack">
+        <div class="vision-content">
+          <h2 data-i18n="applications.title">面向科研工作流的应用</h2>
+          <p data-i18n="applications.description">
+            科学数据建模服务的不只是预测分数，而是帮助研究者组织实验数据、发现趋势、筛选候选方案并形成可验证的科学判断。
+          </p>
+        </div>
+        <div class="vision-points">
+          <div>
+            <h3 data-i18n="applications.property.title">性质预测</h3>
+            <p data-i18n="applications.property.description">
+              面向材料、分子、催化体系和工程参数，预测目标性质并评估不确定性。
+            </p>
+          </div>
+          <div>
+            <h3 data-i18n="applications.forecast.title">趋势建模</h3>
+            <p data-i18n="applications.forecast.description">
+              从实验曲线和观测序列中识别周期、趋势、突变和条件响应，支持短期预测与长期分析。
+            </p>
+          </div>
+          <div>
+            <h3 data-i18n="applications.completion.title">数据补全与候选筛选</h3>
+            <p data-i18n="applications.completion.description">
+              在实验成本高、观测不完整的场景中补全关键字段，筛选更值得验证的候选实验。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="relationship" class="section highlights">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="relationship.eyebrow">Relationship</p>
+          <h2 data-i18n="relationship.title">与科学知识获取互补</h2>
+          <p data-i18n="relationship.description">
+            科学知识获取偏向文献、证据链和知识对象；科学数据建模偏向结构化数据、数值规律和实验观测。两者共同支撑从阅读科学到建模科学的完整 AI for Science 工作流。
+          </p>
+        </div>
+
+        <div class="system-grid">
+          <article class="system-panel">
+            <span class="label" data-i18n="relationship.knowledge.label">Knowledge</span>
+            <h3 data-i18n="relationship.knowledge.title">科学知识获取</h3>
+            <p data-i18n="relationship.knowledge.description">
+              从论文、图表、引用和外部资料中获取证据，形成可追踪的概念、方法、claim 和研究脉络。
+            </p>
+          </article>
+          <article class="system-panel highlight">
+            <span class="label" data-i18n="relationship.data.label">Data</span>
+            <h3 data-i18n="relationship.data.title">科学数据建模</h3>
+            <p data-i18n="relationship.data.description">
+              从表格、时间序列和实验观测中学习变量关系、动态模式和预测规律，形成可用于决策的模型能力。
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div>
+        <p class="eyebrow" data-i18n="footer.eyebrow">联系合作 · Connect</p>
+        <h3 data-i18n="footer.title">中国科学技术大学 认知智能全国重点实验室 AGI研究组</h3>
+        <p data-i18n="footer.description">
+          我们欢迎围绕结构化科学数据建模、Tabular Data、Time Series 和 AI for Science 系统展开合作。
+        </p>
+      </div>
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "Scientific Data Modeling",
+          "meta.description":
+            "Structured scientific data modeling research from USTC AGI for AI for Science, focusing on Tabular Data, Time Series, experimental records, and scientific observation sequences.",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.directions": "Research Directions",
+          "nav.knowledge": "Scientific Knowledge Mining",
+          "nav.data": "Scientific Data Modeling",
+          "nav.papers": "Publications",
+          "hero.eyebrow": "Structured Scientific Data Modeling",
+          "hero.title": "Scientific Data Modeling",
+          "hero.subtitle":
+            "We focus on structured scientific data modeling across Tabular Data, Time Series, experimental records, and scientific observation sequences to support property prediction, trend modeling, and pattern discovery.",
+          "intro.eyebrow": "Core Thesis",
+          "intro.title": "Structured Scientific Data Is a Key Entry Point for AI for Science",
+          "intro.description":
+            "Scientific data modeling studies tables, time series, experimental records, and multi-source observations, turning discrete experimental facts and continuous dynamic processes into learnable, reasoned, and transferable model representations.",
+          "intro.tldr.label": "TL;DR:",
+          "intro.tldr.text":
+            "We focus on Tabular Data and Time Series as two core forms of structured scientific data, building modeling capabilities around representation, context modeling, missing and noisy data, scientific constraints, and cross-source generalization.",
+          "intro.paragraph1":
+            "Across materials, chemistry, energy, life science, and engineering systems, much key knowledge is not written as natural language. It is embedded in property tables, experiment matrices, sensor curves, simulation trajectories, and long-term observation sequences. These datasets may not be huge, but they are strongly structured, context-heavy, noisy, and often incomplete.",
+          "intro.paragraph2":
+            "Structured scientific data modeling is therefore not simply moving generic tabular or time-series models onto research data. It must understand variable semantics, experimental conditions, units, time scales, domain priors, and data generation processes so models can serve scientific prediction and discovery.",
+          "intro.quote.lead": "Scientific data modeling connects experimental observation with scientific regularities,",
+          "intro.quote.text":
+            "learning interpretable and generalizable predictive capabilities from limited, heterogeneous, and physically constrained data.",
+          "stats.table": "Tabular Data · property tables and experiment matrices",
+          "stats.series": "Time Series · observation curves and dynamic processes",
+          "stats.context": "Experimental conditions · units · metadata",
+          "stats.model": "Representation learning · prediction · reasoning",
+          "stats.science": "Property prediction · trend discovery · decision support",
+          "scope.eyebrow": "Modeling Objects",
+          "scope.title": "Two Core Forms of Structured Scientific Data",
+          "scope.description":
+            "Tabular Data emphasizes structural relations among variables, samples, and properties. Time Series emphasizes states, trends, and dynamic mechanisms over time.",
+          "scope.table.title": "Scientific Tables and Property Data Modeling",
+          "scope.table.description":
+            "Model material property tables, compound attribute tables, experimental design matrices, and multi-source observation records under small samples, heterogeneous fields, missing values, unit differences, and domain priors.",
+          "scope.series.title": "Scientific Time Series and Dynamic Process Modeling",
+          "scope.series.description":
+            "Model sensor sequences, experimental curves, simulation trajectories, and long-term observations with periodicity, trend shifts, change points, exogenous variables, and cross-scale dynamics.",
+          "capabilities.eyebrow": "Capability Map",
+          "capabilities.title": "From Data Representation to Scientific Prediction",
+          "capabilities.description":
+            "We organize structured scientific data modeling into four layers: data understanding, representation learning, predictive reasoning, and scientific application.",
+          "capability.context.title": "Context-Aware Data Understanding",
+          "capability.context.description":
+            "Recognize variable semantics, units, experimental conditions, sampling frequency, time windows, and data sources instead of flattening scientific context into ordinary numerical matrices.",
+          "capability.representation.title": "Unified Representations for Tables and Series",
+          "capability.representation.description":
+            "Build transferable representations for property tables, experiment matrices, and dynamic sequences to support reuse across tasks, data sources, and domains.",
+          "capability.robust.title": "Robust Modeling with Limited and Noisy Data",
+          "capability.robust.description":
+            "Handle missing values, outliers, measurement noise, distribution shift, and scarce samples to improve reliability on real scientific data.",
+          "capability.science.title": "Scientific Constraints and Mechanistic Priors",
+          "capability.science.description":
+            "Inject conservation relations, monotonicity, physical boundaries, reaction conditions, and domain rules into modeling to reduce instability from pure data fitting.",
+          "applications.title": "Applications in Research Workflows",
+          "applications.description":
+            "Scientific data modeling should not only produce prediction scores. It should help researchers organize experimental data, discover trends, prioritize candidates, and form verifiable scientific judgments.",
+          "applications.property.title": "Property Prediction",
+          "applications.property.description":
+            "Predict target properties and estimate uncertainty for materials, molecules, catalytic systems, and engineering parameters.",
+          "applications.forecast.title": "Trend Modeling",
+          "applications.forecast.description":
+            "Identify cycles, trends, change points, and conditional responses from experimental curves and observation sequences for short-term forecasting and long-term analysis.",
+          "applications.completion.title": "Data Completion and Candidate Screening",
+          "applications.completion.description":
+            "Complete key fields and prioritize candidates in settings where experiments are expensive and observations are incomplete.",
+          "relationship.eyebrow": "Relationship",
+          "relationship.title": "Complementary to Scientific Knowledge Acquisition",
+          "relationship.description":
+            "Scientific knowledge acquisition focuses on literature, evidence chains, and knowledge objects. Scientific data modeling focuses on structured data, numerical regularities, and experimental observations. Together they support a full AI for Science workflow from reading science to modeling science.",
+          "relationship.knowledge.label": "Knowledge",
+          "relationship.knowledge.title": "Scientific Knowledge Acquisition",
+          "relationship.knowledge.description":
+            "Acquire evidence from papers, figures, citations, and external resources to form traceable concepts, methods, claims, and research threads.",
+          "relationship.data.label": "Data",
+          "relationship.data.title": "Scientific Data Modeling",
+          "relationship.data.description":
+            "Learn variable relations, dynamic patterns, and predictive regularities from tables, time series, and experimental observations to build model capabilities for decisions.",
+          "footer.eyebrow": "Connect",
+          "footer.title": "AGI Research Group, National Key Laboratory of Cognitive Intelligence, University of Science and Technology of China",
+          "footer.description":
+            "We welcome collaborations on structured scientific data modeling, Tabular Data, Time Series, and AI for Science systems.",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "科学数据建模",
+          "meta.description":
+            "中国科大 AGI 团队面向 AI for Science 的结构化科学数据建模研究，关注 Tabular Data、Time Series、实验记录和科学观测序列。",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.directions": "研究方向",
+          "nav.knowledge": "科学知识挖掘",
+          "nav.data": "科学数据建模",
+          "nav.papers": "论文列表",
+          "hero.eyebrow": "结构化科学数据建模",
+          "hero.title": "科学数据建模",
+          "hero.subtitle":
+            "面向结构化科学数据建模，重点关注 Tabular Data、Time Series、实验记录和科学观测序列，支撑性质预测、趋势建模和规律发现。",
+          "intro.eyebrow": "核心判断",
+          "intro.title": "结构化科学数据正在成为 AI for Science 的关键入口",
+          "intro.description":
+            "科学数据建模关注表格、时间序列、实验记录和多源观测数据，把离散实验事实与连续动态过程转化为可学习、可推理、可迁移的模型表示。",
+          "intro.tldr.label": "TL;DR:",
+          "intro.tldr.text":
+            "我们关注 Tabular Data 和 Time Series 两类结构化科学数据，围绕数据表示、上下文建模、缺失噪声处理、科学约束和跨数据源泛化构建建模能力。",
+          "intro.paragraph1":
+            "在材料、化学、能源、生命科学和工程系统中，大量关键知识不是以自然语言出现，而是沉淀在属性表、实验矩阵、传感器曲线、仿真轨迹和长期观测序列中。这类数据规模不一定最大，但结构强、上下文复杂、噪声和缺失普遍存在。",
+          "intro.paragraph2":
+            "因此，结构化科学数据建模不只是把通用表格模型或时序模型迁移到科研数据上，而是要理解变量语义、实验条件、单位约束、时间尺度、领域先验和数据生成过程，让模型真正服务科学预测与发现。",
+          "intro.quote.lead": "科学数据建模连接实验观测与科学规律，",
+          "intro.quote.text": "目标是在有限、异构且带有物理约束的数据中学习可解释、可泛化的预测能力。",
+          "stats.table": "Tabular Data · 属性表与实验矩阵",
+          "stats.series": "Time Series · 观测曲线与动态过程",
+          "stats.context": "实验条件 · 单位 · 元数据",
+          "stats.model": "表示学习 · 预测 · 推理",
+          "stats.science": "性质预测 · 趋势发现 · 决策支持",
+          "scope.eyebrow": "建模对象",
+          "scope.title": "两类核心结构化科学数据",
+          "scope.description":
+            "Tabular Data 强调变量、样本和属性之间的结构关系；Time Series 强调随时间变化的状态、趋势和动态机制。",
+          "scope.table.title": "科学表格与属性数据建模",
+          "scope.table.description":
+            "面向材料性质表、化合物属性表、实验设计矩阵和多源观测记录，处理小样本、异构字段、缺失值、单位差异和领域先验。",
+          "scope.series.title": "科学时间序列与动态过程建模",
+          "scope.series.description":
+            "面向传感器序列、实验曲线、仿真轨迹和长期观测数据，建模周期性、趋势变化、突变、外生变量和跨尺度动态。",
+          "capabilities.eyebrow": "能力地图",
+          "capabilities.title": "从数据表示到科学预测",
+          "capabilities.description":
+            "我们把结构化科学数据建模组织为数据理解、表示学习、预测推理和科学应用四个层次。",
+          "capability.context.title": "上下文感知的数据理解",
+          "capability.context.description":
+            "识别变量语义、单位、实验条件、采样频率、时间窗口和数据来源，避免把科学上下文压扁成普通数值矩阵。",
+          "capability.representation.title": "表格与时序统一表示",
+          "capability.representation.description":
+            "为属性表、实验矩阵和动态序列构建可迁移表示，支持跨任务、跨数据源和跨领域的建模复用。",
+          "capability.robust.title": "有限样本与噪声鲁棒建模",
+          "capability.robust.description":
+            "处理缺失值、异常点、测量噪声、分布偏移和样本稀缺，提升模型在真实科研数据上的可靠性。",
+          "capability.science.title": "科学约束与机制先验融合",
+          "capability.science.description":
+            "将守恒关系、单调性、物理边界、反应条件和领域规则注入建模过程，降低纯数据拟合带来的不稳定性。",
+          "applications.title": "面向科研工作流的应用",
+          "applications.description":
+            "科学数据建模服务的不只是预测分数，而是帮助研究者组织实验数据、发现趋势、筛选候选方案并形成可验证的科学判断。",
+          "applications.property.title": "性质预测",
+          "applications.property.description":
+            "面向材料、分子、催化体系和工程参数，预测目标性质并评估不确定性。",
+          "applications.forecast.title": "趋势建模",
+          "applications.forecast.description":
+            "从实验曲线和观测序列中识别周期、趋势、突变和条件响应，支持短期预测与长期分析。",
+          "applications.completion.title": "数据补全与候选筛选",
+          "applications.completion.description":
+            "在实验成本高、观测不完整的场景中补全关键字段，筛选更值得验证的候选实验。",
+          "relationship.eyebrow": "互补关系",
+          "relationship.title": "与科学知识获取互补",
+          "relationship.description":
+            "科学知识获取偏向文献、证据链和知识对象；科学数据建模偏向结构化数据、数值规律和实验观测。两者共同支撑从阅读科学到建模科学的完整 AI for Science 工作流。",
+          "relationship.knowledge.label": "Knowledge",
+          "relationship.knowledge.title": "科学知识获取",
+          "relationship.knowledge.description":
+            "从论文、图表、引用和外部资料中获取证据，形成可追踪的概念、方法、claim 和研究脉络。",
+          "relationship.data.label": "Data",
+          "relationship.data.title": "科学数据建模",
+          "relationship.data.description":
+            "从表格、时间序列和实验观测中学习变量关系、动态模式和预测规律，形成可用于决策的模型能力。",
+          "footer.eyebrow": "联系合作 · Connect",
+          "footer.title": "中国科学技术大学 认知智能全国重点实验室 AGI研究组",
+          "footer.description":
+            "我们欢迎围绕结构化科学数据建模、Tabular Data、Time Series 和 AI for Science 系统展开合作。",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const currentLanguage = document.documentElement.dataset.language;
+        setLanguage(currentLanguage === "zh" ? "en" : "zh", true);
+      });
+    </script>
+  </body>
+</html>
