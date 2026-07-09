@@ -297,26 +297,66 @@ const validateHomeHeroRefresh = () => {
   );
 };
 
-const validateHomeDataModelingModuleRemoved = () => {
+const validateHomeDataModelingModule = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
   const context = {};
+  const importanceIndex = html.indexOf('<section id="ai4science-importance"');
+  const dataModelingIndex = html.indexOf('<section id="data-modeling"');
+  const hierarchyIndex = html.indexOf('<section id="hierarchy"');
+  const expectedTranslations = {
+    en: {
+      "dataModeling.title": "Scientific Data Modeling",
+      "dataModeling.description":
+        "Structured scientific data modeling focuses on tables, time series, experimental records, and scientific observations, turning scientific data into learnable, predictive, and reasoned model representations.",
+      "dataModeling.tabular.title": "Tabular Data",
+      "dataModeling.tabular.description":
+        "Model property tables, experimental matrices, materials and molecular property sheets, and scientific records under small samples, missing values, heterogeneous fields, and domain context.",
+      "dataModeling.series.title": "Time Series",
+      "dataModeling.series.description":
+        "Model experimental curves, sensor sequences, simulation trajectories, and observation streams to capture trends, cycles, abrupt changes, and dynamic processes.",
+      "dataModeling.cta": "Learn Scientific Data Modeling",
+    },
+    zh: {
+      "dataModeling.title": "科学数据建模",
+      "dataModeling.description":
+        "结构化科学数据建模关注表格、时间序列、实验记录和科学观测数据，把科学数据转化为可学习、可预测、可推理的模型表示。",
+      "dataModeling.tabular.title": "Tabular Data",
+      "dataModeling.tabular.description":
+        "面向属性表、实验矩阵、材料/分子性质表和科学记录，处理小样本、缺失值、异构字段和领域上下文。",
+      "dataModeling.series.title": "Time Series",
+      "dataModeling.series.description":
+        "面向实验曲线、传感器序列、仿真轨迹和观测流，建模趋势、周期、突变和动态过程。",
+      "dataModeling.cta": "了解科学数据建模",
+    },
+  };
 
-  assert.ok(!/<section id="data-modeling"/.test(html), "index.html: data modeling homepage module should be removed");
-  assert.ok(!/data-i18n="dataModeling\./.test(html), "index.html: data modeling translation markers should be removed");
+  assert.ok(importanceIndex >= 0, "index.html: missing AI for Science importance section");
+  assert.ok(dataModelingIndex > importanceIndex, "index.html: data modeling module should follow the importance section");
+  assert.ok(hierarchyIndex > dataModelingIndex, "index.html: data modeling module should appear before hierarchy section");
+  assert.ok(/<section id="data-modeling" class="section highlights">/.test(html), "index.html: missing homepage data modeling module");
+  assert.ok(/<h2 data-i18n="dataModeling\.title">科学数据建模<\/h2>/.test(html), "index.html: data modeling module title should be 科学数据建模");
+  assert.ok(/href="\.\/data_modeling\/" data-i18n="dataModeling\.cta"/.test(html), "index.html: data modeling module should link to the data modeling subpage");
   assert.ok(!/>结构化科学数据<\/p>/.test(html), "index.html: structured scientific data eyebrow should be removed");
-  assert.ok(!/>结构化科学数据建模<\/h2>/.test(html), "index.html: structured scientific data modeling heading should be removed");
+  assert.ok(!/data-i18n="dataModeling\.eyebrow"/.test(html), "index.html: data modeling eyebrow marker should not return");
 
   assert.ok(objectMatch, "index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
 
   for (const language of ["en", "zh"]) {
-    for (const key of Object.keys(context.translations[language])) {
-      assert.ok(
-        !key.startsWith("dataModeling."),
-        `index.html: stale ${language} data modeling translation should be removed for ${key}`
+    assert.equal(
+      context.translations[language]["dataModeling.eyebrow"],
+      undefined,
+      `index.html: stale ${language} data modeling eyebrow translation should be removed`
+    );
+
+    for (const [key, value] of Object.entries(expectedTranslations[language])) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `index.html: ${language} translation should match for ${key}`
       );
     }
   }
@@ -709,7 +749,7 @@ for (const page of pages) {
 
 validateHomeHeroRefresh();
 validateHomeAiForScienceImportanceModule();
-validateHomeDataModelingModuleRemoved();
+validateHomeDataModelingModule();
 validateHomeHierarchyTitle();
 validateHomeProjectsIntegratedIntoHierarchy();
 validateHomeVisionRemoved();
