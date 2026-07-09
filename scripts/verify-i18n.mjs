@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
@@ -9,7 +9,6 @@ const pages = [
   "index.html",
   "knowledge_memory/index.html",
   "data_modeling/index.html",
-  "directions/index.html",
   "papers/index.html",
 ];
 
@@ -187,7 +186,7 @@ const validateNavigation = (relativePath) => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.directions", "nav.knowledge", "nav.data", "nav.papers"],
+    ["nav.knowledge", "nav.data", "nav.papers"],
     `${label}: navigation should match the main page link set`
   );
 
@@ -195,7 +194,6 @@ const validateNavigation = (relativePath) => {
     (match) => match[1]
   );
   const expectedCurrent = {
-    "directions/index.html": "nav.directions",
     "knowledge_memory/index.html": "nav.knowledge",
     "data_modeling/index.html": "nav.data",
     "papers/index.html": "nav.papers",
@@ -215,7 +213,7 @@ const validateNoStaleNavTranslations = (relativePath) => {
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
   const context = {};
-  const staleKeys = ["nav.intro", "nav.architecture", "nav.resources", "nav.hierarchy"];
+  const staleKeys = ["nav.directions", "nav.intro", "nav.architecture", "nav.resources", "nav.hierarchy"];
 
   assert.ok(objectMatch, `${label}: missing translations object`);
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
@@ -383,6 +381,14 @@ const validateDataModelingPage = () => {
   );
 };
 
+const validateDirectionsPageRemoved = () => {
+  assert.equal(
+    existsSync(resolve(root, "directions/index.html")),
+    false,
+    "directions/index.html: research directions page should be removed"
+  );
+};
+
 for (const page of pages) {
   validatePage(page);
   validateBrandLabels(page);
@@ -398,3 +404,4 @@ validatePapersListHeaderRemoved();
 validateChemTableVenueLink();
 validateScholarSumVenueLink();
 validateDataModelingPage();
+validateDirectionsPageRemoved();
