@@ -179,8 +179,14 @@ const validateNavigation = (relativePath) => {
   const html = readFileSync(resolve(root, relativePath), "utf8");
   const label = relativePath;
   const navMatch = html.match(/<div class="nav-links">([\s\S]*?)<span class="nav-break"/);
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
 
   assert.ok(navMatch, `${label}: missing navigation links`);
+  assert.ok(objectMatch, `${label}: missing translations object`);
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
 
   const navKeys = [...navMatch[1].matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]);
 
@@ -203,6 +209,27 @@ const validateNavigation = (relativePath) => {
     currentMatches,
     expectedCurrent ? [expectedCurrent] : [],
     `${label}: active navigation marker should match the current page`
+  );
+
+  assert.equal(
+    context.translations.en["nav.knowledge"],
+    "Scientific Literature",
+    `${label}: English knowledge navigation label should be Scientific Literature`
+  );
+  assert.equal(
+    context.translations.zh["nav.knowledge"],
+    "科技文献",
+    `${label}: Chinese knowledge navigation label should be 科技文献`
+  );
+  assert.equal(
+    context.translations.en["nav.data"],
+    "Scientific Data",
+    `${label}: English data navigation label should be Scientific Data`
+  );
+  assert.equal(
+    context.translations.zh["nav.data"],
+    "科学数据",
+    `${label}: Chinese data navigation label should be 科学数据`
   );
 };
 
@@ -268,6 +295,76 @@ const validateHomeHeroRefresh = () => {
     "刷新首页视觉效果",
     "index.html: Chinese hero refresh label should be present"
   );
+};
+
+const validateHomeDataModelingModule = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const hierarchyIndex = html.indexOf('<section id="hierarchy"');
+  const dataModelingIndex = html.indexOf('<section id="data-modeling"');
+  const projectsIndex = html.indexOf('<section id="projects"');
+  const expectedTranslations = {
+    en: {
+      "dataModeling.eyebrow": "Structured Scientific Data",
+      "dataModeling.title": "Structured Scientific Data Modeling",
+      "dataModeling.description":
+        "Structured scientific data modeling focuses on tables, time series, experimental records, and scientific observations, turning scientific data into learnable, predictive, and reasoned model representations.",
+      "dataModeling.tabular.title": "Tabular Data",
+      "dataModeling.tabular.description":
+        "Model property tables, experimental matrices, and material or molecular property tables under small samples, missing values, heterogeneous fields, and scientific context.",
+      "dataModeling.series.title": "Time Series",
+      "dataModeling.series.description":
+        "Model experimental curves, sensor sequences, and simulation trajectories to capture trends, cycles, change points, and dynamic processes.",
+      "dataModeling.cta": "Explore Scientific Data Modeling",
+    },
+    zh: {
+      "dataModeling.eyebrow": "结构化科学数据",
+      "dataModeling.title": "结构化科学数据建模",
+      "dataModeling.description":
+        "结构化科学数据建模关注表格、时间序列、实验记录和科学观测数据，把科学数据转化为可学习、可预测、可推理的模型表示。",
+      "dataModeling.tabular.title": "Tabular Data",
+      "dataModeling.tabular.description":
+        "面向属性表、实验矩阵、材料/分子性质表，处理小样本、缺失值、异构字段和科学上下文。",
+      "dataModeling.series.title": "Time Series",
+      "dataModeling.series.description":
+        "面向实验曲线、传感器序列和仿真轨迹，建模趋势、周期、突变和动态过程。",
+      "dataModeling.cta": "了解科学数据建模",
+    },
+  };
+
+  assert.ok(hierarchyIndex >= 0, "index.html: missing hierarchy section");
+  assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling module should follow hierarchy section");
+  assert.ok(projectsIndex > dataModelingIndex, "index.html: data modeling module should appear before projects section");
+  assert.ok(
+    /<section id="data-modeling" class="section highlights">/.test(html),
+    "index.html: data modeling module should use the homepage section style"
+  );
+  assert.ok(
+    /<h2 data-i18n="dataModeling\.title">结构化科学数据建模<\/h2>/.test(html),
+    "index.html: data modeling title should match the requested Chinese heading"
+  );
+  assert.ok(/Tabular Data/.test(html), "index.html: data modeling module should include a Tabular Data card");
+  assert.ok(/Time Series/.test(html), "index.html: data modeling module should include a Time Series card");
+  assert.ok(
+    /<a class="btn ghost" href="\.\/data_modeling\/" data-i18n="dataModeling\.cta">了解科学数据建模<\/a>/.test(html),
+    "index.html: data modeling module should link to the data modeling subpage"
+  );
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    for (const [key, value] of Object.entries(expectedTranslations[language])) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `index.html: ${language} translation should match for ${key}`
+      );
+    }
+  }
 };
 
 const validatePapersHero = () => {
@@ -371,12 +468,12 @@ const validateDataModelingPage = () => {
 
   assert.equal(
     context.translations.en["nav.data"],
-    "Scientific Data Modeling",
+    "Scientific Data",
     "data_modeling/index.html: English navigation label should name the new section"
   );
   assert.equal(
     context.translations.zh["nav.data"],
-    "科学数据建模",
+    "科学数据",
     "data_modeling/index.html: Chinese navigation label should name the new section"
   );
 };
@@ -398,6 +495,7 @@ for (const page of pages) {
 }
 
 validateHomeHeroRefresh();
+validateHomeDataModelingModule();
 validatePapersHero();
 validatePapersYearLabels();
 validatePapersListHeaderRemoved();
