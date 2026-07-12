@@ -679,30 +679,124 @@ const validatePapersListHeaderRemoved = () => {
   assert.equal(context.translations.zh["list.title"], undefined, "papers/index.html: removed list title should not keep Chinese translation");
 };
 
+const validatePapersFooterDescriptionRemoved = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    !/data-i18n="footer\.description"/.test(html),
+    "papers/index.html: footer description text should be removed"
+  );
+  assert.ok(
+    !/我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。/.test(html),
+    "papers/index.html: Chinese footer description should be removed"
+  );
+  assert.ok(
+    !/We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents\./.test(html),
+    "papers/index.html: English footer description should be removed"
+  );
+
+  assert.ok(objectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["footer.description"],
+      undefined,
+      `papers/index.html: stale ${language} footer description translation should be removed`
+    );
+  }
+};
+
 const validateChemTableVenueLink = () => {
   const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
   const chemTableMatch = html.match(
-    /<h3>Benchmarking Multimodal LLMs on Recognition and Understanding over Chemical Tables<\/h3>[\s\S]*?<div class="paper-links">([\s\S]*?)<\/div>/
+    /<p class="paper-meta" data-i18n="papers\.chemtable\.meta">([^<]+)<\/p>\s*<h3>Benchmarking Multimodal LLMs on Recognition and Understanding over Chemical Tables<\/h3>[\s\S]*?<div class="paper-links">([\s\S]*?)<\/div>/
   );
 
   assert.ok(chemTableMatch, "papers/index.html: missing ChemTable paper links");
+  assert.equal(
+    chemTableMatch[1],
+    "2025 · KDD 2026 Accepted · L2 Element Interpretation",
+    "papers/index.html: ChemTable visible metadata should show KDD 2026 acceptance"
+  );
   assert.ok(
-    /href="https:\/\/arxiv\.org\/abs\/2506\.11375v2"[\s\S]*?>KDD2026<\/a>/.test(chemTableMatch[1]),
+    /href="https:\/\/arxiv\.org\/abs\/2506\.11375v2"[\s\S]*?>KDD2026<\/a>/.test(chemTableMatch[2]),
     "papers/index.html: ChemTable venue link should be labeled KDD2026"
+  );
+
+  assert.ok(objectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["papers.chemtable.meta"],
+    "2025 · KDD 2026 Accepted · L2 Element Interpretation",
+    "papers/index.html: English ChemTable metadata should show KDD 2026 acceptance"
+  );
+  assert.equal(
+    context.translations.zh["papers.chemtable.meta"],
+    "2025 · KDD 2026 已接收 · L2 元素解析",
+    "papers/index.html: Chinese ChemTable metadata should show KDD 2026 acceptance"
   );
 };
 
 const validateScholarSumVenueLink = () => {
   const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const expectedAuthors = "Bohou Zhang*, Xiaoyu Tao*, Mingyue Cheng†, Huijie Liu, Qi Liu";
   const scholarSumMatch = html.match(
-    /<h3>ScholarSum: Student-Teacher Abstractive Summarization via Knowledge Graph Reasoning and Reflective Refinement<\/h3>[\s\S]*?<div class="paper-links">([\s\S]*?)<\/div>/
+    /<p class="paper-meta" data-i18n="papers\.scholarsum\.meta">([^<]+)<\/p>\s*<h3>ScholarSum: Student-Teacher Abstractive Summarization via Knowledge Graph Reasoning and Reflective Refinement<\/h3>([\s\S]*?)<div class="paper-links">([\s\S]*?)<\/div>/
   );
 
   assert.ok(scholarSumMatch, "papers/index.html: missing ScholarSum paper links");
+  assert.equal(
+    scholarSumMatch[1],
+    "2025 · IJCAI 2026 Accepted · L3 Information Extraction",
+    "papers/index.html: ScholarSum visible metadata should show IJCAI 2026 acceptance"
+  );
   assert.ok(
-    /href="https:\/\/openreview\.net\/pdf\?id=pLvGIKeZtJ"[\s\S]*?>IJCAI2026<\/a>/.test(scholarSumMatch[1]),
+    scholarSumMatch[2].includes(expectedAuthors),
+    "papers/index.html: ScholarSum card should show author information"
+  );
+  assert.ok(
+    !/Anonymous authors under double-blind review|双盲审稿匿名作者/.test(scholarSumMatch[2]),
+    "papers/index.html: ScholarSum card should not use anonymous author placeholder"
+  );
+  assert.ok(
+    /href="https:\/\/openreview\.net\/pdf\?id=pLvGIKeZtJ"[\s\S]*?>IJCAI2026<\/a>/.test(scholarSumMatch[3]),
     "papers/index.html: ScholarSum venue link should be labeled IJCAI2026"
   );
+
+  assert.ok(objectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  assert.equal(
+    context.translations.en["papers.scholarsum.meta"],
+    "2025 · IJCAI 2026 Accepted · L3 Information Extraction",
+    "papers/index.html: English ScholarSum metadata should show IJCAI 2026 acceptance"
+  );
+  assert.equal(
+    context.translations.zh["papers.scholarsum.meta"],
+    "2025 · IJCAI 2026 已接收 · L3 信息抽取",
+    "papers/index.html: Chinese ScholarSum metadata should show IJCAI 2026 acceptance"
+  );
+
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["papers.scholarsum.authors"],
+      expectedAuthors,
+      `papers/index.html: ${language} ScholarSum authors should match arXiv author list`
+    );
+  }
 };
 
 const validateKnowledgeMemoryHeroGitHubRemoved = () => {
@@ -813,6 +907,7 @@ validateHomeTimelineRemoved();
 validatePapersHero();
 validatePapersYearLabels();
 validatePapersListHeaderRemoved();
+validatePapersFooterDescriptionRemoved();
 validateChemTableVenueLink();
 validateScholarSumVenueLink();
 validateKnowledgeMemoryHeroGitHubRemoved();
