@@ -461,7 +461,7 @@ const validateHomeDataModelingModule = () => {
   const hierarchyIndex = html.indexOf('<section id="hierarchy"');
   const expectedTranslations = {
     en: {
-      "dataModeling.title": "Scientific Data Modeling",
+      "dataModeling.title": "Scientific Data Modeling (Scientific Task Solving)",
       "dataModeling.description":
         "Structured scientific data modeling focuses on tables, time series, experimental records, and scientific observations, turning scientific data into learnable, predictive, and reasoned model representations.",
       "dataModeling.tabular.title": "Tabular Data",
@@ -473,7 +473,7 @@ const validateHomeDataModelingModule = () => {
       "dataModeling.cta": "Learn Scientific Data Modeling",
     },
     zh: {
-      "dataModeling.title": "科学数据建模",
+      "dataModeling.title": "科学数据建模（科学任务求解）",
       "dataModeling.description":
         "结构化科学数据建模关注表格、时间序列、实验记录和科学观测数据，把科学数据转化为可学习、可预测、可推理的模型表示。",
       "dataModeling.tabular.title": "Tabular Data",
@@ -491,7 +491,10 @@ const validateHomeDataModelingModule = () => {
   assert.ok(hierarchyIndex > meaningsIndex, "index.html: hierarchy section should follow the meanings module");
   assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling module should appear after hierarchy section");
   assert.ok(/<section id="data-modeling" class="section highlights">/.test(html), "index.html: missing homepage data modeling module");
-  assert.ok(/<h2 data-i18n="dataModeling\.title">科学数据建模<\/h2>/.test(html), "index.html: data modeling module title should be 科学数据建模");
+  assert.ok(
+    /<h2 data-i18n="dataModeling\.title">科学数据建模（科学任务求解）<\/h2>/.test(html),
+    "index.html: data modeling module title should include 科学任务求解"
+  );
   assert.ok(/href="\.\/data_modeling\/" data-i18n="dataModeling\.cta"/.test(html), "index.html: data modeling module should link to the data modeling subpage");
   assert.ok(!/>结构化科学数据<\/p>/.test(html), "index.html: structured scientific data eyebrow should be removed");
   assert.ok(!/data-i18n="dataModeling\.eyebrow"/.test(html), "index.html: data modeling eyebrow marker should not return");
