@@ -297,6 +297,84 @@ const validateHomeHeroRefresh = () => {
   );
 };
 
+const validateHomeMeaningsModule = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const sectionMatches = [...html.matchAll(/<section id="ai4science-meanings" class="section">([\s\S]*?)<\/section>/g)];
+  const importanceIndex = html.indexOf('<section id="ai4science-importance"');
+  const meaningsIndex = html.indexOf('<section id="ai4science-meanings"');
+  const hierarchyIndex = html.indexOf('<section id="hierarchy"');
+  const dataModelingIndex = html.indexOf('<section id="data-modeling"');
+  const expectedTranslations = {
+    en: {
+      "meanings.title": "Three Meanings of AI for Science",
+      "meanings.description":
+        "AI for Science is not only about applying AI to scientific tasks; it also encompasses discovering new science and studying the scientific principles underlying intelligence itself.",
+      "meanings.tasks.title": "AI for Scientific Tasks",
+      "meanings.tasks.description":
+        "Apply AI to well-defined scientific tasks such as equation solving, molecular design, protein folding, and scientific image recognition to accelerate research and technological innovation.",
+      "meanings.discovery.title": "AI for New Science",
+      "meanings.discovery.description":
+        "Move beyond prediction and optimization toward discovering laws, mechanisms, conserved quantities, and testable hypotheses that may enable scientific and paradigm breakthroughs.",
+      "meanings.science.title": "Science of AI",
+      "meanings.science.description":
+        "Study the scientific principles behind learning, intelligence, and complex systems, enabling mutual advances across AI, mathematics, physics, and neuroscience.",
+    },
+    zh: {
+      "meanings.title": "AI for Science 的三层涵义",
+      "meanings.description":
+        "AI for Science 不仅是利用 AI 解决科学任务，也包括发现新的科学规律，以及研究智能本身背后的科学原理。",
+      "meanings.tasks.title": "面向科学任务的 AI",
+      "meanings.tasks.description":
+        "将 AI 用于方程求解、分子设计、蛋白质折叠和科学影像识别等目标明确的科研任务，加速科学研究与技术创新。",
+      "meanings.discovery.title": "用 AI 发现新科学",
+      "meanings.discovery.description":
+        "从预测和优化进一步走向规律、机制、守恒量与可验证假设的发现，探索 AI 能否推动科学创新和范式突破。",
+      "meanings.science.title": "AI 的科学",
+      "meanings.science.description":
+        "研究学习、智能与复杂系统背后的科学原理，促进人工智能与数学、物理和神经科学之间的双向启发。",
+    },
+  };
+
+  assert.equal(sectionMatches.length, 1, "index.html: homepage should contain exactly one AI for Science meanings section");
+  const meaningsSection = sectionMatches[0][1];
+  assert.equal(
+    (meaningsSection.match(/<article class="card direction-card">/g) || []).length,
+    3,
+    "index.html: AI for Science meanings section should contain exactly three cards"
+  );
+  assert.ok(importanceIndex >= 0, "index.html: missing AI for Science importance section");
+  assert.ok(meaningsIndex > importanceIndex, "index.html: meanings section should follow the importance section");
+  assert.ok(hierarchyIndex > meaningsIndex, "index.html: hierarchy section should follow the meanings section");
+  assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling section should follow the hierarchy section");
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  const visibleFallbacks = Object.fromEntries(
+    [...meaningsSection.matchAll(/<(h2|h3|p)[^>]*data-i18n="([^"]+)"[^>]*>([\s\S]*?)<\/\1>/g)].map(
+      ([, , key, value]) => [key, value.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim()]
+    )
+  );
+
+  for (const language of ["en", "zh"]) {
+    for (const [key, value] of Object.entries(expectedTranslations[language])) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `index.html: ${language} translation should match for ${key}`
+      );
+    }
+  }
+
+  for (const [key, value] of Object.entries(expectedTranslations.en)) {
+    assert.equal(visibleFallbacks[key], value, `index.html: visible fallback should match English translation for ${key}`);
+  }
+};
+
 const validateHomeDataModelingModule = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
@@ -304,6 +382,7 @@ const validateHomeDataModelingModule = () => {
   );
   const context = {};
   const importanceIndex = html.indexOf('<section id="ai4science-importance"');
+  const meaningsIndex = html.indexOf('<section id="ai4science-meanings"');
   const dataModelingIndex = html.indexOf('<section id="data-modeling"');
   const hierarchyIndex = html.indexOf('<section id="hierarchy"');
   const expectedTranslations = {
@@ -334,8 +413,9 @@ const validateHomeDataModelingModule = () => {
   };
 
   assert.ok(importanceIndex >= 0, "index.html: missing AI for Science importance section");
-  assert.ok(dataModelingIndex > importanceIndex, "index.html: data modeling module should follow the importance section");
-  assert.ok(hierarchyIndex > dataModelingIndex, "index.html: data modeling module should appear before hierarchy section");
+  assert.ok(meaningsIndex > importanceIndex, "index.html: meanings module should follow the importance section");
+  assert.ok(hierarchyIndex > meaningsIndex, "index.html: hierarchy section should follow the meanings module");
+  assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling module should appear after hierarchy section");
   assert.ok(/<section id="data-modeling" class="section highlights">/.test(html), "index.html: missing homepage data modeling module");
   assert.ok(/<h2 data-i18n="dataModeling\.title">科学数据建模<\/h2>/.test(html), "index.html: data modeling module title should be 科学数据建模");
   assert.ok(/href="\.\/data_modeling\/" data-i18n="dataModeling\.cta"/.test(html), "index.html: data modeling module should link to the data modeling subpage");
@@ -898,6 +978,7 @@ for (const page of pages) {
 
 validateHomeHeroRefresh();
 validateHomeAiForScienceImportanceModule();
+validateHomeMeaningsModule();
 validateHomeDataModelingModule();
 validateHomeHierarchyTitle();
 validateHomeProjectsIntegratedIntoHierarchy();
