@@ -525,7 +525,7 @@ const validateHomeDataModelingModule = () => {
   const hierarchyIndex = html.indexOf('<section id="hierarchy"');
   const expectedTranslations = {
     en: {
-      "dataModeling.title": "Scientific Data Modeling (Scientific Task Solving)",
+      "dataModeling.title": "Scientific Task Solving: Structured Scientific Data Modeling",
       "dataModeling.description":
         "Structured scientific data modeling focuses on tables, time series, experimental records, and scientific observations, turning scientific data into learnable, predictive, and reasoned model representations.",
       "dataModeling.tabular.title": "Tabular Data",
@@ -537,7 +537,7 @@ const validateHomeDataModelingModule = () => {
       "dataModeling.cta": "Learn Scientific Data Modeling",
     },
     zh: {
-      "dataModeling.title": "科学数据建模（科学任务求解）",
+      "dataModeling.title": "科学任务求解：结构化科学数据建模",
       "dataModeling.description":
         "结构化科学数据建模关注表格、时间序列、实验记录和科学观测数据，把科学数据转化为可学习、可预测、可推理的模型表示。",
       "dataModeling.tabular.title": "Tabular Data",
@@ -555,8 +555,8 @@ const validateHomeDataModelingModule = () => {
   assert.ok(hierarchyIndex > dataModelingIndex, "index.html: hierarchy section should appear after the data modeling module");
   assert.ok(/<section id="data-modeling" class="section highlights">/.test(html), "index.html: missing homepage data modeling module");
   assert.ok(
-    /<h2 data-i18n="dataModeling\.title">科学数据建模（科学任务求解）<\/h2>/.test(html),
-    "index.html: data modeling module title should include 科学任务求解"
+    /<h2 data-i18n="dataModeling\.title">科学任务求解：结构化科学数据建模<\/h2>/.test(html),
+    "index.html: data modeling module title should be 科学任务求解：结构化科学数据建模"
   );
   assert.ok(/href="\.\/data_modeling\/" data-i18n="dataModeling\.cta"/.test(html), "index.html: data modeling module should link to the data modeling subpage");
   assert.ok(!/>结构化科学数据<\/p>/.test(html), "index.html: structured scientific data eyebrow should be removed");
@@ -590,21 +590,21 @@ const validateHomeHierarchyTitle = () => {
   const context = {};
 
   assert.ok(
-    /<h2 data-i18n="hierarchy\.title">科技文献认知（科学知识发现）<\/h2>/.test(html),
-    "index.html: hierarchy title should be 科技文献认知（科学知识发现）"
+    /<h2 data-i18n="hierarchy\.title">科学知识发现：科技文献认知<\/h2>/.test(html),
+    "index.html: hierarchy title should be 科学知识发现：科技文献认知"
   );
 
   assert.ok(objectMatch, "index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
   assert.equal(
     context.translations.en["hierarchy.title"],
-    "Scientific Literature Cognition (Scientific Knowledge Discovery)",
-    "index.html: English hierarchy title should include Scientific Knowledge Discovery"
+    "Scientific Knowledge Discovery: Scientific Literature Cognition",
+    "index.html: English hierarchy title should lead with Scientific Knowledge Discovery"
   );
   assert.equal(
     context.translations.zh["hierarchy.title"],
-    "科技文献认知（科学知识发现）",
-    "index.html: Chinese hierarchy title should include 科学知识发现"
+    "科学知识发现：科技文献认知",
+    "index.html: Chinese hierarchy title should lead with 科学知识发现"
   );
 };
 
