@@ -402,8 +402,8 @@ const validateHomeMeaningsModule = () => {
     "index.html: AI for Science meanings section should contain exactly three cards"
   );
   assert.ok(meaningsIndex >= 0, "index.html: missing AI for Science meanings section");
-  assert.ok(hierarchyIndex > meaningsIndex, "index.html: hierarchy section should follow the meanings section");
-  assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling section should follow the hierarchy section");
+  assert.ok(dataModelingIndex > meaningsIndex, "index.html: data modeling section should follow the meanings section");
+  assert.ok(hierarchyIndex > dataModelingIndex, "index.html: hierarchy section should follow the data modeling section");
 
   assert.ok(objectMatch, "index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
@@ -475,8 +475,8 @@ const validateHomeResearchPurposeModule = () => {
   assert.ok(purposeIndex >= 0, "index.html: missing scientific research purpose section");
   assert.ok(/<main>\s*<section id="research-purpose"/.test(html), "index.html: research purpose section should be the first homepage module");
   assert.ok(meaningsIndex > purposeIndex, "index.html: meanings section should follow the research purpose section");
-  assert.ok(hierarchyIndex > meaningsIndex, "index.html: hierarchy section should follow the meanings section");
-  assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling section should follow the hierarchy section");
+  assert.ok(dataModelingIndex > meaningsIndex, "index.html: data modeling section should follow the meanings section");
+  assert.ok(hierarchyIndex > dataModelingIndex, "index.html: hierarchy section should follow the data modeling section");
 
   assert.ok(objectMatch, "index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
@@ -539,8 +539,8 @@ const validateHomeDataModelingModule = () => {
   };
 
   assert.ok(meaningsIndex >= 0, "index.html: missing AI for Science meanings module");
-  assert.ok(hierarchyIndex > meaningsIndex, "index.html: hierarchy section should follow the meanings module");
-  assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling module should appear after hierarchy section");
+  assert.ok(dataModelingIndex > meaningsIndex, "index.html: data modeling module should follow the meanings module");
+  assert.ok(hierarchyIndex > dataModelingIndex, "index.html: hierarchy section should appear after the data modeling module");
   assert.ok(/<section id="data-modeling" class="section highlights">/.test(html), "index.html: missing homepage data modeling module");
   assert.ok(
     /<h2 data-i18n="dataModeling\.title">科学数据建模（科学任务求解）<\/h2>/.test(html),
