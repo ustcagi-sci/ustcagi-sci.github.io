@@ -1012,9 +1012,14 @@ const validateDataModelingPage = () => {
   const objectMatch = html.match(
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
+  const applicationsMatch = html.match(/<section id="applications"[\s\S]*?<\/section>/);
+  const relationshipMatch = html.match(/<section id="relationship"[\s\S]*?<\/section>/);
   const context = {};
 
-  assert.ok(/<h1 data-i18n="hero\.title">科学数据建模<\/h1>/.test(html), "data_modeling/index.html: hero title should introduce scientific data modeling");
+  assert.ok(
+    /<h1 data-i18n="hero\.title">科学任务求解<\/h1>/.test(html),
+    "data_modeling/index.html: hero title should introduce scientific task solving"
+  );
   assert.ok(
     !/data-i18n="hero\.eyebrow"/.test(html),
     "data_modeling/index.html: hero eyebrow button should be removed"
@@ -1022,6 +1027,30 @@ const validateDataModelingPage = () => {
   assert.ok(/Tabular Data/.test(html), "data_modeling/index.html: page should foreground tabular data modeling");
   assert.ok(/Time Series/.test(html), "data_modeling/index.html: page should foreground time series modeling");
   assert.ok(/结构化科学数据建模/.test(html), "data_modeling/index.html: Chinese copy should foreground structured scientific data modeling");
+  assert.ok(
+    /<h2 data-i18n="intro\.title">科学任务求解是 AI for Science 的基础层<\/h2>/.test(html),
+    "data_modeling/index.html: introduction should position task solving as the foundation layer"
+  );
+  assert.ok(
+    /<h2 data-i18n="capabilities\.title">从问题定义到验证反馈<\/h2>/.test(html),
+    "data_modeling/index.html: capability section should present the scientific solution loop"
+  );
+  assert.ok(applicationsMatch, "data_modeling/index.html: missing representative scientific tasks section");
+  assert.equal(
+    (applicationsMatch[0].match(/data-i18n="applications\.(?:property|forecast|simulation|design)\.title"/g) || [])
+      .length,
+    4,
+    "data_modeling/index.html: representative tasks section should contain four task families"
+  );
+  assert.ok(relationshipMatch, "data_modeling/index.html: missing AI for Science evolution section");
+  assert.ok(
+    /<h2 data-i18n="relationship\.title">从科学任务求解走向科学知识发现<\/h2>/.test(relationshipMatch[0]),
+    "data_modeling/index.html: evolution section should connect task solving to knowledge discovery"
+  );
+  assert.ok(
+    /科学任务自动化 → 科研流程自动化 → 新科学发现 → 科学范式形成/.test(relationshipMatch[0]),
+    "data_modeling/index.html: evolution section should include the four-stage research intelligence path"
+  );
 
   assert.ok(objectMatch, "data_modeling/index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
@@ -1035,6 +1064,36 @@ const validateDataModelingPage = () => {
     context.translations.zh["nav.data"],
     "科学任务求解",
     "data_modeling/index.html: Chinese navigation label should name the new section"
+  );
+  assert.equal(
+    context.translations.en["meta.title"],
+    "Scientific Task Solving",
+    "data_modeling/index.html: English metadata should match the task-solving scope"
+  );
+  assert.equal(
+    context.translations.zh["meta.title"],
+    "科学任务求解",
+    "data_modeling/index.html: Chinese metadata should match the task-solving scope"
+  );
+  assert.equal(
+    context.translations.en["intro.title"],
+    "Scientific Task Solving Is the Foundation Layer of AI for Science",
+    "data_modeling/index.html: English introduction should match the new foundation-layer framing"
+  );
+  assert.equal(
+    context.translations.zh["intro.title"],
+    "科学任务求解是 AI for Science 的基础层",
+    "data_modeling/index.html: Chinese introduction should match the new foundation-layer framing"
+  );
+  assert.equal(
+    context.translations.en["relationship.path.text"],
+    "Scientific task automation → research workflow automation → new scientific discovery → scientific paradigm formation",
+    "data_modeling/index.html: English evolution path should be synchronized"
+  );
+  assert.equal(
+    context.translations.zh["relationship.path.text"],
+    "科学任务自动化 → 科研流程自动化 → 新科学发现 → 科学范式形成",
+    "data_modeling/index.html: Chinese evolution path should be synchronized"
   );
   assert.equal(
     context.translations.en["hero.eyebrow"],
