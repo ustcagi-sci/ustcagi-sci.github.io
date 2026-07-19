@@ -30,6 +30,7 @@
 - Modify: `knowledge_memory/index.html`
 - Modify: `data_modeling/index.html`
 - Modify: `papers/index.html`
+- Modify: `ref.css`
 
 - [x] Create the new hero and four content sections with complete Chinese fallback copy.
 - [x] Add complete English and Chinese translations for every visible string.
@@ -49,6 +50,14 @@
 - [x] Toggle to English and verify translated navigation, hero, and question copy.
 - [x] Inspect a mobile viewport and verify cards stack without horizontal overflow or text overlap.
 - [x] Stop the local server after verification.
+
+### Task 3.5: Address Review Findings
+
+- [x] Add a 761-1024 px tablet navigation layout so the four English links remain visible.
+- [x] Localize theory, question, and framework labels in both languages.
+- [x] Assert exact navigation destinations for root and subpage-relative links.
+- [x] Remove the pointer affordance from the non-interactive Science of AI hero.
+- [x] Re-run `node scripts/verify-i18n.mjs` and `git diff --check`.
 
 ### Task 4: Integrate
 

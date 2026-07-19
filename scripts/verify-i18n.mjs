@@ -190,11 +190,55 @@ const validateNavigation = (relativePath) => {
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
 
   const navKeys = [...navMatch[1].matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]);
+  const navLinks = [...navMatch[1].matchAll(/<a\s+([^>]+)>/g)].map((match) => {
+    const href = match[1].match(/href="([^"]+)"/)?.[1];
+    const key = match[1].match(/data-i18n="([^"]+)"/)?.[1];
+    return { key, href };
+  });
 
   assert.deepEqual(
     navKeys,
     ["nav.data", "nav.knowledge", "nav.aiScience", "nav.papers"],
     `${label}: navigation should match the main page link set`
+  );
+
+  const expectedLinks = {
+    "index.html": [
+      { key: "nav.data", href: "./data_modeling/" },
+      { key: "nav.knowledge", href: "./knowledge_memory/" },
+      { key: "nav.aiScience", href: "./science_of_ai/" },
+      { key: "nav.papers", href: "./papers/" },
+    ],
+    "knowledge_memory/index.html": [
+      { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.knowledge", href: "./" },
+      { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.papers", href: "../papers/" },
+    ],
+    "data_modeling/index.html": [
+      { key: "nav.data", href: "./" },
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.papers", href: "../papers/" },
+    ],
+    "science_of_ai/index.html": [
+      { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiScience", href: "./" },
+      { key: "nav.papers", href: "../papers/" },
+    ],
+    "papers/index.html": [
+      { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.papers", href: "./" },
+    ],
+  };
+
+  assert.deepEqual(
+    navLinks,
+    expectedLinks[relativePath],
+    `${label}: navigation hrefs should resolve correctly from this page`
   );
 
   const currentMatches = [...navMatch[1].matchAll(/aria-current="page"[^>]*data-i18n="([^"]+)"/g)].map(
@@ -997,7 +1041,9 @@ const validateScienceOfAiPage = () => {
   const objectMatch = html.match(
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
-  const heroMatch = html.match(/<header id="top" class="hero">([\s\S]*?)<\/header>/);
+  const heroMatch = html.match(
+    /<header id="top" class="hero static-hero">([\s\S]*?)<\/header>/
+  );
   const foundationsMatch = html.match(
     /<section id="foundations"[\s\S]*?<\/section>/
   );
@@ -1076,12 +1122,25 @@ const validateScienceOfAiPage = () => {
       "foundations.rl.title": "How Does Reinforcement Learning Change Model Behavior?",
       "foundations.structure.title": "Does Intelligence Have a Unified Mathematical Structure?",
       "foundations.shared.title": "What Mechanisms Are Shared by Artificial and Human Intelligence?",
+      "theory.observable.label": "Observable",
+      "theory.criticality.label": "Criticality",
+      "theory.testable.label": "Theory",
+      "future.question1.label": "Question 1",
+      "future.question2.label": "Question 2",
+      "future.question3.label": "Question 3",
+      "future.question4.label": "Question 4",
+      "future.question5.label": "Question 5",
+      "future.question6.label": "Question 6",
       "future.macroscopic.title": "Can Intelligence Have Thermodynamics-Like Macroscopic Variables?",
       "future.phase.title": "Are There Phase-Transition Points in Reasoning Ability?",
       "future.emergence.title": "Is Capability Emergence Continuous or a Critical Transition?",
       "future.information.title": "Is There a Unified Law of Memory, Compression, and Prediction?",
       "future.icl.title": "Why Can In-Context Learning Create New Capabilities Without Parameter Updates?",
       "future.agents.title": "Do Agent Collaboration and Autonomy Follow Universal Dynamical Laws?",
+      "framework.lens1.label": "Lens 1",
+      "framework.lens2.label": "Lens 2",
+      "framework.lens3.label": "Lens 3",
+      "framework.lens4.label": "Lens 4",
       "framework.macroscopic.title": "Macroscopic Regularities",
       "framework.dynamics.title": "Learning Dynamics",
       "framework.information.title": "Information Mechanisms",
@@ -1094,12 +1153,25 @@ const validateScienceOfAiPage = () => {
       "foundations.rl.title": "强化学习如何改变模型行为？",
       "foundations.structure.title": "智能是否存在统一的数学结构？",
       "foundations.shared.title": "人工智能与人类智能有哪些共同机制？",
+      "theory.observable.label": "可观测量",
+      "theory.criticality.label": "临界性",
+      "theory.testable.label": "理论",
+      "future.question1.label": "问题 1",
+      "future.question2.label": "问题 2",
+      "future.question3.label": "问题 3",
+      "future.question4.label": "问题 4",
+      "future.question5.label": "问题 5",
+      "future.question6.label": "问题 6",
       "future.macroscopic.title": "智能是否具有类似热力学变量的宏观描述？",
       "future.phase.title": "推理能力是否存在相变点？",
       "future.emergence.title": "能力涌现是连续变化还是临界跃迁？",
       "future.information.title": "记忆、压缩、预测之间是否存在统一规律？",
       "future.icl.title": "上下文学习为何能够在不更新参数时产生新能力？",
       "future.agents.title": "Agent 系统的协作和自主性是否存在普遍动力学规律？",
+      "framework.lens1.label": "视角 1",
+      "framework.lens2.label": "视角 2",
+      "framework.lens3.label": "视角 3",
+      "framework.lens4.label": "视角 4",
       "framework.macroscopic.title": "宏观规律",
       "framework.dynamics.title": "学习动力学",
       "framework.information.title": "信息机制",
@@ -1116,6 +1188,28 @@ const validateScienceOfAiPage = () => {
       );
     }
   }
+};
+
+const validateTabletNavigationStyles = () => {
+  const css = readFileSync(resolve(root, "ref.css"), "utf8");
+  const tabletStart = css.indexOf("@media (min-width: 761px) and (max-width: 1024px)");
+  const mobileStart = css.indexOf("@media (max-width: 760px)");
+
+  assert.ok(tabletStart >= 0, "ref.css: missing tablet navigation breakpoint");
+  assert.ok(
+    mobileStart > tabletStart,
+    "ref.css: tablet navigation breakpoint should precede the mobile breakpoint"
+  );
+
+  const tabletRules = css.slice(tabletStart, mobileStart);
+  assert.ok(
+    /\.nav-inner\s*\{[\s\S]*?flex-direction:\s*column/.test(tabletRules),
+    "ref.css: tablet navigation should stack below the logo"
+  );
+  assert.ok(
+    /\.nav-links\s*\{[\s\S]*?flex-wrap:\s*wrap/.test(tabletRules),
+    "ref.css: tablet navigation links should wrap"
+  );
 };
 
 const validateDirectionsPageRemoved = () => {
@@ -1153,4 +1247,5 @@ validateScholarSumVenueLink();
 validateKnowledgeMemoryHeroGitHubRemoved();
 validateDataModelingPage();
 validateScienceOfAiPage();
+validateTabletNavigationStyles();
 validateDirectionsPageRemoved();

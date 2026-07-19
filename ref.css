@@ -274,6 +274,14 @@ a:hover {
   transform: translateY(-1px);
 }
 
+.hero.static-hero {
+  cursor: default;
+}
+
+.hero.static-hero:hover .hero-content {
+  transform: none;
+}
+
 .hero.hero-refreshing .hero-content::before {
   animation: hero-refresh-sweep 0.86s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
@@ -1314,6 +1322,36 @@ td strong {
   .paper-links {
     justify-content: flex-start;
     min-width: 0;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  .nav-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 0 8px;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 3px;
+    overflow: visible;
+    padding: 0 0 4px;
+  }
+
+  .nav-links a,
+  .language-toggle {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+
+  .language-toggle {
+    position: static;
+    margin-left: 0;
+    min-width: 48px;
   }
 }
 
