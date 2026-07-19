@@ -61,7 +61,7 @@
 
 ### Task 4: Integrate
 
-- [ ] Commit only the design, plan, verifier, new page, navigation, and any necessary shared style changes.
-- [ ] Fast-forward the completed branch into `main`.
-- [ ] Preserve the unrelated untracked research note in the main worktree.
-- [ ] Run the verifier and `git diff --check` on merged `main`.
+- [x] Commit only the design, plan, verifier, new page, navigation, and any necessary shared style changes.
+- [x] Fast-forward the completed branch into `main`.
+- [x] Preserve the unrelated untracked research note in the main worktree.
+- [x] Run the verifier and `git diff --check` on merged `main`.
