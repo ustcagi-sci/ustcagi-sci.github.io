@@ -304,7 +304,6 @@ const validateHomeMeaningsModule = () => {
   );
   const context = {};
   const sectionMatches = [...html.matchAll(/<section id="ai4science-meanings" class="section">([\s\S]*?)<\/section>/g)];
-  const importanceIndex = html.indexOf('<section id="ai4science-importance"');
   const meaningsIndex = html.indexOf('<section id="ai4science-meanings"');
   const hierarchyIndex = html.indexOf('<section id="hierarchy"');
   const dataModelingIndex = html.indexOf('<section id="data-modeling"');
@@ -346,8 +345,7 @@ const validateHomeMeaningsModule = () => {
     3,
     "index.html: AI for Science meanings section should contain exactly three cards"
   );
-  assert.ok(importanceIndex >= 0, "index.html: missing AI for Science importance section");
-  assert.ok(meaningsIndex > importanceIndex, "index.html: meanings section should follow the importance section");
+  assert.ok(meaningsIndex >= 0, "index.html: missing AI for Science meanings section");
   assert.ok(hierarchyIndex > meaningsIndex, "index.html: hierarchy section should follow the meanings section");
   assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling section should follow the hierarchy section");
 
@@ -382,7 +380,6 @@ const validateHomeResearchPurposeModule = () => {
   );
   const context = {};
   const sectionMatches = [...html.matchAll(/<section id="research-purpose" class="section highlights">([\s\S]*?)<\/section>/g)];
-  const importanceIndex = html.indexOf('<section id="ai4science-importance"');
   const meaningsIndex = html.indexOf('<section id="ai4science-meanings"');
   const purposeIndex = html.indexOf('<section id="research-purpose"');
   const hierarchyIndex = html.indexOf('<section id="hierarchy"');
@@ -419,8 +416,7 @@ const validateHomeResearchPurposeModule = () => {
     2,
     "index.html: scientific research purpose section should contain exactly two cards"
   );
-  assert.ok(importanceIndex >= 0, "index.html: missing AI for Science importance section");
-  assert.ok(meaningsIndex > importanceIndex, "index.html: meanings section should follow the importance section");
+  assert.ok(meaningsIndex >= 0, "index.html: missing AI for Science meanings section");
   assert.ok(purposeIndex > meaningsIndex, "index.html: research purpose section should follow the meanings section");
   assert.ok(hierarchyIndex > purposeIndex, "index.html: hierarchy section should follow the research purpose section");
   assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling section should follow the hierarchy section");
@@ -455,7 +451,6 @@ const validateHomeDataModelingModule = () => {
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
   const context = {};
-  const importanceIndex = html.indexOf('<section id="ai4science-importance"');
   const meaningsIndex = html.indexOf('<section id="ai4science-meanings"');
   const dataModelingIndex = html.indexOf('<section id="data-modeling"');
   const hierarchyIndex = html.indexOf('<section id="hierarchy"');
@@ -486,8 +481,7 @@ const validateHomeDataModelingModule = () => {
     },
   };
 
-  assert.ok(importanceIndex >= 0, "index.html: missing AI for Science importance section");
-  assert.ok(meaningsIndex > importanceIndex, "index.html: meanings module should follow the importance section");
+  assert.ok(meaningsIndex >= 0, "index.html: missing AI for Science meanings module");
   assert.ok(hierarchyIndex > meaningsIndex, "index.html: hierarchy section should follow the meanings module");
   assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling module should appear after hierarchy section");
   assert.ok(/<section id="data-modeling" class="section highlights">/.test(html), "index.html: missing homepage data modeling module");
@@ -609,76 +603,24 @@ const validateHomeProjectsIntegratedIntoHierarchy = () => {
   }
 };
 
-const validateHomeAiForScienceImportanceModule = () => {
+const validateHomeAiForScienceImportanceRemoved = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
   const context = {};
-  const heroIndex = html.indexOf('<header id="top"');
-  const importanceIndex = html.indexOf('<section id="ai4science-importance"');
-  const hierarchyIndex = html.indexOf('<section id="hierarchy"');
-  const expectedTranslations = {
-    en: {
-      "importance.eyebrow": "AI for Science",
-      "importance.title": "Necessity, Urgency, and Importance of AI for Science",
-      "importance.description":
-        "Scientific knowledge, experimental data, and computational tools are growing rapidly. Research workflows that rely on manual reading, hand-built models, and isolated tools can no longer keep pace with scientific complexity. Centered on LLMs and Agentic AI, AI for Science connects literature, data, models, and experimental feedback into critical infrastructure for efficient research, new law discovery, and autonomous scientific systems.",
-      "importance.necessity.title": "Necessity",
-      "importance.necessity.description":
-        "Modern scientific problems span literature, data, experiments, and computation, requiring intelligent systems to organize evidence, understand variable relationships, and support research decisions.",
-      "importance.urgency.title": "Urgency",
-      "importance.urgency.description":
-        "Papers, experimental records, and observation data continue to grow explosively, while manual screening, reproduction, and modeling costs rise quickly. Research workflows need more automation, traceability, and collaboration.",
-      "importance.importance.title": "Importance",
-      "importance.importance.description":
-        "AI for Science closes the loop from knowledge acquisition and data modeling to evidence reasoning and hypothesis discovery, supporting breakthroughs in theories, methods, and intelligent systems.",
-    },
-    zh: {
-      "importance.eyebrow": "AI for Science",
-      "importance.title": "AI for Science 的必要性、迫切性与重要性",
-      "importance.description":
-        "科学知识、实验数据和计算工具正在高速增长，传统依赖人工阅读、手动建模和单点工具的科研流程难以跟上问题复杂度。AI for Science 以 LLMs and Agentic AI 为核心，把文献、数据、模型和实验反馈连接起来，成为提升科研效率、发现新规律和构建自主科学系统的关键基础设施。",
-      "importance.necessity.title": "必要性",
-      "importance.necessity.description":
-        "现代科学问题跨越文献、数据、实验和计算，需要智能系统组织证据、理解变量关系并辅助研究决策。",
-      "importance.urgency.title": "迫切性",
-      "importance.urgency.description":
-        "论文、实验记录和观测数据持续爆发增长，人工筛选、复现和建模成本快速上升，科研流程需要更自动化、可追踪和可协同。",
-      "importance.importance.title": "重要性",
-      "importance.importance.description":
-        "AI for Science 推动从知识获取、数据建模到证据推理和假设发现的闭环，支撑基础理论、方法技术与智能系统突破。",
-    },
-  };
 
-  assert.ok(heroIndex >= 0, "index.html: missing hero section");
-  assert.ok(importanceIndex > heroIndex, "index.html: AI for Science importance module should follow the hero section");
-  assert.ok(
-    hierarchyIndex > importanceIndex,
-    "index.html: AI for Science importance module should appear before hierarchy section"
-  );
-  assert.ok(
-    /<section id="ai4science-importance" class="section">/.test(html),
-    "index.html: AI for Science importance module should use the homepage section style"
-  );
-  assert.ok(
-    /<h2 data-i18n="importance\.title">AI for Science 的必要性、迫切性与重要性<\/h2>/.test(html),
-    "index.html: AI for Science importance title should match the requested focus"
-  );
-
-  for (const requiredText of ["必要性", "迫切性", "重要性"]) {
-    assert.ok(html.includes(requiredText), `index.html: AI for Science importance module should include ${requiredText}`);
-  }
+  assert.ok(!/<section id="ai4science-importance"/.test(html), "index.html: AI for Science importance section should be removed");
+  assert.ok(!/data-i18n="importance\./.test(html), "index.html: importance translation markers should be removed");
 
   assert.ok(objectMatch, "index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
 
   for (const language of ["en", "zh"]) {
-    for (const [key, value] of Object.entries(expectedTranslations[language])) {
-      assert.equal(
-        context.translations[language][key],
-        value,
-        `index.html: ${language} translation should match for ${key}`
+    for (const key of Object.keys(context.translations[language])) {
+      assert.ok(
+        !key.startsWith("importance."),
+        `index.html: stale ${language} importance translation should be removed for ${key}`
       );
     }
   }
@@ -1054,7 +996,7 @@ for (const page of pages) {
 }
 
 validateHomeHeroRefresh();
-validateHomeAiForScienceImportanceModule();
+validateHomeAiForScienceImportanceRemoved();
 validateHomeMeaningsModule();
 validateHomeResearchPurposeModule();
 validateHomeDataModelingModule();
