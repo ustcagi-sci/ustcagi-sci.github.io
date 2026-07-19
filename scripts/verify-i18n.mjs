@@ -375,6 +375,80 @@ const validateHomeMeaningsModule = () => {
   }
 };
 
+const validateHomeResearchPurposeModule = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const sectionMatches = [...html.matchAll(/<section id="research-purpose" class="section highlights">([\s\S]*?)<\/section>/g)];
+  const importanceIndex = html.indexOf('<section id="ai4science-importance"');
+  const meaningsIndex = html.indexOf('<section id="ai4science-meanings"');
+  const purposeIndex = html.indexOf('<section id="research-purpose"');
+  const hierarchyIndex = html.indexOf('<section id="hierarchy"');
+  const dataModelingIndex = html.indexOf('<section id="data-modeling"');
+  const expectedTranslations = {
+    en: {
+      "researchPurpose.title": "Purposes of Scientific Research",
+      "researchPurpose.description":
+        "Scientific research seeks fundamental laws and solves practical problems, advancing knowledge and technological innovation through both discovery and application.",
+      "researchPurpose.fundamental.title": "Discover Fundamental Laws",
+      "researchPurpose.fundamental.description":
+        "Use observation, experimentation, and theoretical modeling to uncover repeatable and testable laws, such as the three laws of planetary motion and the fundamental equations of quantum mechanics.",
+      "researchPurpose.practical.title": "Solve Practical Problems",
+      "researchPurpose.practical.description":
+        "Translate scientific understanding into engineering and technological capabilities that solve practical problems in manufacturing, materials, aerospace, and other real-world domains.",
+    },
+    zh: {
+      "researchPurpose.title": "科学研究的目的",
+      "researchPurpose.description":
+        "科学研究一方面探索自然与复杂系统的基本规律，另一方面面向真实需求解决关键问题；二者共同推动知识进步与技术创新。",
+      "researchPurpose.fundamental.title": "寻求基本规律",
+      "researchPurpose.fundamental.description":
+        "通过观测、实验与理论建模揭示可重复、可验证的自然规律，例如行星运动三大定律和量子力学基本方程。",
+      "researchPurpose.practical.title": "解决实际问题",
+      "researchPurpose.practical.description":
+        "将科学认知转化为工程与技术能力，解决工程、制造、材料和航空航天等领域的实际问题。",
+    },
+  };
+
+  assert.equal(sectionMatches.length, 1, "index.html: homepage should contain exactly one scientific research purpose section");
+  const purposeSection = sectionMatches[0][1];
+  assert.equal(
+    (purposeSection.match(/<article class="system-panel(?: highlight)?">/g) || []).length,
+    2,
+    "index.html: scientific research purpose section should contain exactly two cards"
+  );
+  assert.ok(importanceIndex >= 0, "index.html: missing AI for Science importance section");
+  assert.ok(meaningsIndex > importanceIndex, "index.html: meanings section should follow the importance section");
+  assert.ok(purposeIndex > meaningsIndex, "index.html: research purpose section should follow the meanings section");
+  assert.ok(hierarchyIndex > purposeIndex, "index.html: hierarchy section should follow the research purpose section");
+  assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling section should follow the hierarchy section");
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  const visibleFallbacks = Object.fromEntries(
+    [...purposeSection.matchAll(/<(h2|h3|p)[^>]*data-i18n="([^"]+)"[^>]*>([\s\S]*?)<\/\1>/g)].map(
+      ([, , key, value]) => [key, value.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim()]
+    )
+  );
+
+  for (const language of ["en", "zh"]) {
+    for (const [key, value] of Object.entries(expectedTranslations[language])) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `index.html: ${language} translation should match for ${key}`
+      );
+    }
+  }
+
+  for (const [key, value] of Object.entries(expectedTranslations.en)) {
+    assert.equal(visibleFallbacks[key], value, `index.html: visible fallback should match English translation for ${key}`);
+  }
+};
+
 const validateHomeDataModelingModule = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
@@ -979,6 +1053,7 @@ for (const page of pages) {
 validateHomeHeroRefresh();
 validateHomeAiForScienceImportanceModule();
 validateHomeMeaningsModule();
+validateHomeResearchPurposeModule();
 validateHomeDataModelingModule();
 validateHomeHierarchyTitle();
 validateHomeProjectsIntegratedIntoHierarchy();

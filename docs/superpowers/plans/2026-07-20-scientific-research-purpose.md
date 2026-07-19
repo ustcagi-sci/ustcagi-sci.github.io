@@ -16,7 +16,7 @@
 - Modify: `scripts/verify-i18n.mjs`
 - Test: `scripts/verify-i18n.mjs`
 
-- [ ] **Step 1: Add `validateHomeResearchPurposeModule()`**
+- [x] **Step 1: Add `validateHomeResearchPurposeModule()`**
 
 The validator must read `index.html`, parse the inline translations object, locate `#research-purpose`, and assert these exact values:
 
@@ -28,10 +28,10 @@ const expectedTranslations = {
       "Scientific research seeks fundamental laws and solves practical problems, advancing knowledge and technological innovation through both discovery and application.",
     "researchPurpose.fundamental.title": "Discover Fundamental Laws",
     "researchPurpose.fundamental.description":
-      "Use observation, experimentation, and theoretical modeling to uncover repeatable and testable laws, such as the laws of planetary motion and the fundamental equations of quantum mechanics.",
+      "Use observation, experimentation, and theoretical modeling to uncover repeatable and testable laws, such as the three laws of planetary motion and the fundamental equations of quantum mechanics.",
     "researchPurpose.practical.title": "Solve Practical Problems",
     "researchPurpose.practical.description":
-      "Translate scientific understanding into engineering and technological capabilities for manufacturing, materials, energy, life sciences, aerospace, and other real-world domains."
+      "Translate scientific understanding into engineering and technological capabilities that solve practical problems in manufacturing, materials, aerospace, and other real-world domains."
   },
   zh: {
     "researchPurpose.title": "科学研究的目的",
@@ -39,10 +39,10 @@ const expectedTranslations = {
       "科学研究一方面探索自然与复杂系统的基本规律，另一方面面向真实需求解决关键问题；二者共同推动知识进步与技术创新。",
     "researchPurpose.fundamental.title": "寻求基本规律",
     "researchPurpose.fundamental.description":
-      "通过观测、实验与理论建模揭示可重复、可验证的自然规律，例如行星运动定律和量子力学基本方程。",
+      "通过观测、实验与理论建模揭示可重复、可验证的自然规律，例如行星运动三大定律和量子力学基本方程。",
     "researchPurpose.practical.title": "解决实际问题",
     "researchPurpose.practical.description":
-      "将科学认知转化为工程与技术能力，服务制造、材料、能源、生命科学和航空航天等真实场景。"
+      "将科学认知转化为工程与技术能力，解决工程、制造、材料和航空航天等领域的实际问题。"
   }
 };
 ```
@@ -53,11 +53,11 @@ Also assert exactly one section, exactly two `<article class="system-panel">` ca
 importance < meanings < research-purpose < hierarchy < data-modeling
 ```
 
-- [ ] **Step 2: Invoke the validator with the other homepage validators**
+- [x] **Step 2: Invoke the validator with the other homepage validators**
 
 Call `validateHomeResearchPurposeModule()` immediately after `validateHomeMeaningsModule()`.
 
-- [ ] **Step 3: Run the verifier and confirm RED**
+- [x] **Step 3: Run the verifier and confirm RED**
 
 Run:
 
@@ -73,7 +73,7 @@ Expected: failure stating that the homepage should contain exactly one scientifi
 - Modify: `index.html`
 - Test: `scripts/verify-i18n.mjs`
 
-- [ ] **Step 1: Insert the section after `#ai4science-meanings`**
+- [x] **Step 1: Insert the section after `#ai4science-meanings`**
 
 Add this native HTML structure before `#hierarchy`:
 
@@ -87,22 +87,22 @@ Add this native HTML structure before `#hierarchy`:
     <article class="system-panel highlight">
       <span class="label">Purpose 1</span>
       <h3 data-i18n="researchPurpose.fundamental.title">Discover Fundamental Laws</h3>
-      <p data-i18n="researchPurpose.fundamental.description">Use observation, experimentation, and theoretical modeling to uncover repeatable and testable laws, such as the laws of planetary motion and the fundamental equations of quantum mechanics.</p>
+      <p data-i18n="researchPurpose.fundamental.description">Use observation, experimentation, and theoretical modeling to uncover repeatable and testable laws, such as the three laws of planetary motion and the fundamental equations of quantum mechanics.</p>
     </article>
     <article class="system-panel">
       <span class="label">Purpose 2</span>
       <h3 data-i18n="researchPurpose.practical.title">Solve Practical Problems</h3>
-      <p data-i18n="researchPurpose.practical.description">Translate scientific understanding into engineering and technological capabilities for manufacturing, materials, energy, life sciences, aerospace, and other real-world domains.</p>
+      <p data-i18n="researchPurpose.practical.description">Translate scientific understanding into engineering and technological capabilities that solve practical problems in manufacturing, materials, aerospace, and other real-world domains.</p>
     </article>
   </div>
 </section>
 ```
 
-- [ ] **Step 2: Add English and Chinese translations**
+- [x] **Step 2: Add English and Chinese translations**
 
 Add the exact `researchPurpose.*` values from Task 1 to both dictionaries immediately after the `meanings.*` keys and before `dataModeling.*`.
 
-- [ ] **Step 3: Run the verifier and confirm GREEN**
+- [x] **Step 3: Run the verifier and confirm GREEN**
 
 Run:
 
@@ -117,13 +117,14 @@ Expected: exit code 0 with no output.
 **Files:**
 - Verify: `index.html`
 - Verify: `scripts/verify-i18n.mjs`
+- Update: `docs/superpowers/specs/2026-07-20-scientific-research-purpose-design.md`
 - Include: `docs/superpowers/plans/2026-07-20-scientific-research-purpose.md`
 
-- [ ] **Step 1: Check responsive rendering**
+- [x] **Step 1: Check responsive rendering**
 
 Serve the feature worktree locally and verify desktop and mobile viewports. Confirm the section is between three meanings and literature cognition, cards are two columns on desktop and one column on mobile, both languages render, and the page has no horizontal overflow.
 
-- [ ] **Step 2: Run final automated verification**
+- [x] **Step 2: Run final automated verification**
 
 ```bash
 node scripts/verify-i18n.mjs
@@ -132,9 +133,9 @@ git diff --check
 
 Expected: both commands exit 0.
 
-- [ ] **Step 3: Commit the implementation**
+- [x] **Step 3: Commit the implementation**
 
 ```bash
-git add index.html scripts/verify-i18n.mjs docs/superpowers/plans/2026-07-20-scientific-research-purpose.md
+git add index.html scripts/verify-i18n.mjs docs/superpowers/specs/2026-07-20-scientific-research-purpose-design.md docs/superpowers/plans/2026-07-20-scientific-research-purpose.md
 git commit -m "Add scientific research purpose module"
 ```
