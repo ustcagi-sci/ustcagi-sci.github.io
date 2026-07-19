@@ -967,15 +967,21 @@ const validateScholarSumVenueLink = () => {
   }
 };
 
-const validateKnowledgeMemoryHeroGitHubRemoved = () => {
+const validateKnowledgeDiscoveryPage = () => {
   const html = readFileSync(resolve(root, "knowledge_memory/index.html"), "utf8");
   const heroMatch = html.match(/<header id="top" class="hero">([\s\S]*?)<\/header>/);
+  const discoveryMatch = html.match(/<section id="discovery-loop"[\s\S]*?<\/section>/);
+  const researchLoopMatch = html.match(/<section id="research-loop"[\s\S]*?<\/section>/);
   const objectMatch = html.match(
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
   const context = {};
 
   assert.ok(heroMatch, "knowledge_memory/index.html: missing hero section");
+  assert.ok(
+    /<h1 data-i18n="hero\.title">科学知识发现<\/h1>/.test(heroMatch[1]),
+    "knowledge_memory/index.html: hero should introduce scientific knowledge discovery"
+  );
   assert.ok(
     !/class="eyebrow"/.test(heroMatch[1]),
     "knowledge_memory/index.html: hero eyebrow button should be removed"
@@ -992,9 +998,63 @@ const validateKnowledgeMemoryHeroGitHubRemoved = () => {
     !/>GitHub<\/a>/.test(heroMatch[1]),
     "knowledge_memory/index.html: hero GitHub button should be removed"
   );
+  assert.ok(
+    /<h2 data-i18n="intro\.title">科学知识发现是 AI for Science 的第二层<\/h2>/.test(html),
+    "knowledge_memory/index.html: introduction should position knowledge discovery as the second layer"
+  );
+  assert.ok(
+    /<h2 data-i18n="position\.title">从知识获取走向科学知识发现<\/h2>/.test(html),
+    "knowledge_memory/index.html: positioning should advance from acquisition to discovery"
+  );
+  assert.ok(discoveryMatch, "knowledge_memory/index.html: missing evidence-to-discovery loop");
+  assert.equal(
+    (discoveryMatch[0].match(/data-i18n="discovery\.(?:evidence|synthesis|pattern|hypothesis)\.title"/g) || [])
+      .length,
+    4,
+    "knowledge_memory/index.html: discovery loop should contain four stages"
+  );
+  assert.ok(
+    /<h2 data-i18n="discovery\.title">从证据获取到可验证的新知识<\/h2>/.test(discoveryMatch[0]),
+    "knowledge_memory/index.html: discovery loop should foreground verifiable new knowledge"
+  );
+  assert.ok(researchLoopMatch, "knowledge_memory/index.html: missing task-solving and discovery research loop");
+  assert.ok(
+    /规律发现 → 假设提出 → 实验验证 → 知识形成/.test(researchLoopMatch[0]),
+    "knowledge_memory/index.html: research loop should include discovery, hypothesis, validation, and knowledge formation"
+  );
 
   assert.ok(objectMatch, "knowledge_memory/index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["meta.title"],
+    "Scientific Knowledge Discovery",
+    "knowledge_memory/index.html: English metadata should match the knowledge-discovery scope"
+  );
+  assert.equal(
+    context.translations.zh["meta.title"],
+    "科学知识发现",
+    "knowledge_memory/index.html: Chinese metadata should match the knowledge-discovery scope"
+  );
+  assert.equal(
+    context.translations.en["intro.title"],
+    "Scientific Knowledge Discovery Is the Second Layer of AI for Science",
+    "knowledge_memory/index.html: English introduction should match the second-layer framing"
+  );
+  assert.equal(
+    context.translations.zh["intro.title"],
+    "科学知识发现是 AI for Science 的第二层",
+    "knowledge_memory/index.html: Chinese introduction should match the second-layer framing"
+  );
+  assert.equal(
+    context.translations.en["researchLoop.path.text"],
+    "Regularity discovery → hypothesis generation → experimental validation → knowledge formation",
+    "knowledge_memory/index.html: English research loop should be synchronized"
+  );
+  assert.equal(
+    context.translations.zh["researchLoop.path.text"],
+    "规律发现 → 假设提出 → 实验验证 → 知识形成",
+    "knowledge_memory/index.html: Chinese research loop should be synchronized"
+  );
   assert.equal(
     context.translations.en["hero.eyebrow"],
     undefined,
@@ -1315,7 +1375,7 @@ validatePapersListHeaderRemoved();
 validatePapersFooterDescriptionRemoved();
 validateChemTableVenueLink();
 validateScholarSumVenueLink();
-validateKnowledgeMemoryHeroGitHubRemoved();
+validateKnowledgeDiscoveryPage();
 validateDataModelingPage();
 validateScienceOfAiPage();
 validateTabletNavigationStyles();
