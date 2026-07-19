@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 科学</title>
+    <meta
+      name="description"
+      content="中国科大 AGI 团队面向 Science of AI 的研究，探索 Scaling Law、能力涌现、强化学习、智能结构与 Agent 动力学背后的科学规律。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="AI 科学" />
+    <meta
+      property="og:description"
+      content="把 AI 本身作为一种复杂科学系统来研究，探索学习、推理、涌现与智能结构背后的普遍规律。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="USTC-AGI AI for Science">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="../literature-mining-logo.svg" alt="" />
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">USTC-AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">AI for Science</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../data_modeling/" data-i18n="nav.data">科学数据</a>
+          <a href="../knowledge_memory/" data-i18n="nav.knowledge">科技文献</a>
+          <a href="./" aria-current="page" data-i18n="nav.aiScience">AI 科学</a>
+          <a href="../papers/" data-i18n="nav.papers">论文列表</a>
+          <span class="nav-break" aria-hidden="true"></span>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero">
+      <div class="hero-content">
+        <h1 data-i18n="hero.title">AI 科学</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          把 AI 本身作为一种复杂科学系统来研究，探索 Scaling Law、能力涌现、强化学习与智能结构背后的普遍规律。
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section id="foundations" class="section">
+        <div class="section-header">
+          <h2 data-i18n="foundations.title">把 AI 本身作为科学研究对象</h2>
+          <p data-i18n="foundations.description">
+            当模型能力随规模、训练与交互持续演化，研究目标需要从“如何构建更强模型”进一步走向“哪些机制产生了这些能力”。
+          </p>
+        </div>
+
+        <div class="tldr">
+          <strong data-i18n="foundations.tldr.label">核心命题：</strong>
+          <span data-i18n="foundations.tldr.text">
+            将 AI 视为可观测、可解释、可预测的复杂系统，寻找跨模型、跨训练方法和跨任务成立的普遍规律。
+          </span>
+        </div>
+
+        <div class="hierarchy-grid">
+          <article class="hierarchy-step">
+            <span class="level">Q1</span>
+            <h3 data-i18n="foundations.scaling.title">Scaling Law 为什么出现？</h3>
+            <p data-i18n="foundations.scaling.description">
+              解释模型、数据和计算规模扩大时，性能为何呈现稳定的幂律关系，以及这种关系何时失效。
+            </p>
+          </article>
+          <article class="hierarchy-step">
+            <span class="level">Q2</span>
+            <h3 data-i18n="foundations.emergence.title">涌现能力从何而来？</h3>
+            <p data-i18n="foundations.emergence.description">
+              识别复杂能力出现所依赖的表征、数据结构、训练动态与系统尺度。
+            </p>
+          </article>
+          <article class="hierarchy-step">
+            <span class="level">Q3</span>
+            <h3 data-i18n="foundations.rl.title">强化学习如何改变模型行为？</h3>
+            <p data-i18n="foundations.rl.description">
+              研究奖励、探索、反馈与策略更新如何共同塑造推理、对齐和自主决策。
+            </p>
+          </article>
+          <article class="hierarchy-step">
+            <span class="level">Q4</span>
+            <h3 data-i18n="foundations.structure.title">智能是否存在统一的数学结构？</h3>
+            <p data-i18n="foundations.structure.description">
+              寻找连接学习、推理、记忆、泛化与规划能力的共同变量和数学关系。
+            </p>
+          </article>
+          <article class="hierarchy-step">
+            <span class="level">Q5</span>
+            <h3 data-i18n="foundations.shared.title">人工智能与人类智能有哪些共同机制？</h3>
+            <p data-i18n="foundations.shared.description">
+              比较机器与人类在表征形成、预测、压缩、学习和协作中的共性与差异。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="new-theory" class="section highlights">
+        <div class="section-header">
+          <h2 data-i18n="theory.title">从套用理论到创造理论</h2>
+          <p data-i18n="theory.description">
+            现有数学、物理和神经科学提供重要工具，但智能系统可能需要新的状态变量、临界概念和可检验理论。
+          </p>
+        </div>
+
+        <div class="tldr">
+          <strong data-i18n="theory.tldr.label">理论边界：</strong>
+          <span data-i18n="theory.statement">
+            Science of AI 不能仅仅是“将已有物理理论套到神经网络上”，还应该产生新的科学概念和理论。
+          </span>
+        </div>
+
+        <div class="direction-grid">
+          <article class="system-panel">
+            <span class="label">Observable</span>
+            <h3 data-i18n="theory.observable.title">定义新的可观测量</h3>
+            <p data-i18n="theory.observable.description">
+              找到能够描述智能状态、能力边界和系统复杂度的宏观变量，而不只依赖参数量与任务分数。
+            </p>
+          </article>
+          <article class="system-panel highlight">
+            <span class="label">Criticality</span>
+            <h3 data-i18n="theory.criticality.title">识别临界行为</h3>
+            <p data-i18n="theory.criticality.description">
+              判断推理、泛化与协作能力是否存在相变、阈值、迟滞或其他可重复的临界现象。
+            </p>
+          </article>
+          <article class="system-panel">
+            <span class="label">Theory</span>
+            <h3 data-i18n="theory.testable.title">建立可检验理论</h3>
+            <p data-i18n="theory.testable.description">
+              从经验曲线走向能够预测新模型、新训练制度和新交互环境中行为变化的科学理论。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="future-questions" class="section">
+        <div class="section-header">
+          <h2 data-i18n="future.title">需要回答的未来科学问题</h2>
+          <p data-i18n="future.description">
+            这些问题把模型能力、学习过程与多智能体行为转化为可测量、可解释、可验证的研究对象。
+          </p>
+        </div>
+
+        <div class="direction-grid">
+          <article class="card direction-card">
+            <span class="eyebrow">Question 1</span>
+            <h3 data-i18n="future.macroscopic.title">智能是否具有类似热力学变量的宏观描述？</h3>
+            <p data-i18n="future.macroscopic.description">
+              探索是否存在能够跨模型概括能力、复杂度、稳定性和适应性的少量宏观状态变量。
+            </p>
+          </article>
+          <article class="card direction-card">
+            <span class="eyebrow">Question 2</span>
+            <h3 data-i18n="future.phase.title">推理能力是否存在相变点？</h3>
+            <p data-i18n="future.phase.description">
+              研究计算深度、训练规模或反馈强度跨过某一阈值时，推理能力是否发生结构性变化。
+            </p>
+          </article>
+          <article class="card direction-card">
+            <span class="eyebrow">Question 3</span>
+            <h3 data-i18n="future.emergence.title">能力涌现是连续变化还是临界跃迁？</h3>
+            <p data-i18n="future.emergence.description">
+              区分真实的系统跃迁与评测尺度造成的表面突变，并寻找可重复的涌现判据。
+            </p>
+          </article>
+          <article class="card direction-card">
+            <span class="eyebrow">Question 4</span>
+            <h3 data-i18n="future.information.title">记忆、压缩、预测之间是否存在统一规律？</h3>
+            <p data-i18n="future.information.description">
+              解释系统如何选择、压缩和调用信息，以及这些过程如何共同决定泛化与推理。
+            </p>
+          </article>
+          <article class="card direction-card">
+            <span class="eyebrow">Question 5</span>
+            <h3 data-i18n="future.icl.title">上下文学习为何能够在不更新参数时产生新能力？</h3>
+            <p data-i18n="future.icl.description">
+              揭示上下文如何在固定参数系统中形成临时任务表示、学习规则与适应性行为。
+            </p>
+          </article>
+          <article class="card direction-card">
+            <span class="eyebrow">Question 6</span>
+            <h3 data-i18n="future.agents.title">Agent 系统的协作和自主性是否存在普遍动力学规律？</h3>
+            <p data-i18n="future.agents.description">
+              研究多智能体在通信、竞争、分工和反馈中的集体状态、稳定条件与失效模式。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="framework" class="section highlights">
+        <div class="section-header">
+          <h2 data-i18n="framework.title">AI 科学研究框架</h2>
+          <p data-i18n="framework.description">
+            从宏观规律到集体智能，建立贯通观测、机制、理论和验证的研究路径。
+          </p>
+        </div>
+
+        <div class="stack-diagram">
+          <div class="stack-layer app">
+            <span class="layer-index">Lens 1</span>
+            <div>
+              <strong data-i18n="framework.macroscopic.title">宏观规律</strong>
+              <span data-i18n="framework.macroscopic.description">
+                研究 Scaling Law、能力涌现、相变与跨尺度稳定关系，定义描述智能系统的宏观变量。
+              </span>
+            </div>
+          </div>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <div class="stack-layer">
+            <span class="layer-index">Lens 2</span>
+            <div>
+              <strong data-i18n="framework.dynamics.title">学习动力学</strong>
+              <span data-i18n="framework.dynamics.description">
+                解释预训练、强化学习、反馈与探索如何改变内部表征、策略形成和外部行为。
+              </span>
+            </div>
+          </div>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <div class="stack-layer">
+            <span class="layer-index">Lens 3</span>
+            <div>
+              <strong data-i18n="framework.information.title">信息机制</strong>
+              <span data-i18n="framework.information.description">
+                统一考察记忆、压缩、预测与上下文学习，寻找信息组织和能力生成之间的规律。
+              </span>
+            </div>
+          </div>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <div class="stack-layer eval">
+            <span class="layer-index">Lens 4</span>
+            <div>
+              <strong data-i18n="framework.collective.title">集体智能</strong>
+              <span data-i18n="framework.collective.description">
+                研究 Agent 协作、自主性、分工与竞争的普遍动力学，以及集体能力形成的边界条件。
+              </span>
+            </div>
+          </div>
+          <p class="stack-note" data-i18n="framework.note">
+            目标：从 AI 工程走向能够解释、预测并检验智能规律的科学体系。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div>
+        <h3 data-i18n="footer.title">中国科学技术大学 认知智能全国重点实验室 AGI研究组</h3>
+      </div>
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "Science of AI",
+          "meta.description":
+            "USTC AGI research on the Science of AI, exploring the laws behind scaling, emergence, reinforcement learning, intelligence structure, and agent dynamics.",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "Scientific Literature",
+          "nav.data": "Scientific Data",
+          "nav.aiScience": "Science of AI",
+          "nav.papers": "Publications",
+          "hero.title": "Science of AI",
+          "hero.subtitle":
+            "Study AI itself as a complex scientific system, seeking the general laws behind scaling, emergence, reinforcement learning, and the structure of intelligence.",
+          "foundations.title": "AI as an Object of Scientific Inquiry",
+          "foundations.description":
+            "As model capabilities evolve with scale, training, and interaction, research must move beyond how to build stronger models toward understanding the mechanisms that produce those capabilities.",
+          "foundations.tldr.label": "Core proposition:",
+          "foundations.tldr.text":
+            "Treat AI as an observable, explainable, and predictable complex system, and seek general laws that hold across models, training methods, and tasks.",
+          "foundations.scaling.title": "Why Do Scaling Laws Appear?",
+          "foundations.scaling.description":
+            "Explain why performance follows stable power laws as models, data, and compute grow, and identify when those relations break down.",
+          "foundations.emergence.title": "Where Do Emergent Capabilities Come From?",
+          "foundations.emergence.description":
+            "Identify the representations, data structures, training dynamics, and system scales required for complex capabilities to appear.",
+          "foundations.rl.title": "How Does Reinforcement Learning Change Model Behavior?",
+          "foundations.rl.description":
+            "Study how reward, exploration, feedback, and policy updates jointly shape reasoning, alignment, and autonomous decisions.",
+          "foundations.structure.title": "Does Intelligence Have a Unified Mathematical Structure?",
+          "foundations.structure.description":
+            "Seek common variables and mathematical relations connecting learning, reasoning, memory, generalization, and planning.",
+          "foundations.shared.title": "What Mechanisms Are Shared by Artificial and Human Intelligence?",
+          "foundations.shared.description":
+            "Compare commonalities and differences in representation, prediction, compression, learning, and collaboration across machines and humans.",
+          "theory.title": "From Applying Theory to Creating Theory",
+          "theory.description":
+            "Mathematics, physics, and neuroscience provide essential tools, but intelligent systems may require new state variables, critical concepts, and testable theories.",
+          "theory.tldr.label": "Theoretical boundary:",
+          "theory.statement":
+            "Science of AI cannot be limited to applying existing physical theories to neural networks; it should also create new scientific concepts and theories.",
+          "theory.observable.title": "Define New Observables",
+          "theory.observable.description":
+            "Find macroscopic variables that describe intelligent state, capability boundaries, and system complexity beyond parameter counts and task scores.",
+          "theory.criticality.title": "Identify Critical Behavior",
+          "theory.criticality.description":
+            "Determine whether reasoning, generalization, and collaboration exhibit phase transitions, thresholds, hysteresis, or other reproducible critical phenomena.",
+          "theory.testable.title": "Build Testable Theories",
+          "theory.testable.description":
+            "Move from empirical curves to scientific theories that predict behavioral changes in new models, training regimes, and interaction environments.",
+          "future.title": "Future Scientific Questions to Answer",
+          "future.description":
+            "These questions turn model capabilities, learning processes, and multi-agent behavior into measurable, explainable, and testable research objects.",
+          "future.macroscopic.title": "Can Intelligence Have Thermodynamics-Like Macroscopic Variables?",
+          "future.macroscopic.description":
+            "Explore whether a small set of state variables can summarize capability, complexity, stability, and adaptability across models.",
+          "future.phase.title": "Are There Phase-Transition Points in Reasoning Ability?",
+          "future.phase.description":
+            "Study whether reasoning changes structurally when computation depth, training scale, or feedback strength crosses a threshold.",
+          "future.emergence.title": "Is Capability Emergence Continuous or a Critical Transition?",
+          "future.emergence.description":
+            "Separate genuine system transitions from apparent jumps caused by evaluation scales, and seek reproducible criteria for emergence.",
+          "future.information.title": "Is There a Unified Law of Memory, Compression, and Prediction?",
+          "future.information.description":
+            "Explain how systems select, compress, and retrieve information, and how these processes jointly determine generalization and reasoning.",
+          "future.icl.title": "Why Can In-Context Learning Create New Capabilities Without Parameter Updates?",
+          "future.icl.description":
+            "Reveal how context forms temporary task representations, learning rules, and adaptive behavior in a fixed-parameter system.",
+          "future.agents.title": "Do Agent Collaboration and Autonomy Follow Universal Dynamical Laws?",
+          "future.agents.description":
+            "Study collective states, stability conditions, and failure modes that arise from communication, competition, division of labor, and feedback.",
+          "framework.title": "A Research Framework for the Science of AI",
+          "framework.description":
+            "Connect observation, mechanism, theory, and validation from macroscopic regularities to collective intelligence.",
+          "framework.macroscopic.title": "Macroscopic Regularities",
+          "framework.macroscopic.description":
+            "Study scaling laws, emergence, phase transitions, and stable cross-scale relations while defining macroscopic variables for intelligent systems.",
+          "framework.dynamics.title": "Learning Dynamics",
+          "framework.dynamics.description":
+            "Explain how pretraining, reinforcement learning, feedback, and exploration reshape internal representations, policies, and external behavior.",
+          "framework.information.title": "Information Mechanisms",
+          "framework.information.description":
+            "Study memory, compression, prediction, and in-context learning together to uncover laws linking information organization to capability formation.",
+          "framework.collective.title": "Collective Intelligence",
+          "framework.collective.description":
+            "Study the universal dynamics of agent collaboration, autonomy, specialization, and competition, together with the boundary conditions for collective capability.",
+          "framework.note":
+            "Goal: move from AI engineering toward a scientific system that can explain, predict, and test the laws of intelligence.",
+          "footer.title": "AGI Research Group, National Key Laboratory of Cognitive Intelligence, University of Science and Technology of China",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "AI 科学",
+          "meta.description":
+            "中国科大 AGI 团队面向 Science of AI 的研究，探索 Scaling Law、能力涌现、强化学习、智能结构与 Agent 动力学背后的科学规律。",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "科技文献",
+          "nav.data": "科学数据",
+          "nav.aiScience": "AI 科学",
+          "nav.papers": "论文列表",
+          "hero.title": "AI 科学",
+          "hero.subtitle":
+            "把 AI 本身作为一种复杂科学系统来研究，探索 Scaling Law、能力涌现、强化学习与智能结构背后的普遍规律。",
+          "foundations.title": "把 AI 本身作为科学研究对象",
+          "foundations.description":
+            "当模型能力随规模、训练与交互持续演化，研究目标需要从“如何构建更强模型”进一步走向“哪些机制产生了这些能力”。",
+          "foundations.tldr.label": "核心命题：",
+          "foundations.tldr.text":
+            "将 AI 视为可观测、可解释、可预测的复杂系统，寻找跨模型、跨训练方法和跨任务成立的普遍规律。",
+          "foundations.scaling.title": "Scaling Law 为什么出现？",
+          "foundations.scaling.description":
+            "解释模型、数据和计算规模扩大时，性能为何呈现稳定的幂律关系，以及这种关系何时失效。",
+          "foundations.emergence.title": "涌现能力从何而来？",
+          "foundations.emergence.description":
+            "识别复杂能力出现所依赖的表征、数据结构、训练动态与系统尺度。",
+          "foundations.rl.title": "强化学习如何改变模型行为？",
+          "foundations.rl.description":
+            "研究奖励、探索、反馈与策略更新如何共同塑造推理、对齐和自主决策。",
+          "foundations.structure.title": "智能是否存在统一的数学结构？",
+          "foundations.structure.description":
+            "寻找连接学习、推理、记忆、泛化与规划能力的共同变量和数学关系。",
+          "foundations.shared.title": "人工智能与人类智能有哪些共同机制？",
+          "foundations.shared.description":
+            "比较机器与人类在表征形成、预测、压缩、学习和协作中的共性与差异。",
+          "theory.title": "从套用理论到创造理论",
+          "theory.description":
+            "现有数学、物理和神经科学提供重要工具，但智能系统可能需要新的状态变量、临界概念和可检验理论。",
+          "theory.tldr.label": "理论边界：",
+          "theory.statement":
+            "Science of AI 不能仅仅是“将已有物理理论套到神经网络上”，还应该产生新的科学概念和理论。",
+          "theory.observable.title": "定义新的可观测量",
+          "theory.observable.description":
+            "找到能够描述智能状态、能力边界和系统复杂度的宏观变量，而不只依赖参数量与任务分数。",
+          "theory.criticality.title": "识别临界行为",
+          "theory.criticality.description":
+            "判断推理、泛化与协作能力是否存在相变、阈值、迟滞或其他可重复的临界现象。",
+          "theory.testable.title": "建立可检验理论",
+          "theory.testable.description":
+            "从经验曲线走向能够预测新模型、新训练制度和新交互环境中行为变化的科学理论。",
+          "future.title": "需要回答的未来科学问题",
+          "future.description":
+            "这些问题把模型能力、学习过程与多智能体行为转化为可测量、可解释、可验证的研究对象。",
+          "future.macroscopic.title": "智能是否具有类似热力学变量的宏观描述？",
+          "future.macroscopic.description":
+            "探索是否存在能够跨模型概括能力、复杂度、稳定性和适应性的少量宏观状态变量。",
+          "future.phase.title": "推理能力是否存在相变点？",
+          "future.phase.description":
+            "研究计算深度、训练规模或反馈强度跨过某一阈值时，推理能力是否发生结构性变化。",
+          "future.emergence.title": "能力涌现是连续变化还是临界跃迁？",
+          "future.emergence.description":
+            "区分真实的系统跃迁与评测尺度造成的表面突变，并寻找可重复的涌现判据。",
+          "future.information.title": "记忆、压缩、预测之间是否存在统一规律？",
+          "future.information.description":
+            "解释系统如何选择、压缩和调用信息，以及这些过程如何共同决定泛化与推理。",
+          "future.icl.title": "上下文学习为何能够在不更新参数时产生新能力？",
+          "future.icl.description":
+            "揭示上下文如何在固定参数系统中形成临时任务表示、学习规则与适应性行为。",
+          "future.agents.title": "Agent 系统的协作和自主性是否存在普遍动力学规律？",
+          "future.agents.description":
+            "研究多智能体在通信、竞争、分工和反馈中的集体状态、稳定条件与失效模式。",
+          "framework.title": "AI 科学研究框架",
+          "framework.description":
+            "从宏观规律到集体智能，建立贯通观测、机制、理论和验证的研究路径。",
+          "framework.macroscopic.title": "宏观规律",
+          "framework.macroscopic.description":
+            "研究 Scaling Law、能力涌现、相变与跨尺度稳定关系，定义描述智能系统的宏观变量。",
+          "framework.dynamics.title": "学习动力学",
+          "framework.dynamics.description":
+            "解释预训练、强化学习、反馈与探索如何改变内部表征、策略形成和外部行为。",
+          "framework.information.title": "信息机制",
+          "framework.information.description":
+            "统一考察记忆、压缩、预测与上下文学习，寻找信息组织和能力生成之间的规律。",
+          "framework.collective.title": "集体智能",
+          "framework.collective.description":
+            "研究 Agent 协作、自主性、分工与竞争的普遍动力学，以及集体能力形成的边界条件。",
+          "framework.note":
+            "目标：从 AI 工程走向能够解释、预测并检验智能规律的科学体系。",
+          "footer.title": "中国科学技术大学 认知智能全国重点实验室 AGI研究组",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
+        setLanguage(nextLanguage, true);
+      });
+    </script>
+  </body>
+</html>

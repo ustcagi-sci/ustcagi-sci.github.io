@@ -9,6 +9,7 @@ const pages = [
   "index.html",
   "knowledge_memory/index.html",
   "data_modeling/index.html",
+  "science_of_ai/index.html",
   "papers/index.html",
 ];
 
@@ -192,7 +193,7 @@ const validateNavigation = (relativePath) => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.data", "nav.knowledge", "nav.papers"],
+    ["nav.data", "nav.knowledge", "nav.aiScience", "nav.papers"],
     `${label}: navigation should match the main page link set`
   );
 
@@ -202,6 +203,7 @@ const validateNavigation = (relativePath) => {
   const expectedCurrent = {
     "knowledge_memory/index.html": "nav.knowledge",
     "data_modeling/index.html": "nav.data",
+    "science_of_ai/index.html": "nav.aiScience",
     "papers/index.html": "nav.papers",
   }[relativePath];
 
@@ -230,6 +232,16 @@ const validateNavigation = (relativePath) => {
     context.translations.zh["nav.data"],
     "科学数据",
     `${label}: Chinese data navigation label should be 科学数据`
+  );
+  assert.equal(
+    context.translations.en["nav.aiScience"],
+    "Science of AI",
+    `${label}: English AI science navigation label should be Science of AI`
+  );
+  assert.equal(
+    context.translations.zh["nav.aiScience"],
+    "AI 科学",
+    `${label}: Chinese AI science navigation label should be AI 科学`
   );
 };
 
@@ -980,6 +992,132 @@ const validateDataModelingPage = () => {
   );
 };
 
+const validateScienceOfAiPage = () => {
+  const html = readFileSync(resolve(root, "science_of_ai/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const heroMatch = html.match(/<header id="top" class="hero">([\s\S]*?)<\/header>/);
+  const foundationsMatch = html.match(
+    /<section id="foundations"[\s\S]*?<\/section>/
+  );
+  const futureMatch = html.match(/<section id="future-questions"[\s\S]*?<\/section>/);
+  const frameworkMatch = html.match(/<section id="framework"[\s\S]*?<\/section>/);
+  const context = {};
+
+  assert.ok(heroMatch, "science_of_ai/index.html: missing hero section");
+  assert.ok(
+    /<h1 data-i18n="hero\.title">AI 科学<\/h1>/.test(heroMatch[1]),
+    "science_of_ai/index.html: hero should introduce AI 科学"
+  );
+  assert.ok(
+    !/class="eyebrow"/.test(heroMatch[1]),
+    "science_of_ai/index.html: hero should not include an eyebrow"
+  );
+  assert.ok(
+    !/class="hero-actions"/.test(heroMatch[1]),
+    "science_of_ai/index.html: hero should not include action buttons"
+  );
+
+  assert.ok(foundationsMatch, "science_of_ai/index.html: missing foundations section");
+  assert.equal(
+    (foundationsMatch[0].match(/<article class="hierarchy-step">/g) || []).length,
+    5,
+    "science_of_ai/index.html: foundations should contain five questions"
+  );
+  assert.ok(
+    /Scaling Law 为什么出现？/.test(foundationsMatch[0]),
+    "science_of_ai/index.html: missing scaling-law question"
+  );
+  assert.ok(
+    /智能是否存在统一的数学结构？/.test(foundationsMatch[0]),
+    "science_of_ai/index.html: missing unified-intelligence question"
+  );
+
+  assert.ok(
+    /Science of AI 不能仅仅是“将已有物理理论套到神经网络上”/.test(html),
+    "science_of_ai/index.html: page should define the boundary for new theory"
+  );
+
+  assert.ok(futureMatch, "science_of_ai/index.html: missing future questions section");
+  assert.equal(
+    (futureMatch[0].match(/<article class="card direction-card">/g) || []).length,
+    6,
+    "science_of_ai/index.html: future section should contain six questions"
+  );
+  assert.ok(
+    /推理能力是否存在相变点？/.test(futureMatch[0]),
+    "science_of_ai/index.html: missing reasoning phase-transition question"
+  );
+  assert.ok(
+    /上下文学习为何能够在不更新参数时产生新能力？/.test(futureMatch[0]),
+    "science_of_ai/index.html: missing in-context-learning question"
+  );
+  assert.ok(
+    /Agent 系统的协作和自主性是否存在普遍动力学规律？/.test(futureMatch[0]),
+    "science_of_ai/index.html: missing agent-dynamics question"
+  );
+
+  assert.ok(frameworkMatch, "science_of_ai/index.html: missing research framework section");
+  assert.equal(
+    (frameworkMatch[0].match(/<div class="stack-layer/g) || []).length,
+    4,
+    "science_of_ai/index.html: framework should contain four research lenses"
+  );
+
+  assert.ok(objectMatch, "science_of_ai/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  const expectedTranslations = {
+    en: {
+      "hero.title": "Science of AI",
+      "foundations.scaling.title": "Why Do Scaling Laws Appear?",
+      "foundations.emergence.title": "Where Do Emergent Capabilities Come From?",
+      "foundations.rl.title": "How Does Reinforcement Learning Change Model Behavior?",
+      "foundations.structure.title": "Does Intelligence Have a Unified Mathematical Structure?",
+      "foundations.shared.title": "What Mechanisms Are Shared by Artificial and Human Intelligence?",
+      "future.macroscopic.title": "Can Intelligence Have Thermodynamics-Like Macroscopic Variables?",
+      "future.phase.title": "Are There Phase-Transition Points in Reasoning Ability?",
+      "future.emergence.title": "Is Capability Emergence Continuous or a Critical Transition?",
+      "future.information.title": "Is There a Unified Law of Memory, Compression, and Prediction?",
+      "future.icl.title": "Why Can In-Context Learning Create New Capabilities Without Parameter Updates?",
+      "future.agents.title": "Do Agent Collaboration and Autonomy Follow Universal Dynamical Laws?",
+      "framework.macroscopic.title": "Macroscopic Regularities",
+      "framework.dynamics.title": "Learning Dynamics",
+      "framework.information.title": "Information Mechanisms",
+      "framework.collective.title": "Collective Intelligence"
+    },
+    zh: {
+      "hero.title": "AI 科学",
+      "foundations.scaling.title": "Scaling Law 为什么出现？",
+      "foundations.emergence.title": "涌现能力从何而来？",
+      "foundations.rl.title": "强化学习如何改变模型行为？",
+      "foundations.structure.title": "智能是否存在统一的数学结构？",
+      "foundations.shared.title": "人工智能与人类智能有哪些共同机制？",
+      "future.macroscopic.title": "智能是否具有类似热力学变量的宏观描述？",
+      "future.phase.title": "推理能力是否存在相变点？",
+      "future.emergence.title": "能力涌现是连续变化还是临界跃迁？",
+      "future.information.title": "记忆、压缩、预测之间是否存在统一规律？",
+      "future.icl.title": "上下文学习为何能够在不更新参数时产生新能力？",
+      "future.agents.title": "Agent 系统的协作和自主性是否存在普遍动力学规律？",
+      "framework.macroscopic.title": "宏观规律",
+      "framework.dynamics.title": "学习动力学",
+      "framework.information.title": "信息机制",
+      "framework.collective.title": "集体智能"
+    }
+  };
+
+  for (const [language, copy] of Object.entries(expectedTranslations)) {
+    for (const [key, value] of Object.entries(copy)) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `science_of_ai/index.html: unexpected ${language} translation for ${key}`
+      );
+    }
+  }
+};
+
 const validateDirectionsPageRemoved = () => {
   assert.equal(
     existsSync(resolve(root, "directions/index.html")),
@@ -1014,4 +1152,5 @@ validateChemTableVenueLink();
 validateScholarSumVenueLink();
 validateKnowledgeMemoryHeroGitHubRemoved();
 validateDataModelingPage();
+validateScienceOfAiPage();
 validateDirectionsPageRemoved();
