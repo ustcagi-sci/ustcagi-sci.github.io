@@ -195,6 +195,12 @@ const validateNavigation = (relativePath) => {
     const key = match[1].match(/data-i18n="([^"]+)"/)?.[1];
     return { key, href };
   });
+  const navFallbacks = Object.fromEntries(
+    [...navMatch[1].matchAll(/<a\s+[^>]*data-i18n="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map((match) => [
+      match[1],
+      match[2].trim(),
+    ])
+  );
 
   assert.deepEqual(
     navKeys,
@@ -259,23 +265,29 @@ const validateNavigation = (relativePath) => {
 
   assert.equal(
     context.translations.en["nav.knowledge"],
-    "Scientific Literature",
-    `${label}: English knowledge navigation label should be Scientific Literature`
+    "Scientific Knowledge Discovery",
+    `${label}: English knowledge navigation label should be Scientific Knowledge Discovery`
   );
   assert.equal(
     context.translations.zh["nav.knowledge"],
-    "科技文献",
-    `${label}: Chinese knowledge navigation label should be 科技文献`
+    "科学知识发现",
+    `${label}: Chinese knowledge navigation label should be 科学知识发现`
   );
   assert.equal(
     context.translations.en["nav.data"],
-    "Scientific Data",
-    `${label}: English data navigation label should be Scientific Data`
+    "Scientific Task Solving",
+    `${label}: English data navigation label should be Scientific Task Solving`
   );
   assert.equal(
     context.translations.zh["nav.data"],
-    "科学数据",
-    `${label}: Chinese data navigation label should be 科学数据`
+    "科学任务求解",
+    `${label}: Chinese data navigation label should be 科学任务求解`
+  );
+  assert.equal(navFallbacks["nav.data"], "科学任务求解", `${label}: data navigation fallback should be 科学任务求解`);
+  assert.equal(
+    navFallbacks["nav.knowledge"],
+    "科学知识发现",
+    `${label}: knowledge navigation fallback should be 科学知识发现`
   );
   assert.equal(
     context.translations.en["nav.aiScience"],
@@ -1016,12 +1028,12 @@ const validateDataModelingPage = () => {
 
   assert.equal(
     context.translations.en["nav.data"],
-    "Scientific Data",
+    "Scientific Task Solving",
     "data_modeling/index.html: English navigation label should name the new section"
   );
   assert.equal(
     context.translations.zh["nav.data"],
-    "科学数据",
+    "科学任务求解",
     "data_modeling/index.html: Chinese navigation label should name the new section"
   );
   assert.equal(
