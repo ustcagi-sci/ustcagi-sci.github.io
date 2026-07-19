@@ -6,12 +6,11 @@ Add a bilingual homepage module that explains the two basic purposes of scientif
 
 ## Placement
 
-Insert the new `#research-purpose` section immediately after `#ai4science-meanings` and before `#hierarchy`. The resulting homepage narrative is:
+Place `#research-purpose` immediately after the hero as the first homepage content section, before `#ai4science-meanings`. The resulting homepage narrative is:
 
-1. Why AI for Science matters.
+1. What scientific research ultimately seeks to achieve.
 2. The three meanings of AI for Science.
-3. What scientific research ultimately seeks to achieve.
-4. The group's scientific literature and scientific data research directions.
+3. The group's scientific literature and scientific data research directions.
 
 ## Visual Structure
 
@@ -48,9 +47,8 @@ Modify only `index.html` and `scripts/verify-i18n.mjs` for product behavior. Add
 Extend the existing Node verifier to require exactly one purpose section, exactly two cards, exact English and Chinese copy, English fallback parity, and final section order:
 
 ```text
-ai4science-importance
-ai4science-meanings
 research-purpose
+ai4science-meanings
 hierarchy
 data-modeling
 ```

@@ -50,7 +50,7 @@ const expectedTranslations = {
 Also assert exactly one section, exactly two `<article class="system-panel">` cards, English fallback parity, and this order:
 
 ```text
-importance < meanings < research-purpose < hierarchy < data-modeling
+research-purpose < meanings < hierarchy < data-modeling
 ```
 
 - [x] **Step 2: Invoke the validator with the other homepage validators**
@@ -73,9 +73,9 @@ Expected: failure stating that the homepage should contain exactly one scientifi
 - Modify: `index.html`
 - Test: `scripts/verify-i18n.mjs`
 
-- [x] **Step 1: Insert the section after `#ai4science-meanings`**
+- [x] **Step 1: Insert the section as the first homepage module**
 
-Add this native HTML structure before `#hierarchy`:
+Add this native HTML structure immediately after the hero and before `#ai4science-meanings`:
 
 ```html
 <section id="research-purpose" class="section highlights">
@@ -122,7 +122,7 @@ Expected: exit code 0 with no output.
 
 - [x] **Step 1: Check responsive rendering**
 
-Serve the feature worktree locally and verify desktop and mobile viewports. Confirm the section is between three meanings and literature cognition, cards are two columns on desktop and one column on mobile, both languages render, and the page has no horizontal overflow.
+Serve the feature worktree locally and verify desktop and mobile viewports. Confirm the section is the first homepage module before three meanings, cards are two columns on desktop and one column on mobile, both languages render, and the page has no horizontal overflow.
 
 - [x] **Step 2: Run final automated verification**
 

@@ -416,9 +416,10 @@ const validateHomeResearchPurposeModule = () => {
     2,
     "index.html: scientific research purpose section should contain exactly two cards"
   );
-  assert.ok(meaningsIndex >= 0, "index.html: missing AI for Science meanings section");
-  assert.ok(purposeIndex > meaningsIndex, "index.html: research purpose section should follow the meanings section");
-  assert.ok(hierarchyIndex > purposeIndex, "index.html: hierarchy section should follow the research purpose section");
+  assert.ok(purposeIndex >= 0, "index.html: missing scientific research purpose section");
+  assert.ok(/<main>\s*<section id="research-purpose"/.test(html), "index.html: research purpose section should be the first homepage module");
+  assert.ok(meaningsIndex > purposeIndex, "index.html: meanings section should follow the research purpose section");
+  assert.ok(hierarchyIndex > meaningsIndex, "index.html: hierarchy section should follow the meanings section");
   assert.ok(dataModelingIndex > hierarchyIndex, "index.html: data modeling section should follow the hierarchy section");
 
   assert.ok(objectMatch, "index.html: missing translations object");
