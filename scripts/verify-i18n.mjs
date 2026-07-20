@@ -384,30 +384,30 @@ const validateHomeMeaningsModule = () => {
     en: {
       "meanings.title": "Three Meanings of AI for Science",
       "meanings.description":
-        "AI for Science is not only about applying AI to scientific tasks; it also encompasses discovering new science and studying the scientific principles underlying intelligence itself.",
-      "meanings.tasks.title": "AI for Scientific Tasks",
+        "This site organizes AI for Science into three related levels: using AI to solve scientific tasks, using AI to support scientific discovery, and studying AI itself as a scientific system.",
+      "meanings.tasks.title": "AI for Scientific Task Solving",
       "meanings.tasks.description":
-        "Apply AI to well-defined scientific tasks such as equation solving, molecular design, protein folding, and scientific image recognition to accelerate research and technological innovation.",
-      "meanings.discovery.title": "AI for New Science",
+        "Develop and evaluate AI methods for scientific problems with explicit objectives and evaluation criteria, including equation solving, molecular design, protein structure prediction, and scientific image analysis.",
+      "meanings.discovery.title": "AI for Scientific Discovery",
       "meanings.discovery.description":
-        "Move beyond prediction and optimization toward discovering laws, mechanisms, conserved quantities, and testable hypotheses that may enable scientific and paradigm breakthroughs.",
+        "Integrate data, literature, and experimental evidence to identify candidate laws, mechanisms, invariants, and testable hypotheses, together with their validity conditions and uncertainty.",
       "meanings.science.title": "Science of AI",
       "meanings.science.description":
-        "Study the scientific principles behind learning, intelligence, and complex systems, enabling mutual advances across AI, mathematics, physics, and neuroscience.",
+        "Treat AI systems as empirical and theoretical objects of scientific inquiry, and study scaling, emergence, learning dynamics, and the structure of intelligence.",
     },
     zh: {
       "meanings.title": "AI for Science 的三层涵义",
       "meanings.description":
-        "AI for Science 不仅是利用 AI 解决科学任务，也包括发现新的科学规律，以及研究智能本身背后的科学原理。",
-      "meanings.tasks.title": "面向科学任务的 AI",
+        "本站将 AI for Science 的研究内涵概括为三个相互关联的层次：用 AI 求解科学任务、用 AI 支持科学发现，以及把 AI 本身作为科学系统进行研究。",
+      "meanings.tasks.title": "用 AI 求解科学任务",
       "meanings.tasks.description":
-        "将 AI 用于方程求解、分子设计、蛋白质折叠和科学影像识别等目标明确的科研任务，加速科学研究与技术创新。",
-      "meanings.discovery.title": "用 AI 发现新科学",
+        "面向目标与评价标准相对明确的科学问题，研究并评估方程求解、分子设计、蛋白质结构预测和科学影像分析等任务中的 AI 方法。",
+      "meanings.discovery.title": "用 AI 支持科学发现",
       "meanings.discovery.description":
-        "从预测和优化进一步走向规律、机制、守恒量与可验证假设的发现，探索 AI 能否推动科学创新和范式突破。",
-      "meanings.science.title": "AI 的科学",
+        "综合数据、文献和实验依据，识别候选规律、机制、守恒关系与可检验假设，同时刻画其成立条件和不确定性。",
+      "meanings.science.title": "人工智能科学",
       "meanings.science.description":
-        "研究学习、智能与复杂系统背后的科学原理，促进人工智能与数学、物理和神经科学之间的双向启发。",
+        "将 AI 系统作为可观测、可实验和可建模的研究对象，考察规模扩展、能力涌现、学习动力学与智能结构。",
     },
   };
 
@@ -461,24 +461,24 @@ const validateHomeResearchPurposeModule = () => {
     en: {
       "researchPurpose.title": "Purposes of Scientific Research",
       "researchPurpose.description":
-        "Scientific research seeks fundamental laws and solves practical problems, advancing knowledge and technological innovation through both discovery and application.",
+        "Scientific research seeks testable explanations of natural and complex systems while developing knowledge and methods for real-world problems; these aims inform and constrain each other.",
       "researchPurpose.fundamental.title": "Discover Fundamental Laws",
       "researchPurpose.fundamental.description":
-        "Use observation, experimentation, and theoretical modeling to uncover repeatable and testable laws, such as the three laws of planetary motion and the fundamental equations of quantum mechanics.",
+        "Use observation, experimentation, and theoretical modeling to formulate testable explanations, then establish their reproducibility, scope, and limitations through repeated validation.",
       "researchPurpose.practical.title": "Solve Practical Problems",
       "researchPurpose.practical.description":
-        "Translate scientific understanding into engineering and technological capabilities that solve practical problems in manufacturing, materials, aerospace, and other real-world domains.",
+        "Translate scientific understanding into verifiable models, methods, and engineering solutions for problems in manufacturing, materials, aerospace, and other domains.",
     },
     zh: {
       "researchPurpose.title": "科学研究的目的",
       "researchPurpose.description":
-        "科学研究一方面探索自然与复杂系统的基本规律，另一方面面向真实需求解决关键问题；二者共同推动知识进步与技术创新。",
+        "科学研究既旨在形成对自然与复杂系统的可检验解释，也旨在发展解决现实问题的知识与方法；两类目标相互促进，也相互约束。",
       "researchPurpose.fundamental.title": "寻求基本规律",
       "researchPurpose.fundamental.description":
-        "通过观测、实验与理论建模揭示可重复、可验证的自然规律，例如行星运动三大定律和量子力学基本方程。",
+        "通过观测、实验与理论建模提出可检验的解释，并在重复验证与边界分析中明确其可重复性、适用范围和局限。",
       "researchPurpose.practical.title": "解决实际问题",
       "researchPurpose.practical.description":
-        "将科学认知转化为工程与技术能力，解决工程、制造、材料和航空航天等领域的实际问题。",
+        "将科学认识转化为可验证的模型、方法与工程方案，用于解决制造、材料、航空航天等领域的实际问题。",
     },
   };
 
@@ -532,25 +532,25 @@ const validateHomeDataModelingModule = () => {
     en: {
       "dataModeling.title": "Scientific Task Solving: Structured Scientific Data Modeling",
       "dataModeling.description":
-        "Structured scientific data modeling focuses on tables, time series, experimental records, and scientific observations, turning scientific data into learnable, predictive, and reasoned model representations.",
+        "For tables, time series, experimental records, and observational data, we study representations and predictive methods that respect variable semantics, experimental conditions, and domain constraints, providing testable and reusable foundations for scientific task solving.",
       "dataModeling.tabular.title": "Tabular Data",
       "dataModeling.tabular.description":
-        "Model property tables, experimental matrices, materials and molecular property sheets, and scientific records under small samples, missing values, heterogeneous fields, and domain context.",
+        "For property tables, experimental matrices, materials and molecular property sheets, and scientific records, study learning and uncertainty estimation under small samples, missing values, heterogeneous fields, distribution shifts, and domain constraints.",
       "dataModeling.series.title": "Time Series",
       "dataModeling.series.description":
-        "Model experimental curves, sensor sequences, simulation trajectories, and observation streams to capture trends, cycles, abrupt changes, and dynamic processes.",
+        "For experimental curves, sensor sequences, simulation trajectories, and observation streams, characterize multiscale trends, periodicity, abrupt changes, temporal dependencies, and dynamics, while evaluating reliability under extrapolation and distribution shift.",
       "dataModeling.cta": "Learn Scientific Data Modeling",
     },
     zh: {
       "dataModeling.title": "科学任务求解：结构化科学数据建模",
       "dataModeling.description":
-        "结构化科学数据建模关注表格、时间序列、实验记录和科学观测数据，把科学数据转化为可学习、可预测、可推理的模型表示。",
+        "面向表格、时间序列、实验记录与观测数据，研究符合变量语义、实验条件和领域约束的表示学习与预测方法，为科学任务求解提供可检验、可复用的模型基础。",
       "dataModeling.tabular.title": "Tabular Data",
       "dataModeling.tabular.description":
-        "面向属性表、实验矩阵、材料/分子性质表和科学记录，处理小样本、缺失值、异构字段和领域上下文。",
+        "面向属性表、实验矩阵、材料/分子性质表和科学记录，研究小样本、缺失值、异构字段、分布偏移与领域约束下的学习和不确定性估计。",
       "dataModeling.series.title": "Time Series",
       "dataModeling.series.description":
-        "面向实验曲线、传感器序列、仿真轨迹和观测流，建模趋势、周期、突变和动态过程。",
+        "面向实验曲线、传感器序列、仿真轨迹和观测流，刻画多尺度趋势、周期、突变、时序依赖与动态过程，并评估模型在外推和分布变化下的可靠性。",
       "dataModeling.cta": "了解科学数据建模",
     },
   };
@@ -610,6 +610,102 @@ const validateHomeHierarchyTitle = () => {
     context.translations.zh["hierarchy.title"],
     "科学知识发现：科技文献认知",
     "index.html: Chinese hierarchy title should lead with 科学知识发现"
+  );
+};
+
+const validateHomeAcademicCopy = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const expectedTranslations = {
+    en: {
+      "meta.description":
+        "USTC AGI research on scientific task solving, scientific knowledge discovery, and the Science of AI.",
+      "hero.subtitle":
+        "We study foundational questions and methods in structured data modeling, evidence-based reasoning, and intelligent systems across scientific task solving, scientific knowledge discovery, and the Science of AI, with a focus on large language models and agentic methods.",
+      "hierarchy.description":
+        "We organize scientific-literature cognition into five levels: retrieval, structural parsing, information extraction, evidence synthesis, and the formulation of testable hypotheses.",
+      "hierarchy.l1.description":
+        "Retrieve and trace literature relevant to an explicit research question, preserving query and citation-expansion paths.",
+      "hierarchy.l2.description":
+        "Parse text, tables, formulas, and figures into structured representations while preserving their document context.",
+      "hierarchy.l3.description":
+        "Extract research questions, methods, data, findings, and the evidential relations among them.",
+      "hierarchy.l4.description":
+        "Compare evidence across papers to identify agreement, conflict, applicability limits, and knowledge gaps.",
+      "hierarchy.l5.description":
+        "Formulate falsifiable hypotheses and validation plans from existing evidence; this remains a long-term research direction.",
+      "projects.paperscout.description":
+        "A research agent that plans search, citation expansion, and evidence screening around a scientific question, producing a traceable literature set through iterative interaction.",
+      "projects.chemtable.description":
+        "A benchmark for evaluating multimodal models on structural recognition, symbolic parsing, and semantic understanding of real-world chemical tables, including formulas, table relations, and molecular diagrams.",
+      "projects.scholarsum.description":
+        "A scientific summarization method combining knowledge-graph reasoning and reflective refinement, with emphasis on consistency among methods, evidence, and conclusions.",
+      "projects.paperarena.description":
+        "A benchmark designed to evaluate retrieval, evidence integration, and reasoning by tool-augmented agents across multiple scientific papers.",
+      "projects.mind2report.description":
+        "A deep-research agent for complex research questions that uses intent-guided retrieval and iterative synthesis to produce evidence-supported analytical reports.",
+      "projects.vision.title": "Research Intelligence Vision",
+      "projects.vision.description":
+        "Our long-term objective is to develop research agents that identify knowledge gaps under evidential constraints, formulate falsifiable hypotheses, and propose validation plans.",
+      "projects.vision.status": "Long-term Research",
+    },
+    zh: {
+      "meta.description":
+        "中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学任务求解、科学知识发现与人工智能科学。",
+      "hero.subtitle":
+        "聚焦大语言模型与智能体方法，围绕科学任务求解、科学知识发现和人工智能科学，研究结构化数据建模、证据推理与智能系统的基础问题和关键方法。",
+      "hierarchy.description":
+        "本站以五层框架组织科技文献认知能力：从文献检索与结构解析，逐步走向信息抽取、证据综合和可检验假设的形成。",
+      "hierarchy.l1.description":
+        "围绕明确的科研问题检索并追踪相关文献，保留查询与引用扩展路径。",
+      "hierarchy.l2.description":
+        "解析正文、表格、公式与图像，在保留文档上下文的同时形成结构化表示。",
+      "hierarchy.l3.description":
+        "抽取研究问题、方法、数据、结论及其相互之间的证据关系。",
+      "hierarchy.l4.description":
+        "跨文献比较证据，识别一致性、冲突、适用边界与知识缺口。",
+      "hierarchy.l5.description":
+        "依据已有证据提出可证伪假设与验证方案；该能力仍属于长期研究方向。",
+      "projects.paperscout.description":
+        "围绕科研问题规划检索、引用扩展与证据筛选，并在多轮交互中形成可追踪的文献集合。",
+      "projects.chemtable.description":
+        "用于评估多模态模型对真实化学表格的结构识别、符号解析与语义理解能力，覆盖化学公式、表格关系和分子图示。",
+      "projects.scholarsum.description":
+        "结合知识图谱推理与反思式优化生成科学摘要，重点考察方法、证据与结论之间的一致性。",
+      "projects.paperarena.description":
+        "用于评估工具增强智能体在多篇科学文献上的检索、证据整合与推理能力。",
+      "projects.mind2report.description":
+        "面向复杂研究问题的深度研究智能体，通过意图驱动检索与迭代综合生成具有证据支撑的分析报告。",
+      "projects.vision.title": "科研智能愿景",
+      "projects.vision.description":
+        "长期目标是研究能够在证据约束下识别知识缺口、提出可证伪假设并形成验证方案的科研智能体。",
+      "projects.vision.status": "长期研究",
+    },
+  };
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    for (const [key, value] of Object.entries(expectedTranslations[language])) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `index.html: ${language} academic copy should match for ${key}`
+      );
+    }
+  }
+
+  assert.ok(
+    /<meta\s+name="description"\s+content="中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学任务求解、科学知识发现与人工智能科学。"\s*\/>/.test(html),
+    "index.html: static metadata should use the revised academic framing"
+  );
+  assert.ok(
+    !/(协同突破|范式突破|终极目标|专家级报告|普遍动力学|高保真)/.test(html),
+    "index.html: homepage copy should avoid promotional or overconfident claims"
   );
 };
 
@@ -691,31 +787,31 @@ const validateHomeScienceOfAiModule = () => {
     en: {
       "scienceOfAi.title": "Science of AI",
       "scienceOfAi.description":
-        "Treat AI itself as a complex scientific system and investigate the general laws behind scaling, emergence, learning dynamics, and the structure of intelligence.",
+        "Treat AI systems as complex scientific objects: study scaling, emergence, learning dynamics, and the structure of intelligence, while developing testable descriptive variables and theories.",
       "scienceOfAi.scaling.title": "Scaling and Emergence",
       "scienceOfAi.scaling.description":
-        "Study why scaling laws arise, whether capabilities emerge continuously or through critical transitions, and whether reasoning has phase-transition thresholds.",
+        "Test when scaling laws hold, whether apparent emergence is continuous or transition-like, and how conclusions depend on metrics, data, and training regimes.",
       "scienceOfAi.learning.title": "Learning and Intelligence Mechanisms",
       "scienceOfAi.learning.description":
-        "Explain how reinforcement learning and in-context learning reshape model behavior, and seek unified laws connecting memory, compression, prediction, and intelligence.",
+        "Analyze how reinforcement learning and in-context learning alter model behavior, and test whether memory, compression, prediction, and intelligence admit a shared description.",
       "scienceOfAi.agents.title": "Agents and Collective Intelligence",
       "scienceOfAi.agents.description":
-        "Investigate mechanisms shared by artificial and human intelligence, together with the general dynamics of agent collaboration, autonomy, and collective behavior.",
+        "Compare mechanisms in artificial and human intelligence, and test for transferable dynamical patterns in agent collaboration, autonomy, and collective behavior.",
       "scienceOfAi.cta": "Explore Science of AI",
     },
     zh: {
       "scienceOfAi.title": "Science of AI",
       "scienceOfAi.description":
-        "把 AI 本身作为一种复杂科学系统来研究，探索规模扩展、能力涌现、学习动力学与智能结构背后的普遍规律。",
+        "将 AI 系统作为复杂科学对象，研究规模扩展、能力涌现、学习动力学与智能结构，并发展可检验的描述变量和理论。",
       "scienceOfAi.scaling.title": "规模与涌现",
       "scienceOfAi.scaling.description":
-        "研究 Scaling Law 为什么出现、能力涌现是连续变化还是临界跃迁，以及推理能力是否存在相变点。",
+        "检验 Scaling Law 在何种条件下成立、表观涌现是连续变化还是类临界跃迁，以及结论如何依赖评价指标、数据与训练过程。",
       "scienceOfAi.learning.title": "学习与智能机制",
       "scienceOfAi.learning.description":
-        "解释强化学习与上下文学习如何改变模型行为，探索记忆、压缩、预测与智能之间的统一规律。",
+        "分析强化学习与上下文学习如何改变模型行为，并检验记忆、压缩、预测与智能能否获得统一描述。",
       "scienceOfAi.agents.title": "Agent 与集体智能",
       "scienceOfAi.agents.description":
-        "研究人工智能与人类智能的共同机制，以及 Agent 协作、自主性和群体行为的普遍动力学。",
+        "比较人工智能与人类智能的相关机制，并检验 Agent 协作、自主性和群体行为中是否存在可迁移的动力学模式。",
       "scienceOfAi.cta": "探索 Science of AI",
     },
   };
@@ -1440,6 +1536,7 @@ validateHomeMeaningsModule();
 validateHomeResearchPurposeModule();
 validateHomeDataModelingModule();
 validateHomeHierarchyTitle();
+validateHomeAcademicCopy();
 validateHomeProjectsIntegratedIntoHierarchy();
 validateHomeScienceOfAiModule();
 validateHomeVisionRemoved();
