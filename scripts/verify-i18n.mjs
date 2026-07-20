@@ -296,8 +296,13 @@ const validateNavigation = (relativePath) => {
   );
   assert.equal(
     context.translations.zh["nav.aiScience"],
-    "AI 科学",
-    `${label}: Chinese AI science navigation label should be AI 科学`
+    "人工智能科学",
+    `${label}: Chinese AI science navigation label should be 人工智能科学`
+  );
+  assert.equal(
+    navFallbacks["nav.aiScience"],
+    "人工智能科学",
+    `${label}: AI science navigation fallback should be 人工智能科学`
   );
 };
 
