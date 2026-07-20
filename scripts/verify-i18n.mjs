@@ -1381,8 +1381,16 @@ const validateScienceOfAiPage = () => {
 
   assert.ok(heroMatch, "science_of_ai/index.html: missing hero section");
   assert.ok(
-    /<h1 data-i18n="hero\.title">AI 科学<\/h1>/.test(heroMatch[1]),
-    "science_of_ai/index.html: hero should introduce AI 科学"
+    /<h1 data-i18n="hero\.title">Science of AI<\/h1>/.test(heroMatch[1]),
+    "science_of_ai/index.html: hero should introduce Science of AI"
+  );
+  assert.ok(
+    /<title>Science of AI<\/title>/.test(html),
+    "science_of_ai/index.html: document title should be Science of AI"
+  );
+  assert.ok(
+    /<meta property="og:title" content="Science of AI" \/>/.test(html),
+    "science_of_ai/index.html: Open Graph title should be Science of AI"
   );
   assert.ok(
     !/class="eyebrow"/.test(heroMatch[1]),
@@ -1444,6 +1452,7 @@ const validateScienceOfAiPage = () => {
 
   const expectedTranslations = {
     en: {
+      "meta.title": "Science of AI",
       "hero.title": "Science of AI",
       "foundations.scaling.title": "Why Do Scaling Laws Appear?",
       "foundations.emergence.title": "Where Do Emergent Capabilities Come From?",
@@ -1475,7 +1484,8 @@ const validateScienceOfAiPage = () => {
       "framework.collective.title": "Collective Intelligence"
     },
     zh: {
-      "hero.title": "AI 科学",
+      "meta.title": "Science of AI",
+      "hero.title": "Science of AI",
       "foundations.scaling.title": "Scaling Law 为什么出现？",
       "foundations.emergence.title": "涌现能力从何而来？",
       "foundations.rl.title": "强化学习如何改变模型行为？",
