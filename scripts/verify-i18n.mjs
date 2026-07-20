@@ -485,7 +485,7 @@ const validateHomeResearchPurposeModule = () => {
   const dataModelingIndex = html.indexOf('<section id="data-modeling"');
   const expectedTranslations = {
     en: {
-      "researchPurpose.title": "Purposes of Scientific Research",
+      "researchPurpose.title": "Primary Purposes of Scientific Research",
       "researchPurpose.description":
         "Scientific research seeks testable explanations of natural and complex systems while developing knowledge and methods for real-world problems; these aims inform and constrain each other.",
       "researchPurpose.fundamental.title": "Discover Fundamental Laws",
@@ -496,7 +496,7 @@ const validateHomeResearchPurposeModule = () => {
         "Translate scientific understanding into verifiable models, methods, and engineering solutions for problems in manufacturing, materials, aerospace, and other domains.",
     },
     zh: {
-      "researchPurpose.title": "科学研究的目的",
+      "researchPurpose.title": "科学研究的主要目的",
       "researchPurpose.description":
         "科学研究既旨在形成对自然与复杂系统的可检验解释，也旨在发展解决现实问题的知识与方法；两类目标相互促进，也相互约束。",
       "researchPurpose.fundamental.title": "寻求基本规律",
@@ -615,6 +615,7 @@ const validateHomeDataModelingModule = () => {
 
 const validateHomeHierarchyTitle = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const hierarchyMatch = html.match(/<section id="hierarchy" class="section">([\s\S]*?)<\/section>/);
   const objectMatch = html.match(
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
@@ -623,6 +624,13 @@ const validateHomeHierarchyTitle = () => {
   assert.ok(
     /<h2 data-i18n="hierarchy\.title">科学知识发现：科技文献认知<\/h2>/.test(html),
     "index.html: hierarchy title should be 科学知识发现：科技文献认知"
+  );
+  assert.ok(hierarchyMatch, "index.html: missing hierarchy section");
+  assert.ok(
+    /<div class="section-actions">\s*<a class="btn ghost" href="\.\/knowledge_memory\/" data-i18n="hierarchy\.cta">Explore Scientific Knowledge Discovery<\/a>\s*<\/div>/.test(
+      hierarchyMatch[1]
+    ),
+    "index.html: hierarchy section should link to the scientific knowledge discovery page"
   );
 
   assert.ok(objectMatch, "index.html: missing translations object");
@@ -636,6 +644,16 @@ const validateHomeHierarchyTitle = () => {
     context.translations.zh["hierarchy.title"],
     "科学知识发现：科技文献认知",
     "index.html: Chinese hierarchy title should lead with 科学知识发现"
+  );
+  assert.equal(
+    context.translations.en["hierarchy.cta"],
+    "Explore Scientific Knowledge Discovery",
+    "index.html: English hierarchy CTA should be synchronized"
+  );
+  assert.equal(
+    context.translations.zh["hierarchy.cta"],
+    "了解科学知识发现",
+    "index.html: Chinese hierarchy CTA should be synchronized"
   );
 };
 
