@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mind2Report — Cognitive Deep Research for Expert-Level Reports</title>
+    <meta
+      name="description"
+      content="Mind2Report 是一个面向专业报告生成的认知式深度研究智能体，通过意图澄清、记忆增强检索与迭代综合，将海量噪声信息转化为可靠、全面且可追溯的决策级报告。"
+    />
+    <meta name="theme-color" content="#fbfaf7" />
+    <meta property="og:title" content="Mind2Report" />
+    <meta
+      property="og:description"
+      content="A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ustcagi-sci.github.io/mind2report/" />
+    <meta
+      property="og:image"
+      content="https://ustcagi-sci.github.io/mind2report/assets/1-teaser.jpg"
+    />
+    <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav class="nav-bar" aria-label="页面导航">
+      <div class="container nav-inner">
+        <a class="nav-home" href="../">USTC-AGI · AI for Science</a>
+        <div class="nav-links">
+          <a href="#overview">概览</a>
+          <a href="#method">方法</a>
+          <a href="#evaluation">评测</a>
+          <a href="#results">结果</a>
+          <a href="#citation">引用</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container hero-inner">
+        <p class="kicker">Cognitive Deep Research · Scientific Literature Intelligence</p>
+        <h1><span>Mind</span>2Report</h1>
+        <p class="paper-title">
+          A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis
+        </p>
+        <p class="hero-summary">
+          从模糊研究意图出发，在海量、动态且充满噪声的网页与科技文献中持续搜索、筛选和组织证据，
+          最终生成可靠、全面、可追溯的专业报告。
+        </p>
+        <p class="affiliations">
+          中国科学技术大学 · 认知智能全国重点实验室<br />
+          科大讯飞 · 人工智能工程院
+        </p>
+        <p class="authors">
+          Mingyue Cheng · Daoyu Wang · Qi Liu · Shuo Yu · Xiaoyu Tao · Yuqian Wang ·
+          Chengzhong Chu · Yu Duan · Mingkang Long · Enhong Chen
+        </p>
+        <div class="button-row">
+          <a
+            class="button primary"
+            href="https://arxiv.org/abs/2601.04879"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            arXiv Paper
+          </a>
+          <a
+            class="button secondary"
+            href="https://github.com/ustc-ai4science/Mind2Report"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub Repository
+          </a>
+          <a class="button secondary" href="#citation">BibTeX</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="overview">
+        <div class="container">
+          <div class="tldr">
+            <strong>TL;DR</strong>
+            Mind2Report 将专业分析师的认知流程显式化：先澄清细粒度意图，再将检索到的证据沉淀为动态记忆，
+            最后沿结构化大纲迭代写作并追踪引用，把“搜到信息”推进到“形成决策级知识”。
+          </div>
+
+          <div class="figure-card hero-figure">
+            <img
+              src="./assets/1-teaser.jpg"
+              alt="Mind2Report 模拟商业分析师，从海量噪声网页中生成高质量、可靠、全面的专业报告"
+              width="2363"
+              height="2363"
+            />
+          </div>
+
+          <div class="section-heading">
+            <p class="section-label">AI for Science Perspective</p>
+            <h2>把科技文献转化为可用知识</h2>
+          </div>
+          <div class="intro-grid">
+            <div class="prose">
+              <p>
+                AI for Science 不只需要模型“读过”论文，更需要它围绕真实研究问题组织证据：理解用户究竟要解决什么，
+                从论文、政府报告、网页与结构化资料中辨别可信信息，并把跨来源知识综合成逻辑连贯、可核验的长篇结论。
+              </p>
+              <p>
+                Mind2Report 以商业报告合成为核心场景，但它所处理的意图对齐、文献检索、证据记忆、跨来源综合与引用追踪，
+                同样构成科技文献认知和研究智能体的重要基础能力。
+              </p>
+            </div>
+            <div class="stat-grid" aria-label="项目核心数据">
+              <div class="stat-card">
+                <strong>200</strong>
+                <span>真实世界研究任务</span>
+              </div>
+              <div class="stat-card">
+                <strong>6</strong>
+                <span>商业研究领域</span>
+              </div>
+              <div class="stat-card">
+                <strong>3</strong>
+                <span>质量评测维度</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="method" class="alt">
+        <div class="container wide-container">
+          <div class="section-heading centered">
+            <p class="section-label">Cognitive Workflow</p>
+            <h2>认知式深度研究工作流</h2>
+            <p>
+              三个模块围绕同一份研究大纲与动态记忆协同演化，让检索、验证和写作始终服务于最终报告。
+            </p>
+          </div>
+
+          <div class="figure-card framework-figure">
+            <img
+              src="./assets/2-framework.jpg"
+              alt="Mind2Report 的意图驱动大纲构建、记忆与大纲协同演化搜索、连贯性保持的迭代综合框架"
+              loading="lazy"
+              width="2953"
+              height="1476"
+            />
+          </div>
+
+          <div class="method-grid">
+            <article class="method-card">
+              <span>01</span>
+              <h3>意图驱动的大纲构建</h3>
+              <p>
+                主动追问模糊需求，通过初步检索把高层研究目标拆解为结构化章节树，让后续证据收集有明确方向。
+              </p>
+            </article>
+            <article class="method-card">
+              <span>02</span>
+              <h3>记忆—大纲协同演化搜索</h3>
+              <p>
+                递归检索并蒸馏证据，以完整性、时效性和多样性作为验证门；不足的信息触发补充搜索，合格证据写入研究记忆。
+              </p>
+            </article>
+            <article class="method-card">
+              <span>03</span>
+              <h3>保持连贯的迭代综合</h3>
+              <p>
+                合并离散证据，沿章节树逐段生成长篇报告，并将关键陈述重新连接到原始来源，兼顾叙事连贯与证据可追溯。
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="evaluation">
+        <div class="container wide-container">
+          <div class="section-heading centered">
+            <p class="section-label">QRC-Eval</p>
+            <h2>不只评“写得像不像”，还评证据是否可靠</h2>
+            <p>
+              QRC-Eval 面向时效性商业研究，结合专家标注要点与网页快照，从质量、可靠性和覆盖度三个层面检查报告及其引用来源。
+            </p>
+          </div>
+          <div class="figure-card evaluation-figure">
+            <img
+              src="./assets/3-evaluation.jpg"
+              alt="QRC-Eval 数据集与质量、可靠性、覆盖度三维评测框架"
+              loading="lazy"
+              width="2363"
+              height="2363"
+            />
+          </div>
+          <div class="metric-grid">
+            <article>
+              <strong>Quality</strong>
+              <h3>质量</h3>
+              <p>检查报告与专家关键点的相关性，以及章节结构是否完整、清晰。</p>
+            </article>
+            <article>
+              <strong>Reliability</strong>
+              <h3>可靠性</h3>
+              <p>检查事实幻觉、引用的时间约束，以及报告内部陈述的一致性。</p>
+            </article>
+            <article>
+              <strong>Coverage</strong>
+              <h3>覆盖度</h3>
+              <p>衡量信息来源是否足够广泛，以及证据资产和论证细节是否足够深入。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="alt">
+        <div class="container wide-container">
+          <div class="section-heading centered">
+            <p class="section-label">Experimental Results</p>
+            <h2>从搜索能力到专业报告能力</h2>
+            <p>
+              实验覆盖闭源与开源深度研究系统。Mind2Report 在综合排名上取得最优表现，并在不同领域保持稳定的质量、可靠性与覆盖度。
+            </p>
+          </div>
+
+          <div class="result-grid">
+            <figure class="figure-card compact-figure">
+              <img
+                src="./assets/4-necessity.jpg"
+                alt="深度研究智能体相较带思考与搜索的大语言模型在相关性、结构、时效性和一致性上的提升"
+                loading="lazy"
+                width="2000"
+                height="1125"
+              />
+              <figcaption>认知式深度研究流程显著提升报告级能力。</figcaption>
+            </figure>
+            <figure class="figure-card compact-figure">
+              <img
+                src="./assets/5-finegrained.jpg"
+                alt="Mind2Report 与多个深度研究基线在六个领域的质量、可靠性和覆盖度对比"
+                loading="lazy"
+                width="2888"
+                height="1595"
+              />
+              <figcaption>在六类真实场景中保持均衡表现。</figcaption>
+            </figure>
+          </div>
+
+          <div class="evidence-feature">
+            <div class="feature-copy">
+              <p class="section-label">Dynamic Research Memory</p>
+              <h3>证据增长，不必让上下文失控</h3>
+              <p>
+                动态研究记忆把网页内容蒸馏为与大纲节点绑定的可追踪证据，使系统能够继续扩展搜索，
+                同时避免把全部原始材料直接塞入有限上下文。
+              </p>
+            </div>
+            <figure class="figure-card compact-figure">
+              <img
+                src="./assets/6-efficiency.jpg"
+                alt="Mind2Report 与普通带搜索大模型在检索轮数、证据数量和 token 使用上的效率对比"
+                loading="lazy"
+                width="1486"
+                height="886"
+              />
+            </figure>
+          </div>
+
+          <div class="output-feature">
+            <figure class="report-preview">
+              <img
+                src="./assets/9-report.jpg"
+                alt="Mind2Report 生成的 NVIDIA H100 与 AMD MI300X 对比分析报告示例"
+                loading="lazy"
+                width="1125"
+                height="1625"
+              />
+            </figure>
+            <div class="feature-copy">
+              <p class="section-label">Decision-Ready Output</p>
+              <h3>把分散证据组织成可读、可查、可行动的报告</h3>
+              <p>
+                最终输出包含层级清晰的章节、数据表格、可视化和逐条引用。报告不是搜索结果的堆叠，
+                而是围绕研究意图组织的完整分析过程与结论。
+              </p>
+              <a
+                class="text-link"
+                href="https://github.com/ustc-ai4science/Mind2Report"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                查看代码与数据 →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="citation">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Citation</p>
+            <h2>引用 Mind2Report</h2>
+          </div>
+          <pre><code>@misc{cheng2026mind2report,
+  title={Mind2Report: A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis},
+  author={Mingyue Cheng and Daoyu Wang and Qi Liu and Shuo Yu and Xiaoyu Tao and Yuqian Wang and Chengzhong Chu and Yu Duan and Mingkang Long and Enhong Chen},
+  year={2026},
+  eprint={2601.04879},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2601.04879}
+}</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <p>© <span id="year">2026</span> Mind2Report Team</p>
+        <p>USTC-AGI · AI for Science</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
