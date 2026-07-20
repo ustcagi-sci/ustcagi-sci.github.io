@@ -399,7 +399,7 @@ const validateHomeMeaningsModule = () => {
       "meanings.title": "AI for Science 的三层涵义",
       "meanings.description":
         "本站将 AI for Science 的研究内涵概括为三个相互关联的层次：用 AI 求解科学任务、用 AI 支持科学发现，以及把 AI 本身作为科学系统进行研究。",
-      "meanings.tasks.title": "用 AI 求解科学任务",
+      "meanings.tasks.title": "面向科学任务求解的AI",
       "meanings.tasks.description":
         "面向目标与评价标准相对明确的科学问题，研究并评估方程求解、分子设计、蛋白质结构预测和科学影像分析等任务中的 AI 方法。",
       "meanings.discovery.title": "用 AI 支持科学发现",
