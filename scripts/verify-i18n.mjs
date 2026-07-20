@@ -296,13 +296,13 @@ const validateNavigation = (relativePath) => {
   );
   assert.equal(
     context.translations.zh["nav.aiScience"],
-    "人工智能科学",
-    `${label}: Chinese AI science navigation label should be 人工智能科学`
+    "Science of AI",
+    `${label}: Chinese AI science navigation label should be Science of AI`
   );
   assert.equal(
     navFallbacks["nav.aiScience"],
-    "人工智能科学",
-    `${label}: AI science navigation fallback should be 人工智能科学`
+    "Science of AI",
+    `${label}: AI science navigation fallback should be Science of AI`
   );
 };
 
@@ -650,7 +650,7 @@ const validateHomeAcademicCopy = () => {
       "meta.description":
         "USTC AGI research on scientific task solving, scientific knowledge discovery, and the Science of AI.",
       "hero.subtitle":
-        "We study foundational questions and methods in structured data modeling, evidence-based reasoning, and intelligent systems across scientific task solving, scientific knowledge discovery, and the Science of AI, with a focus on large language models and agentic methods.",
+        "Centered on the intelligent cognition of complex systems, we organize AI for Science into a three-layer research agenda: Scientific Task Solving, Scientific Law Discovery, and Science of AI. This agenda progresses from using AI to solve complex scientific problems efficiently, through the autonomous discovery of scientific laws and mechanisms, to investigating the fundamental principles governing AI's own learning, reasoning, and evolution.",
       "hierarchy.description":
         "We organize scientific-literature cognition into five levels: retrieval, structural parsing, information extraction, evidence synthesis, and the formulation of testable hypotheses.",
       "hierarchy.l1.description":
@@ -682,7 +682,7 @@ const validateHomeAcademicCopy = () => {
       "meta.description":
         "中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学任务求解、科学知识发现与人工智能科学。",
       "hero.subtitle":
-        "聚焦大语言模型与智能体方法，围绕科学任务求解、科学知识发现和人工智能科学，研究结构化数据建模、证据推理与智能系统的基础问题和关键方法。",
+        "围绕复杂系统智能认知，构建“科学任务求解—科学规律发现—Science of AI”三层 AI for Science 研究布局：从利用 AI 高效求解复杂科学问题，到借助 AI 自主发现科学规律与机制，再到探索人工智能自身学习、推理与演化的基本规律。",
       "hierarchy.description":
         "本站以五层框架组织科技文献认知能力：从文献检索与结构解析，逐步走向信息抽取、证据综合和可检验假设的形成。",
       "hierarchy.l1.description":
@@ -724,6 +724,13 @@ const validateHomeAcademicCopy = () => {
       );
     }
   }
+
+  assert.ok(
+    /<p class="hero-subtitle" data-i18n="hero\.subtitle">\s*围绕复杂系统智能认知，构建“科学任务求解—科学规律发现—Science of AI”三层 AI for Science 研究布局：从利用 AI 高效求解复杂科学问题，到借助 AI 自主发现科学规律与机制，再到探索人工智能自身学习、推理与演化的基本规律。\s*<\/p>/.test(
+      html
+    ),
+    "index.html: static hero subtitle should present the three-layer research agenda"
+  );
 
   assert.ok(
     /<meta\s+name="description"\s+content="中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学任务求解、科学知识发现与人工智能科学。"\s*\/>/.test(html),
@@ -943,6 +950,12 @@ const validateHomeFooterDescriptionRemoved = () => {
     !/We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents\./.test(html),
     "index.html: English footer description should be removed"
   );
+  assert.ok(!/class="footer-actions"/.test(html), "index.html: footer action buttons should be removed");
+  assert.ok(!/data-i18n="footer\.email"/.test(html), "index.html: footer email action should be removed");
+  assert.ok(
+    /<p class="footer-note">[\s\S]*?CC BY-SA 4\.0[\s\S]*?<\/p>/.test(html),
+    "index.html: footer copyright and license note should remain"
+  );
 
   assert.ok(objectMatch, "index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
@@ -957,6 +970,11 @@ const validateHomeFooterDescriptionRemoved = () => {
       context.translations[language]["footer.description"],
       undefined,
       `index.html: stale ${language} footer description translation should be removed`
+    );
+    assert.equal(
+      context.translations[language]["footer.email"],
+      undefined,
+      `index.html: stale ${language} footer email translation should be removed`
     );
   }
 };
@@ -1446,6 +1464,16 @@ const validateScienceOfAiPage = () => {
     4,
     "science_of_ai/index.html: framework should contain four research lenses"
   );
+  assert.ok(
+    /<strong data-i18n="framework\.collective\.title">群体智能<\/strong>/.test(
+      frameworkMatch[0]
+    ),
+    "science_of_ai/index.html: collective-intelligence lens should use 群体智能"
+  );
+  assert.ok(
+    /从宏观规律到群体智能/.test(frameworkMatch[0]),
+    "science_of_ai/index.html: framework description should use 群体智能"
+  );
 
   assert.ok(objectMatch, "science_of_ai/index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
@@ -1513,7 +1541,8 @@ const validateScienceOfAiPage = () => {
       "framework.macroscopic.title": "宏观规律",
       "framework.dynamics.title": "学习动力学",
       "framework.information.title": "信息机制",
-      "framework.collective.title": "集体智能"
+      "framework.description": "从宏观规律到群体智能，建立贯通观测、机制、理论和验证的研究路径。",
+      "framework.collective.title": "群体智能"
     }
   };
 
