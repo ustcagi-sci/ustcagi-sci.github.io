@@ -342,6 +342,32 @@ const validateTargetBlankSafety = (relativePath) => {
   }
 };
 
+const validateFooterTitleRemoved = (relativePath) => {
+  const html = readFileSync(resolve(root, relativePath), "utf8");
+  const label = relativePath;
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(!/data-i18n="footer\.title"/.test(html), `${label}: footer title should be removed`);
+  assert.ok(
+    !/中国科学技术大学 认知智能全国重点实验室 AGI研究组/.test(html),
+    `${label}: Chinese footer title should be removed`
+  );
+
+  assert.ok(objectMatch, `${label}: missing translations object`);
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["footer.title"],
+      undefined,
+      `${label}: stale ${language} footer title translation should be removed`
+    );
+  }
+};
+
 const validateHomeHeroRefresh = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
@@ -1528,6 +1554,7 @@ for (const page of pages) {
   validateNavigation(page);
   validateNoStaleNavTranslations(page);
   validateTargetBlankSafety(page);
+  validateFooterTitleRemoved(page);
 }
 
 validateHomeHeroRefresh();
