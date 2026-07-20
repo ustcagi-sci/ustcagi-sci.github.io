@@ -794,7 +794,7 @@ const validateHomeScienceOfAiModule = () => {
       "scienceOfAi.learning.title": "Learning and Intelligence Mechanisms",
       "scienceOfAi.learning.description":
         "Analyze how reinforcement learning and in-context learning alter model behavior, and test whether memory, compression, prediction, and intelligence admit a shared description.",
-      "scienceOfAi.agents.title": "Agents and Collective Intelligence",
+      "scienceOfAi.agents.title": "Agents and Multi-Agent Systems",
       "scienceOfAi.agents.description":
         "Compare mechanisms in artificial and human intelligence, and test for transferable dynamical patterns in agent collaboration, autonomy, and collective behavior.",
       "scienceOfAi.cta": "Explore Science of AI",
@@ -809,7 +809,7 @@ const validateHomeScienceOfAiModule = () => {
       "scienceOfAi.learning.title": "学习与智能机制",
       "scienceOfAi.learning.description":
         "分析强化学习与上下文学习如何改变模型行为，并检验记忆、压缩、预测与智能能否获得统一描述。",
-      "scienceOfAi.agents.title": "Agent 与集体智能",
+      "scienceOfAi.agents.title": "Agent 与群体智能体",
       "scienceOfAi.agents.description":
         "比较人工智能与人类智能的相关机制，并检验 Agent 协作、自主性和群体行为中是否存在可迁移的动力学模式。",
       "scienceOfAi.cta": "探索 Science of AI",
