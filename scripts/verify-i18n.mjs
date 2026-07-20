@@ -672,6 +672,76 @@ const validateHomeProjectsIntegratedIntoHierarchy = () => {
   }
 };
 
+const validateHomeScienceOfAiModule = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const hierarchyIndex = html.indexOf('<section id="hierarchy"');
+  const scienceIndex = html.indexOf('<section id="science-of-ai"');
+  const mainEndIndex = html.indexOf("</main>");
+  const sectionMatch = html.match(/<section id="science-of-ai"[\s\S]*?<\/section>/);
+  const expectedTranslations = {
+    en: {
+      "scienceOfAi.title": "Science of AI",
+      "scienceOfAi.description":
+        "Treat AI itself as a complex scientific system and investigate the general laws behind scaling, emergence, learning dynamics, and the structure of intelligence.",
+      "scienceOfAi.scaling.title": "Scaling and Emergence",
+      "scienceOfAi.scaling.description":
+        "Study why scaling laws arise, whether capabilities emerge continuously or through critical transitions, and whether reasoning has phase-transition thresholds.",
+      "scienceOfAi.learning.title": "Learning and Intelligence Mechanisms",
+      "scienceOfAi.learning.description":
+        "Explain how reinforcement learning and in-context learning reshape model behavior, and seek unified laws connecting memory, compression, prediction, and intelligence.",
+      "scienceOfAi.agents.title": "Agents and Collective Intelligence",
+      "scienceOfAi.agents.description":
+        "Investigate mechanisms shared by artificial and human intelligence, together with the general dynamics of agent collaboration, autonomy, and collective behavior.",
+      "scienceOfAi.cta": "Explore Science of AI",
+    },
+    zh: {
+      "scienceOfAi.title": "Science of AI",
+      "scienceOfAi.description":
+        "把 AI 本身作为一种复杂科学系统来研究，探索规模扩展、能力涌现、学习动力学与智能结构背后的普遍规律。",
+      "scienceOfAi.scaling.title": "规模与涌现",
+      "scienceOfAi.scaling.description":
+        "研究 Scaling Law 为什么出现、能力涌现是连续变化还是临界跃迁，以及推理能力是否存在相变点。",
+      "scienceOfAi.learning.title": "学习与智能机制",
+      "scienceOfAi.learning.description":
+        "解释强化学习与上下文学习如何改变模型行为，探索记忆、压缩、预测与智能之间的统一规律。",
+      "scienceOfAi.agents.title": "Agent 与集体智能",
+      "scienceOfAi.agents.description":
+        "研究人工智能与人类智能的共同机制，以及 Agent 协作、自主性和群体行为的普遍动力学。",
+      "scienceOfAi.cta": "探索 Science of AI",
+    },
+  };
+
+  assert.ok(sectionMatch, "index.html: missing homepage Science of AI module");
+  assert.ok(scienceIndex > hierarchyIndex, "index.html: Science of AI module should follow the hierarchy module");
+  assert.ok(mainEndIndex > scienceIndex, "index.html: Science of AI module should remain inside main");
+  assert.equal(
+    (sectionMatch?.[0].match(/<article class="card direction-card">/g) || []).length,
+    3,
+    "index.html: Science of AI module should contain three research themes"
+  );
+  assert.ok(
+    /href="\.\/science_of_ai\/" data-i18n="scienceOfAi\.cta"/.test(sectionMatch?.[0] || ""),
+    "index.html: Science of AI module should link to its subpage"
+  );
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    for (const [key, value] of Object.entries(expectedTranslations[language])) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `index.html: ${language} translation should match for ${key}`
+      );
+    }
+  }
+};
+
 const validateHomeAiForScienceImportanceRemoved = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
@@ -1366,6 +1436,7 @@ validateHomeResearchPurposeModule();
 validateHomeDataModelingModule();
 validateHomeHierarchyTitle();
 validateHomeProjectsIntegratedIntoHierarchy();
+validateHomeScienceOfAiModule();
 validateHomeVisionRemoved();
 validateHomeFooterDescriptionRemoved();
 validateHomeTimelineRemoved();
