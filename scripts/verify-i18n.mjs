@@ -205,49 +205,49 @@ const validateNavigation = (relativePath) => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.data", "nav.knowledge", "nav.inference", "nav.aiScience", "nav.papers"],
+    ["nav.knowledge", "nav.data", "nav.inference", "nav.aiScience", "nav.papers"],
     `${label}: navigation should match the main page link set`
   );
 
   const expectedLinks = {
     "index.html": [
-      { key: "nav.data", href: "./data_modeling/" },
       { key: "nav.knowledge", href: "./knowledge_memory/" },
+      { key: "nav.data", href: "./data_modeling/" },
       { key: "nav.inference", href: "./scientific_inference/" },
       { key: "nav.aiScience", href: "./science_of_ai/" },
       { key: "nav.papers", href: "./papers/" },
     ],
     "knowledge_memory/index.html": [
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "./" },
+      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "data_modeling/index.html": [
-      { key: "nav.data", href: "./" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.data", href: "./" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "scientific_inference/index.html": [
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "./" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "science_of_ai/index.html": [
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "./" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "papers/index.html": [
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.papers", href: "./" },
