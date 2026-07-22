@@ -813,14 +813,14 @@ a:hover {
 
 .paradigm-stage:not(:last-child)::after {
   position: absolute;
-  top: -31px;
-  right: -18px;
+  top: -25px;
+  right: -12px;
   z-index: 2;
-  color: #79b9e5;
-  content: "↗";
-  font-size: 1.45rem;
-  font-weight: 800;
-  line-height: 1;
+  width: 11px;
+  height: 11px;
+  border-top: 3px solid #79b9e5;
+  border-right: 3px solid #79b9e5;
+  content: "";
 }
 
 .paradigm-index {

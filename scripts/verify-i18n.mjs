@@ -663,6 +663,10 @@ const validateHomeParadigmShiftModule = () => {
     "ref.css: final paradigm stage should create the top of the desktop ascent"
   );
   assert.ok(
+    /\.paradigm-stage:not\(:last-child\)::after\s*\{[\s\S]*?content:\s*""/.test(css),
+    "ref.css: paradigm connectors should be decorative rather than generated text"
+  );
+  assert.ok(
     /@media \(max-width:\s*760px\)[\s\S]*?\.paradigm-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr/.test(css),
     "ref.css: mobile paradigm progression should collapse to one column"
   );
