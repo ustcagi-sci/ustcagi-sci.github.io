@@ -1767,6 +1767,14 @@ const validateScientificInferencePage = () => {
     !/data-i18n="hero\.kicker"/.test(html),
     "scientific inference page should not retain the removed hero kicker translation binding"
   );
+  assert.ok(
+    !/class="inference-rail"/.test(html),
+    "scientific inference page should not render the removed hero workflow rail"
+  );
+  assert.ok(
+    !/data-i18n="rail\./.test(html),
+    "scientific inference page should not retain workflow rail translation bindings"
+  );
   assert.equal(
     (html.match(/<article class="inference-step /g) || []).length,
     4,
@@ -1807,6 +1815,15 @@ const validateScientificInferencePage = () => {
     undefined,
     "scientific_inference/index.html: should remove the Chinese hero kicker translation"
   );
+  for (const language of ["en", "zh"]) {
+    for (const key of ["rail.evidence", "rail.hypothesis", "rail.plan", "rail.verify"]) {
+      assert.equal(
+        context.translations[language][key],
+        undefined,
+        `scientific_inference/index.html: should remove the ${language} ${key} translation`
+      );
+    }
+  }
   for (const [language, translations] of Object.entries(expectedTranslations)) {
     for (const [key, value] of Object.entries(translations)) {
       assert.equal(
@@ -1818,6 +1835,7 @@ const validateScientificInferencePage = () => {
   }
 
   assert.ok(/\.inference-loop\s*\{/.test(css), "ref.css: missing scientific inference loop layout");
+  assert.ok(!css.includes(".inference-rail"), "ref.css: should remove the unused scientific inference workflow rail styles");
   assert.ok(/grid-template-areas:\s*"evidence context"/.test(css), "ref.css: inference loop should use the desktop grid");
   assert.ok(
     /@media \(max-width: 760px\)[\s\S]*?\.inference-loop\s*\{[\s\S]*?grid-template-areas:\s*"core"/.test(css),

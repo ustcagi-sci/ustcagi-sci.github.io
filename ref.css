@@ -1809,31 +1809,6 @@ td strong {
   border-color: rgba(255, 255, 255, 0.62);
 }
 
-.inference-rail {
-  display: flex;
-  width: fit-content;
-  max-width: 100%;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 34px;
-  padding: 10px 13px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 10px;
-  background: rgba(1, 17, 40, 0.22);
-  color: rgba(230, 244, 255, 0.82);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.inference-rail i {
-  color: #67c7ff;
-  font-size: 0.9rem;
-  font-style: normal;
-}
-
 .inference-orbit {
   position: relative;
   width: min(430px, 100%);
@@ -2687,13 +2662,6 @@ td strong {
 
   .inference-hero .hero-actions {
     align-items: stretch;
-  }
-
-  .inference-rail {
-    width: 100%;
-    justify-content: center;
-    gap: 7px;
-    font-size: 0.64rem;
   }
 
   .inference-orbit {
