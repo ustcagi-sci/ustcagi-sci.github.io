@@ -779,7 +779,7 @@ const validateHomeDataModelingModule = () => {
   const hierarchyIndex = html.indexOf('<section id="hierarchy"');
   const expectedTranslations = {
     en: {
-      "dataModeling.title": "Scientific Task Solving: Complex Dynamic Systems Cognition",
+      "dataModeling.title": "Scientific Data Modeling",
       "dataModeling.description":
         "For tables, time series, experimental records, and observational data, we study representations and predictive methods that respect variable semantics, experimental conditions, and domain constraints, providing testable and reusable foundations for scientific task solving.",
       "dataModeling.tabular.title": "Tabular Data",
@@ -791,7 +791,7 @@ const validateHomeDataModelingModule = () => {
       "dataModeling.cta": "Learn Scientific Data Modeling",
     },
     zh: {
-      "dataModeling.title": "科学任务求解：复杂动态系统认知",
+      "dataModeling.title": "科学数据建模",
       "dataModeling.description":
         "面向表格、时间序列、实验记录与观测数据，研究符合变量语义、实验条件和领域约束的表示学习与预测方法，为科学任务求解提供可检验、可复用的模型基础。",
       "dataModeling.tabular.title": "Tabular Data",
@@ -809,8 +809,8 @@ const validateHomeDataModelingModule = () => {
   assert.ok(hierarchyIndex > dataModelingIndex, "index.html: hierarchy section should appear after the data modeling module");
   assert.ok(/<section id="data-modeling" class="section highlights">/.test(html), "index.html: missing homepage data modeling module");
   assert.ok(
-    /<h2 data-i18n="dataModeling\.title">科学任务求解：复杂动态系统认知<\/h2>/.test(html),
-    "index.html: data modeling module title should be 科学任务求解：复杂动态系统认知"
+    /<h2 data-i18n="dataModeling\.title">科学数据建模<\/h2>/.test(html),
+    "index.html: data modeling module title should be 科学数据建模"
   );
   assert.ok(/href="\.\/data_modeling\/" data-i18n="dataModeling\.cta"/.test(html), "index.html: data modeling module should link to the data modeling subpage");
   assert.ok(!/>结构化科学数据<\/p>/.test(html), "index.html: structured scientific data eyebrow should be removed");
