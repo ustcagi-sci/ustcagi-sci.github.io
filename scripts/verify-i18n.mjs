@@ -1436,12 +1436,23 @@ const validateKnowledgeDiscoveryPage = () => {
 
 const validateDataModelingPage = () => {
   const html = readFileSync(resolve(root, "data_modeling/index.html"), "utf8");
+  const heroMatch = html.match(/<header id="top" class="hero">([\s\S]*?)<\/header>/);
   const objectMatch = html.match(
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
   const applicationsMatch = html.match(/<section id="applications"[\s\S]*?<\/section>/);
   const relationshipMatch = html.match(/<section id="relationship"[\s\S]*?<\/section>/);
   const context = {};
+
+  assert.ok(heroMatch, "data_modeling/index.html: missing hero section");
+  assert.ok(
+    !/class="hero-actions"/.test(heroMatch[1]),
+    "data_modeling/index.html: hero GitHub action row should be removed"
+  );
+  assert.ok(
+    !/>GitHub<\/a>/.test(heroMatch[1]),
+    "data_modeling/index.html: hero GitHub button should be removed"
+  );
 
   assert.ok(
     /<h1 data-i18n="hero\.title">科学任务求解<\/h1>/.test(html),
