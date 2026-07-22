@@ -310,13 +310,13 @@ const validateNavigation = (relativePath) => {
   );
   assert.equal(
     context.translations.zh["nav.inference"],
-    "科学推演",
-    `${label}: Chinese inference navigation label should be 科学推演`
+    "科学推演大模型",
+    `${label}: Chinese inference navigation label should be 科学推演大模型`
   );
   assert.equal(
     navFallbacks["nav.inference"],
-    "科学推演",
-    `${label}: inference navigation fallback should be 科学推演`
+    "科学推演大模型",
+    `${label}: inference navigation fallback should be 科学推演大模型`
   );
   assert.equal(
     context.translations.en["nav.aiScience"],
