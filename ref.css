@@ -720,6 +720,154 @@ a:hover {
   line-height: 1.72;
 }
 
+.paradigm-shift {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.paradigm-shift::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 12% 22%, rgba(11, 120, 196, 0.09), transparent 28%),
+    radial-gradient(circle at 88% 80%, rgba(192, 57, 43, 0.08), transparent 26%);
+  content: "";
+  pointer-events: none;
+}
+
+.paradigm-statement {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+  max-width: 1040px;
+  margin: 0 auto 36px;
+  padding: 22px 26px;
+  border: 1px solid #d9e9f6;
+  border-left: 4px solid #0b78c4;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #eef7ff 0%, #ffffff 55%, #fff8f7 100%);
+  box-shadow: 0 12px 34px rgba(11, 84, 135, 0.09);
+}
+
+.paradigm-statement-mark {
+  display: inline-grid;
+  width: 62px;
+  height: 62px;
+  place-items: center;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #0b78c4, #07558d);
+  color: #ffffff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.22rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: 0 10px 22px rgba(11, 120, 196, 0.2);
+}
+
+.paradigm-statement p {
+  color: #263746;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.75;
+}
+
+.paradigm-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  gap: 18px;
+  padding-top: 44px;
+}
+
+.paradigm-stage {
+  position: relative;
+  display: flex;
+  min-height: 176px;
+  flex-direction: column;
+  padding: 18px;
+  border: 1px solid #dce8f1;
+  border-top: 4px solid #0b78c4;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 24px rgba(11, 84, 135, 0.07);
+}
+
+.paradigm-stage:nth-child(2) {
+  min-height: 198px;
+}
+
+.paradigm-stage:nth-child(3) {
+  min-height: 220px;
+}
+
+.paradigm-stage:nth-child(4) {
+  min-height: 242px;
+}
+
+.paradigm-stage:nth-child(5) {
+  min-height: 264px;
+}
+
+.paradigm-stage:not(:last-child)::after {
+  position: absolute;
+  top: -31px;
+  right: -18px;
+  z-index: 2;
+  color: #79b9e5;
+  content: "↗";
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.paradigm-index {
+  align-self: flex-start;
+  margin-bottom: 12px;
+  color: #0b78c4;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.paradigm-method {
+  margin-bottom: 7px;
+  color: #527086;
+  font-size: 0.73rem;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.paradigm-stage h3 {
+  margin-bottom: 10px;
+  color: #12334a;
+  font-size: 1rem;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.paradigm-stage p {
+  margin-top: auto;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.paradigm-stage.is-intelligent {
+  border-color: #e8c5c0;
+  border-top-color: var(--accent);
+  background: linear-gradient(180deg, #ffffff 0%, #fff4f2 100%);
+  box-shadow: 0 14px 32px rgba(192, 57, 43, 0.12);
+}
+
+.paradigm-stage.is-intelligent .paradigm-index,
+.paradigm-stage.is-intelligent h3 {
+  color: var(--accent);
+}
+
 .tag-cloud {
   display: flex;
   flex-wrap: wrap;
@@ -1298,6 +1446,28 @@ td strong {
 }
 
 @media (max-width: 1024px) {
+  .paradigm-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    padding-top: 0;
+  }
+
+  .paradigm-stage,
+  .paradigm-stage:nth-child(2),
+  .paradigm-stage:nth-child(3),
+  .paradigm-stage:nth-child(4),
+  .paradigm-stage:nth-child(5) {
+    min-height: 0;
+  }
+
+  .paradigm-stage::after {
+    display: none;
+  }
+
+  .paradigm-stage:last-child {
+    grid-column: 1 / -1;
+  }
+
   .hierarchy-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1439,6 +1609,27 @@ td strong {
 
   .section {
     padding: 48px 0;
+  }
+
+  .paradigm-statement {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .paradigm-statement-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+  }
+
+  .paradigm-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .paradigm-stage,
+  .paradigm-stage:last-child {
+    grid-column: auto;
   }
 
   .research-grid,

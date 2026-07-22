@@ -547,6 +547,7 @@ const validateHomeResearchPurposeModule = () => {
 
 const validateHomeParadigmShiftModule = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const css = readFileSync(resolve(root, "ref.css"), "utf8");
   const objectMatch = html.match(
     /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
   );
@@ -652,6 +653,19 @@ const validateHomeParadigmShiftModule = () => {
       `index.html: visible fallback should match English translation for ${key}`
     );
   }
+
+  assert.ok(
+    /\.paradigm-grid\s*\{[\s\S]*?grid-template-columns:\s*repeat\(5,\s*minmax\(0,\s*1fr\)\)/.test(css),
+    "ref.css: desktop paradigm progression should use five columns"
+  );
+  assert.ok(
+    /\.paradigm-stage:nth-child\(5\)\s*\{[\s\S]*?min-height:\s*264px/.test(css),
+    "ref.css: final paradigm stage should create the top of the desktop ascent"
+  );
+  assert.ok(
+    /@media \(max-width:\s*760px\)[\s\S]*?\.paradigm-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr/.test(css),
+    "ref.css: mobile paradigm progression should collapse to one column"
+  );
 };
 
 const validateHomeDataModelingModule = () => {
