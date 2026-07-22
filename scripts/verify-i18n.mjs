@@ -1759,6 +1759,14 @@ const validateScientificInferencePage = () => {
     /<h1 data-i18n="hero\.title">科学推演大模型<\/h1>/.test(html),
     "scientific inference page should expose the Chinese fallback title"
   );
+  assert.ok(
+    !/class="inference-kicker"/.test(html),
+    "scientific inference page should not render the research vision kicker"
+  );
+  assert.ok(
+    !/data-i18n="hero\.kicker"/.test(html),
+    "scientific inference page should not retain the removed hero kicker translation binding"
+  );
   assert.equal(
     (html.match(/<article class="inference-step /g) || []).length,
     4,
@@ -1789,6 +1797,16 @@ const validateScientificInferencePage = () => {
 
   assert.ok(objectMatch, "scientific inference page should include a translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["hero.kicker"],
+    undefined,
+    "scientific_inference/index.html: should remove the English hero kicker translation"
+  );
+  assert.equal(
+    context.translations.zh["hero.kicker"],
+    undefined,
+    "scientific_inference/index.html: should remove the Chinese hero kicker translation"
+  );
   for (const [language, translations] of Object.entries(expectedTranslations)) {
     for (const [key, value] of Object.entries(translations)) {
       assert.equal(
