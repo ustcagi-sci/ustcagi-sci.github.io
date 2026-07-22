@@ -284,8 +284,8 @@ const validateNavigation = (relativePath) => {
   );
   assert.equal(
     context.translations.zh["nav.knowledge"],
-    "科学知识发现",
-    `${label}: Chinese knowledge navigation label should be 科学知识发现`
+    "科技文献挖掘",
+    `${label}: Chinese knowledge navigation label should be 科技文献挖掘`
   );
   assert.equal(
     context.translations.en["nav.data"],
@@ -300,8 +300,8 @@ const validateNavigation = (relativePath) => {
   assert.equal(navFallbacks["nav.data"], "科学任务求解", `${label}: data navigation fallback should be 科学任务求解`);
   assert.equal(
     navFallbacks["nav.knowledge"],
-    "科学知识发现",
-    `${label}: knowledge navigation fallback should be 科学知识发现`
+    "科技文献挖掘",
+    `${label}: knowledge navigation fallback should be 科技文献挖掘`
   );
   assert.equal(
     context.translations.en["nav.inference"],
