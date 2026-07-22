@@ -397,6 +397,73 @@ const validateFooterTitleRemoved = (relativePath) => {
   }
 };
 
+const normalizeMarkup = (markup) => markup.replace(/\s+/g, " ").trim();
+
+const validateUnifiedFooters = () => {
+  const expectedFooter = normalizeMarkup(`
+    <footer id="contact" class="footer">
+      <div>
+        <p class="eyebrow" data-i18n="footer.eyebrow">联系合作 · Connect</p>
+        <p data-i18n="footer.description">
+          欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体与 Science of AI 开展交流合作。
+        </p>
+      </div>
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+  `);
+  const expectedTranslations = {
+    en: {
+      eyebrow: "Connect",
+      description:
+        "We welcome collaborations on AI for Science, scientific data modeling, scientific literature mining, scientific inference agents, and the Science of AI.",
+      email: "Email Us",
+      note: "USTC AGI · Licensed under",
+    },
+    zh: {
+      eyebrow: "联系合作 · Connect",
+      description:
+        "欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体与 Science of AI 开展交流合作。",
+      email: "邮件联系",
+      note: "USTC AGI · 采用协议",
+    },
+  };
+
+  for (const relativePath of pages) {
+    const html = readFileSync(resolve(root, relativePath), "utf8");
+    const footerMatch = html.match(/<footer id="contact" class="footer">[\s\S]*?<\/footer>/);
+    const objectMatch = html.match(
+      /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+    );
+    const context = {};
+
+    assert.ok(footerMatch, `${relativePath}: missing shared footer`);
+    assert.equal(
+      normalizeMarkup(footerMatch[0]),
+      expectedFooter,
+      `${relativePath}: footer markup should match the shared site footer`
+    );
+    assert.ok(objectMatch, `${relativePath}: missing translations object`);
+    vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+    for (const language of ["en", "zh"]) {
+      for (const key of ["eyebrow", "description", "email", "note"]) {
+        assert.equal(
+          context.translations[language][`footer.${key}`],
+          expectedTranslations[language][key],
+          `${relativePath}: ${language} footer.${key} should match the shared site footer`
+        );
+      }
+    }
+  }
+};
+
 const validateHomeHeroRefresh = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
@@ -1096,63 +1163,6 @@ const validateHomeVisionRemoved = () => {
   }
 };
 
-const validateHomeFooterDescriptionRemoved = () => {
-  const html = readFileSync(resolve(root, "index.html"), "utf8");
-  const objectMatch = html.match(
-    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
-  );
-  const context = {};
-
-  assert.ok(
-    !/data-i18n="footer\.eyebrow"/.test(html),
-    "index.html: footer eyebrow text should be removed"
-  );
-  assert.ok(
-    !/联系合作 · Connect/.test(html),
-    "index.html: Chinese footer eyebrow should be removed"
-  );
-  assert.ok(!/>Connect<\/p>/.test(html), "index.html: English footer eyebrow should be removed");
-  assert.ok(
-    !/data-i18n="footer\.description"/.test(html),
-    "index.html: footer description text should be removed"
-  );
-  assert.ok(
-    !/我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。/.test(html),
-    "index.html: Chinese footer description should be removed"
-  );
-  assert.ok(
-    !/We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents\./.test(html),
-    "index.html: English footer description should be removed"
-  );
-  assert.ok(!/class="footer-actions"/.test(html), "index.html: footer action buttons should be removed");
-  assert.ok(!/data-i18n="footer\.email"/.test(html), "index.html: footer email action should be removed");
-  assert.ok(
-    /<p class="footer-note">[\s\S]*?CC BY-SA 4\.0[\s\S]*?<\/p>/.test(html),
-    "index.html: footer copyright and license note should remain"
-  );
-
-  assert.ok(objectMatch, "index.html: missing translations object");
-  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
-
-  for (const language of ["en", "zh"]) {
-    assert.equal(
-      context.translations[language]["footer.eyebrow"],
-      undefined,
-      `index.html: stale ${language} footer eyebrow translation should be removed`
-    );
-    assert.equal(
-      context.translations[language]["footer.description"],
-      undefined,
-      `index.html: stale ${language} footer description translation should be removed`
-    );
-    assert.equal(
-      context.translations[language]["footer.email"],
-      undefined,
-      `index.html: stale ${language} footer email translation should be removed`
-    );
-  }
-};
-
 const validateHomeTimelineRemoved = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
@@ -1234,38 +1244,6 @@ const validatePapersListHeaderRemoved = () => {
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
   assert.equal(context.translations.en["list.title"], undefined, "papers/index.html: removed list title should not keep English translation");
   assert.equal(context.translations.zh["list.title"], undefined, "papers/index.html: removed list title should not keep Chinese translation");
-};
-
-const validatePapersFooterDescriptionRemoved = () => {
-  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
-  const objectMatch = html.match(
-    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
-  );
-  const context = {};
-
-  assert.ok(
-    !/data-i18n="footer\.description"/.test(html),
-    "papers/index.html: footer description text should be removed"
-  );
-  assert.ok(
-    !/我们欢迎围绕科学文献挖掘、多模态解析和自主研究智能体展开合作。/.test(html),
-    "papers/index.html: Chinese footer description should be removed"
-  );
-  assert.ok(
-    !/We welcome collaborations on AI for scientific literature mining, multimodal parsing, and autonomous research agents\./.test(html),
-    "papers/index.html: English footer description should be removed"
-  );
-
-  assert.ok(objectMatch, "papers/index.html: missing translations object");
-  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
-
-  for (const language of ["en", "zh"]) {
-    assert.equal(
-      context.translations[language]["footer.description"],
-      undefined,
-      `papers/index.html: stale ${language} footer description translation should be removed`
-    );
-  }
 };
 
 const validateChemTableVenueLink = () => {
@@ -1865,6 +1843,8 @@ for (const page of pages) {
   validateFooterTitleRemoved(page);
 }
 
+validateUnifiedFooters();
+
 validateHomeHeroRefresh();
 validateHomeAiForScienceImportanceRemoved();
 validateHomeMeaningsModule();
@@ -1876,12 +1856,10 @@ validateHomeAcademicCopy();
 validateHomeProjectsIntegratedIntoHierarchy();
 validateHomeScienceOfAiModule();
 validateHomeVisionRemoved();
-validateHomeFooterDescriptionRemoved();
 validateHomeTimelineRemoved();
 validatePapersHero();
 validatePapersYearLabels();
 validatePapersListHeaderRemoved();
-validatePapersFooterDescriptionRemoved();
 validateChemTableVenueLink();
 validateScholarSumVenueLink();
 validateKnowledgeDiscoveryPage();
