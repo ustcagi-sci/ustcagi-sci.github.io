@@ -29,7 +29,6 @@ html {
 }
 
 body {
-  min-width: 320px;
   background: var(--bg);
   color: var(--ink);
   font-size: 16px;
@@ -510,18 +509,80 @@ pre {
   white-space: pre;
 }
 
-footer {
-  padding: 24px 0;
-  border-top: 1px solid var(--line);
-  background: #ffffff;
+.footer {
+  padding: 36px 24px;
+  background: #1c1c1c;
+  color: #999999;
+  text-align: center;
 }
 
-.footer-inner {
+.footer > * {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer p {
+  color: #999999;
+}
+
+.footer .eyebrow {
+  display: inline-flex;
+  margin-bottom: 12px;
+  padding: 3px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e87b6e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.footer-actions {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  color: var(--faint);
-  font-size: 0.78rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.footer .btn {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px;
+  border: 1.5px solid transparent;
+  border-radius: 7px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.footer .btn.primary {
+  border-color: #c0392b;
+  background: #c0392b;
+  color: #ffffff;
+}
+
+.footer .btn.ghost {
+  border-color: #666666;
+  background: transparent;
+  color: #ffffff;
+}
+
+.footer-note {
+  margin-top: 18px;
+  color: #888888;
+  font-size: 0.84rem;
+}
+
+.footer a {
+  color: #e87b6e;
 }
 
 @media (max-width: 820px) {
@@ -552,7 +613,7 @@ footer {
 
   section {
     padding: 58px 0;
-    scroll-margin-top: 82px;
+    scroll-margin-top: 96px;
   }
 
   .intro-grid,
@@ -584,7 +645,7 @@ footer {
   }
 
   .hero h1 {
-    font-size: clamp(3.2rem, 20vw, 5rem);
+    font-size: clamp(2.2rem, 15vw, 4rem);
   }
 
   .button-row {
@@ -620,10 +681,6 @@ footer {
     padding: 18px;
   }
 
-  .footer-inner {
-    flex-direction: column;
-    gap: 3px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

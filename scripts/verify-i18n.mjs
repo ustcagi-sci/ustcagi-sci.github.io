@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
@@ -13,6 +13,15 @@ const pages = [
   "science_of_ai/index.html",
   "papers/index.html",
 ];
+const publicUrls = {
+  "index.html": "https://ustcagi-sci.github.io/",
+  "knowledge_memory/index.html": "https://ustcagi-sci.github.io/knowledge_memory/",
+  "data_modeling/index.html": "https://ustcagi-sci.github.io/data_modeling/",
+  "scientific_inference/index.html": "https://ustcagi-sci.github.io/scientific_inference/",
+  "science_of_ai/index.html": "https://ustcagi-sci.github.io/science_of_ai/",
+  "papers/index.html": "https://ustcagi-sci.github.io/papers/",
+  "mind2report/index.html": "https://ustcagi-sci.github.io/mind2report/",
+};
 
 const validatePage = (relativePath) => {
   const html = readFileSync(resolve(root, relativePath), "utf8");
@@ -279,8 +288,8 @@ const validateNavigation = (relativePath) => {
 
   assert.equal(
     context.translations.en["nav.knowledge"],
-    "Scientific Knowledge Discovery",
-    `${label}: English knowledge navigation label should be Scientific Knowledge Discovery`
+    "Scientific Literature Mining",
+    `${label}: English knowledge navigation label should be Scientific Literature Mining`
   );
   assert.equal(
     context.translations.zh["nav.knowledge"],
@@ -289,8 +298,8 @@ const validateNavigation = (relativePath) => {
   );
   assert.equal(
     context.translations.en["nav.data"],
-    "Scientific Task Solving",
-    `${label}: English data navigation label should be Scientific Task Solving`
+    "Scientific Data Modeling",
+    `${label}: English data navigation label should be Scientific Data Modeling`
   );
   assert.equal(
     context.translations.zh["nav.data"],
@@ -305,8 +314,8 @@ const validateNavigation = (relativePath) => {
   );
   assert.equal(
     context.translations.en["nav.inference"],
-    "Scientific Inference",
-    `${label}: English inference navigation label should be Scientific Inference`
+    "Scientific Inference Agent",
+    `${label}: English inference navigation label should be Scientific Inference Agent`
   );
   assert.equal(
     context.translations.zh["nav.inference"],
@@ -371,6 +380,197 @@ const validateTargetBlankSafety = (relativePath) => {
   }
 };
 
+const validateSeoMetadata = () => {
+  for (const [relativePath, publicUrl] of Object.entries(publicUrls)) {
+    const html = readFileSync(resolve(root, relativePath), "utf8");
+    const label = relativePath;
+
+    assert.ok(
+      html.includes(`<link rel="canonical" href="${publicUrl}" />`),
+      `${label}: missing canonical URL`
+    );
+    assert.ok(
+      html.includes(`<meta property="og:url" content="${publicUrl}" />`),
+      `${label}: missing Open Graph URL`
+    );
+    assert.ok(
+      /<meta\s+property="og:image"\s+content="https:\/\/[^"\s]+"\s*\/>/.test(html),
+      `${label}: missing absolute Open Graph image`
+    );
+    assert.ok(
+      /<meta name="twitter:card" content="summary(?:_large_image)?" \/>/.test(html),
+      `${label}: missing Twitter card type`
+    );
+    assert.ok(/<meta name="twitter:title" content="[^"]+" \/>/.test(html), `${label}: missing Twitter title`);
+    assert.ok(
+      /<meta\s+name="twitter:description"\s+content="[^"]+"\s*\/>/.test(html),
+      `${label}: missing Twitter description`
+    );
+    assert.ok(
+      /<meta name="twitter:image" content="https:\/\/[^"\s]+" \/>/.test(html),
+      `${label}: missing Twitter image`
+    );
+  }
+
+  const robots = readFileSync(resolve(root, "robots.txt"), "utf8");
+  const sitemap = readFileSync(resolve(root, "sitemap.xml"), "utf8");
+  assert.ok(
+    robots.includes("Sitemap: https://ustcagi-sci.github.io/sitemap.xml"),
+    "robots.txt: should advertise the public sitemap"
+  );
+  for (const publicUrl of Object.values(publicUrls)) {
+    assert.ok(sitemap.includes(`<loc>${publicUrl}</loc>`), `sitemap.xml: missing ${publicUrl}`);
+  }
+};
+
+const validateCanonicalExternalLinks = () => {
+  const htmlByPath = Object.fromEntries(
+    Object.keys(publicUrls).map((relativePath) => [
+      relativePath,
+      readFileSync(resolve(root, relativePath), "utf8"),
+    ])
+  );
+  const combinedHtml = Object.values(htmlByPath).join("\n");
+  const retiredLinks = [
+    "https://lewen.bdaa.pro/",
+    "https://luban.bdaa.pro/",
+    "https://github.com/pty12345/PaperScout",
+    "https://github.com/Melmaphother/PaperArena",
+    "https://github.com/Melmaphother/Mind2Report",
+    "https://github.com/lqzxt/ChemTable",
+    "https://github.com/orgs/ustc-ai4science/",
+  ];
+  const canonicalProjectLinks = [
+    "https://github.com/AgentR1/PaperScout",
+    "https://github.com/ustc-ai4science/PaperArena",
+    "https://github.com/ustc-ai4science/Mind2Report",
+    "https://github.com/ustc-ai4science/ChemTable",
+  ];
+
+  for (const retiredLink of retiredLinks) {
+    assert.ok(!combinedHtml.includes(retiredLink), `site should remove retired or redirecting link ${retiredLink}`);
+  }
+  for (const canonicalLink of canonicalProjectLinks) {
+    assert.ok(combinedHtml.includes(canonicalLink), `site should use canonical project link ${canonicalLink}`);
+  }
+
+  const knowledgeHtml = htmlByPath["knowledge_memory/index.html"];
+  assert.ok(
+    /data-i18n="resources\.luban\.status">服务维护中<\/span>/.test(knowledgeHtml),
+    "knowledge_memory/index.html: unavailable Luban service should use a maintenance status instead of a link"
+  );
+};
+
+const validateAccessibilityAndMobileFixes = () => {
+  const homeHtml = readFileSync(resolve(root, "index.html"), "utf8");
+  const homeObjectMatch = homeHtml.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const sharedCss = readFileSync(resolve(root, "ref.css"), "utf8");
+  const mindCss = readFileSync(resolve(root, "mind2report/style.css"), "utf8");
+
+  assert.ok(
+    /<header id="top" class="hero">/.test(homeHtml),
+    "index.html: homepage hero should remain a semantic header instead of a full-width button"
+  );
+  assert.ok(
+    !/<header id="top" class="hero"[^>]*(?:role="button"|tabindex=)/.test(homeHtml),
+    "index.html: homepage hero should not expose button semantics"
+  );
+  assert.ok(homeObjectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${homeObjectMatch[1]};`, context);
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["hero.refreshLabel"],
+      undefined,
+      `index.html: stale ${language} hero refresh label should be removed`
+    );
+  }
+  assert.ok(!/replayHeroRefresh|hero\.addEventListener\("keydown"/.test(homeHtml), "index.html: hidden hero replay behavior should be removed");
+  assert.ok(
+    /\.language-toggle:focus-visible\s*\{[\s\S]*?box-shadow:\s*0 0 0 3px/.test(sharedCss),
+    "ref.css: language toggle should expose a visible keyboard focus ring"
+  );
+  assert.ok(
+    /@media \(max-width:\s*760px\)[\s\S]*?\.inference-page \.section\s*\{[\s\S]*?scroll-margin-top:\s*166px/.test(sharedCss),
+    "ref.css: scientific inference anchors should fully clear the mobile navigation"
+  );
+  assert.ok(
+    /@media \(max-width:\s*820px\)[\s\S]*?section\s*\{[\s\S]*?scroll-margin-top:\s*96px/.test(mindCss),
+    "mind2report/style.css: section anchors should clear the mobile navigation"
+  );
+  assert.ok(
+    /@media \(max-width:\s*620px\)[\s\S]*?\.hero h1\s*\{[\s\S]*?font-size:\s*clamp\(2\.2rem,\s*15vw,\s*4rem\)/.test(mindCss),
+    "mind2report/style.css: mobile title should shrink within 320px and 390px viewports"
+  );
+  assert.ok(
+    !/body\s*\{[\s\S]*?min-width:\s*320px/.test(mindCss),
+    "mind2report/style.css: body minimum width should not create overflow beside the mobile scrollbar"
+  );
+};
+
+const validateReadmeIdentity = () => {
+  const readme = readFileSync(resolve(root, "README.md"), "utf8");
+
+  assert.ok(/^# USTC-AGI · AI for Science$/m.test(readme), "README.md: heading should match the site brand");
+  for (const term of ["Scientific Literature Mining", "Scientific Data Modeling", "Scientific Inference Agent", "Science of AI"]) {
+    assert.ok(readme.includes(term), `README.md: missing current research area ${term}`);
+  }
+  assert.ok(
+    !/homepage for \*\*AI for Scientific Literature Mining\*\*/.test(readme),
+    "README.md: repository identity should not be limited to literature mining"
+  );
+};
+
+const validateLocalLinksAndMarkup = () => {
+  const broken = [];
+  const duplicateIds = [];
+  const missingImageAlts = [];
+
+  for (const relativePath of Object.keys(publicUrls)) {
+    const absolutePage = resolve(root, relativePath);
+    const html = readFileSync(absolutePage, "utf8");
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+
+    for (const id of new Set(ids)) {
+      if (ids.filter((candidate) => candidate === id).length > 1) {
+        duplicateIds.push(`${relativePath}#${id}`);
+      }
+    }
+
+    for (const image of html.matchAll(/<img\b([^>]*)>/g)) {
+      if (!/\balt="[^"]*"/.test(image[1])) missingImageAlts.push(`${relativePath}: ${image[0]}`);
+    }
+
+    for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+      const value = match[1];
+      if (/^(?:https?:|mailto:|data:|javascript:)/.test(value)) continue;
+
+      const [pathPart, fragment] = value.split("#", 2);
+      let target = pathPart ? resolve(dirname(absolutePage), decodeURIComponent(pathPart)) : absolutePage;
+      if (existsSync(target) && statSync(target).isDirectory()) target = resolve(target, "index.html");
+
+      if (!existsSync(target)) {
+        broken.push(`${relativePath}: ${value}`);
+        continue;
+      }
+
+      if (fragment && target.endsWith(".html")) {
+        const targetHtml = readFileSync(target, "utf8");
+        const escaped = fragment.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        if (!new RegExp(`\\bid="${escaped}"`).test(targetHtml)) {
+          broken.push(`${relativePath}: ${value} (missing fragment)`);
+        }
+      }
+    }
+  }
+
+  assert.deepEqual(broken, [], `site contains broken local links:\n${broken.join("\n")}`);
+  assert.deepEqual(duplicateIds, [], `site contains duplicate IDs:\n${duplicateIds.join("\n")}`);
+  assert.deepEqual(missingImageAlts, [], `site contains images without alt attributes:\n${missingImageAlts.join("\n")}`);
+};
+
 const validateFooterTitleRemoved = (relativePath) => {
   const html = readFileSync(resolve(root, relativePath), "utf8");
   const label = relativePath;
@@ -410,11 +610,11 @@ const validateUnifiedFooters = () => {
       </div>
       <div class="footer-actions">
         <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
-        <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn ghost" href="https://github.com/ustc-ai4science" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
       <p class="footer-note">
         © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
-        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
       </p>
     </footer>
   `);
@@ -462,33 +662,14 @@ const validateUnifiedFooters = () => {
       }
     }
   }
-};
 
-const validateHomeHeroRefresh = () => {
-  const html = readFileSync(resolve(root, "index.html"), "utf8");
-  const objectMatch = html.match(
-    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
-  );
-  const context = {};
-
-  assert.ok(
-    /<header id="top" class="hero" role="button" tabindex="0" aria-label="刷新首页视觉效果">/.test(html),
-    "index.html: hero should expose a clickable refresh affordance"
-  );
-  assert.ok(/hero\.classList\.add\("hero-refreshing"\)/.test(html), "index.html: hero click should replay the refresh class");
-  assert.ok(/hero\.addEventListener\("keydown"/.test(html), "index.html: hero refresh should support keyboard activation");
-
-  assert.ok(objectMatch, "index.html: missing translations object");
-  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  const mindHtml = readFileSync(resolve(root, "mind2report/index.html"), "utf8");
+  const mindFooterMatch = mindHtml.match(/<footer id="contact" class="footer">[\s\S]*?<\/footer>/);
+  assert.ok(mindFooterMatch, "mind2report/index.html: missing shared site footer");
   assert.equal(
-    context.translations.en["hero.refreshLabel"],
-    "Replay the homepage hero refresh effect",
-    "index.html: English hero refresh label should be present"
-  );
-  assert.equal(
-    context.translations.zh["hero.refreshLabel"],
-    "刷新首页视觉效果",
-    "index.html: Chinese hero refresh label should be present"
+    normalizeMarkup(mindFooterMatch[0]),
+    expectedFooter,
+    "mind2report/index.html: footer markup should match the shared site footer"
   );
 };
 
@@ -850,7 +1031,7 @@ const validateHomeHierarchyTitle = () => {
   );
   assert.ok(hierarchyMatch, "index.html: missing hierarchy section");
   assert.ok(
-    /<div class="section-actions">\s*<a class="btn ghost" href="\.\/knowledge_memory\/" data-i18n="hierarchy\.cta">Explore Scientific Knowledge Discovery<\/a>\s*<\/div>/.test(
+    /<div class="section-actions">\s*<a class="btn ghost" href="\.\/knowledge_memory\/" data-i18n="hierarchy\.cta">Explore Scientific Literature Mining<\/a>\s*<\/div>/.test(
       hierarchyMatch[1]
     ),
     "index.html: hierarchy section should link to the scientific knowledge discovery page"
@@ -870,12 +1051,12 @@ const validateHomeHierarchyTitle = () => {
   );
   assert.equal(
     context.translations.en["hierarchy.cta"],
-    "Explore Scientific Knowledge Discovery",
+    "Explore Scientific Literature Mining",
     "index.html: English hierarchy CTA should be synchronized"
   );
   assert.equal(
     context.translations.zh["hierarchy.cta"],
-    "了解科学知识发现",
+    "了解科技文献挖掘",
     "index.html: Chinese hierarchy CTA should be synchronized"
   );
 };
@@ -889,7 +1070,7 @@ const validateHomeAcademicCopy = () => {
   const expectedTranslations = {
     en: {
       "meta.description":
-        "USTC AGI research on scientific task solving, scientific knowledge discovery, and the Science of AI.",
+        "USTC AGI research on scientific data modeling, scientific literature mining, scientific inference agents, and the Science of AI.",
       "hero.subtitle":
         "Centered on the intelligent cognition of complex systems, we organize AI for Science into a three-layer research agenda: Scientific Task Solving, Scientific Law Discovery, and Science of AI. This agenda progresses from using AI to solve complex scientific problems efficiently, through the autonomous discovery of scientific laws and mechanisms, to investigating the fundamental principles governing AI's own learning, reasoning, and evolution.",
       "hierarchy.description":
@@ -921,7 +1102,7 @@ const validateHomeAcademicCopy = () => {
     },
     zh: {
       "meta.description":
-        "中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学任务求解、科学知识发现与人工智能科学。",
+        "中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学数据建模、科技文献挖掘、科学推演智能体与 Science of AI。",
       "hero.subtitle":
         "围绕复杂系统智能认知，构建“科学任务求解—科学规律发现—Science of AI”三层 AI for Science 研究布局：从利用 AI 高效求解复杂科学问题，到借助 AI 自主发现科学规律与机制，再到探索人工智能自身学习、推理与演化的基本规律。",
       "hierarchy.description":
@@ -974,7 +1155,7 @@ const validateHomeAcademicCopy = () => {
   );
 
   assert.ok(
-    /<meta\s+name="description"\s+content="中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学任务求解、科学知识发现与人工智能科学。"\s*\/>/.test(html),
+    /<meta\s+name="description"\s+content="中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学数据建模、科技文献挖掘、科学推演智能体与 Science of AI。"\s*\/>/.test(html),
     "index.html: static metadata should use the revised academic framing"
   );
   assert.ok(
@@ -1201,6 +1382,35 @@ const validatePapersHero = () => {
   assert.ok(!/>GitHub<\/a>/.test(heroMatch[1]), "papers/index.html: hero GitHub button should be removed");
 };
 
+const validatePapersIdentity = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    /<title>论文列表 \| 科技文献挖掘<\/title>/.test(html),
+    "papers/index.html: document title should use the current literature-mining identity"
+  );
+  assert.ok(objectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["meta.title"],
+    "Publications | Scientific Literature Mining",
+    "papers/index.html: English metadata should use Scientific Literature Mining"
+  );
+  assert.equal(
+    context.translations.zh["meta.title"],
+    "论文列表 | 科技文献挖掘",
+    "papers/index.html: Chinese metadata should use 科技文献挖掘"
+  );
+  assert.ok(
+    !/科学知识获取|Scientific Knowledge Acquisition/.test(html),
+    "papers/index.html: stale scientific knowledge acquisition identity should be removed"
+  );
+};
+
 const validatePapersYearLabels = () => {
   const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
   const year2026Match = html.match(/<h2 id="papers-2026" data-i18n="year\.2026">([^<]+)<\/h2>/);
@@ -1346,8 +1556,8 @@ const validateKnowledgeDiscoveryPage = () => {
 
   assert.ok(heroMatch, "knowledge_memory/index.html: missing hero section");
   assert.ok(
-    /<h1 data-i18n="hero\.title">科学知识发现<\/h1>/.test(heroMatch[1]),
-    "knowledge_memory/index.html: hero should introduce scientific knowledge discovery"
+    /<h1 data-i18n="hero\.title">科技文献挖掘<\/h1>/.test(heroMatch[1]),
+    "knowledge_memory/index.html: hero should introduce scientific literature mining"
   );
   assert.ok(
     !/class="eyebrow"/.test(heroMatch[1]),
@@ -1394,13 +1604,13 @@ const validateKnowledgeDiscoveryPage = () => {
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
   assert.equal(
     context.translations.en["meta.title"],
-    "Scientific Knowledge Discovery",
-    "knowledge_memory/index.html: English metadata should match the knowledge-discovery scope"
+    "Scientific Literature Mining",
+    "knowledge_memory/index.html: English metadata should match the literature-mining scope"
   );
   assert.equal(
     context.translations.zh["meta.title"],
-    "科学知识发现",
-    "knowledge_memory/index.html: Chinese metadata should match the knowledge-discovery scope"
+    "科技文献挖掘",
+    "knowledge_memory/index.html: Chinese metadata should match the literature-mining scope"
   );
   assert.equal(
     context.translations.en["intro.title"],
@@ -1455,8 +1665,8 @@ const validateDataModelingPage = () => {
   );
 
   assert.ok(
-    /<h1 data-i18n="hero\.title">科学任务求解<\/h1>/.test(html),
-    "data_modeling/index.html: hero title should introduce scientific task solving"
+    /<h1 data-i18n="hero\.title">科学数据建模<\/h1>/.test(html),
+    "data_modeling/index.html: hero title should introduce scientific data modeling"
   );
   assert.ok(
     !/data-i18n="hero\.eyebrow"/.test(html),
@@ -1495,7 +1705,7 @@ const validateDataModelingPage = () => {
 
   assert.equal(
     context.translations.en["nav.data"],
-    "Scientific Task Solving",
+    "Scientific Data Modeling",
     "data_modeling/index.html: English navigation label should name the new section"
   );
   assert.equal(
@@ -1505,13 +1715,13 @@ const validateDataModelingPage = () => {
   );
   assert.equal(
     context.translations.en["meta.title"],
-    "Scientific Task Solving",
-    "data_modeling/index.html: English metadata should match the task-solving scope"
+    "Scientific Data Modeling",
+    "data_modeling/index.html: English metadata should match the data-modeling scope"
   );
   assert.equal(
     context.translations.zh["meta.title"],
-    "科学任务求解",
-    "data_modeling/index.html: Chinese metadata should match the task-solving scope"
+    "科学数据建模",
+    "data_modeling/index.html: Chinese metadata should match the data-modeling scope"
   );
   assert.equal(
     context.translations.en["intro.title"],
@@ -1729,8 +1939,16 @@ const validateScientificInferencePage = () => {
   const context = {};
   const expectedTranslations = {
     en: {
-      "meta.title": "Scientific Inference Foundation Model | USTC-AGI",
-      "hero.title": "Scientific Inference Foundation Model",
+      "meta.title": "Scientific Inference Agent | USTC-AGI",
+      "hero.title": "Scientific Inference Agent",
+      "hero.subtitle":
+        "Start from evidence and place hypotheses, plans, and expected outcomes in one verifiable loop. The agent does not replace scientific judgment; it organizes literature, data, mechanisms, tools, and validation into a traceable inference process.",
+      "definition.description":
+        "For open-ended research questions, the agent accepts hypotheses, ideas, or anomalous observations from researchers. Under evidential and scientific constraints, it organizes multi-step reasoning, tool use, and validation feedback into a proposal that can be tested, compared, and revised.",
+      "definition.model.title": "The Agent Organizes a Traceable Validation Path",
+      "collaboration.description":
+        "Researchers retain problem framing, value judgments, and final decisions. The agent compresses complex inference into reviewable hypotheses, plans, and expectations while exposing evidence and risk.",
+      "collaboration.model.title": "The Agent Organizes Inference",
       "loop.evidence.title": "Literature Evidence Mining",
       "loop.evidence.question": "What evidence supports it?",
       "loop.context.title": "Context and Data Modeling",
@@ -1741,8 +1959,16 @@ const validateScientificInferencePage = () => {
       "loop.evaluate.question": "What outcomes should we expect?",
     },
     zh: {
-      "meta.title": "科学推演大模型 | USTC-AGI",
-      "hero.title": "科学推演大模型",
+      "meta.title": "科学推演智能体 | USTC-AGI",
+      "hero.title": "科学推演智能体",
+      "hero.subtitle":
+        "从证据出发，让假设、方案与预期结果进入同一个可验证闭环。智能体不替代科学家作出结论，而是把文献、数据、机制、工具与验证组织成可追踪的推演过程。",
+      "definition.description":
+        "科学推演智能体面向开放科研问题，接收研究者提出的假设、想法或异常发现，在证据与科学约束下组织多步推理、工具调用和验证反馈，最终形成能够被检验、被比较、被修正的研究方案。",
+      "definition.model.title": "智能体组织一条可追踪的验证路径",
+      "collaboration.description":
+        "研究者保留问题定义、价值判断和最终决策；智能体把复杂推演压缩为可审阅的假设、方案与预期，并显式暴露其中的依据和风险。",
+      "collaboration.model.title": "智能体组织推演",
       "loop.evidence.title": "文献证据挖掘",
       "loop.evidence.question": "用什么证据支撑？",
       "loop.context.title": "情境与数据建模",
@@ -1756,7 +1982,7 @@ const validateScientificInferencePage = () => {
 
   assert.ok(/<body class="inference-page">/.test(html), "scientific inference page should use its scoped body class");
   assert.ok(
-    /<h1 data-i18n="hero\.title">科学推演大模型<\/h1>/.test(html),
+    /<h1 data-i18n="hero\.title">科学推演智能体<\/h1>/.test(html),
     "scientific inference page should expose the Chinese fallback title"
   );
   assert.ok(
@@ -1853,7 +2079,7 @@ const validateScientificInferencePage = () => {
     "ref.css: inference loop should become a vertical mobile sequence"
   );
   assert.ok(
-    /@media \(max-width: 760px\)[\s\S]*?\.inference-page \.section\s*\{[\s\S]*?scroll-margin-top:\s*150px/.test(css),
+    /@media \(max-width: 760px\)[\s\S]*?\.inference-page \.section\s*\{[\s\S]*?scroll-margin-top:\s*166px/.test(css),
     "ref.css: inference section anchors should clear the taller mobile navigation"
   );
   assert.ok(
@@ -1900,10 +2126,15 @@ for (const page of pages) {
   validateTargetBlankSafety(page);
   validateFooterTitleRemoved(page);
 }
+validateTargetBlankSafety("mind2report/index.html");
 
 validateUnifiedFooters();
+validateSeoMetadata();
+validateCanonicalExternalLinks();
+validateAccessibilityAndMobileFixes();
+validateReadmeIdentity();
+validateLocalLinksAndMarkup();
 
-validateHomeHeroRefresh();
 validateHomeAiForScienceImportanceRemoved();
 validateHomeMeaningsModule();
 validateHomeResearchPurposeModule();
@@ -1916,6 +2147,7 @@ validateHomeScienceOfAiModule();
 validateHomeVisionRemoved();
 validateHomeTimelineRemoved();
 validatePapersHero();
+validatePapersIdentity();
 validatePapersYearLabels();
 validatePapersListHeaderRemoved();
 validateChemTableVenueLink();

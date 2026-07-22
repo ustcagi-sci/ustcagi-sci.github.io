@@ -20,6 +20,14 @@
       property="og:image"
       content="https://ustcagi-sci.github.io/mind2report/assets/1-teaser.jpg"
     />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mind2Report" />
+    <meta
+      name="twitter:description"
+      content="A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis"
+    />
+    <meta name="twitter:image" content="https://ustcagi-sci.github.io/mind2report/assets/1-teaser.jpg" />
+    <link rel="canonical" href="https://ustcagi-sci.github.io/mind2report/" />
     <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -321,11 +329,21 @@
       </section>
     </main>
 
-    <footer>
-      <div class="container footer-inner">
-        <p>© <span id="year">2026</span> Mind2Report Team</p>
-        <p>USTC-AGI · AI for Science</p>
+    <footer id="contact" class="footer">
+      <div>
+        <p class="eyebrow" data-i18n="footer.eyebrow">联系合作 · Connect</p>
+        <p data-i18n="footer.description">
+          欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体与 Science of AI 开展交流合作。
+        </p>
       </div>
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/ustc-ai4science" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+      </p>
     </footer>
 
     <script>

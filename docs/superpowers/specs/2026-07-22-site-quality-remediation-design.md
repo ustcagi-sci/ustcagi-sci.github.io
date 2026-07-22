@@ -15,9 +15,10 @@
 1. 术语以当前中文导航为唯一页面身份：`科技文献挖掘 / Scientific Literature Mining`、`科学数据建模 / Scientific Data Modeling`、`科学推演智能体 / Scientific Inference Agent`。科学知识发现、科学任务求解继续作为研究目标或上层概念出现，但不再作为页面标题和导航别名。
 2. 失效的学术乐问入口改指向仍可访问的 Lewen API 官方文档；学术鲁班保留项目说明但撤下失效网址，显示维护状态。历史 GitHub 重定向链接改成浏览器已确认的规范仓库地址。
 3. 六个主页面补齐 canonical、Open Graph URL/图片和 Twitter Card；Mind2Report 补 canonical 与 Twitter Card；新增 `robots.txt` 和 `sitemap.xml`。
-4. Mind2Report 的移动端标题使用可在 320px 与 390px 视口内收缩的字号，并把锚点留白增加到导航高度以上。科学推演页同步增加锚点安全间距。
-5. 首页主视觉不再伪装成覆盖整块页面的按钮，移除对应键盘/点击重播逻辑；语言切换按钮获得清晰的键盘焦点环。
-6. 扩展现有 `scripts/verify-i18n.mjs`，检查术语矩阵、SEO、规范链接、失效域名、Mind2Report 移动端规则、站点地图和页脚一致性。
+4. Mind2Report 的移动端标题使用可在 320px 与 390px 视口内收缩的字号，移除会制造横向滚动的最小页面宽度，并把锚点留白增加到导航高度以上。科学推演页同步增加锚点安全间距。
+5. Mind2Report 使用与六个主页面完全相同的联系、GitHub 与许可页脚结构，并在独立样式表中保持一致的深色视觉。
+6. 首页主视觉不再伪装成覆盖整块页面的按钮，移除对应键盘/点击重播逻辑；语言切换按钮获得清晰的键盘焦点环。
+7. 扩展现有 `scripts/verify-i18n.mjs`，检查术语矩阵、SEO、规范链接、失效域名、Mind2Report 移动端规则、站点地图和页脚一致性。
 
 ## 验证
 

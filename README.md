@@ -1,16 +1,20 @@
-# AI for Scientific Literature Mining
+# USTC-AGI · AI for Science
 
-This repository contains the research group homepage for **AI for Scientific Literature Mining** at USTC AGI.
+This repository hosts the USTC-AGI research homepage for AI for Science:
+[https://ustcagi-sci.github.io/](https://ustcagi-sci.github.io/).
 
-## 🌐 Live Homepage
-The research group homepage is available at:
-[https://ustcagi-sci.github.io/](https://ustcagi-sci.github.io/)
+## Research Areas
 
-## 🚀 Research Focus
-We are redefining how AI interacts with scientific literature, evolving from simple paper retrieval to autonomous discovery of scientific laws through a 5-level cognitive hierarchy:
-1. **L1: Paper Search** - Retrieval from massive literature pools.
-2. **L2: Element Interpretation** - Parsing PDF into structured, machine-readable data.
-3. **L3: Information Extraction** - Understanding methods, tasks, and contributions.
-4. **L4: Knowledge Comprehension** - Reasoning and multi-paper synthesis.
-5. **L5: Hypothesis Discovery** - Autonomous discovery and research generation.
+- **Scientific Literature Mining** — retrieval, document understanding, evidence synthesis, and testable hypothesis formation.
+- **Scientific Data Modeling** — structured modeling for tabular data, time series, experiments, and observations.
+- **Scientific Inference Agent** — evidence-grounded reasoning, experiment planning, simulation, and verification.
+- **Science of AI** — empirical and theoretical study of learning, reasoning, emergence, and intelligent systems.
 
+## Site Structure
+
+The site is built as static HTML and CSS. The six bilingual main pages share `ref.css` and inline translation dictionaries; `mind2report/` is an independent project page. Run the site checks before publishing:
+
+```bash
+node scripts/verify-i18n.mjs
+git diff --check
+```

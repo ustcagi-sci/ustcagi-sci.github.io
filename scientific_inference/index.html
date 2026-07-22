@@ -3,18 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>科学推演大模型 | USTC-AGI</title>
+    <title>科学推演智能体 | USTC-AGI</title>
     <meta
       name="description"
-      content="中国科大 AGI 团队关于科学推演大模型的研究愿景：以证据为起点，协同文献挖掘、科学数据建模、实验规划与仿真评估，形成可验证的科研闭环。"
+      content="中国科大 AGI 团队关于科学推演智能体的研究愿景：以证据为起点，协同文献挖掘、科学数据建模、实验规划与仿真评估，形成可验证的科研闭环。"
     />
     <meta name="theme-color" content="#082c61" />
-    <meta property="og:title" content="科学推演大模型 | USTC-AGI" />
+    <meta property="og:title" content="科学推演智能体 | USTC-AGI" />
     <meta
       property="og:description"
       content="以证据为起点，让假设、方案与预期结果进入同一个可验证闭环。"
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ustcagi-sci.github.io/scientific_inference/" />
+    <meta property="og:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="科学推演智能体 | USTC-AGI" />
+    <meta
+      name="twitter:description"
+      content="以证据为起点，让假设、方案与预期结果进入同一个可验证闭环。"
+    />
+    <meta name="twitter:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <link rel="canonical" href="https://ustcagi-sci.github.io/scientific_inference/" />
     <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -59,9 +69,9 @@
     <header id="top" class="inference-hero">
       <div class="inference-hero-grid">
         <div class="inference-hero-copy">
-          <h1 data-i18n="hero.title">科学推演大模型</h1>
+          <h1 data-i18n="hero.title">科学推演智能体</h1>
           <p class="inference-hero-subtitle" data-i18n="hero.subtitle">
-            从证据出发，让假设、方案与预期结果进入同一个可验证闭环。模型不替代科学家作出结论，而是把文献、数据、机制、工具与验证组织成可追踪的推演过程。
+            从证据出发，让假设、方案与预期结果进入同一个可验证闭环。智能体不替代科学家作出结论，而是把文献、数据、机制、工具与验证组织成可追踪的推演过程。
           </p>
           <div class="hero-actions">
             <a class="btn primary" href="#loop" data-i18n="hero.cta.loop">查看推演闭环</a>
@@ -90,7 +100,7 @@
         <div class="section-header">
           <h2 data-i18n="definition.title">科学推演，不是生成一个答案</h2>
           <p data-i18n="definition.description">
-            科学推演大模型面向开放科研问题，接收研究者提出的假设、想法或异常发现，在证据与科学约束下组织多步推理、工具调用和验证反馈，最终形成能够被检验、被比较、被修正的研究方案。
+            科学推演智能体面向开放科研问题，接收研究者提出的假设、想法或异常发现，在证据与科学约束下组织多步推理、工具调用和验证反馈，最终形成能够被检验、被比较、被修正的研究方案。
           </p>
         </div>
 
@@ -112,7 +122,7 @@
 
           <article class="inference-model-card">
             <span class="inference-card-label" data-i18n="definition.model.label">Inference System</span>
-            <h3 data-i18n="definition.model.title">模型组织一条可追踪的验证路径</h3>
+            <h3 data-i18n="definition.model.title">智能体组织一条可追踪的验证路径</h3>
             <p data-i18n="definition.model.description">
               系统连接文献证据、实验数据、科学世界模型与专业工具，显式记录关键假设、不确定性和失败条件。
             </p>
@@ -284,7 +294,7 @@
             </div>
             <div>
               <span>02</span>
-              <strong data-i18n="collaboration.model.title">模型组织推演</strong>
+              <strong data-i18n="collaboration.model.title">智能体组织推演</strong>
               <p data-i18n="collaboration.model.description">连接证据、约束与工具，比较多条候选路径。</p>
             </div>
             <div>
@@ -411,35 +421,35 @@
       </div>
       <div class="footer-actions">
         <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
-        <a class="btn ghost" href="https://github.com/orgs/ustc-ai4science/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn ghost" href="https://github.com/ustc-ai4science" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
       <p class="footer-note">
         © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
-        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
       </p>
     </footer>
 
     <script>
       const translations = {
         en: {
-          "meta.title": "Scientific Inference Foundation Model | USTC-AGI",
+          "meta.title": "Scientific Inference Agent | USTC-AGI",
           "meta.description":
-            "USTC AGI's research vision for a Scientific Inference Foundation Model that connects evidence mining, scientific data modeling, experiment planning, simulation, and evaluation in a verifiable research loop.",
+            "USTC AGI's research vision for a Scientific Inference Agent that connects evidence mining, scientific data modeling, experiment planning, simulation, and evaluation in a verifiable research loop.",
           "brand.title": "USTC-AGI",
           "brand.subtitle": "AI for Science",
-          "nav.data": "Scientific Task Solving",
-          "nav.knowledge": "Scientific Knowledge Discovery",
-          "nav.inference": "Scientific Inference",
+          "nav.data": "Scientific Data Modeling",
+          "nav.knowledge": "Scientific Literature Mining",
+          "nav.inference": "Scientific Inference Agent",
           "nav.aiScience": "Science of AI",
           "nav.papers": "Publications",
-          "hero.title": "Scientific Inference Foundation Model",
+          "hero.title": "Scientific Inference Agent",
           "hero.subtitle":
-            "Start from evidence and place hypotheses, plans, and expected outcomes in one verifiable loop. The model does not replace scientific judgment; it organizes literature, data, mechanisms, tools, and validation into a traceable inference process.",
+            "Start from evidence and place hypotheses, plans, and expected outcomes in one verifiable loop. The agent does not replace scientific judgment; it organizes literature, data, mechanisms, tools, and validation into a traceable inference process.",
           "hero.cta.loop": "Explore the Inference Loop",
           "hero.cta.architecture": "View the Architecture",
           "definition.title": "Scientific Inference Is More Than Generating an Answer",
           "definition.description":
-            "For open-ended research questions, the model accepts hypotheses, ideas, or anomalous observations from researchers. Under evidential and scientific constraints, it organizes multi-step reasoning, tool use, and validation feedback into a proposal that can be tested, compared, and revised.",
+            "For open-ended research questions, the agent accepts hypotheses, ideas, or anomalous observations from researchers. Under evidential and scientific constraints, it organizes multi-step reasoning, tool use, and validation feedback into a proposal that can be tested, compared, and revised.",
           "definition.input.label": "Researcher Input",
           "definition.input.title": "Researchers Define Questions Worth Answering",
           "definition.input.description":
@@ -448,7 +458,7 @@
           "definition.input.idea": "New idea",
           "definition.input.discovery": "New discovery",
           "definition.model.label": "Inference System",
-          "definition.model.title": "The Model Organizes a Traceable Validation Path",
+          "definition.model.title": "The Agent Organizes a Traceable Validation Path",
           "definition.model.description":
             "The system connects literature evidence, experimental data, scientific world models, and specialist tools while explicitly recording assumptions, uncertainty, and failure conditions.",
           "definition.model.evidence": "Evidence",
@@ -510,10 +520,10 @@
           "collaboration.eyebrow": "Human–AI Collaboration",
           "collaboration.title": "The Outputs Are Three Verifiable Objects, Not One Answer",
           "collaboration.description":
-            "Researchers retain problem framing, value judgments, and final decisions. The model compresses complex inference into reviewable hypotheses, plans, and expectations while exposing evidence and risk.",
+            "Researchers retain problem framing, value judgments, and final decisions. The agent compresses complex inference into reviewable hypotheses, plans, and expectations while exposing evidence and risk.",
           "collaboration.human.title": "People Frame the Problem",
           "collaboration.human.description": "Define scientific value, research boundaries, and acceptable risk.",
-          "collaboration.model.title": "The Model Organizes Inference",
+          "collaboration.model.title": "The Agent Organizes Inference",
           "collaboration.model.description": "Connect evidence, constraints, and tools, and compare multiple candidate paths.",
           "collaboration.joint.title": "Both Make the Judgment",
           "collaboration.joint.description": "Use validation results to revise hypotheses, plans, and the next question.",
@@ -568,9 +578,9 @@
           "footer.note": "USTC AGI · Licensed under"
         },
         zh: {
-          "meta.title": "科学推演大模型 | USTC-AGI",
+          "meta.title": "科学推演智能体 | USTC-AGI",
           "meta.description":
-            "中国科大 AGI 团队关于科学推演大模型的研究愿景：以证据为起点，协同文献挖掘、科学数据建模、实验规划与仿真评估，形成可验证的科研闭环。",
+            "中国科大 AGI 团队关于科学推演智能体的研究愿景：以证据为起点，协同文献挖掘、科学数据建模、实验规划与仿真评估，形成可验证的科研闭环。",
           "brand.title": "USTC-AGI",
           "brand.subtitle": "AI for Science",
           "nav.data": "科学数据建模",
@@ -578,14 +588,14 @@
           "nav.inference": "科学推演智能体",
           "nav.aiScience": "Science of AI",
           "nav.papers": "论文列表",
-          "hero.title": "科学推演大模型",
+          "hero.title": "科学推演智能体",
           "hero.subtitle":
-            "从证据出发，让假设、方案与预期结果进入同一个可验证闭环。模型不替代科学家作出结论，而是把文献、数据、机制、工具与验证组织成可追踪的推演过程。",
+            "从证据出发，让假设、方案与预期结果进入同一个可验证闭环。智能体不替代科学家作出结论，而是把文献、数据、机制、工具与验证组织成可追踪的推演过程。",
           "hero.cta.loop": "查看推演闭环",
           "hero.cta.architecture": "了解系统分层",
           "definition.title": "科学推演，不是生成一个答案",
           "definition.description":
-            "科学推演大模型面向开放科研问题，接收研究者提出的假设、想法或异常发现，在证据与科学约束下组织多步推理、工具调用和验证反馈，最终形成能够被检验、被比较、被修正的研究方案。",
+            "科学推演智能体面向开放科研问题，接收研究者提出的假设、想法或异常发现，在证据与科学约束下组织多步推理、工具调用和验证反馈，最终形成能够被检验、被比较、被修正的研究方案。",
           "definition.input.label": "研究者输入",
           "definition.input.title": "研究者定义值得回答的问题",
           "definition.input.description": "人负责提出有科学价值的问题、判断领域边界，并把新的观察带入系统。",
@@ -593,7 +603,7 @@
           "definition.input.idea": "新想法",
           "definition.input.discovery": "新发现",
           "definition.model.label": "推演系统",
-          "definition.model.title": "模型组织一条可追踪的验证路径",
+          "definition.model.title": "智能体组织一条可追踪的验证路径",
           "definition.model.description":
             "系统连接文献证据、实验数据、科学世界模型与专业工具，显式记录关键假设、不确定性和失败条件。",
           "definition.model.evidence": "证据",
@@ -655,10 +665,10 @@
           "collaboration.eyebrow": "人机协同",
           "collaboration.title": "输出不是“一个答案”，而是三类可验证对象",
           "collaboration.description":
-            "研究者保留问题定义、价值判断和最终决策；模型把复杂推演压缩为可审阅的假设、方案与预期，并显式暴露其中的依据和风险。",
+            "研究者保留问题定义、价值判断和最终决策；智能体把复杂推演压缩为可审阅的假设、方案与预期，并显式暴露其中的依据和风险。",
           "collaboration.human.title": "人定义问题",
           "collaboration.human.description": "明确科学价值、研究边界与可接受风险。",
-          "collaboration.model.title": "模型组织推演",
+          "collaboration.model.title": "智能体组织推演",
           "collaboration.model.description": "连接证据、约束与工具，比较多条候选路径。",
           "collaboration.joint.title": "共同作出判断",
           "collaboration.joint.description": "依据验证结果修正假设、方案与下一轮问题。",
