@@ -545,6 +545,133 @@ const validateHomeResearchPurposeModule = () => {
   }
 };
 
+const validateHomeParadigmShiftModule = () => {
+  const html = readFileSync(resolve(root, "index.html"), "utf8");
+  const css = readFileSync(resolve(root, "ref.css"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const sectionMatches = [
+    ...html.matchAll(/<section id="paradigm-shift" class="section paradigm-shift">([\s\S]*?)<\/section>/g),
+  ];
+  const purposeIndex = html.indexOf('<section id="research-purpose"');
+  const paradigmIndex = html.indexOf('<section id="paradigm-shift"');
+  const meaningsIndex = html.indexOf('<section id="ai4science-meanings"');
+  const expectedTranslations = {
+    en: {
+      "paradigm.title":
+        "Artificial Intelligence Is Driving a Major Leap and Profound Transformation in Scientific Research Paradigms",
+      "paradigm.description":
+        "Scientific research is advancing from observation, theory, computation, and data-intensive discovery toward an intelligent paradigm powered by foundation models and scientific agents.",
+      "paradigm.statement":
+        "AI is evolving from an auxiliary analytical tool into a new research infrastructure that connects scientific questions, data, models, experiments, and knowledge—expanding the space scientists can explore, extending cognitive boundaries, and accelerating work on complex scientific problems.",
+      "paradigm.empirical.title": "Empirical Paradigm",
+      "paradigm.empirical.method": "Observation and induction",
+      "paradigm.empirical.example": "Archimedes' principle",
+      "paradigm.theoretical.title": "Theoretical Paradigm",
+      "paradigm.theoretical.method": "Mathematical and theoretical reasoning",
+      "paradigm.theoretical.example": "Newton's law of universal gravitation",
+      "paradigm.computational.title": "Computational Paradigm",
+      "paradigm.computational.method": "Numerical simulation and computational experiments",
+      "paradigm.computational.example": "Global climate models",
+      "paradigm.data.title": "Data Paradigm",
+      "paradigm.data.method": "Data-intensive scientific discovery",
+      "paradigm.data.example": "The Human Genome Project",
+      "paradigm.intelligent.title": "Intelligent Paradigm",
+      "paradigm.intelligent.method": "Foundation models and scientific agents",
+      "paradigm.intelligent.example": "Protein structure prediction",
+    },
+    zh: {
+      "paradigm.title": "人工智能正引领科研范式的重大跃迁与深刻变革",
+      "paradigm.description":
+        "科学研究正从依赖观察归纳、理论推演、数值计算与海量数据，迈向由基础模型和智能体协同驱动的智能范式。",
+      "paradigm.statement":
+        "人工智能正从辅助分析工具演进为连接科学问题、数据、模型、实验与知识的新型科研基础设施，帮助科学家拓展可探索空间、突破认知边界，加速解析复杂重大科学问题。",
+      "paradigm.empirical.title": "经验范式",
+      "paradigm.empirical.method": "观察与归纳",
+      "paradigm.empirical.example": "阿基米德浮力定律",
+      "paradigm.theoretical.title": "理论范式",
+      "paradigm.theoretical.method": "数学与理论推演",
+      "paradigm.theoretical.example": "牛顿万有引力定律",
+      "paradigm.computational.title": "计算范式",
+      "paradigm.computational.method": "数值模拟与计算实验",
+      "paradigm.computational.example": "全球气候模型",
+      "paradigm.data.title": "数据范式",
+      "paradigm.data.method": "数据密集型科学发现",
+      "paradigm.data.example": "人类基因组计划",
+      "paradigm.intelligent.title": "智能范式",
+      "paradigm.intelligent.method": "基础模型与智能体协同",
+      "paradigm.intelligent.example": "蛋白质结构预测",
+    },
+  };
+
+  assert.equal(
+    sectionMatches.length,
+    1,
+    "index.html: homepage should contain exactly one scientific paradigm shift section"
+  );
+  const paradigmSection = sectionMatches[0][1];
+  assert.equal(
+    (paradigmSection.match(/<article class="paradigm-stage(?: is-intelligent)?" role="listitem">/g) || [])
+      .length,
+    5,
+    "index.html: scientific paradigm shift section should contain exactly five stages"
+  );
+  assert.ok(purposeIndex >= 0, "index.html: missing research purpose section");
+  assert.ok(paradigmIndex > purposeIndex, "index.html: paradigm shift section should follow research purpose");
+  assert.ok(meaningsIndex > paradigmIndex, "index.html: meanings section should follow paradigm shift");
+
+  assert.ok(objectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  const visibleFallbacks = Object.fromEntries(
+    [
+      ...paradigmSection.matchAll(
+        /<(h2|h3|p|span)[^>]*data-i18n="([^"]+)"[^>]*>([\s\S]*?)<\/\1>/g
+      ),
+    ].map(([, , key, value]) => [
+      key,
+      value.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+    ])
+  );
+
+  for (const language of ["en", "zh"]) {
+    for (const [key, value] of Object.entries(expectedTranslations[language])) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `index.html: ${language} translation should match for ${key}`
+      );
+    }
+  }
+
+  for (const [key, value] of Object.entries(expectedTranslations.en)) {
+    assert.equal(
+      visibleFallbacks[key],
+      value,
+      `index.html: visible fallback should match English translation for ${key}`
+    );
+  }
+
+  assert.ok(
+    /\.paradigm-grid\s*\{[\s\S]*?grid-template-columns:\s*repeat\(5,\s*minmax\(0,\s*1fr\)\)/.test(css),
+    "ref.css: desktop paradigm progression should use five columns"
+  );
+  assert.ok(
+    /\.paradigm-stage:nth-child\(5\)\s*\{[\s\S]*?min-height:\s*264px/.test(css),
+    "ref.css: final paradigm stage should create the top of the desktop ascent"
+  );
+  assert.ok(
+    /\.paradigm-stage:not\(:last-child\)::after\s*\{[\s\S]*?content:\s*""/.test(css),
+    "ref.css: paradigm connectors should be decorative rather than generated text"
+  );
+  assert.ok(
+    /@media \(max-width:\s*760px\)[\s\S]*?\.paradigm-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr/.test(css),
+    "ref.css: mobile paradigm progression should collapse to one column"
+  );
+};
+
 const validateHomeDataModelingModule = () => {
   const html = readFileSync(resolve(root, "index.html"), "utf8");
   const objectMatch = html.match(
@@ -1618,6 +1745,7 @@ validateHomeHeroRefresh();
 validateHomeAiForScienceImportanceRemoved();
 validateHomeMeaningsModule();
 validateHomeResearchPurposeModule();
+validateHomeParadigmShiftModule();
 validateHomeDataModelingModule();
 validateHomeHierarchyTitle();
 validateHomeAcademicCopy();
