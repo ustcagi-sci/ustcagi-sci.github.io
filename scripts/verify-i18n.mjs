@@ -845,8 +845,8 @@ const validateHomeHierarchyTitle = () => {
   const context = {};
 
   assert.ok(
-    /<h2 data-i18n="hierarchy\.title">科学知识发现：科技文献认知<\/h2>/.test(html),
-    "index.html: hierarchy title should be 科学知识发现：科技文献认知"
+    /<h2 data-i18n="hierarchy\.title">科技文献挖掘<\/h2>/.test(html),
+    "index.html: hierarchy title should be 科技文献挖掘"
   );
   assert.ok(hierarchyMatch, "index.html: missing hierarchy section");
   assert.ok(
@@ -860,13 +860,13 @@ const validateHomeHierarchyTitle = () => {
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
   assert.equal(
     context.translations.en["hierarchy.title"],
-    "Scientific Knowledge Discovery: Scientific Literature Cognition",
-    "index.html: English hierarchy title should lead with Scientific Knowledge Discovery"
+    "Scientific Literature Mining",
+    "index.html: English hierarchy title should be Scientific Literature Mining"
   );
   assert.equal(
     context.translations.zh["hierarchy.title"],
-    "科学知识发现：科技文献认知",
-    "index.html: Chinese hierarchy title should lead with 科学知识发现"
+    "科技文献挖掘",
+    "index.html: Chinese hierarchy title should be 科技文献挖掘"
   );
   assert.equal(
     context.translations.en["hierarchy.cta"],
