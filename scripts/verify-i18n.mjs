@@ -9,6 +9,7 @@ const pages = [
   "index.html",
   "knowledge_memory/index.html",
   "data_modeling/index.html",
+  "scientific_inference/index.html",
   "science_of_ai/index.html",
   "papers/index.html",
 ];
@@ -204,7 +205,7 @@ const validateNavigation = (relativePath) => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.data", "nav.knowledge", "nav.aiScience", "nav.papers"],
+    ["nav.data", "nav.knowledge", "nav.inference", "nav.aiScience", "nav.papers"],
     `${label}: navigation should match the main page link set`
   );
 
@@ -212,30 +213,42 @@ const validateNavigation = (relativePath) => {
     "index.html": [
       { key: "nav.data", href: "./data_modeling/" },
       { key: "nav.knowledge", href: "./knowledge_memory/" },
+      { key: "nav.inference", href: "./scientific_inference/" },
       { key: "nav.aiScience", href: "./science_of_ai/" },
       { key: "nav.papers", href: "./papers/" },
     ],
     "knowledge_memory/index.html": [
       { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "./" },
+      { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "data_modeling/index.html": [
       { key: "nav.data", href: "./" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.papers", href: "../papers/" },
+    ],
+    "scientific_inference/index.html": [
+      { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.inference", href: "./" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "science_of_ai/index.html": [
       { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "./" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "papers/index.html": [
       { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.papers", href: "./" },
     ],
@@ -253,6 +266,7 @@ const validateNavigation = (relativePath) => {
   const expectedCurrent = {
     "knowledge_memory/index.html": "nav.knowledge",
     "data_modeling/index.html": "nav.data",
+    "scientific_inference/index.html": "nav.inference",
     "science_of_ai/index.html": "nav.aiScience",
     "papers/index.html": "nav.papers",
   }[relativePath];
@@ -288,6 +302,21 @@ const validateNavigation = (relativePath) => {
     navFallbacks["nav.knowledge"],
     "科学知识发现",
     `${label}: knowledge navigation fallback should be 科学知识发现`
+  );
+  assert.equal(
+    context.translations.en["nav.inference"],
+    "Scientific Inference",
+    `${label}: English inference navigation label should be Scientific Inference`
+  );
+  assert.equal(
+    context.translations.zh["nav.inference"],
+    "科学推演",
+    `${label}: Chinese inference navigation label should be 科学推演`
+  );
+  assert.equal(
+    navFallbacks["nav.inference"],
+    "科学推演",
+    `${label}: inference navigation fallback should be 科学推演`
   );
   assert.equal(
     context.translations.en["nav.aiScience"],
@@ -1702,6 +1731,101 @@ const validateScienceOfAiPage = () => {
   }
 };
 
+const validateScientificInferencePage = () => {
+  const html = readFileSync(resolve(root, "scientific_inference/index.html"), "utf8");
+  const css = readFileSync(resolve(root, "ref.css"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const expectedTranslations = {
+    en: {
+      "meta.title": "Scientific Inference Foundation Model | USTC-AGI",
+      "hero.title": "Scientific Inference Foundation Model",
+      "loop.evidence.title": "Literature Evidence Mining",
+      "loop.evidence.question": "What evidence supports it?",
+      "loop.context.title": "Context and Data Modeling",
+      "loop.context.question": "Under what conditions should it be studied?",
+      "loop.plan.title": "Experiment and Path Planning",
+      "loop.plan.question": "What path makes it executable?",
+      "loop.evaluate.title": "Simulation and Outcome Evaluation",
+      "loop.evaluate.question": "What outcomes should we expect?",
+    },
+    zh: {
+      "meta.title": "科学推演大模型 | USTC-AGI",
+      "hero.title": "科学推演大模型",
+      "loop.evidence.title": "文献证据挖掘",
+      "loop.evidence.question": "用什么证据支撑？",
+      "loop.context.title": "情境与数据建模",
+      "loop.context.question": "在什么情境开展？",
+      "loop.plan.title": "实验与路径规划",
+      "loop.plan.question": "靠什么路径实施？",
+      "loop.evaluate.title": "仿真与结果评估",
+      "loop.evaluate.question": "有什么预期成果？",
+    },
+  };
+
+  assert.ok(/<body class="inference-page">/.test(html), "scientific inference page should use its scoped body class");
+  assert.ok(
+    /<h1 data-i18n="hero\.title">科学推演大模型<\/h1>/.test(html),
+    "scientific inference page should expose the Chinese fallback title"
+  );
+  assert.equal(
+    (html.match(/<article class="inference-step /g) || []).length,
+    4,
+    "scientific inference page should contain four loop stages"
+  );
+  assert.equal(
+    (html.match(/<article class="inference-layer" role="listitem">/g) || []).length,
+    4,
+    "scientific inference page should contain four architecture layers"
+  );
+  assert.equal(
+    (html.match(/<article class="inference-output" role="listitem">/g) || []).length,
+    3,
+    "scientific inference page should contain three research outputs"
+  );
+  assert.equal(
+    (html.match(/<article class="inference-metric" role="listitem">/g) || []).length,
+    4,
+    "scientific inference page should contain four trust metrics"
+  );
+  assert.equal(
+    (html.match(/<li class="inference-roadmap-step">/g) || []).length,
+    3,
+    "scientific inference page should contain three roadmap stages"
+  );
+  assert.ok(/href="\.\.\/knowledge_memory\/"/.test(html), "scientific inference page should link to knowledge discovery");
+  assert.ok(/href="\.\.\/data_modeling\/"/.test(html), "scientific inference page should link to task solving");
+
+  assert.ok(objectMatch, "scientific inference page should include a translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  for (const [language, translations] of Object.entries(expectedTranslations)) {
+    for (const [key, value] of Object.entries(translations)) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `scientific_inference/index.html: unexpected ${language} translation for ${key}`
+      );
+    }
+  }
+
+  assert.ok(/\.inference-loop\s*\{/.test(css), "ref.css: missing scientific inference loop layout");
+  assert.ok(/grid-template-areas:\s*"evidence context"/.test(css), "ref.css: inference loop should use the desktop grid");
+  assert.ok(
+    /@media \(max-width: 760px\)[\s\S]*?\.inference-loop\s*\{[\s\S]*?grid-template-areas:\s*"core"/.test(css),
+    "ref.css: inference loop should become a vertical mobile sequence"
+  );
+  assert.ok(
+    /@media \(max-width: 760px\)[\s\S]*?\.inference-page \.section\s*\{[\s\S]*?scroll-margin-top:\s*150px/.test(css),
+    "ref.css: inference section anchors should clear the taller mobile navigation"
+  );
+  assert.ok(
+    /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.inference-orbit/.test(css),
+    "ref.css: inference decorations should respect reduced motion"
+  );
+};
+
 const validateTabletNavigationStyles = () => {
   const css = readFileSync(resolve(root, "ref.css"), "utf8");
   const tabletStart = css.indexOf("@media (min-width: 761px) and (max-width: 1024px)");
@@ -1762,6 +1886,7 @@ validateChemTableVenueLink();
 validateScholarSumVenueLink();
 validateKnowledgeDiscoveryPage();
 validateDataModelingPage();
+validateScientificInferencePage();
 validateScienceOfAiPage();
 validateTabletNavigationStyles();
 validateDirectionsPageRemoved();

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>科学推演大模型 | USTC-AGI</title>
+    <meta
+      name="description"
+      content="中国科大 AGI 团队关于科学推演大模型的研究愿景：以证据为起点，协同文献挖掘、科学数据建模、实验规划与仿真评估，形成可验证的科研闭环。"
+    />
+    <meta name="theme-color" content="#082c61" />
+    <meta property="og:title" content="科学推演大模型 | USTC-AGI" />
+    <meta
+      property="og:description"
+      content="以证据为起点，让假设、方案与预期结果进入同一个可验证闭环。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body class="inference-page">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="USTC-AGI AI for Science">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="../literature-mining-logo.svg" alt="" />
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">USTC-AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">AI for Science</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../data_modeling/" data-i18n="nav.data">科学任务求解</a>
+          <a href="../knowledge_memory/" data-i18n="nav.knowledge">科学知识发现</a>
+          <a href="./" aria-current="page" data-i18n="nav.inference">科学推演</a>
+          <a href="../science_of_ai/" data-i18n="nav.aiScience">Science of AI</a>
+          <a href="../papers/" data-i18n="nav.papers">论文列表</a>
+          <span class="nav-break" aria-hidden="true"></span>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="inference-hero">
+      <div class="inference-hero-grid">
+        <div class="inference-hero-copy">
+          <p class="inference-kicker" data-i18n="hero.kicker">Research Intelligence · 研究愿景</p>
+          <h1 data-i18n="hero.title">科学推演大模型</h1>
+          <p class="inference-hero-subtitle" data-i18n="hero.subtitle">
+            从证据出发，让假设、方案与预期结果进入同一个可验证闭环。模型不替代科学家作出结论，而是把文献、数据、机制、工具与验证组织成可追踪的推演过程。
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#loop" data-i18n="hero.cta.loop">查看推演闭环</a>
+            <a class="btn ghost" href="#architecture" data-i18n="hero.cta.architecture">了解系统分层</a>
+          </div>
+          <div class="inference-rail" role="list" aria-label="Scientific inference workflow">
+            <span role="listitem" data-i18n="rail.evidence">Evidence</span>
+            <i aria-hidden="true">→</i>
+            <span role="listitem" data-i18n="rail.hypothesis">Hypothesis</span>
+            <i aria-hidden="true">→</i>
+            <span role="listitem" data-i18n="rail.plan">Plan</span>
+            <i aria-hidden="true">→</i>
+            <span role="listitem" data-i18n="rail.verify">Verify</span>
+          </div>
+        </div>
+
+        <div class="inference-orbit" aria-hidden="true">
+          <span class="orbit-ring ring-one"></span>
+          <span class="orbit-ring ring-two"></span>
+          <span class="orbit-ring ring-three"></span>
+          <span class="orbit-node node-evidence">E</span>
+          <span class="orbit-node node-model">M</span>
+          <span class="orbit-node node-plan">P</span>
+          <span class="orbit-node node-verify">V</span>
+          <span class="orbit-core">
+            <strong>SIM</strong>
+            <small>Reason · Plan · Verify</small>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="definition" class="section inference-definition">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="definition.eyebrow">Model Positioning</p>
+          <h2 data-i18n="definition.title">科学推演，不是生成一个答案</h2>
+          <p data-i18n="definition.description">
+            科学推演大模型面向开放科研问题，接收研究者提出的假设、想法或异常发现，在证据与科学约束下组织多步推理、工具调用和验证反馈，最终形成能够被检验、被比较、被修正的研究方案。
+          </p>
+        </div>
+
+        <div class="inference-definition-grid">
+          <article class="inference-input-card">
+            <span class="inference-card-label" data-i18n="definition.input.label">Researcher Input</span>
+            <h3 data-i18n="definition.input.title">研究者定义值得回答的问题</h3>
+            <p data-i18n="definition.input.description">
+              人负责提出有科学价值的问题、判断领域边界，并把新的观察带入系统。
+            </p>
+            <ul class="inference-chip-list" aria-label="Researcher inputs">
+              <li data-i18n="definition.input.hypothesis">新假设</li>
+              <li data-i18n="definition.input.idea">新想法</li>
+              <li data-i18n="definition.input.discovery">新发现</li>
+            </ul>
+          </article>
+
+          <div class="inference-definition-arrow" aria-hidden="true">→</div>
+
+          <article class="inference-model-card">
+            <span class="inference-card-label" data-i18n="definition.model.label">Inference System</span>
+            <h3 data-i18n="definition.model.title">模型组织一条可追踪的验证路径</h3>
+            <p data-i18n="definition.model.description">
+              系统连接文献证据、实验数据、科学世界模型与专业工具，显式记录关键假设、不确定性和失败条件。
+            </p>
+            <div class="inference-model-formula" aria-label="Evidence, model, tools, and feedback">
+              <span data-i18n="definition.model.evidence">证据</span>
+              <b>×</b>
+              <span data-i18n="definition.model.world">模型</span>
+              <b>×</b>
+              <span data-i18n="definition.model.tools">工具</span>
+              <b>×</b>
+              <span data-i18n="definition.model.feedback">反馈</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="loop" class="section highlights inference-loop-section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="loop.eyebrow">Scientific Inference Loop</p>
+          <h2 data-i18n="loop.title">四个问题，构成一次完整科学推演</h2>
+          <p data-i18n="loop.description">
+            每一步都产出下一步可使用的结构化对象，并保留证据来源、条件与不确定性；验证结果再回流到证据与模型，推动下一轮推演。
+          </p>
+        </div>
+
+        <div class="inference-researcher-rail">
+          <div>
+            <span class="inference-card-label" data-i18n="loop.researcher.label">Human in the Loop</span>
+            <strong data-i18n="loop.researcher.title">研究人员持续提出、筛选与修正</strong>
+          </div>
+          <ul class="inference-chip-list" aria-label="Research prompts">
+            <li data-i18n="loop.researcher.hypothesis">新假设</li>
+            <li data-i18n="loop.researcher.idea">新想法</li>
+            <li data-i18n="loop.researcher.observation">新观测</li>
+          </ul>
+          <span class="researcher-arrow" aria-hidden="true">↘</span>
+        </div>
+
+        <div class="inference-loop">
+          <article class="inference-step step-evidence">
+            <div class="inference-step-head">
+              <span class="inference-step-index">01</span>
+              <span class="inference-step-mode" data-i18n="loop.evidence.mode">Ground</span>
+            </div>
+            <h3 data-i18n="loop.evidence.title">文献证据挖掘</h3>
+            <p class="inference-question" data-i18n="loop.evidence.question">用什么证据支撑？</p>
+            <p data-i18n="loop.evidence.description">
+              检索并比较文献，识别证据链、冲突、适用边界和知识缺口，为候选假设建立可追踪依据。
+            </p>
+          </article>
+
+          <article class="inference-step step-context">
+            <div class="inference-step-head">
+              <span class="inference-step-index">02</span>
+              <span class="inference-step-mode" data-i18n="loop.context.mode">Model</span>
+            </div>
+            <h3 data-i18n="loop.context.title">情境与数据建模</h3>
+            <p class="inference-question" data-i18n="loop.context.question">在什么情境开展？</p>
+            <p data-i18n="loop.context.description">
+              联合文献参数、实验条件、表格与时间序列，明确变量、尺度、边界条件和可迁移范围。
+            </p>
+          </article>
+
+          <div class="inference-core">
+            <span data-i18n="loop.core.eyebrow">Evidence × Model × Tools</span>
+            <strong data-i18n="loop.core.title">科学推演引擎</strong>
+            <small data-i18n="loop.core.description">约束推理 · 工具编排 · 反馈更新</small>
+          </div>
+
+          <article class="inference-step step-plan">
+            <div class="inference-step-head">
+              <span class="inference-step-index">03</span>
+              <span class="inference-step-mode" data-i18n="loop.plan.mode">Plan</span>
+            </div>
+            <h3 data-i18n="loop.plan.title">实验与路径规划</h3>
+            <p class="inference-question" data-i18n="loop.plan.question">靠什么路径实施？</p>
+            <p data-i18n="loop.plan.description">
+              围绕可证伪目标调用建模、仿真、优化与实验设计工具，给出区分性强、成本可控的实施路径。
+            </p>
+          </article>
+
+          <article class="inference-step step-evaluate">
+            <div class="inference-step-head">
+              <span class="inference-step-index">04</span>
+              <span class="inference-step-mode" data-i18n="loop.evaluate.mode">Verify</span>
+            </div>
+            <h3 data-i18n="loop.evaluate.title">仿真与结果评估</h3>
+            <p class="inference-question" data-i18n="loop.evaluate.question">有什么预期成果？</p>
+            <p data-i18n="loop.evaluate.description">
+              模拟候选结果，比较替代解释，量化不确定性与失败模式，并把验证反馈写回知识与模型。
+            </p>
+          </article>
+
+          <span class="loop-arrow arrow-top" aria-hidden="true">→</span>
+          <span class="loop-arrow arrow-right" aria-hidden="true">↓</span>
+          <span class="loop-arrow arrow-bottom" aria-hidden="true">←</span>
+          <span class="loop-arrow arrow-left" aria-hidden="true">↑</span>
+        </div>
+      </section>
+
+      <section id="architecture" class="section inference-architecture">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="architecture.eyebrow">System Architecture</p>
+          <h2 data-i18n="architecture.title">从信息检索到知识更新的四层系统</h2>
+          <p data-i18n="architecture.description">
+            大模型负责理解问题与组织推演，专业模型和科研工具负责计算，验证与记忆层负责把一次推演沉淀为可复用知识。
+          </p>
+        </div>
+
+        <div class="inference-layers" role="list">
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">01</span>
+            <div>
+              <span class="inference-card-label" data-i18n="layer.evidence.label">Evidence &amp; Data</span>
+              <h3 data-i18n="layer.evidence.title">证据与数据层</h3>
+              <p data-i18n="layer.evidence.description">
+                组织论文、表格、时间序列、实验记录与元数据，保留来源、版本、条件和引用关系。
+              </p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">02</span>
+            <div>
+              <span class="inference-card-label" data-i18n="layer.world.label">Scientific World Model</span>
+              <h3 data-i18n="layer.world.title">科学世界模型层</h3>
+              <p data-i18n="layer.world.description">
+                表示变量、机制、因果假设、边界条件与不确定性，判断不同证据能否在同一情境中比较。
+              </p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">03</span>
+            <div>
+              <span class="inference-card-label" data-i18n="layer.tools.label">Planning &amp; Tools</span>
+              <h3 data-i18n="layer.tools.title">规划与工具层</h3>
+              <p data-i18n="layer.tools.description">
+                编排检索、数据建模、仿真、优化和实验设计工具，将推演拆为可执行、可监控的步骤。
+              </p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">04</span>
+            <div>
+              <span class="inference-card-label" data-i18n="layer.memory.label">Verification &amp; Memory</span>
+              <h3 data-i18n="layer.memory.title">验证与记忆层</h3>
+              <p data-i18n="layer.memory.description">
+                对照预测与观测，分析失败原因和适用边界，把可信结果、反例与新问题写回科研记忆。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="collaboration" class="section highlights inference-collaboration">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="collaboration.eyebrow">Human–AI Collaboration</p>
+          <h2 data-i18n="collaboration.title">输出不是“一个答案”，而是三类可验证对象</h2>
+          <p data-i18n="collaboration.description">
+            研究者保留问题定义、价值判断和最终决策；模型把复杂推演压缩为可审阅的假设、方案与预期，并显式暴露其中的依据和风险。
+          </p>
+        </div>
+
+        <div class="inference-collaboration-grid">
+          <div class="inference-collaboration-path" aria-label="Human and model roles">
+            <div>
+              <span>01</span>
+              <strong data-i18n="collaboration.human.title">人定义问题</strong>
+              <p data-i18n="collaboration.human.description">明确科学价值、研究边界与可接受风险。</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong data-i18n="collaboration.model.title">模型组织推演</strong>
+              <p data-i18n="collaboration.model.description">连接证据、约束与工具，比较多条候选路径。</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong data-i18n="collaboration.joint.title">共同作出判断</strong>
+              <p data-i18n="collaboration.joint.description">依据验证结果修正假设、方案与下一轮问题。</p>
+            </div>
+          </div>
+
+          <div class="inference-outputs" role="list">
+            <article class="inference-output" role="listitem">
+              <span class="inference-output-icon" aria-hidden="true">H</span>
+              <h3 data-i18n="output.hypothesis.title">可检验假设</h3>
+              <p data-i18n="output.hypothesis.description">
+                给出命题、证据依据、前提假设、适用边界与能够推翻它的观测条件。
+              </p>
+            </article>
+            <article class="inference-output" role="listitem">
+              <span class="inference-output-icon" aria-hidden="true">P</span>
+              <h3 data-i18n="output.plan.title">可执行方案</h3>
+              <p data-i18n="output.plan.description">
+                明确变量、对照、步骤、资源约束、停止条件和主路径失效时的备选方案。
+              </p>
+            </article>
+            <article class="inference-output" role="listitem">
+              <span class="inference-output-icon" aria-hidden="true">E</span>
+              <h3 data-i18n="output.expectation.title">可比较预期</h3>
+              <p data-i18n="output.expectation.description">
+                描述预期观测、不确定性、替代解释与决策阈值，使真实结果能够反向更新推演。
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="trust" class="section inference-trust">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="trust.eyebrow">Trust &amp; Evaluation</p>
+          <h2 data-i18n="trust.title">评价推演质量，而不只评价语言流畅度</h2>
+          <p data-i18n="trust.description">
+            科学推演必须接受过程与结果的双重检查：既要说明结论如何形成，也要证明方案能够区分假设、量化风险并产生新的知识增益。
+          </p>
+        </div>
+
+        <div class="inference-metrics" role="list">
+          <article class="inference-metric" role="listitem">
+            <span>01</span>
+            <h3 data-i18n="metric.evidence.title">证据可追踪</h3>
+            <p data-i18n="metric.evidence.description">关键命题能回溯到来源、上下文和证据强度，冲突证据不会被隐藏。</p>
+          </article>
+          <article class="inference-metric" role="listitem">
+            <span>02</span>
+            <h3 data-i18n="metric.constraint.title">约束一致性</h3>
+            <p data-i18n="metric.constraint.description">变量、单位、边界条件和机制假设在推演各阶段保持一致。</p>
+          </article>
+          <article class="inference-metric" role="listitem">
+            <span>03</span>
+            <h3 data-i18n="metric.falsifiable.title">假设可证伪</h3>
+            <p data-i18n="metric.falsifiable.description">方案包含能够区分候选解释的观测、对照与明确失败条件。</p>
+          </article>
+          <article class="inference-metric" role="listitem">
+            <span>04</span>
+            <h3 data-i18n="metric.calibration.title">不确定性可校准</h3>
+            <p data-i18n="metric.calibration.description">预期结果、置信范围和失败概率能够由实验或仿真反馈持续校准。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="roadmap" class="section highlights inference-roadmap-section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="roadmap.eyebrow">Evolution Path</p>
+          <h2 data-i18n="roadmap.title">从证据增强走向实验闭环</h2>
+          <p data-i18n="roadmap.description">
+            科学推演能力按可验证程度逐步演进：先让依据可追踪，再让工具链可执行，最终让真实实验反馈能够持续更新模型与科研记忆。
+          </p>
+        </div>
+
+        <ol class="inference-roadmap">
+          <li class="inference-roadmap-step">
+            <span class="inference-roadmap-index">01</span>
+            <div>
+              <h3 data-i18n="roadmap.evidence.title">证据增强推演</h3>
+              <p data-i18n="roadmap.evidence.description">围绕研究问题完成检索、证据综合、知识缺口识别和候选假设形成。</p>
+            </div>
+          </li>
+          <li class="inference-roadmap-step">
+            <span class="inference-roadmap-index">02</span>
+            <div>
+              <h3 data-i18n="roadmap.tools.title">工具增强推演</h3>
+              <p data-i18n="roadmap.tools.description">把科学数据建模、仿真、优化与实验设计接入推演，输出可执行方案。</p>
+            </div>
+          </li>
+          <li class="inference-roadmap-step">
+            <span class="inference-roadmap-index">03</span>
+            <div>
+              <h3 data-i18n="roadmap.closed.title">实验闭环推演</h3>
+              <p data-i18n="roadmap.closed.description">接收真实观测与失败反馈，校准不确定性，更新机制假设并生成下一轮问题。</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="inference-next">
+          <div>
+            <span class="inference-card-label" data-i18n="next.label">Connected Research</span>
+            <h3 data-i18n="next.title">两类基础能力，共同支撑科学推演</h3>
+            <p data-i18n="next.description">
+              科学知识发现提供证据、知识缺口与候选假设；科学任务求解提供数据建模、仿真、优化与验证能力。
+            </p>
+          </div>
+          <div class="section-actions">
+            <a class="btn ghost" href="../knowledge_memory/" data-i18n="next.knowledge">了解科学知识发现</a>
+            <a class="btn ghost" href="../data_modeling/" data-i18n="next.data">了解科学任务求解</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · Licensed under</span>
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "Scientific Inference Foundation Model | USTC-AGI",
+          "meta.description":
+            "USTC AGI's research vision for a Scientific Inference Foundation Model that connects evidence mining, scientific data modeling, experiment planning, simulation, and evaluation in a verifiable research loop.",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.data": "Scientific Task Solving",
+          "nav.knowledge": "Scientific Knowledge Discovery",
+          "nav.inference": "Scientific Inference",
+          "nav.aiScience": "Science of AI",
+          "nav.papers": "Publications",
+          "hero.kicker": "Research Intelligence · Research Vision",
+          "hero.title": "Scientific Inference Foundation Model",
+          "hero.subtitle":
+            "Start from evidence and place hypotheses, plans, and expected outcomes in one verifiable loop. The model does not replace scientific judgment; it organizes literature, data, mechanisms, tools, and validation into a traceable inference process.",
+          "hero.cta.loop": "Explore the Inference Loop",
+          "hero.cta.architecture": "View the Architecture",
+          "rail.evidence": "Evidence",
+          "rail.hypothesis": "Hypothesis",
+          "rail.plan": "Plan",
+          "rail.verify": "Verify",
+          "definition.eyebrow": "Model Positioning",
+          "definition.title": "Scientific Inference Is More Than Generating an Answer",
+          "definition.description":
+            "For open-ended research questions, the model accepts hypotheses, ideas, or anomalous observations from researchers. Under evidential and scientific constraints, it organizes multi-step reasoning, tool use, and validation feedback into a proposal that can be tested, compared, and revised.",
+          "definition.input.label": "Researcher Input",
+          "definition.input.title": "Researchers Define Questions Worth Answering",
+          "definition.input.description":
+            "People frame the scientific value, judge domain boundaries, and bring new observations into the system.",
+          "definition.input.hypothesis": "New hypothesis",
+          "definition.input.idea": "New idea",
+          "definition.input.discovery": "New discovery",
+          "definition.model.label": "Inference System",
+          "definition.model.title": "The Model Organizes a Traceable Validation Path",
+          "definition.model.description":
+            "The system connects literature evidence, experimental data, scientific world models, and specialist tools while explicitly recording assumptions, uncertainty, and failure conditions.",
+          "definition.model.evidence": "Evidence",
+          "definition.model.world": "Model",
+          "definition.model.tools": "Tools",
+          "definition.model.feedback": "Feedback",
+          "loop.eyebrow": "Scientific Inference Loop",
+          "loop.title": "Four Questions Form a Complete Scientific Inference Cycle",
+          "loop.description":
+            "Each stage produces a structured object for the next while preserving provenance, conditions, and uncertainty. Validation results flow back into the evidence and models that drive the next cycle.",
+          "loop.researcher.label": "Human in the Loop",
+          "loop.researcher.title": "Researchers Continue to Propose, Select, and Revise",
+          "loop.researcher.hypothesis": "New hypothesis",
+          "loop.researcher.idea": "New idea",
+          "loop.researcher.observation": "New observation",
+          "loop.evidence.mode": "Ground",
+          "loop.evidence.title": "Literature Evidence Mining",
+          "loop.evidence.question": "What evidence supports it?",
+          "loop.evidence.description":
+            "Retrieve and compare literature, identify evidence chains, conflicts, applicability boundaries, and knowledge gaps, and build traceable support for candidate hypotheses.",
+          "loop.context.mode": "Model",
+          "loop.context.title": "Context and Data Modeling",
+          "loop.context.question": "Under what conditions should it be studied?",
+          "loop.context.description":
+            "Combine reported parameters, experimental conditions, tables, and time series to define variables, scales, boundary conditions, and transfer limits.",
+          "loop.plan.mode": "Plan",
+          "loop.plan.title": "Experiment and Path Planning",
+          "loop.plan.question": "What path makes it executable?",
+          "loop.plan.description":
+            "Call modeling, simulation, optimization, and experimental-design tools around falsifiable objectives to propose discriminative and resource-aware paths.",
+          "loop.evaluate.mode": "Verify",
+          "loop.evaluate.title": "Simulation and Outcome Evaluation",
+          "loop.evaluate.question": "What outcomes should we expect?",
+          "loop.evaluate.description":
+            "Simulate candidate outcomes, compare alternative explanations, quantify uncertainty and failure modes, and write validation feedback back into knowledge and models.",
+          "loop.core.eyebrow": "Evidence × Model × Tools",
+          "loop.core.title": "Scientific Inference Engine",
+          "loop.core.description": "Constrained reasoning · Tool orchestration · Feedback update",
+          "architecture.eyebrow": "System Architecture",
+          "architecture.title": "Four Layers from Information Retrieval to Knowledge Update",
+          "architecture.description":
+            "The foundation model interprets questions and organizes inference; specialist models and research tools perform computations; verification and memory turn each cycle into reusable knowledge.",
+          "layer.evidence.label": "Evidence & Data",
+          "layer.evidence.title": "Evidence and Data Layer",
+          "layer.evidence.description":
+            "Organize papers, tables, time series, experimental records, and metadata while preserving provenance, versions, conditions, and citation relations.",
+          "layer.world.label": "Scientific World Model",
+          "layer.world.title": "Scientific World Model Layer",
+          "layer.world.description":
+            "Represent variables, mechanisms, causal assumptions, boundary conditions, and uncertainty, and determine whether evidence from different contexts can be compared.",
+          "layer.tools.label": "Planning & Tools",
+          "layer.tools.title": "Planning and Tool Layer",
+          "layer.tools.description":
+            "Orchestrate retrieval, data modeling, simulation, optimization, and experimental-design tools as executable and observable steps.",
+          "layer.memory.label": "Verification & Memory",
+          "layer.memory.title": "Verification and Memory Layer",
+          "layer.memory.description":
+            "Compare predictions with observations, analyze failure causes and validity limits, and write reliable results, counterexamples, and new questions back into research memory.",
+          "collaboration.eyebrow": "Human–AI Collaboration",
+          "collaboration.title": "The Outputs Are Three Verifiable Objects, Not One Answer",
+          "collaboration.description":
+            "Researchers retain problem framing, value judgments, and final decisions. The model compresses complex inference into reviewable hypotheses, plans, and expectations while exposing evidence and risk.",
+          "collaboration.human.title": "People Frame the Problem",
+          "collaboration.human.description": "Define scientific value, research boundaries, and acceptable risk.",
+          "collaboration.model.title": "The Model Organizes Inference",
+          "collaboration.model.description": "Connect evidence, constraints, and tools, and compare multiple candidate paths.",
+          "collaboration.joint.title": "Both Make the Judgment",
+          "collaboration.joint.description": "Use validation results to revise hypotheses, plans, and the next question.",
+          "output.hypothesis.title": "Testable Hypothesis",
+          "output.hypothesis.description":
+            "State the claim, evidential basis, assumptions, applicability boundaries, and observations that could falsify it.",
+          "output.plan.title": "Executable Plan",
+          "output.plan.description":
+            "Specify variables, controls, steps, resource constraints, stopping conditions, and fallback paths if the main route fails.",
+          "output.expectation.title": "Comparable Expectations",
+          "output.expectation.description":
+            "Describe expected observations, uncertainty, alternative explanations, and decision thresholds so real outcomes can update the inference.",
+          "trust.eyebrow": "Trust & Evaluation",
+          "trust.title": "Evaluate Inference Quality, Not Just Language Fluency",
+          "trust.description":
+            "Scientific inference requires process and outcome checks: it must explain how claims formed, distinguish competing hypotheses, quantify risks, and produce measurable knowledge gain.",
+          "metric.evidence.title": "Traceable Evidence",
+          "metric.evidence.description":
+            "Key claims resolve to sources, context, and evidence strength, and conflicting evidence remains visible.",
+          "metric.constraint.title": "Constraint Consistency",
+          "metric.constraint.description":
+            "Variables, units, boundary conditions, and mechanistic assumptions stay consistent across stages.",
+          "metric.falsifiable.title": "Falsifiable Hypotheses",
+          "metric.falsifiable.description":
+            "Plans include observations, controls, and explicit failure conditions that distinguish candidate explanations.",
+          "metric.calibration.title": "Calibrated Uncertainty",
+          "metric.calibration.description":
+            "Expected outcomes, confidence ranges, and failure probabilities can be recalibrated by experimental or simulation feedback.",
+          "roadmap.eyebrow": "Evolution Path",
+          "roadmap.title": "From Evidence Augmentation to Closed-Loop Experimentation",
+          "roadmap.description":
+            "Scientific inference progresses by verifiability: first make evidence traceable, then make toolchains executable, and finally let real experimental feedback update models and research memory.",
+          "roadmap.evidence.title": "Evidence-Augmented Inference",
+          "roadmap.evidence.description":
+            "Retrieve and synthesize evidence, identify knowledge gaps, and formulate candidate hypotheses around a research question.",
+          "roadmap.tools.title": "Tool-Augmented Inference",
+          "roadmap.tools.description":
+            "Connect scientific data modeling, simulation, optimization, and experimental design to produce executable plans.",
+          "roadmap.closed.title": "Closed-Loop Experimental Inference",
+          "roadmap.closed.description":
+            "Receive observations and failure feedback, calibrate uncertainty, update mechanistic assumptions, and generate the next question.",
+          "next.label": "Connected Research",
+          "next.title": "Two Foundations Support Scientific Inference",
+          "next.description":
+            "Scientific Knowledge Discovery supplies evidence, knowledge gaps, and candidate hypotheses; Scientific Task Solving supplies data modeling, simulation, optimization, and validation.",
+          "next.knowledge": "Explore Scientific Knowledge Discovery",
+          "next.data": "Explore Scientific Task Solving",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "科学推演大模型 | USTC-AGI",
+          "meta.description":
+            "中国科大 AGI 团队关于科学推演大模型的研究愿景：以证据为起点，协同文献挖掘、科学数据建模、实验规划与仿真评估，形成可验证的科研闭环。",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.data": "科学任务求解",
+          "nav.knowledge": "科学知识发现",
+          "nav.inference": "科学推演",
+          "nav.aiScience": "Science of AI",
+          "nav.papers": "论文列表",
+          "hero.kicker": "Research Intelligence · 研究愿景",
+          "hero.title": "科学推演大模型",
+          "hero.subtitle":
+            "从证据出发，让假设、方案与预期结果进入同一个可验证闭环。模型不替代科学家作出结论，而是把文献、数据、机制、工具与验证组织成可追踪的推演过程。",
+          "hero.cta.loop": "查看推演闭环",
+          "hero.cta.architecture": "了解系统分层",
+          "rail.evidence": "证据",
+          "rail.hypothesis": "假设",
+          "rail.plan": "方案",
+          "rail.verify": "验证",
+          "definition.eyebrow": "模型定位",
+          "definition.title": "科学推演，不是生成一个答案",
+          "definition.description":
+            "科学推演大模型面向开放科研问题，接收研究者提出的假设、想法或异常发现，在证据与科学约束下组织多步推理、工具调用和验证反馈，最终形成能够被检验、被比较、被修正的研究方案。",
+          "definition.input.label": "研究者输入",
+          "definition.input.title": "研究者定义值得回答的问题",
+          "definition.input.description": "人负责提出有科学价值的问题、判断领域边界，并把新的观察带入系统。",
+          "definition.input.hypothesis": "新假设",
+          "definition.input.idea": "新想法",
+          "definition.input.discovery": "新发现",
+          "definition.model.label": "推演系统",
+          "definition.model.title": "模型组织一条可追踪的验证路径",
+          "definition.model.description":
+            "系统连接文献证据、实验数据、科学世界模型与专业工具，显式记录关键假设、不确定性和失败条件。",
+          "definition.model.evidence": "证据",
+          "definition.model.world": "模型",
+          "definition.model.tools": "工具",
+          "definition.model.feedback": "反馈",
+          "loop.eyebrow": "科学推演闭环",
+          "loop.title": "四个问题，构成一次完整科学推演",
+          "loop.description":
+            "每一步都产出下一步可使用的结构化对象，并保留证据来源、条件与不确定性；验证结果再回流到证据与模型，推动下一轮推演。",
+          "loop.researcher.label": "人在闭环中",
+          "loop.researcher.title": "研究人员持续提出、筛选与修正",
+          "loop.researcher.hypothesis": "新假设",
+          "loop.researcher.idea": "新想法",
+          "loop.researcher.observation": "新观测",
+          "loop.evidence.mode": "证据",
+          "loop.evidence.title": "文献证据挖掘",
+          "loop.evidence.question": "用什么证据支撑？",
+          "loop.evidence.description":
+            "检索并比较文献，识别证据链、冲突、适用边界和知识缺口，为候选假设建立可追踪依据。",
+          "loop.context.mode": "建模",
+          "loop.context.title": "情境与数据建模",
+          "loop.context.question": "在什么情境开展？",
+          "loop.context.description":
+            "联合文献参数、实验条件、表格与时间序列，明确变量、尺度、边界条件和可迁移范围。",
+          "loop.plan.mode": "规划",
+          "loop.plan.title": "实验与路径规划",
+          "loop.plan.question": "靠什么路径实施？",
+          "loop.plan.description":
+            "围绕可证伪目标调用建模、仿真、优化与实验设计工具，给出区分性强、成本可控的实施路径。",
+          "loop.evaluate.mode": "验证",
+          "loop.evaluate.title": "仿真与结果评估",
+          "loop.evaluate.question": "有什么预期成果？",
+          "loop.evaluate.description":
+            "模拟候选结果，比较替代解释，量化不确定性与失败模式，并把验证反馈写回知识与模型。",
+          "loop.core.eyebrow": "证据 × 模型 × 工具",
+          "loop.core.title": "科学推演引擎",
+          "loop.core.description": "约束推理 · 工具编排 · 反馈更新",
+          "architecture.eyebrow": "系统架构",
+          "architecture.title": "从信息检索到知识更新的四层系统",
+          "architecture.description":
+            "大模型负责理解问题与组织推演，专业模型和科研工具负责计算，验证与记忆层负责把一次推演沉淀为可复用知识。",
+          "layer.evidence.label": "Evidence & Data",
+          "layer.evidence.title": "证据与数据层",
+          "layer.evidence.description":
+            "组织论文、表格、时间序列、实验记录与元数据，保留来源、版本、条件和引用关系。",
+          "layer.world.label": "Scientific World Model",
+          "layer.world.title": "科学世界模型层",
+          "layer.world.description":
+            "表示变量、机制、因果假设、边界条件与不确定性，判断不同证据能否在同一情境中比较。",
+          "layer.tools.label": "Planning & Tools",
+          "layer.tools.title": "规划与工具层",
+          "layer.tools.description":
+            "编排检索、数据建模、仿真、优化和实验设计工具，将推演拆为可执行、可监控的步骤。",
+          "layer.memory.label": "Verification & Memory",
+          "layer.memory.title": "验证与记忆层",
+          "layer.memory.description":
+            "对照预测与观测，分析失败原因和适用边界，把可信结果、反例与新问题写回科研记忆。",
+          "collaboration.eyebrow": "人机协同",
+          "collaboration.title": "输出不是“一个答案”，而是三类可验证对象",
+          "collaboration.description":
+            "研究者保留问题定义、价值判断和最终决策；模型把复杂推演压缩为可审阅的假设、方案与预期，并显式暴露其中的依据和风险。",
+          "collaboration.human.title": "人定义问题",
+          "collaboration.human.description": "明确科学价值、研究边界与可接受风险。",
+          "collaboration.model.title": "模型组织推演",
+          "collaboration.model.description": "连接证据、约束与工具，比较多条候选路径。",
+          "collaboration.joint.title": "共同作出判断",
+          "collaboration.joint.description": "依据验证结果修正假设、方案与下一轮问题。",
+          "output.hypothesis.title": "可检验假设",
+          "output.hypothesis.description":
+            "给出命题、证据依据、前提假设、适用边界与能够推翻它的观测条件。",
+          "output.plan.title": "可执行方案",
+          "output.plan.description":
+            "明确变量、对照、步骤、资源约束、停止条件和主路径失效时的备选方案。",
+          "output.expectation.title": "可比较预期",
+          "output.expectation.description":
+            "描述预期观测、不确定性、替代解释与决策阈值，使真实结果能够反向更新推演。",
+          "trust.eyebrow": "可信与评价",
+          "trust.title": "评价推演质量，而不只评价语言流畅度",
+          "trust.description":
+            "科学推演必须接受过程与结果的双重检查：既要说明结论如何形成，也要证明方案能够区分假设、量化风险并产生新的知识增益。",
+          "metric.evidence.title": "证据可追踪",
+          "metric.evidence.description": "关键命题能回溯到来源、上下文和证据强度，冲突证据不会被隐藏。",
+          "metric.constraint.title": "约束一致性",
+          "metric.constraint.description": "变量、单位、边界条件和机制假设在推演各阶段保持一致。",
+          "metric.falsifiable.title": "假设可证伪",
+          "metric.falsifiable.description": "方案包含能够区分候选解释的观测、对照与明确失败条件。",
+          "metric.calibration.title": "不确定性可校准",
+          "metric.calibration.description": "预期结果、置信范围和失败概率能够由实验或仿真反馈持续校准。",
+          "roadmap.eyebrow": "演进路线",
+          "roadmap.title": "从证据增强走向实验闭环",
+          "roadmap.description":
+            "科学推演能力按可验证程度逐步演进：先让依据可追踪，再让工具链可执行，最终让真实实验反馈能够持续更新模型与科研记忆。",
+          "roadmap.evidence.title": "证据增强推演",
+          "roadmap.evidence.description": "围绕研究问题完成检索、证据综合、知识缺口识别和候选假设形成。",
+          "roadmap.tools.title": "工具增强推演",
+          "roadmap.tools.description": "把科学数据建模、仿真、优化与实验设计接入推演，输出可执行方案。",
+          "roadmap.closed.title": "实验闭环推演",
+          "roadmap.closed.description": "接收真实观测与失败反馈，校准不确定性，更新机制假设并生成下一轮问题。",
+          "next.label": "关联研究方向",
+          "next.title": "两类基础能力，共同支撑科学推演",
+          "next.description":
+            "科学知识发现提供证据、知识缺口与候选假设；科学任务求解提供数据建模、仿真、优化与验证能力。",
+          "next.knowledge": "了解科学知识发现",
+          "next.data": "了解科学任务求解",
+          "footer.note": "USTC AGI · Licensed under"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const queryLanguage = params.get("lang");
+        if (queryLanguage === "en" || queryLanguage === "zh") {
+          return queryLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return storedLanguage === "en" || storedLanguage === "zh" ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language];
+        const toggle = document.getElementById("language-toggle");
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+        document.querySelector('meta[name="description"]').setAttribute("content", copy["meta.description"]);
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        toggle.textContent = language === "zh" ? "EN" : "中文";
+        toggle.setAttribute("aria-label", language === "zh" ? "Switch to English" : "切换到中文");
+        toggle.setAttribute("aria-pressed", language === "zh" ? "true" : "false");
+
+        if (persist) {
+          try {
+            localStorage.setItem("preferredLanguage", language);
+          } catch {
+            // Language switching still works when storage is unavailable.
+          }
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const currentLanguage = document.documentElement.dataset.language;
+        setLanguage(currentLanguage === "zh" ? "en" : "zh", true);
+      });
+    </script>
+  </body>
+</html>
