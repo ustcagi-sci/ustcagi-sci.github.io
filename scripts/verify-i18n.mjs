@@ -1775,6 +1775,10 @@ const validateScientificInferencePage = () => {
     !/data-i18n="rail\./.test(html),
     "scientific inference page should not retain workflow rail translation bindings"
   );
+  assert.ok(
+    !/data-i18n="definition\.eyebrow"/.test(html),
+    "scientific inference page should not render the removed model positioning eyebrow"
+  );
   assert.equal(
     (html.match(/<article class="inference-step /g) || []).length,
     4,
@@ -1823,6 +1827,13 @@ const validateScientificInferencePage = () => {
         `scientific_inference/index.html: should remove the ${language} ${key} translation`
       );
     }
+  }
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["definition.eyebrow"],
+      undefined,
+      `scientific_inference/index.html: should remove the ${language} definition eyebrow translation`
+    );
   }
   for (const [language, translations] of Object.entries(expectedTranslations)) {
     for (const [key, value] of Object.entries(translations)) {
