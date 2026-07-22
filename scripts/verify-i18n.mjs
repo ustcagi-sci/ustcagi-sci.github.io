@@ -294,10 +294,10 @@ const validateNavigation = (relativePath) => {
   );
   assert.equal(
     context.translations.zh["nav.data"],
-    "科学任务求解",
-    `${label}: Chinese data navigation label should be 科学任务求解`
+    "科学数据建模",
+    `${label}: Chinese data navigation label should be 科学数据建模`
   );
-  assert.equal(navFallbacks["nav.data"], "科学任务求解", `${label}: data navigation fallback should be 科学任务求解`);
+  assert.equal(navFallbacks["nav.data"], "科学数据建模", `${label}: data navigation fallback should be 科学数据建模`);
   assert.equal(
     navFallbacks["nav.knowledge"],
     "科技文献挖掘",
@@ -1511,7 +1511,7 @@ const validateDataModelingPage = () => {
   );
   assert.equal(
     context.translations.zh["nav.data"],
-    "科学任务求解",
+    "科学数据建模",
     "data_modeling/index.html: Chinese navigation label should name the new section"
   );
   assert.equal(
