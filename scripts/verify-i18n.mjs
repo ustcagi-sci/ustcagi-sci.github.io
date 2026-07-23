@@ -1982,8 +1982,32 @@ const validateScientificInferencePage = () => {
 
   assert.ok(/<body class="inference-page">/.test(html), "scientific inference page should use its scoped body class");
   assert.ok(
+    /<meta name="theme-color" content="#ffffff" \/>/.test(html),
+    "scientific inference page should use the shared light browser theme color"
+  );
+  assert.ok(
+    /<header id="top" class="hero">\s*<div class="hero-content">/.test(html),
+    "scientific inference page should use the shared site hero structure"
+  );
+  assert.ok(
     /<h1 data-i18n="hero\.title">科学推演智能体<\/h1>/.test(html),
     "scientific inference page should expose the Chinese fallback title"
+  );
+  assert.ok(
+    /<p class="hero-subtitle" data-i18n="hero\.subtitle">/.test(html),
+    "scientific inference page should use the shared hero subtitle"
+  );
+  assert.ok(
+    !/class="[^"]*\binference-hero(?:-grid|-copy|-subtitle)?\b[^"]*"/.test(html),
+    "scientific inference page should not retain its bespoke hero structure"
+  );
+  assert.ok(
+    !/class="[^"]*(?:\binference-orbit\b|\borbit-[^\s"]*)[^"]*"/.test(html),
+    "scientific inference page should not render the removed orbit illustration"
+  );
+  assert.ok(
+    !/<[^>]+\bclass="[^"]*\bhero-actions\b[^"]*"[^>]*>/.test(html),
+    "scientific inference page should not render hero actions that other section pages omit"
   );
   assert.ok(
     !/class="inference-kicker"/.test(html),
@@ -2046,6 +2070,13 @@ const validateScientificInferencePage = () => {
     "scientific_inference/index.html: should remove the Chinese hero kicker translation"
   );
   for (const language of ["en", "zh"]) {
+    for (const key of ["hero.cta.loop", "hero.cta.architecture"]) {
+      assert.equal(
+        context.translations[language][key],
+        undefined,
+        `scientific_inference/index.html: should remove the unused ${language} ${key} translation`
+      );
+    }
     for (const key of ["rail.evidence", "rail.hypothesis", "rail.plan", "rail.verify"]) {
       assert.equal(
         context.translations[language][key],
@@ -2083,9 +2114,23 @@ const validateScientificInferencePage = () => {
     "ref.css: inference section anchors should clear the taller mobile navigation"
   );
   assert.ok(
-    /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.inference-orbit/.test(css),
-    "ref.css: inference decorations should respect reduced motion"
+    !css.includes(".inference-hero"),
+    "ref.css: should remove the obsolete bespoke inference hero styles"
   );
+  assert.ok(
+    !css.includes(".inference-orbit") && !css.includes("@keyframes inference-orbit-spin"),
+    "ref.css: should remove the obsolete orbit illustration styles"
+  );
+  assert.ok(
+    !css.includes(".hero-actions"),
+    "ref.css: should remove the unused hero action layout"
+  );
+  for (const unusedToken of ["--inference-navy", "--inference-pale", "--inference-line"]) {
+    assert.ok(
+      !css.includes(unusedToken),
+      `ref.css: should remove unused hero token ${unusedToken}`
+    );
+  }
 };
 
 const validateUnifiedColorPalette = () => {
