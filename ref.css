@@ -1487,6 +1487,10 @@ td strong {
   outline: none;
 }
 
+.project-links a:focus-visible {
+  box-shadow: 0 0 0 3px rgba(11, 95, 198, 0.24);
+}
+
 .project-license-note {
   margin-top: 24px;
   padding: 14px 16px;

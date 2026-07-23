@@ -2291,6 +2291,10 @@ const validateProjectsPage = () => {
     "ref.css: dark collaboration panel should keep its white secondary button label visible"
   );
   assert.ok(
+    /\.project-links a:focus-visible\s*\{[^}]*box-shadow:\s*0 0 0 3px/.test(css),
+    "ref.css: project links should expose a visible keyboard focus ring"
+  );
+  assert.ok(
     /@media \(max-width:\s*760px\)[\s\S]*?\.project-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr/.test(css),
     "ref.css: mobile project catalog should collapse to one column"
   );
