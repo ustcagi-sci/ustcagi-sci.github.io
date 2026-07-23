@@ -2088,6 +2088,89 @@ const validateScientificInferencePage = () => {
   );
 };
 
+const validateUnifiedColorPalette = () => {
+  const sharedCss = readFileSync(resolve(root, "ref.css"), "utf8").toLowerCase();
+  const reportCss = readFileSync(resolve(root, "mind2report/style.css"), "utf8").toLowerCase();
+  const sharedRootBlock = sharedCss.match(/:root\s*\{([^}]*)\}/)?.[1];
+  const reportRootBlock = reportCss.match(/:root\s*\{([^}]*)\}/)?.[1];
+  const sharedTokens = {
+    "--bg": "#f4f7f9",
+    "--surface-soft": "#f8fbfd",
+    "--surface-warm": "#edf7fc",
+    "--text-strong": "#061f45",
+    "--text-faint": "#5b7187",
+    "--accent": "#0b5fc6",
+    "--accent-dark": "#083f7f",
+    "--accent-soft": "#edf7fc",
+  };
+  const reportTokens = {
+    "--accent": "#0b5fc6",
+    "--accent-deep": "#083f7f",
+    "--accent-soft": "#edf7fc",
+    "--accent-border": "#b7d9ec",
+    "--ink": "#061f45",
+    "--faint": "#5b7187",
+    "--bg": "#f4f7f9",
+    "--line": "#d5e3eb",
+  };
+
+  assert.ok(sharedRootBlock, "ref.css: missing :root palette block");
+  assert.ok(reportRootBlock, "mind2report/style.css: missing :root palette block");
+
+  for (const [property, value] of Object.entries(sharedTokens)) {
+    assert.ok(
+      sharedRootBlock.includes(`${property}: ${value};`),
+      `ref.css: ${property} should use the Scientific Inference palette`
+    );
+  }
+
+  for (const [property, value] of Object.entries(reportTokens)) {
+    assert.ok(
+      reportRootBlock.includes(`${property}: ${value};`),
+      `mind2report/style.css: ${property} should match the shared palette`
+    );
+  }
+
+  assert.match(
+    reportCss,
+    /\.authors\s*\{[^}]*color:\s*var\(--faint\);/,
+    "mind2report/style.css: small author text should use the accessible faint token"
+  );
+
+  for (const [label, css] of [
+    ["ref.css", sharedCss],
+    ["mind2report/style.css", reportCss],
+  ]) {
+    assert.match(
+      css,
+      /\.footer\s*\{[^}]*background:\s*#061f45;/,
+      `${label}: footer should use the shared navy background`
+    );
+    assert.match(
+      css,
+      /\.footer \.footer-note\s*\{[^}]*color:\s*#8eb4cc;/,
+      `${label}: footer note should retain the shared muted-blue color`
+    );
+
+    for (const legacyToken of [
+      "#c0392b",
+      "#a93226",
+      "#b86a3b",
+      "#8e4827",
+      "#e87b6e",
+      "#fff8f7",
+      "#fff7ef",
+      "#fff4f2",
+      "#fff3eb",
+      "#fff0ee",
+      "rgba(192, 57, 43",
+      "rgba(184, 106, 59",
+    ]) {
+      assert.ok(!css.includes(legacyToken), `${label}: remove legacy token ${legacyToken}`);
+    }
+  }
+};
+
 const validateTabletNavigationStyles = () => {
   const css = readFileSync(resolve(root, "ref.css"), "utf8");
   const tabletStart = css.indexOf("@media (min-width: 761px) and (max-width: 1024px)");
@@ -2156,5 +2239,6 @@ validateKnowledgeDiscoveryPage();
 validateDataModelingPage();
 validateScientificInferencePage();
 validateScienceOfAiPage();
+validateUnifiedColorPalette();
 validateTabletNavigationStyles();
 validateDirectionsPageRemoved();

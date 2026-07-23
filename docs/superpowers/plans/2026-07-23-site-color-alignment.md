@@ -29,6 +29,7 @@ const validateUnifiedColorPalette = () => {
     "--surface-soft": "#f8fbfd",
     "--surface-warm": "#edf7fc",
     "--text-strong": "#061f45",
+    "--text-faint": "#5b7187",
     "--accent": "#0b5fc6",
     "--accent-dark": "#083f7f",
     "--accent-soft": "#edf7fc",
@@ -39,6 +40,7 @@ const validateUnifiedColorPalette = () => {
     "--accent-soft": "#edf7fc",
     "--accent-border": "#b7d9ec",
     "--ink": "#061f45",
+    "--faint": "#5b7187",
     "--bg": "#f4f7f9",
     "--line": "#d5e3eb",
   };
@@ -55,6 +57,12 @@ const validateUnifiedColorPalette = () => {
       `mind2report/style.css: ${property} should match the shared palette`
     );
   }
+
+  assert.match(
+    reportCss,
+    /\.authors\s*\{[^}]*color:\s*var\(--faint\);/,
+    "mind2report/style.css: small author text should use the accessible faint token"
+  );
 
   for (const [label, css] of [["ref.css", sharedCss], ["mind2report/style.css", reportCss]]) {
     assert.match(
@@ -108,7 +116,7 @@ Use these exact values in `:root`:
 --text: #17324d;
 --text-strong: #061f45;
 --text-muted: #4c6176;
---text-faint: #7890a6;
+--text-faint: #5b7187;
 --border: #d5e3eb;
 --border-soft: #e6f0f5;
 --accent: #0b5fc6;
@@ -149,7 +157,7 @@ Use the same main palette with these scoped names:
 --accent-border: #b7d9ec;
 --ink: #061f45;
 --muted: #4c6176;
---faint: #7890a6;
+--faint: #5b7187;
 --bg: #f4f7f9;
 --surface: #ffffff;
 --line: #d5e3eb;
