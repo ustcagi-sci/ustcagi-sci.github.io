@@ -9,10 +9,11 @@ This repository hosts the USTC-AGI research homepage for AI for Science:
 - **Scientific Data Modeling** — structured modeling for tabular data, time series, experiments, and observations.
 - **Scientific Inference Agent** — evidence-grounded reasoning, experiment planning, simulation, and verification.
 - **Science of AI** — empirical and theoretical study of learning, reasoning, emergence, and intelligent systems.
+- **Open Source Projects** — reusable evidence infrastructure, research agents, benchmarks, and scientific tools.
 
 ## Site Structure
 
-The site is built as static HTML and CSS. The six bilingual main pages share `ref.css` and inline translation dictionaries; `mind2report/` is an independent project page. Run the site checks before publishing:
+The site is built as static HTML and CSS. The seven bilingual main pages share `ref.css` and inline translation dictionaries; `mind2report/` is an independent project page. Run the site checks before publishing:
 
 ```bash
 node scripts/verify-i18n.mjs

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>开源项目 | USTC-AGI</title>
+    <meta
+      name="description"
+      content="汇集 USTC-AGI 面向 AI for Science 的开源研究基础设施、智能体、评测基准与科学工具。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="开源项目 | USTC-AGI" />
+    <meta
+      property="og:description"
+      content="汇集 USTC-AGI 面向 AI for Science 的开源研究基础设施、智能体、评测基准与科学工具。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ustcagi-sci.github.io/projects/" />
+    <meta property="og:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="开源项目 | USTC-AGI" />
+    <meta
+      name="twitter:description"
+      content="USTC-AGI 面向 AI for Science 的开源研究基础设施、智能体、评测基准与科学工具。"
+    />
+    <meta name="twitter:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <link rel="canonical" href="https://ustcagi-sci.github.io/projects/" />
+    <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body class="projects-page">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="USTC-AGI AI for Science">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="../literature-mining-logo.svg" alt="" />
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">USTC-AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">AI for Science</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../knowledge_memory/" data-i18n="nav.knowledge">科技文献挖掘</a>
+          <a href="../data_modeling/" data-i18n="nav.data">科学数据建模</a>
+          <a href="../scientific_inference/" data-i18n="nav.inference">科学推演智能体</a>
+          <a href="../science_of_ai/" data-i18n="nav.aiScience">Science of AI</a>
+          <a href="./" aria-current="page" data-i18n="nav.projects">开源项目</a>
+          <a href="../papers/" data-i18n="nav.papers">论文列表</a>
+          <span class="nav-break" aria-hidden="true"></span>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero">
+      <div class="hero-content">
+        <h1 data-i18n="hero.title">开源项目</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          连接证据基础设施、研究智能体与评测工具，将可复现的研究能力沉淀为开放组件。
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section id="overview" class="section">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="overview.eyebrow">开放科研生态</p>
+          <h2 data-i18n="overview.title">从证据基础设施到研究智能</h2>
+          <p data-i18n="overview.description">
+            项目围绕科研工作流组织：先获得可靠证据，再由智能体完成检索、综合与推理，最后通过评测与领域工具持续验证能力。
+          </p>
+        </div>
+
+        <div class="project-summary-grid">
+          <article class="project-summary-card">
+            <p class="project-summary-index">01</p>
+            <h3 data-i18n="summary.foundation.title">证据与技能</h3>
+            <p data-i18n="summary.foundation.description">
+              Lewen API 与 Academic Search 提供文献访问、学术检索、引用分析和元数据提取能力。
+            </p>
+          </article>
+          <article class="project-summary-card">
+            <p class="project-summary-index">02</p>
+            <h3 data-i18n="summary.agents.title">研究智能体</h3>
+            <p data-i18n="summary.agents.description">
+              PaperScout 与 Mind2Report 将论文检索和研究综合组织为可复现的智能体流程。
+            </p>
+          </article>
+          <article class="project-summary-card">
+            <p class="project-summary-index">03</p>
+            <h3 data-i18n="summary.evaluation.title">评测与工具</h3>
+            <p data-i18n="summary.evaluation.description">
+              PaperArena 与 ChemTable 面向科学文献推理和化学表格理解提供评测与研究工具。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="catalog" class="section highlights">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="catalog.eyebrow">项目目录</p>
+          <h2 data-i18n="catalog.title">覆盖科研工作流的开放组件</h2>
+          <p data-i18n="catalog.description">
+            每个项目都对应明确的研究环节，并提供可核验的代码仓库、项目主页或论文入口。
+          </p>
+        </div>
+
+        <div class="project-catalog">
+          <section class="project-group" aria-labelledby="group-foundation-title">
+            <div class="project-group-header">
+              <div>
+                <p class="project-group-index">01</p>
+                <h3 id="group-foundation-title" data-i18n="group.foundation.title">证据基础设施与技能</h3>
+              </div>
+              <p data-i18n="group.foundation.description">
+                为科研智能体提供可复用的文献证据访问、检索和元数据处理能力。
+              </p>
+            </div>
+            <div class="project-grid">
+              <article class="project-card">
+                <div class="project-card-head">
+                  <p class="project-type" data-i18n="project.lewen.type">文献证据接口</p>
+                  <span class="project-status">API</span>
+                </div>
+                <h4>Lewen API</h4>
+                <p data-i18n="project.lewen.description">
+                  面向智能体的科技文献检索与证据访问接口，为搜索、获取和组织开放学术资源提供统一能力。
+                </p>
+                <div class="project-tags" role="list">
+                  <span role="listitem">Python</span>
+                  <span role="listitem">Literature API</span>
+                  <span role="listitem">Evidence</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/ustc-ai4science/Lewen-API"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.github"
+                  >GitHub 仓库</a>
+                  <a
+                    href="https://ustc-ai4science.github.io/Lewen-API/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.docs"
+                  >文档</a>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-card-head">
+                  <p class="project-type" data-i18n="project.search.type">学术检索技能</p>
+                  <span class="project-status">Skill</span>
+                </div>
+                <h4>Academic Search</h4>
+                <p data-i18n="project.search.description">
+                  可复用的学术论文搜索、引用分析与元数据提取技能，为研究型智能体提供结构化检索工作流。
+                </p>
+                <div class="project-tags" role="list">
+                  <span role="listitem">Shell</span>
+                  <span role="listitem">Search</span>
+                  <span role="listitem">Metadata</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/ustc-ai4science/academic-search"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.github"
+                  >GitHub 仓库</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="project-group" aria-labelledby="group-agents-title">
+            <div class="project-group-header">
+              <div>
+                <p class="project-group-index">02</p>
+                <h3 id="group-agents-title" data-i18n="group.agents.title">研究智能体</h3>
+              </div>
+              <p data-i18n="group.agents.description">
+                将检索、证据选择、推理和长程研究综合组织为可追踪的智能体过程。
+              </p>
+            </div>
+            <div class="project-grid">
+              <article class="project-card">
+                <div class="project-card-head">
+                  <p class="project-type" data-i18n="project.paperscout.type">自主论文检索智能体</p>
+                  <span class="project-status">Agent</span>
+                </div>
+                <h4>PaperScout</h4>
+                <p data-i18n="project.paperscout.description">
+                  面向学术论文检索的自主智能体，通过过程感知的序列级策略优化提升多步搜索与证据选择能力。
+                </p>
+                <div class="project-tags" role="list">
+                  <span role="listitem">Python</span>
+                  <span role="listitem">Paper Search</span>
+                  <span role="listitem">Agentic RL</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/AgentR1/PaperScout"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.github"
+                  >GitHub 仓库</a>
+                  <a
+                    href="https://arxiv.org/abs/2601.10029v1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.paper"
+                  >论文</a>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-card-head">
+                  <p class="project-type" data-i18n="project.mind2report.type">深度研究智能体</p>
+                  <span class="project-status">Agent</span>
+                </div>
+                <h4>Mind2Report</h4>
+                <p data-i18n="project.mind2report.description">
+                  面向专家级报告综合的认知深度研究智能体，组织多阶段检索、分析与长篇内容生成。
+                </p>
+                <div class="project-tags" role="list">
+                  <span role="listitem">Python</span>
+                  <span role="listitem">Deep Research</span>
+                  <span role="listitem">Synthesis</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/ustc-ai4science/Mind2Report"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.github"
+                  >GitHub 仓库</a>
+                  <a href="../mind2report/" data-i18n="link.local">站内介绍</a>
+                  <a
+                    href="https://arxiv.org/abs/2601.04879v1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.paper"
+                  >论文</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="project-group" aria-labelledby="group-evaluation-title">
+            <div class="project-group-header">
+              <div>
+                <p class="project-group-index">03</p>
+                <h3 id="group-evaluation-title" data-i18n="group.evaluation.title">评测与科学工具</h3>
+              </div>
+              <p data-i18n="group.evaluation.description">
+                用公开基准和领域任务检验智能体推理、工具使用与科学信息理解能力。
+              </p>
+            </div>
+            <div class="project-grid">
+              <article class="project-card">
+                <div class="project-card-head">
+                  <p class="project-type" data-i18n="project.paperarena.type">智能体评测基准</p>
+                  <span class="project-status">Benchmark</span>
+                </div>
+                <h4>PaperArena</h4>
+                <p data-i18n="project.paperarena.description">
+                  评测工具增强智能体在科学文献上的多步推理、证据定位与工具调用能力。
+                </p>
+                <div class="project-tags" role="list">
+                  <span role="listitem">Python</span>
+                  <span role="listitem">Benchmark</span>
+                  <span role="listitem">Tool Use</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/ustc-ai4science/PaperArena"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.github"
+                  >GitHub 仓库</a>
+                  <a
+                    href="https://paperarena-ai.github.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.page"
+                  >项目主页</a>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-card-head">
+                  <p class="project-type" data-i18n="project.chemtable.type">化学表格评测工具</p>
+                  <span class="project-status">Benchmark</span>
+                </div>
+                <h4>ChemTable</h4>
+                <p data-i18n="project.chemtable.description">
+                  面向化学表格识别与理解的多模态模型评测项目，覆盖结构解析和科学语义理解。
+                </p>
+                <div class="project-tags" role="list">
+                  <span role="listitem">Python</span>
+                  <span role="listitem">Multimodal</span>
+                  <span role="listitem">Chemistry</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/ustc-ai4science/ChemTable"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.github"
+                  >GitHub 仓库</a>
+                  <a
+                    href="https://arxiv.org/abs/2506.11375v2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="link.paper"
+                  >论文</a>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <p class="project-license-note" data-i18n="catalog.license">
+          项目的许可、依赖与使用条件以各仓库当前的 License 和文档为准。
+        </p>
+      </section>
+
+      <section id="collaborate" class="section project-collaboration-wrap">
+        <div class="project-collaboration">
+          <div>
+            <p class="eyebrow" data-i18n="collaboration.eyebrow">共同建设 · Collaborate</p>
+            <h2 data-i18n="collaboration.title">让科研能力成为可复用的开放组件</h2>
+            <p data-i18n="collaboration.description">
+              欢迎围绕数据、模型、智能体、评测与科研工具开展合作，共同完善开放科研生态。
+            </p>
+          </div>
+          <div class="project-collaboration-actions">
+            <a
+              class="btn primary"
+              href="https://github.com/ustc-ai4science"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-i18n="collaboration.github"
+            >访问 GitHub</a>
+            <a class="btn ghost" href="mailto:mycheng@ustc.edu.cn" data-i18n="collaboration.email">邮件联系</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div>
+        <p class="eyebrow" data-i18n="footer.eyebrow">联系合作 · Connect</p>
+        <p data-i18n="footer.description">
+          欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体、Science of AI 与开源项目开展交流合作。
+        </p>
+      </div>
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/ustc-ai4science" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "Open Source Projects | USTC-AGI",
+          "meta.description":
+            "Open-source research infrastructure, agents, benchmarks, and scientific tools from USTC-AGI.",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "Scientific Literature Mining",
+          "nav.data": "Scientific Data Modeling",
+          "nav.inference": "Scientific Inference Agent",
+          "nav.aiScience": "Science of AI",
+          "nav.projects": "Open Source",
+          "nav.papers": "Publications",
+          "hero.title": "Open Source Projects",
+          "hero.subtitle":
+            "Connecting evidence infrastructure, research agents, and evaluation tools as open, reproducible research components.",
+          "overview.eyebrow": "Open Research Ecosystem",
+          "overview.title": "From Evidence Infrastructure to Research Intelligence",
+          "overview.description":
+            "The projects follow the research workflow: establish reliable evidence, let agents search, synthesize, and reason, then continuously verify capabilities through evaluations and scientific tools.",
+          "summary.foundation.title": "Evidence & Skills",
+          "summary.foundation.description":
+            "Lewen API and Academic Search provide literature access, academic search, citation analysis, and metadata extraction.",
+          "summary.agents.title": "Research Agents",
+          "summary.agents.description":
+            "PaperScout and Mind2Report organize paper search and research synthesis into reproducible agent workflows.",
+          "summary.evaluation.title": "Evaluation & Tools",
+          "summary.evaluation.description":
+            "PaperArena and ChemTable provide evaluations and research tools for scientific literature reasoning and chemical table understanding.",
+          "catalog.eyebrow": "Project Catalog",
+          "catalog.title": "Open Components Across the Research Workflow",
+          "catalog.description":
+            "Each project serves a defined research stage and links to a verifiable code repository, project page, or paper.",
+          "group.foundation.title": "Evidence Infrastructure & Skills",
+          "group.foundation.description":
+            "Reusable literature evidence access, search, and metadata processing for research agents.",
+          "group.agents.title": "Research Agents",
+          "group.agents.description":
+            "Organize retrieval, evidence selection, reasoning, and long-horizon synthesis into traceable agent processes.",
+          "group.evaluation.title": "Evaluation & Scientific Tools",
+          "group.evaluation.description":
+            "Use open benchmarks and domain tasks to test agent reasoning, tool use, and scientific information understanding.",
+          "project.lewen.type": "Literature Evidence API",
+          "project.lewen.description":
+            "An agent-oriented interface for scientific literature search and evidence access, unifying the discovery, retrieval, and organization of open scholarly resources.",
+          "project.search.type": "Academic Search Skill",
+          "project.search.description":
+            "A reusable skill for academic paper search, citation analysis, and metadata extraction, providing structured retrieval workflows for research agents.",
+          "project.paperscout.type": "Autonomous Paper Search Agent",
+          "project.paperscout.description":
+            "An autonomous academic paper search agent that improves multi-step search and evidence selection through process-aware sequence-level policy optimization.",
+          "project.mind2report.type": "Deep Research Agent",
+          "project.mind2report.description":
+            "A cognitive deep research agent for expert-level report synthesis, coordinating multi-stage retrieval, analysis, and long-form generation.",
+          "project.paperarena.type": "Agent Evaluation Benchmark",
+          "project.paperarena.description":
+            "Evaluates tool-augmented agents on multi-step reasoning, evidence localization, and tool use over scientific literature.",
+          "project.chemtable.type": "Chemical Table Benchmark",
+          "project.chemtable.description":
+            "A multimodal model benchmark for recognizing and understanding chemical tables, spanning structural parsing and scientific semantics.",
+          "link.github": "GitHub Repository",
+          "link.docs": "Documentation",
+          "link.paper": "Paper",
+          "link.page": "Project Page",
+          "link.local": "Site Overview",
+          "catalog.license":
+            "Licensing, dependencies, and usage terms follow the current License and documentation in each repository.",
+          "collaboration.eyebrow": "Collaborate",
+          "collaboration.title": "Turn Research Capabilities into Reusable Open Components",
+          "collaboration.description":
+            "We welcome collaborations across data, models, agents, evaluation, and scientific tools to strengthen the open research ecosystem.",
+          "collaboration.github": "Visit GitHub",
+          "collaboration.email": "Email Us",
+          "footer.eyebrow": "Connect",
+          "footer.description":
+            "We welcome collaborations on AI for Science, scientific data modeling, scientific literature mining, scientific inference agents, the Science of AI, and open-source projects.",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "开源项目 | USTC-AGI",
+          "meta.description":
+            "汇集 USTC-AGI 面向 AI for Science 的开源研究基础设施、智能体、评测基准与科学工具。",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "科技文献挖掘",
+          "nav.data": "科学数据建模",
+          "nav.inference": "科学推演智能体",
+          "nav.aiScience": "Science of AI",
+          "nav.projects": "开源项目",
+          "nav.papers": "论文列表",
+          "hero.title": "开源项目",
+          "hero.subtitle":
+            "连接证据基础设施、研究智能体与评测工具，将可复现的研究能力沉淀为开放组件。",
+          "overview.eyebrow": "开放科研生态",
+          "overview.title": "从证据基础设施到研究智能",
+          "overview.description":
+            "项目围绕科研工作流组织：先获得可靠证据，再由智能体完成检索、综合与推理，最后通过评测与领域工具持续验证能力。",
+          "summary.foundation.title": "证据与技能",
+          "summary.foundation.description":
+            "Lewen API 与 Academic Search 提供文献访问、学术检索、引用分析和元数据提取能力。",
+          "summary.agents.title": "研究智能体",
+          "summary.agents.description":
+            "PaperScout 与 Mind2Report 将论文检索和研究综合组织为可复现的智能体流程。",
+          "summary.evaluation.title": "评测与工具",
+          "summary.evaluation.description":
+            "PaperArena 与 ChemTable 面向科学文献推理和化学表格理解提供评测与研究工具。",
+          "catalog.eyebrow": "项目目录",
+          "catalog.title": "覆盖科研工作流的开放组件",
+          "catalog.description":
+            "每个项目都对应明确的研究环节，并提供可核验的代码仓库、项目主页或论文入口。",
+          "group.foundation.title": "证据基础设施与技能",
+          "group.foundation.description":
+            "为科研智能体提供可复用的文献证据访问、检索和元数据处理能力。",
+          "group.agents.title": "研究智能体",
+          "group.agents.description":
+            "将检索、证据选择、推理和长程研究综合组织为可追踪的智能体过程。",
+          "group.evaluation.title": "评测与科学工具",
+          "group.evaluation.description":
+            "用公开基准和领域任务检验智能体推理、工具使用与科学信息理解能力。",
+          "project.lewen.type": "文献证据接口",
+          "project.lewen.description":
+            "面向智能体的科技文献检索与证据访问接口，为搜索、获取和组织开放学术资源提供统一能力。",
+          "project.search.type": "学术检索技能",
+          "project.search.description":
+            "可复用的学术论文搜索、引用分析与元数据提取技能，为研究型智能体提供结构化检索工作流。",
+          "project.paperscout.type": "自主论文检索智能体",
+          "project.paperscout.description":
+            "面向学术论文检索的自主智能体，通过过程感知的序列级策略优化提升多步搜索与证据选择能力。",
+          "project.mind2report.type": "深度研究智能体",
+          "project.mind2report.description":
+            "面向专家级报告综合的认知深度研究智能体，组织多阶段检索、分析与长篇内容生成。",
+          "project.paperarena.type": "智能体评测基准",
+          "project.paperarena.description":
+            "评测工具增强智能体在科学文献上的多步推理、证据定位与工具调用能力。",
+          "project.chemtable.type": "化学表格评测工具",
+          "project.chemtable.description":
+            "面向化学表格识别与理解的多模态模型评测项目，覆盖结构解析和科学语义理解。",
+          "link.github": "GitHub 仓库",
+          "link.docs": "文档",
+          "link.paper": "论文",
+          "link.page": "项目主页",
+          "link.local": "站内介绍",
+          "catalog.license": "项目的许可、依赖与使用条件以各仓库当前的 License 和文档为准。",
+          "collaboration.eyebrow": "共同建设 · Collaborate",
+          "collaboration.title": "让科研能力成为可复用的开放组件",
+          "collaboration.description":
+            "欢迎围绕数据、模型、智能体、评测与科研工具开展合作，共同完善开放科研生态。",
+          "collaboration.github": "访问 GitHub",
+          "collaboration.email": "邮件联系",
+          "footer.eyebrow": "联系合作 · Connect",
+          "footer.description":
+            "欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体、Science of AI 与开源项目开展交流合作。",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
+        setLanguage(nextLanguage, true);
+      });
+    </script>
+  </body>
+</html>

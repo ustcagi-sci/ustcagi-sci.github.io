@@ -11,6 +11,7 @@ const pages = [
   "data_modeling/index.html",
   "scientific_inference/index.html",
   "science_of_ai/index.html",
+  "projects/index.html",
   "papers/index.html",
 ];
 const publicUrls = {
@@ -19,6 +20,7 @@ const publicUrls = {
   "data_modeling/index.html": "https://ustcagi-sci.github.io/data_modeling/",
   "scientific_inference/index.html": "https://ustcagi-sci.github.io/scientific_inference/",
   "science_of_ai/index.html": "https://ustcagi-sci.github.io/science_of_ai/",
+  "projects/index.html": "https://ustcagi-sci.github.io/projects/",
   "papers/index.html": "https://ustcagi-sci.github.io/papers/",
   "mind2report/index.html": "https://ustcagi-sci.github.io/mind2report/",
 };
@@ -214,7 +216,7 @@ const validateNavigation = (relativePath) => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.knowledge", "nav.data", "nav.inference", "nav.aiScience", "nav.papers"],
+    ["nav.knowledge", "nav.data", "nav.inference", "nav.aiScience", "nav.projects", "nav.papers"],
     `${label}: navigation should match the main page link set`
   );
 
@@ -224,6 +226,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.data", href: "./data_modeling/" },
       { key: "nav.inference", href: "./scientific_inference/" },
       { key: "nav.aiScience", href: "./science_of_ai/" },
+      { key: "nav.projects", href: "./projects/" },
       { key: "nav.papers", href: "./papers/" },
     ],
     "knowledge_memory/index.html": [
@@ -231,6 +234,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "data_modeling/index.html": [
@@ -238,6 +242,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.data", href: "./" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "scientific_inference/index.html": [
@@ -245,6 +250,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "./" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "science_of_ai/index.html": [
@@ -252,6 +258,15 @@ const validateNavigation = (relativePath) => {
       { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "./" },
+      { key: "nav.projects", href: "../projects/" },
+      { key: "nav.papers", href: "../papers/" },
+    ],
+    "projects/index.html": [
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.projects", href: "./" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "papers/index.html": [
@@ -259,6 +274,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "./" },
     ],
   };
@@ -277,6 +293,7 @@ const validateNavigation = (relativePath) => {
     "data_modeling/index.html": "nav.data",
     "scientific_inference/index.html": "nav.inference",
     "science_of_ai/index.html": "nav.aiScience",
+    "projects/index.html": "nav.projects",
     "papers/index.html": "nav.papers",
   }[relativePath];
 
@@ -341,6 +358,21 @@ const validateNavigation = (relativePath) => {
     navFallbacks["nav.aiScience"],
     "Science of AI",
     `${label}: AI science navigation fallback should be Science of AI`
+  );
+  assert.equal(
+    context.translations.en["nav.projects"],
+    "Open Source",
+    `${label}: English projects navigation label should be Open Source`
+  );
+  assert.equal(
+    context.translations.zh["nav.projects"],
+    "开源项目",
+    `${label}: Chinese projects navigation label should be 开源项目`
+  );
+  assert.equal(
+    navFallbacks["nav.projects"],
+    "开源项目",
+    `${label}: projects navigation fallback should be 开源项目`
   );
 };
 
@@ -441,6 +473,8 @@ const validateCanonicalExternalLinks = () => {
     "https://github.com/orgs/ustc-ai4science/",
   ];
   const canonicalProjectLinks = [
+    "https://github.com/ustc-ai4science/Lewen-API",
+    "https://github.com/ustc-ai4science/academic-search",
     "https://github.com/AgentR1/PaperScout",
     "https://github.com/ustc-ai4science/PaperArena",
     "https://github.com/ustc-ai4science/Mind2Report",
@@ -493,7 +527,7 @@ const validateAccessibilityAndMobileFixes = () => {
     "ref.css: language toggle should expose a visible keyboard focus ring"
   );
   assert.ok(
-    /@media \(max-width:\s*760px\)[\s\S]*?\.inference-page \.section\s*\{[\s\S]*?scroll-margin-top:\s*166px/.test(sharedCss),
+    /@media \(max-width:\s*760px\)[\s\S]*?\.inference-page \.section\s*\{[\s\S]*?scroll-margin-top:\s*196px/.test(sharedCss),
     "ref.css: scientific inference anchors should fully clear the mobile navigation"
   );
   assert.ok(
@@ -514,9 +548,19 @@ const validateReadmeIdentity = () => {
   const readme = readFileSync(resolve(root, "README.md"), "utf8");
 
   assert.ok(/^# USTC-AGI · AI for Science$/m.test(readme), "README.md: heading should match the site brand");
-  for (const term of ["Scientific Literature Mining", "Scientific Data Modeling", "Scientific Inference Agent", "Science of AI"]) {
+  for (const term of [
+    "Scientific Literature Mining",
+    "Scientific Data Modeling",
+    "Scientific Inference Agent",
+    "Science of AI",
+    "Open Source Projects",
+  ]) {
     assert.ok(readme.includes(term), `README.md: missing current research area ${term}`);
   }
+  assert.ok(
+    readme.includes("seven bilingual main pages"),
+    "README.md: site structure should count the new bilingual projects page"
+  );
   assert.ok(
     !/homepage for \*\*AI for Scientific Literature Mining\*\*/.test(readme),
     "README.md: repository identity should not be limited to literature mining"
@@ -605,7 +649,7 @@ const validateUnifiedFooters = () => {
       <div>
         <p class="eyebrow" data-i18n="footer.eyebrow">联系合作 · Connect</p>
         <p data-i18n="footer.description">
-          欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体与 Science of AI 开展交流合作。
+          欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体、Science of AI 与开源项目开展交流合作。
         </p>
       </div>
       <div class="footer-actions">
@@ -622,14 +666,14 @@ const validateUnifiedFooters = () => {
     en: {
       eyebrow: "Connect",
       description:
-        "We welcome collaborations on AI for Science, scientific data modeling, scientific literature mining, scientific inference agents, and the Science of AI.",
+        "We welcome collaborations on AI for Science, scientific data modeling, scientific literature mining, scientific inference agents, the Science of AI, and open-source projects.",
       email: "Email Us",
       note: "USTC AGI · Licensed under",
     },
     zh: {
       eyebrow: "联系合作 · Connect",
       description:
-        "欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体与 Science of AI 开展交流合作。",
+        "欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体、Science of AI 与开源项目开展交流合作。",
       email: "邮件联系",
       note: "USTC AGI · 采用协议",
     },
@@ -2110,7 +2154,7 @@ const validateScientificInferencePage = () => {
     "ref.css: inference loop should become a vertical mobile sequence"
   );
   assert.ok(
-    /@media \(max-width: 760px\)[\s\S]*?\.inference-page \.section\s*\{[\s\S]*?scroll-margin-top:\s*166px/.test(css),
+    /@media \(max-width: 760px\)[\s\S]*?\.inference-page \.section\s*\{[\s\S]*?scroll-margin-top:\s*196px/.test(css),
     "ref.css: inference section anchors should clear the taller mobile navigation"
   );
   assert.ok(
@@ -2131,6 +2175,121 @@ const validateScientificInferencePage = () => {
       `ref.css: should remove unused hero token ${unusedToken}`
     );
   }
+};
+
+const validateProjectsPage = () => {
+  const html = readFileSync(resolve(root, "projects/index.html"), "utf8");
+  const css = readFileSync(resolve(root, "ref.css"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const repositoryLinks = [
+    "https://github.com/ustc-ai4science/Lewen-API",
+    "https://github.com/ustc-ai4science/academic-search",
+    "https://github.com/AgentR1/PaperScout",
+    "https://github.com/ustc-ai4science/Mind2Report",
+    "https://github.com/ustc-ai4science/PaperArena",
+    "https://github.com/ustc-ai4science/ChemTable",
+  ];
+  const expectedTranslations = {
+    en: {
+      "hero.title": "Open Source Projects",
+      "hero.subtitle":
+        "Connecting evidence infrastructure, research agents, and evaluation tools as open, reproducible research components.",
+      "overview.title": "From Evidence Infrastructure to Research Intelligence",
+      "catalog.title": "Open Components Across the Research Workflow",
+      "group.foundation.title": "Evidence Infrastructure & Skills",
+      "group.agents.title": "Research Agents",
+      "group.evaluation.title": "Evaluation & Scientific Tools",
+      "project.lewen.type": "Literature Evidence API",
+      "project.search.type": "Academic Search Skill",
+      "project.paperscout.type": "Autonomous Paper Search Agent",
+      "project.mind2report.type": "Deep Research Agent",
+      "project.paperarena.type": "Agent Evaluation Benchmark",
+      "project.chemtable.type": "Chemical Table Benchmark",
+      "catalog.license":
+        "Licensing, dependencies, and usage terms follow the current License and documentation in each repository.",
+      "collaboration.title": "Turn Research Capabilities into Reusable Open Components",
+    },
+    zh: {
+      "hero.title": "开源项目",
+      "hero.subtitle":
+        "连接证据基础设施、研究智能体与评测工具，将可复现的研究能力沉淀为开放组件。",
+      "overview.title": "从证据基础设施到研究智能",
+      "catalog.title": "覆盖科研工作流的开放组件",
+      "group.foundation.title": "证据基础设施与技能",
+      "group.agents.title": "研究智能体",
+      "group.evaluation.title": "评测与科学工具",
+      "project.lewen.type": "文献证据接口",
+      "project.search.type": "学术检索技能",
+      "project.paperscout.type": "自主论文检索智能体",
+      "project.mind2report.type": "深度研究智能体",
+      "project.paperarena.type": "智能体评测基准",
+      "project.chemtable.type": "化学表格评测工具",
+      "catalog.license": "项目的许可、依赖与使用条件以各仓库当前的 License 和文档为准。",
+      "collaboration.title": "让科研能力成为可复用的开放组件",
+    },
+  };
+
+  assert.ok(/<body class="projects-page">/.test(html), "projects/index.html: missing projects page body class");
+  assert.equal(
+    (html.match(/<section class="project-group"/g) || []).length,
+    3,
+    "projects/index.html: project catalog should contain exactly three workflow groups"
+  );
+  assert.equal(
+    (html.match(/<article class="project-card">/g) || []).length,
+    6,
+    "projects/index.html: project catalog should contain exactly six project cards"
+  );
+  assert.ok(
+    !/stargazers_count|star-count|GitHub Stars/.test(html),
+    "projects/index.html: avoid stale live metrics in the static catalog"
+  );
+  for (const repositoryLink of repositoryLinks) {
+    assert.ok(
+      html.includes(`href="${repositoryLink}"`),
+      `projects/index.html: missing canonical repository link ${repositoryLink}`
+    );
+  }
+  for (const supportingLink of [
+    "https://ustc-ai4science.github.io/Lewen-API/",
+    "https://paperarena-ai.github.io/",
+    "../mind2report/",
+    "https://arxiv.org/abs/2601.10029v1",
+    "https://arxiv.org/abs/2601.04879v1",
+    "https://arxiv.org/abs/2506.11375v2",
+  ]) {
+    assert.ok(
+      html.includes(`href="${supportingLink}"`),
+      `projects/index.html: missing verified supporting link ${supportingLink}`
+    );
+  }
+
+  assert.ok(objectMatch, "projects/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  for (const [language, translations] of Object.entries(expectedTranslations)) {
+    for (const [key, value] of Object.entries(translations)) {
+      assert.equal(
+        context.translations[language][key],
+        value,
+        `projects/index.html: unexpected ${language} translation for ${key}`
+      );
+    }
+  }
+
+  assert.ok(/\.project-summary-grid\s*\{/.test(css), "ref.css: missing project summary grid");
+  assert.ok(
+    /\.project-grid\s*\{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/.test(css),
+    "ref.css: desktop project catalog should use two columns"
+  );
+  assert.ok(/\.project-card\s*\{/.test(css), "ref.css: missing project card styles");
+  assert.ok(/\.project-collaboration\s*\{/.test(css), "ref.css: missing project collaboration panel");
+  assert.ok(
+    /@media \(max-width:\s*760px\)[\s\S]*?\.project-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr/.test(css),
+    "ref.css: mobile project catalog should collapse to one column"
+  );
 };
 
 const validateUnifiedColorPalette = () => {
@@ -2284,6 +2443,7 @@ validateKnowledgeDiscoveryPage();
 validateDataModelingPage();
 validateScientificInferencePage();
 validateScienceOfAiPage();
+validateProjectsPage();
 validateUnifiedColorPalette();
 validateTabletNavigationStyles();
 validateDirectionsPageRemoved();
