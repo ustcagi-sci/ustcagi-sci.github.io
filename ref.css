@@ -1543,6 +1543,7 @@ td strong {
 
 .project-collaboration .btn.ghost {
   border-color: rgba(255, 255, 255, 0.52);
+  background: transparent;
   color: #ffffff;
 }
 

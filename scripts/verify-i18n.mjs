@@ -2287,6 +2287,10 @@ const validateProjectsPage = () => {
   assert.ok(/\.project-card\s*\{/.test(css), "ref.css: missing project card styles");
   assert.ok(/\.project-collaboration\s*\{/.test(css), "ref.css: missing project collaboration panel");
   assert.ok(
+    /\.project-collaboration \.btn\.ghost\s*\{[^}]*background:\s*transparent;/.test(css),
+    "ref.css: dark collaboration panel should keep its white secondary button label visible"
+  );
+  assert.ok(
     /@media \(max-width:\s*760px\)[\s\S]*?\.project-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr/.test(css),
     "ref.css: mobile project catalog should collapse to one column"
   );
