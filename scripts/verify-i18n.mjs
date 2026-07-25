@@ -2122,6 +2122,10 @@ const validateScientificInferencePage = () => {
     3,
     "scientific inference page should contain three roadmap stages"
   );
+  assert.ok(
+    !/data-i18n="roadmap\.eyebrow"/.test(html),
+    "scientific inference page should not render the roadmap eyebrow"
+  );
   assert.ok(/href="\.\.\/knowledge_memory\/"/.test(html), "scientific inference page should link to knowledge discovery");
   assert.ok(/href="\.\.\/data_modeling\/"/.test(html), "scientific inference page should link to task solving");
 
@@ -2158,6 +2162,11 @@ const validateScientificInferencePage = () => {
       context.translations[language]["definition.eyebrow"],
       undefined,
       `scientific_inference/index.html: should remove the ${language} definition eyebrow translation`
+    );
+    assert.equal(
+      context.translations[language]["roadmap.eyebrow"],
+      undefined,
+      `scientific_inference/index.html: should remove the ${language} roadmap eyebrow translation`
     );
   }
   for (const [language, translations] of Object.entries(expectedTranslations)) {
