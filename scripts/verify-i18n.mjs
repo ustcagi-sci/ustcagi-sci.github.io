@@ -647,7 +647,6 @@ const validateUnifiedFooters = () => {
   const expectedFooter = normalizeMarkup(`
     <footer id="contact" class="footer">
       <div>
-        <p class="eyebrow" data-i18n="footer.eyebrow">联系合作 · Connect</p>
         <p data-i18n="footer.description">
           欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体、Science of AI 与开源项目开展交流合作。
         </p>
@@ -664,14 +663,12 @@ const validateUnifiedFooters = () => {
   `);
   const expectedTranslations = {
     en: {
-      eyebrow: "Connect",
       description:
         "We welcome collaborations on AI for Science, scientific data modeling, scientific literature mining, scientific inference agents, the Science of AI, and open-source projects.",
       email: "Email Us",
       note: "USTC AGI · Licensed under",
     },
     zh: {
-      eyebrow: "联系合作 · Connect",
       description:
         "欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体、Science of AI 与开源项目开展交流合作。",
       email: "邮件联系",
@@ -697,7 +694,12 @@ const validateUnifiedFooters = () => {
     vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
 
     for (const language of ["en", "zh"]) {
-      for (const key of ["eyebrow", "description", "email", "note"]) {
+      assert.equal(
+        context.translations[language]["footer.eyebrow"],
+        undefined,
+        `${relativePath}: stale ${language} footer eyebrow translation should be removed`
+      );
+      for (const key of ["description", "email", "note"]) {
         assert.equal(
           context.translations[language][`footer.${key}`],
           expectedTranslations[language][key],
