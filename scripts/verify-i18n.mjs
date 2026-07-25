@@ -2102,6 +2102,10 @@ const validateScientificInferencePage = () => {
     4,
     "scientific inference page should contain four loop stages"
   );
+  assert.ok(
+    !/data-i18n="loop\.eyebrow"/.test(html),
+    "scientific inference page should not render the loop eyebrow"
+  );
   assert.equal(
     (html.match(/<article class="inference-layer" role="listitem">/g) || []).length,
     4,
@@ -2194,6 +2198,11 @@ const validateScientificInferencePage = () => {
       context.translations[language]["architecture.eyebrow"],
       undefined,
       `scientific_inference/index.html: should remove the ${language} architecture eyebrow translation`
+    );
+    assert.equal(
+      context.translations[language]["loop.eyebrow"],
+      undefined,
+      `scientific_inference/index.html: should remove the ${language} loop eyebrow translation`
     );
   }
   for (const [language, translations] of Object.entries(expectedTranslations)) {
