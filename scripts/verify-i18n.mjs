@@ -2107,6 +2107,10 @@ const validateScientificInferencePage = () => {
     4,
     "scientific inference page should contain four architecture layers"
   );
+  assert.ok(
+    !/data-i18n="architecture\.eyebrow"/.test(html),
+    "scientific inference page should not render the architecture eyebrow"
+  );
   assert.equal(
     (html.match(/<article class="inference-output" role="listitem">/g) || []).length,
     3,
@@ -2185,6 +2189,11 @@ const validateScientificInferencePage = () => {
       context.translations[language]["collaboration.eyebrow"],
       undefined,
       `scientific_inference/index.html: should remove the ${language} collaboration eyebrow translation`
+    );
+    assert.equal(
+      context.translations[language]["architecture.eyebrow"],
+      undefined,
+      `scientific_inference/index.html: should remove the ${language} architecture eyebrow translation`
     );
   }
   for (const [language, translations] of Object.entries(expectedTranslations)) {
