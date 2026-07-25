@@ -1735,6 +1735,10 @@ const validateDataModelingPage = () => {
     "data_modeling/index.html: introduction should position task solving as the foundation layer"
   );
   assert.ok(
+    !/data-i18n="intro\.eyebrow"/.test(html),
+    "data_modeling/index.html: introduction eyebrow should be removed"
+  );
+  assert.ok(
     /<h2 data-i18n="capabilities\.title">从问题定义到验证反馈<\/h2>/.test(html),
     "data_modeling/index.html: capability section should present the scientific solution loop"
   );
@@ -1788,6 +1792,13 @@ const validateDataModelingPage = () => {
     "科学任务求解是 AI for Science 的基础层",
     "data_modeling/index.html: Chinese introduction should match the new foundation-layer framing"
   );
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["intro.eyebrow"],
+      undefined,
+      `data_modeling/index.html: stale ${language} intro eyebrow translation should be removed`
+    );
+  }
   assert.equal(
     context.translations.en["relationship.path.text"],
     "Scientific task automation → research workflow automation → new scientific discovery → scientific paradigm formation",
