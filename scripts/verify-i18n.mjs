@@ -2112,6 +2112,10 @@ const validateScientificInferencePage = () => {
     3,
     "scientific inference page should contain three research outputs"
   );
+  assert.ok(
+    !/data-i18n="collaboration\.eyebrow"/.test(html),
+    "scientific inference page should not render the collaboration eyebrow"
+  );
   assert.equal(
     (html.match(/<article class="inference-metric" role="listitem">/g) || []).length,
     4,
@@ -2176,6 +2180,11 @@ const validateScientificInferencePage = () => {
       context.translations[language]["trust.eyebrow"],
       undefined,
       `scientific_inference/index.html: should remove the ${language} trust eyebrow translation`
+    );
+    assert.equal(
+      context.translations[language]["collaboration.eyebrow"],
+      undefined,
+      `scientific_inference/index.html: should remove the ${language} collaboration eyebrow translation`
     );
   }
   for (const [language, translations] of Object.entries(expectedTranslations)) {
