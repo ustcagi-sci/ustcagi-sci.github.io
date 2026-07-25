@@ -1624,6 +1624,10 @@ const validateKnowledgeDiscoveryPage = () => {
     "knowledge_memory/index.html: introduction should position knowledge discovery as the second layer"
   );
   assert.ok(
+    !/data-i18n="intro\.eyebrow"/.test(html),
+    "knowledge_memory/index.html: introduction eyebrow should be removed"
+  );
+  assert.ok(
     /<h2 data-i18n="position\.title">从知识获取走向科学知识发现<\/h2>/.test(html),
     "knowledge_memory/index.html: positioning should advance from acquisition to discovery"
   );
@@ -1666,6 +1670,13 @@ const validateKnowledgeDiscoveryPage = () => {
     "科学知识发现是 AI for Science 的第二层",
     "knowledge_memory/index.html: Chinese introduction should match the second-layer framing"
   );
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["intro.eyebrow"],
+      undefined,
+      `knowledge_memory/index.html: stale ${language} intro eyebrow translation should be removed`
+    );
+  }
   assert.equal(
     context.translations.en["researchLoop.path.text"],
     "Regularity discovery → hypothesis generation → experimental validation → knowledge formation",
