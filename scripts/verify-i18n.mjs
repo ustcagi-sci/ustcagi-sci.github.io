@@ -1502,6 +1502,59 @@ const validatePapersListHeaderRemoved = () => {
   assert.equal(context.translations.zh["list.title"], undefined, "papers/index.html: removed list title should not keep Chinese translation");
 };
 
+const validateScholarQuestPaper = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const expectedTitle =
+    "ScholarQuest: A Taxonomy-Guided Benchmark for Agentic Academic Paper Search in Open Literature Environments";
+  const expectedAuthors =
+    "Tingyue Pan, Mingyue Cheng†, Daoyu Wang, Yitong Zhou, Jie Ouyang, Qi Liu, Enhong Chen";
+  const scholarQuestMatch = html.match(
+    /<p class="paper-meta" data-i18n="papers\.scholarquest\.meta">([^<]+)<\/p>\s*<h3>([^<]+)<\/h3>\s*<p class="paper-authors">([^<]+)<\/p>[\s\S]*?<div class="paper-links">([\s\S]*?)<\/div>/
+  );
+
+  assert.ok(scholarQuestMatch, "papers/index.html: missing ScholarQuest paper card");
+  assert.equal(scholarQuestMatch[1], "2026 · arXiv Preprint · L1 Paper Search");
+  assert.equal(scholarQuestMatch[2], expectedTitle);
+  assert.equal(scholarQuestMatch[3], expectedAuthors);
+  assert.ok(
+    html.indexOf('data-i18n="papers.scholarquest.meta"') <
+      html.indexOf('data-i18n="papers.paperscout.meta"'),
+    "papers/index.html: ScholarQuest should precede PaperScout in the Preprint section"
+  );
+
+  for (const [href, label] of [
+    ["https://arxiv.org/pdf/2606.20235", "PDF"],
+    ["https://arxiv.org/abs/2606.20235", "ArXiv"],
+    ["https://github.com/pty12345/ScholarQuest", "Code"],
+  ]) {
+    assert.ok(
+      scholarQuestMatch[4].includes(`href="${href}"`) &&
+        scholarQuestMatch[4].includes(`>${label}</a>`),
+      `papers/index.html: ScholarQuest should link to ${label}`
+    );
+  }
+  assert.ok(
+    scholarQuestMatch[4].includes("citation_for_view=74IhSx8AAAAJ:zGdJYJv2LkUC") &&
+      scholarQuestMatch[4].includes(">Scholar</a>"),
+    "papers/index.html: ScholarQuest should retain the supplied Google Scholar citation link"
+  );
+
+  assert.ok(objectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["papers.scholarquest.meta"],
+    "2026 · arXiv Preprint · L1 Paper Search"
+  );
+  assert.equal(
+    context.translations.zh["papers.scholarquest.meta"],
+    "2026 · arXiv Preprint · L1 论文检索"
+  );
+};
+
 const validateChemTableVenueLink = () => {
   const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
   const objectMatch = html.match(
@@ -2514,6 +2567,7 @@ validatePapersHero();
 validatePapersIdentity();
 validatePapersYearLabels();
 validatePapersListHeaderRemoved();
+validateScholarQuestPaper();
 validateChemTableVenueLink();
 validateScholarSumVenueLink();
 validateKnowledgeDiscoveryPage();
