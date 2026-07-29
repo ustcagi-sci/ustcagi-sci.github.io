@@ -1555,6 +1555,118 @@ const validateScholarQuestPaper = () => {
   );
 };
 
+const validateGeoPapers = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+  const expectedPapers = [
+    {
+      key: "geodecider",
+      meta: "2026 · Preprint · Geological Reasoning",
+      title:
+        "GeoDecider: An Evidence-Grounded Agent for Geological Interpretation via Deliberative Reasoning",
+      authors:
+        "Xiaoyu Tao, Mingyue Cheng, Jiahao Wang, Yitong Zhou, Qingyang Mao, Yimin Dou, Qi Liu, Shijin Wang, Enhong Chen",
+      links: [
+        ["https://arxiv.org/pdf/2605.03383", "PDF v1"],
+        ["https://arxiv.org/abs/2605.03383", "ArXiv v1"],
+      ],
+      translatedMeta: {
+        en: "2026 · Preprint · Geological Reasoning",
+        zh: "2026 · 预印本 · 地质推演",
+      },
+    },
+    {
+      key: "geomind",
+      meta: "2026 · arXiv Preprint · Lithology Classification",
+      title:
+        "GeoMind: An Agentic Workflow for Lithology Classification with Reasoned Tool Invocation",
+      authors: "Mingyue Cheng, Yitong Zhou, Jiahao Wang, Qingyang Mao, Qi Liu",
+      links: [
+        ["https://arxiv.org/pdf/2604.21501", "PDF"],
+        ["https://arxiv.org/abs/2604.21501", "ArXiv"],
+      ],
+      translatedMeta: {
+        en: "2026 · arXiv Preprint · Lithology Classification",
+        zh: "2026 · arXiv 预印本 · 岩性分类",
+      },
+    },
+  ];
+
+  assert.ok(objectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const paper of expectedPapers) {
+    const paperPattern = new RegExp(
+      `<p class="paper-meta" data-i18n="papers\\.${paper.key}\\.meta">([^<]+)<\\/p>\\s*` +
+        `<h3>([^<]+)<\\/h3>\\s*` +
+        `<p class="paper-authors">([^<]+)<\\/p>[\\s\\S]*?` +
+        `<div class="paper-links">([\\s\\S]*?)<\\/div>`
+    );
+    const paperMatch = html.match(paperPattern);
+
+    assert.ok(paperMatch, `papers/index.html: missing ${paper.title} paper card`);
+    assert.equal(paperMatch[1], paper.meta);
+    assert.equal(paperMatch[2], paper.title);
+    assert.equal(paperMatch[3], paper.authors);
+
+    for (const [href, label] of paper.links) {
+      assert.ok(
+        paperMatch[4].includes(`href="${href}"`) &&
+          paperMatch[4].includes(`>${label}</a>`),
+        `papers/index.html: ${paper.key} should link to ${label}`
+      );
+    }
+
+    for (const language of ["en", "zh"]) {
+      assert.equal(
+        context.translations[language][`papers.${paper.key}.meta`],
+        paper.translatedMeta[language],
+        `papers/index.html: ${language} ${paper.key} metadata should match`
+      );
+    }
+  }
+
+  const scholarQuestIndex = html.indexOf('data-i18n="papers.scholarquest.meta"');
+  const geoDeciderIndex = html.indexOf('data-i18n="papers.geodecider.meta"');
+  const geoMindIndex = html.indexOf('data-i18n="papers.geomind.meta"');
+  const paperScoutIndex = html.indexOf('data-i18n="papers.paperscout.meta"');
+
+  assert.ok(
+    scholarQuestIndex < geoDeciderIndex &&
+      geoDeciderIndex < geoMindIndex &&
+      geoMindIndex < paperScoutIndex,
+    "papers/index.html: GeoDecider and GeoMind should follow ScholarQuest and precede PaperScout"
+  );
+};
+
+const validateMind2ReportCategory = () => {
+  const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const categoryMatch = html.match(
+    /<p class="paper-meta" data-i18n="papers\.mind2report\.meta">([^<]+)<\/p>/
+  );
+  const expected = "2026 · arXiv Preprint · L4 DeepResearch";
+  const context = {};
+
+  assert.ok(categoryMatch, "papers/index.html: missing Mind2Report category");
+  assert.equal(categoryMatch[1], expected, "papers/index.html: Mind2Report should use DeepResearch");
+  assert.ok(objectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+
+  for (const language of ["en", "zh"]) {
+    assert.equal(
+      context.translations[language]["papers.mind2report.meta"],
+      expected,
+      `papers/index.html: ${language} Mind2Report category should use DeepResearch`
+    );
+  }
+};
+
 const validateChemTableVenueLink = () => {
   const html = readFileSync(resolve(root, "papers/index.html"), "utf8");
   const objectMatch = html.match(
@@ -2568,6 +2680,8 @@ validatePapersIdentity();
 validatePapersYearLabels();
 validatePapersListHeaderRemoved();
 validateScholarQuestPaper();
+validateGeoPapers();
+validateMind2ReportCategory();
 validateChemTableVenueLink();
 validateScholarSumVenueLink();
 validateKnowledgeDiscoveryPage();
