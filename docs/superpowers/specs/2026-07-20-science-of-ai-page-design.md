@@ -11,7 +11,7 @@ Create a bilingual `AI 科学 / Science of AI` subpage that treats AI itself as 
 Add a fourth research link to every page navigation:
 
 1. Scientific Data / 科学数据
-2. Scientific Literature / 科技文献
+2. Scientific Literature / 科学文献
 3. Science of AI / AI 科学
 4. Publications / 论文列表
 

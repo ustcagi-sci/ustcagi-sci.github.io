@@ -12,7 +12,7 @@
 
 ## 设计
 
-1. 术语以当前中文导航为唯一页面身份：`科技文献挖掘 / Scientific Literature Mining`、`科学数据建模 / Scientific Data Modeling`、`科学推演智能体 / Scientific Inference Agent`。科学知识发现、科学任务求解继续作为研究目标或上层概念出现，但不再作为页面标题和导航别名。
+1. 术语以当前中文导航为唯一页面身份：`科学文献挖掘 / Scientific Literature Mining`、`科学数据建模 / Scientific Data Modeling`、`科学推演智能体 / Scientific Inference Agent`。科学知识发现、科学任务求解继续作为研究目标或上层概念出现，但不再作为页面标题和导航别名。
 2. 失效的学术乐问入口改指向仍可访问的 Lewen API 官方文档；学术鲁班保留项目说明但撤下失效网址，显示维护状态。历史 GitHub 重定向链接改成浏览器已确认的规范仓库地址。
 3. 六个主页面补齐 canonical、Open Graph URL/图片和 Twitter Card；Mind2Report 补 canonical 与 Twitter Card；新增 `robots.txt` 和 `sitemap.xml`。
 4. Mind2Report 的移动端标题使用可在 320px 与 390px 视口内收缩的字号，移除会制造横向滚动的最小页面宽度，并把锚点留白增加到导航高度以上。科学推演页同步增加锚点安全间距。
