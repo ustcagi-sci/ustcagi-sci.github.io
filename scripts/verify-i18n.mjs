@@ -216,62 +216,62 @@ const validateNavigation = (relativePath) => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.knowledge", "nav.data", "nav.inference", "nav.aiScience", "nav.projects", "nav.papers"],
+    ["nav.data", "nav.knowledge", "nav.inference", "nav.aiScience", "nav.projects", "nav.papers"],
     `${label}: navigation should match the main page link set`
   );
 
   const expectedLinks = {
     "index.html": [
-      { key: "nav.knowledge", href: "./knowledge_memory/" },
       { key: "nav.data", href: "./data_modeling/" },
+      { key: "nav.knowledge", href: "./knowledge_memory/" },
       { key: "nav.inference", href: "./scientific_inference/" },
       { key: "nav.aiScience", href: "./science_of_ai/" },
       { key: "nav.projects", href: "./projects/" },
       { key: "nav.papers", href: "./papers/" },
     ],
     "knowledge_memory/index.html": [
-      { key: "nav.knowledge", href: "./" },
       { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.knowledge", href: "./" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "data_modeling/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.data", href: "./" },
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "scientific_inference/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.inference", href: "./" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "science_of_ai/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "./" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "projects/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "./" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "papers/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
@@ -646,11 +646,6 @@ const normalizeMarkup = (markup) => markup.replace(/\s+/g, " ").trim();
 const validateUnifiedFooters = () => {
   const expectedFooter = normalizeMarkup(`
     <footer id="contact" class="footer">
-      <div>
-        <p data-i18n="footer.description">
-          欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体、Science of AI 与开源项目开展交流合作。
-        </p>
-      </div>
       <div class="footer-actions">
         <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
         <a class="btn ghost" href="https://github.com/ustc-ai4science" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -663,14 +658,10 @@ const validateUnifiedFooters = () => {
   `);
   const expectedTranslations = {
     en: {
-      description:
-        "We welcome collaborations on AI for Science, scientific data modeling, scientific literature mining, scientific inference agents, the Science of AI, and open-source projects.",
       email: "Email Us",
       note: "USTC AGI · Licensed under",
     },
     zh: {
-      description:
-        "欢迎围绕 AI for Science、科学数据建模、科技文献挖掘、科学推演智能体、Science of AI 与开源项目开展交流合作。",
       email: "邮件联系",
       note: "USTC AGI · 采用协议",
     },
@@ -699,7 +690,12 @@ const validateUnifiedFooters = () => {
         undefined,
         `${relativePath}: stale ${language} footer eyebrow translation should be removed`
       );
-      for (const key of ["description", "email", "note"]) {
+      assert.equal(
+        context.translations[language]["footer.description"],
+        undefined,
+        `${relativePath}: stale ${language} footer description translation should be removed`
+      );
+      for (const key of ["email", "note"]) {
         assert.equal(
           context.translations[language][`footer.${key}`],
           expectedTranslations[language][key],
@@ -734,10 +730,10 @@ const validateHomeMeaningsModule = () => {
       "meanings.title": "Three Meanings of AI for Science",
       "meanings.description":
         "This site organizes AI for Science into three related levels: using AI to solve scientific tasks, using AI to support scientific discovery, and studying AI itself as a scientific system.",
-      "meanings.tasks.title": "AI for Scientific Task Solving",
+      "meanings.tasks.title": "Scientific Task Solving",
       "meanings.tasks.description":
         "Develop and evaluate AI methods for scientific problems with explicit objectives and evaluation criteria, including equation solving, molecular design, protein structure prediction, and scientific image analysis.",
-      "meanings.discovery.title": "AI for Scientific Discovery",
+      "meanings.discovery.title": "Scientific Laws and Knowledge Discovery",
       "meanings.discovery.description":
         "Integrate data, literature, and experimental evidence to identify candidate laws, mechanisms, invariants, and testable hypotheses, together with their validity conditions and uncertainty.",
       "meanings.science.title": "Science of AI",
@@ -748,10 +744,10 @@ const validateHomeMeaningsModule = () => {
       "meanings.title": "AI for Science 的三层涵义",
       "meanings.description":
         "本站将 AI for Science 的研究内涵概括为三个相互关联的层次：用 AI 求解科学任务、用 AI 支持科学发现，以及把 AI 本身作为科学系统进行研究。",
-      "meanings.tasks.title": "面向科学任务求解的AI",
+      "meanings.tasks.title": "科学任务求解",
       "meanings.tasks.description":
         "面向目标与评价标准相对明确的科学问题，研究并评估方程求解、分子设计、蛋白质结构预测和科学影像分析等任务中的 AI 方法。",
-      "meanings.discovery.title": "面向科学规律新发现的AI",
+      "meanings.discovery.title": "科学规律与知识发现",
       "meanings.discovery.description":
         "综合数据、文献和实验依据，识别候选规律、机制、守恒关系与可检验假设，同时刻画其成立条件和不确定性。",
       "meanings.science.title": "Science of AI",
@@ -1006,7 +1002,7 @@ const validateHomeDataModelingModule = () => {
   const hierarchyIndex = html.indexOf('<section id="hierarchy"');
   const expectedTranslations = {
     en: {
-      "dataModeling.title": "Scientific Data Modeling",
+      "dataModeling.title": "Task Solving through Scientific Data Modeling",
       "dataModeling.description":
         "For tables, time series, experimental records, and observational data, we study representations and predictive methods that respect variable semantics, experimental conditions, and domain constraints, providing testable and reusable foundations for scientific task solving.",
       "dataModeling.tabular.title": "Tabular Data",
@@ -1018,7 +1014,7 @@ const validateHomeDataModelingModule = () => {
       "dataModeling.cta": "Learn Scientific Data Modeling",
     },
     zh: {
-      "dataModeling.title": "科学数据建模",
+      "dataModeling.title": "基于科学数据建模的任务求解",
       "dataModeling.description":
         "面向表格、时间序列、实验记录与观测数据，研究符合变量语义、实验条件和领域约束的表示学习与预测方法，为科学任务求解提供可检验、可复用的模型基础。",
       "dataModeling.tabular.title": "Tabular Data",
@@ -1036,8 +1032,8 @@ const validateHomeDataModelingModule = () => {
   assert.ok(hierarchyIndex > dataModelingIndex, "index.html: hierarchy section should appear after the data modeling module");
   assert.ok(/<section id="data-modeling" class="section highlights">/.test(html), "index.html: missing homepage data modeling module");
   assert.ok(
-    /<h2 data-i18n="dataModeling\.title">科学数据建模<\/h2>/.test(html),
-    "index.html: data modeling module title should be 科学数据建模"
+    /<h2 data-i18n="dataModeling\.title">基于科学数据建模的任务求解<\/h2>/.test(html),
+    "index.html: data modeling module title should be 基于科学数据建模的任务求解"
   );
   assert.ok(/href="\.\/data_modeling\/" data-i18n="dataModeling\.cta"/.test(html), "index.html: data modeling module should link to the data modeling subpage");
   assert.ok(!/>结构化科学数据<\/p>/.test(html), "index.html: structured scientific data eyebrow should be removed");
@@ -1072,8 +1068,8 @@ const validateHomeHierarchyTitle = () => {
   const context = {};
 
   assert.ok(
-    /<h2 data-i18n="hierarchy\.title">科技文献挖掘<\/h2>/.test(html),
-    "index.html: hierarchy title should be 科技文献挖掘"
+    /<h2 data-i18n="hierarchy\.title">基于科技文献挖掘的知识发现<\/h2>/.test(html),
+    "index.html: hierarchy title should be 基于科技文献挖掘的知识发现"
   );
   assert.ok(hierarchyMatch, "index.html: missing hierarchy section");
   assert.ok(
@@ -1087,13 +1083,13 @@ const validateHomeHierarchyTitle = () => {
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
   assert.equal(
     context.translations.en["hierarchy.title"],
-    "Scientific Literature Mining",
-    "index.html: English hierarchy title should be Scientific Literature Mining"
+    "Knowledge Discovery through Scientific Literature Mining",
+    "index.html: English hierarchy title should be Knowledge Discovery through Scientific Literature Mining"
   );
   assert.equal(
     context.translations.zh["hierarchy.title"],
-    "科技文献挖掘",
-    "index.html: Chinese hierarchy title should be 科技文献挖掘"
+    "基于科技文献挖掘的知识发现",
+    "index.html: Chinese hierarchy title should be 基于科技文献挖掘的知识发现"
   );
   assert.equal(
     context.translations.en["hierarchy.cta"],
@@ -1787,8 +1783,8 @@ const validateKnowledgeDiscoveryPage = () => {
     "knowledge_memory/index.html: hero GitHub button should be removed"
   );
   assert.ok(
-    /<h2 data-i18n="intro\.title">科学知识发现是 AI for Science 的第二层<\/h2>/.test(html),
-    "knowledge_memory/index.html: introduction should position knowledge discovery as the second layer"
+    /<h2 data-i18n="intro\.title">基于科技文献挖掘的知识发现<\/h2>/.test(html),
+    "knowledge_memory/index.html: introduction should position knowledge discovery through scientific literature mining"
   );
   assert.ok(
     !/data-i18n="intro\.eyebrow"/.test(html),
@@ -1829,13 +1825,13 @@ const validateKnowledgeDiscoveryPage = () => {
   );
   assert.equal(
     context.translations.en["intro.title"],
-    "Scientific Knowledge Discovery Is the Second Layer of AI for Science",
-    "knowledge_memory/index.html: English introduction should match the second-layer framing"
+    "Knowledge Discovery through Scientific Literature Mining",
+    "knowledge_memory/index.html: English introduction should match the literature-mining knowledge-discovery framing"
   );
   assert.equal(
     context.translations.zh["intro.title"],
-    "科学知识发现是 AI for Science 的第二层",
-    "knowledge_memory/index.html: Chinese introduction should match the second-layer framing"
+    "基于科技文献挖掘的知识发现",
+    "knowledge_memory/index.html: Chinese introduction should match the literature-mining knowledge-discovery framing"
   );
   for (const language of ["en", "zh"]) {
     assert.equal(
@@ -1898,8 +1894,8 @@ const validateDataModelingPage = () => {
   assert.ok(/Time Series/.test(html), "data_modeling/index.html: page should foreground time series modeling");
   assert.ok(/结构化科学数据建模/.test(html), "data_modeling/index.html: Chinese copy should foreground structured scientific data modeling");
   assert.ok(
-    /<h2 data-i18n="intro\.title">科学任务求解是 AI for Science 的基础层<\/h2>/.test(html),
-    "data_modeling/index.html: introduction should position task solving as the foundation layer"
+    /<h2 data-i18n="intro\.title">基于科学数据建模的任务求解<\/h2>/.test(html),
+    "data_modeling/index.html: introduction should position task solving through scientific data modeling"
   );
   assert.ok(
     !/data-i18n="intro\.eyebrow"/.test(html),
@@ -1951,13 +1947,13 @@ const validateDataModelingPage = () => {
   );
   assert.equal(
     context.translations.en["intro.title"],
-    "Scientific Task Solving Is the Foundation Layer of AI for Science",
-    "data_modeling/index.html: English introduction should match the new foundation-layer framing"
+    "Task Solving through Scientific Data Modeling",
+    "data_modeling/index.html: English introduction should match the data-modeling task-solving framing"
   );
   assert.equal(
     context.translations.zh["intro.title"],
-    "科学任务求解是 AI for Science 的基础层",
-    "data_modeling/index.html: Chinese introduction should match the new foundation-layer framing"
+    "基于科学数据建模的任务求解",
+    "data_modeling/index.html: Chinese introduction should match the data-modeling task-solving framing"
   );
   for (const language of ["en", "zh"]) {
     assert.equal(
@@ -2176,6 +2172,7 @@ const validateScientificInferencePage = () => {
       "hero.title": "Scientific Inference Agent",
       "hero.subtitle":
         "Start from evidence and place hypotheses, plans, and expected outcomes in one verifiable loop. The agent does not replace scientific judgment; it organizes literature, data, mechanisms, tools, and validation into a traceable inference process.",
+      "definition.title": "Scientific Inference through Autonomous Agents",
       "definition.description":
         "For open-ended research questions, the agent accepts hypotheses, ideas, or anomalous observations from researchers. Under evidential and scientific constraints, it organizes multi-step reasoning, tool use, and validation feedback into a proposal that can be tested, compared, and revised.",
       "definition.model.title": "The Agent Organizes a Traceable Validation Path",
@@ -2196,6 +2193,7 @@ const validateScientificInferencePage = () => {
       "hero.title": "科学推演智能体",
       "hero.subtitle":
         "从证据出发，让假设、方案与预期结果进入同一个可验证闭环。智能体不替代科学家作出结论，而是把文献、数据、机制、工具与验证组织成可追踪的推演过程。",
+      "definition.title": "基于自主智能体的科学推演",
       "definition.description":
         "科学推演智能体面向开放科研问题，接收研究者提出的假设、想法或异常发现，在证据与科学约束下组织多步推理、工具调用和验证反馈，最终形成能够被检验、被比较、被修正的研究方案。",
       "definition.model.title": "智能体组织一条可追踪的验证路径",
@@ -2229,6 +2227,10 @@ const validateScientificInferencePage = () => {
   assert.ok(
     /<p class="hero-subtitle" data-i18n="hero\.subtitle">/.test(html),
     "scientific inference page should use the shared hero subtitle"
+  );
+  assert.ok(
+    /<h2 data-i18n="definition\.title">基于自主智能体的科学推演<\/h2>/.test(html),
+    "scientific inference page should position scientific inference through autonomous agents"
   );
   assert.ok(
     !/class="[^"]*\binference-hero(?:-grid|-copy|-subtitle)?\b[^"]*"/.test(html),
