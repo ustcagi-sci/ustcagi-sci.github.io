@@ -50,13 +50,17 @@ const validatePage = (relativePath) => {
   const keys = new Set(
     [...html.matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1])
   );
+  const ariaKeys = new Set(
+    [...html.matchAll(/data-i18n-aria-label="([^"]+)"/g)].map((match) => match[1])
+  );
+  const translationKeys = new Set([...keys, ...ariaKeys]);
 
   assert.ok(keys.size > 0, `${label}: no translation keys found`);
 
   for (const language of ["en", "zh"]) {
     assert.ok(context.translations[language], `${label}: missing ${language} translations`);
 
-    for (const key of keys) {
+    for (const key of translationKeys) {
       assert.equal(
         typeof context.translations[language][key],
         "string",
@@ -72,6 +76,16 @@ const validatePage = (relativePath) => {
   const keyedElements = [...keys].map((key) => ({
     dataset: { i18n: key },
     textContent: "",
+  }));
+  const ariaKeyedElements = [...ariaKeys].map((key) => ({
+    dataset: { i18nAriaLabel: key },
+    attributes: {},
+    setAttribute(name, value) {
+      this.attributes[name] = String(value);
+    },
+    getAttribute(name) {
+      return this.attributes[name] ?? null;
+    },
   }));
   const toggle = {
     attributes: {},
@@ -105,7 +119,9 @@ const validatePage = (relativePath) => {
       return selector === 'meta[name="description"]' ? description : null;
     },
     querySelectorAll(selector) {
-      return selector === "[data-i18n]" ? keyedElements : [];
+      if (selector === "[data-i18n]") return keyedElements;
+      if (selector === "[data-i18n-aria-label]") return ariaKeyedElements;
+      return [];
     },
   };
   const storage = new Map();
@@ -132,6 +148,14 @@ const validatePage = (relativePath) => {
   assert.equal(toggle.getAttribute("aria-pressed"), "true", `${label}: default toggle state should be true`);
   assert.equal(typeof toggle.click, "function", `${label}: toggle click handler was not registered`);
 
+  for (const element of ariaKeyedElements) {
+    assert.equal(
+      element.getAttribute("aria-label"),
+      context.translations.zh[element.dataset.i18nAriaLabel],
+      `${label}: ${element.dataset.i18nAriaLabel} did not initialize in Chinese`
+    );
+  }
+
   toggle.click();
 
   assert.equal(document.documentElement.lang, "en", `${label}: toggled lang should be en`);
@@ -146,6 +170,13 @@ const validatePage = (relativePath) => {
       element.textContent,
       context.translations.en[element.dataset.i18n],
       `${label}: ${element.dataset.i18n} did not update to English`
+    );
+  }
+  for (const element of ariaKeyedElements) {
+    assert.equal(
+      element.getAttribute("aria-label"),
+      context.translations.en[element.dataset.i18nAriaLabel],
+      `${label}: ${element.dataset.i18nAriaLabel} did not update to English`
     );
   }
 };
@@ -2168,46 +2199,103 @@ const validateScientificInferencePage = () => {
   const context = {};
   const expectedTranslations = {
     en: {
-      "meta.title": "Scientific Inference Agent | USTC-AGI",
+      "meta.title": "Autonomous Scientific Inference Agent | USTC-AGI",
+      "meta.description":
+        "USTC AGI's vision for autonomous scientific inference: agents decompose research goals, orchestrate tools, replan from feedback, and keep humans in control.",
       "hero.title": "Scientific Inference Agent",
       "hero.subtitle":
-        "Start from evidence and place hypotheses, plans, and expected outcomes in one verifiable loop. The agent does not replace scientific judgment; it organizes literature, data, mechanisms, tools, and validation into a traceable inference process.",
-      "definition.title": "Scientific Inference through Autonomous Agents",
+        "Start from evidence and place hypotheses, plans, and expected outcomes in one verifiable loop. Under scientific constraints, the autonomous agent decomposes tasks, orchestrates tools, reads feedback, and replans, while researchers retain boundary setting, critical approvals, and final judgment.",
+      "definition.title": "Autonomous Agent–Based Scientific Inference",
       "definition.description":
-        "For open-ended research questions, the agent accepts hypotheses, ideas, or anomalous observations from researchers. Under evidential and scientific constraints, it organizes multi-step reasoning, tool use, and validation feedback into a proposal that can be tested, compared, and revised.",
-      "definition.model.title": "The Agent Organizes a Traceable Validation Path",
+        "For open-ended research questions, the autonomous agent maintains research goals and task state around hypotheses, ideas, or anomalous observations proposed by researchers. Under evidential and scientific constraints, it decomposes problems, invokes tools, monitors execution, and replans from validation feedback to produce proposals that can be tested, compared, and revised.",
+      "definition.model.label": "Autonomous Inference Agent",
+      "definition.model.title": "The Agent Autonomously Organizes a Traceable, Recoverable Validation Path",
+      "definition.model.description":
+        "The agent connects literature evidence, experimental data, scientific world models, and specialist tools while explicitly recording task state, assumptions, uncertainty, failure conditions, and replanning trajectories.",
+      "definition.model.goal": "Goal",
+      "definition.model.plan": "Planning",
+      "definition.model.memory": "Memory",
+      "loop.title": "An Autonomous Agent Completes Scientific Inference around Four Questions",
+      "loop.researcher.title": "Researchers Set Boundaries, Approve Critical Steps, and Continue to Revise",
+      "loop.plan.title": "Experiment Planning and Tool Execution",
+      "loop.plan.question": "How should it be planned and executed?",
+      "loop.evaluate.title": "Outcome Evaluation and Feedback-Driven Replanning",
+      "loop.evaluate.question": "How should outcomes change the next step?",
+      "loop.core.title": "Autonomous Inference Agent",
+      "loop.core.description": "Task decomposition · Tool orchestration · Feedback-driven replanning",
+      "architecture.title": "Four Layers from Evidence Acquisition to Autonomous Execution and Knowledge Update",
+      "architecture.description":
+        "The agent controller decomposes goals, maintains task state, routes tools, monitors execution, and replans. Foundation models serve as reasoning engines, specialist models and research tools perform computations, and verification and memory preserve reliable results, counterexamples, and failure trajectories.",
+      "layer.tools.title": "Agent Planning and Tool Execution Layer",
+      "layer.memory.title": "Verification, Memory, and Replanning Layer",
       "collaboration.description":
-        "Researchers retain problem framing, value judgments, and final decisions. The agent compresses complex inference into reviewable hypotheses, plans, and expectations while exposing evidence and risk.",
-      "collaboration.model.title": "The Agent Organizes Inference",
+        "Researchers retain problem framing, value judgments, resource budgets, approval of critical experiments, and final decisions. Within authorized boundaries, the agent autonomously organizes complex inference into reviewable hypotheses, plans, and expectations while exposing evidence, execution traces, and risk.",
+      "collaboration.model.title": "The Agent Autonomously Organizes Inference",
+      "trust.title": "Evaluate Both Scientific Quality and Agent Autonomy",
+      "metric.audit.title": "Auditable Autonomous Execution",
+      "metric.recovery.title": "Verifiable Failure Recovery",
+      "roadmap.title": "From Evidence Collaboration to Autonomous Experimental Loops",
+      "roadmap.evidence.title": "Evidence-Collaboration Agent",
+      "roadmap.tools.title": "Tool-Orchestration Agent",
+      "roadmap.closed.title": "Closed-Loop Experimental Agent",
       "loop.evidence.title": "Literature Evidence Mining",
       "loop.evidence.question": "What evidence supports it?",
       "loop.context.title": "Context and Data Modeling",
       "loop.context.question": "Under what conditions should it be studied?",
-      "loop.plan.title": "Experiment and Path Planning",
-      "loop.plan.question": "What path makes it executable?",
-      "loop.evaluate.title": "Simulation and Outcome Evaluation",
-      "loop.evaluate.question": "What outcomes should we expect?",
+      "aria.definition.inputs": "Researcher inputs",
+      "aria.definition.formula":
+        "Scientific inference agent inputs: goal, evidence, planning, tools, memory, and feedback",
+      "aria.loop.prompts": "Researcher prompts",
+      "aria.collaboration.roles": "Human and agent roles in scientific inference",
     },
     zh: {
-      "meta.title": "科学推演智能体 | USTC-AGI",
+      "meta.title": "自主科学推演智能体 | USTC-AGI",
+      "meta.description":
+        "中国科大 AGI 团队探索自主科学推演智能体：围绕科研目标分解任务、编排工具、监控执行并依据反馈重规划，在人类把控关键决策下形成可验证科研闭环。",
       "hero.title": "科学推演智能体",
       "hero.subtitle":
-        "从证据出发，让假设、方案与预期结果进入同一个可验证闭环。智能体不替代科学家作出结论，而是把文献、数据、机制、工具与验证组织成可追踪的推演过程。",
+        "从证据出发，让假设、方案与预期结果进入同一个可验证闭环。自主智能体在科学约束下分解任务、编排工具、读取反馈并持续重规划；研究者保留边界设定、关键审批与最终判断。",
       "definition.title": "基于自主智能体的科学推演",
       "definition.description":
-        "科学推演智能体面向开放科研问题，接收研究者提出的假设、想法或异常发现，在证据与科学约束下组织多步推理、工具调用和验证反馈，最终形成能够被检验、被比较、被修正的研究方案。",
-      "definition.model.title": "智能体组织一条可追踪的验证路径",
+        "自主科学推演智能体面向开放科研问题，围绕研究者提出的假设、想法或异常发现持续维护科研目标与任务状态，在证据和科学约束下分解问题、调用工具、监控执行，并依据验证反馈重规划，最终形成能够被检验、被比较、被修正的研究方案。",
+      "definition.model.label": "自主推演智能体",
+      "definition.model.title": "智能体自主组织一条可追踪、可回退的验证路径",
+      "definition.model.description":
+        "智能体连接文献证据、实验数据、科学世界模型与专业工具，显式记录任务状态、关键假设、不确定性、失败条件和重规划轨迹。",
+      "definition.model.goal": "目标",
+      "definition.model.plan": "规划",
+      "definition.model.memory": "记忆",
+      "loop.title": "自主智能体围绕四个问题完成一次科学推演",
+      "loop.researcher.title": "研究人员设定边界、审批关键步骤并持续修正",
+      "loop.plan.title": "实验规划与工具执行",
+      "loop.plan.question": "如何规划并执行？",
+      "loop.evaluate.title": "结果评估与反馈重规划",
+      "loop.evaluate.question": "结果如何改变下一步？",
+      "loop.core.title": "自主推演智能体",
+      "loop.core.description": "任务分解 · 工具编排 · 反馈重规划",
+      "architecture.title": "从证据获取到自主执行与知识更新的四层系统",
+      "architecture.description":
+        "智能体控制器负责目标分解、状态维护、工具路由、执行监控与重规划；大模型作为推理内核，专业模型与科研工具负责计算，验证与记忆层沉淀可信结果、反例和失败轨迹。",
+      "layer.tools.title": "智能体规划与工具执行层",
+      "layer.memory.title": "验证、记忆与重规划层",
       "collaboration.description":
-        "研究者保留问题定义、价值判断和最终决策；智能体把复杂推演压缩为可审阅的假设、方案与预期，并显式暴露其中的依据和风险。",
-      "collaboration.model.title": "智能体组织推演",
+        "研究者保留问题定义、价值判断、资源预算、关键实验审批和最终决策；智能体在授权边界内自主组织复杂推演，形成可审阅的假设、方案与预期，并显式暴露证据、执行轨迹和风险。",
+      "collaboration.model.title": "智能体自主组织推演",
+      "trust.title": "同时评价科学质量与智能体自主性",
+      "metric.audit.title": "自主执行可审计",
+      "metric.recovery.title": "失败恢复可验证",
+      "roadmap.title": "从证据协同走向自主实验闭环",
+      "roadmap.evidence.title": "证据协同智能体",
+      "roadmap.tools.title": "工具编排智能体",
+      "roadmap.closed.title": "实验闭环智能体",
       "loop.evidence.title": "文献证据挖掘",
       "loop.evidence.question": "用什么证据支撑？",
       "loop.context.title": "情境与数据建模",
       "loop.context.question": "在什么情境开展？",
-      "loop.plan.title": "实验与路径规划",
-      "loop.plan.question": "靠什么路径实施？",
-      "loop.evaluate.title": "仿真与结果评估",
-      "loop.evaluate.question": "有什么预期成果？",
+      "aria.definition.inputs": "研究者输入",
+      "aria.definition.formula": "科学推演智能体要素：目标、证据、规划、工具、记忆与反馈",
+      "aria.loop.prompts": "研究者提示",
+      "aria.collaboration.roles": "科学推演中的人机角色",
     },
   };
 
@@ -2215,6 +2303,10 @@ const validateScientificInferencePage = () => {
   assert.ok(
     /<meta name="theme-color" content="#ffffff" \/>/.test(html),
     "scientific inference page should use the shared light browser theme color"
+  );
+  assert.ok(
+    /href="https:\/\/fonts\.googleapis\.com\/css2\?family=Inter:[^"]*&amp;family=Space\+Grotesk:[^"]*&amp;display=swap"/.test(html),
+    "scientific inference page should HTML-escape Google Fonts query separators"
   );
   assert.ok(
     /<header id="top" class="hero">\s*<div class="hero-content">/.test(html),
@@ -2231,6 +2323,40 @@ const validateScientificInferencePage = () => {
   assert.ok(
     /<h2 data-i18n="definition\.title">基于自主智能体的科学推演<\/h2>/.test(html),
     "scientific inference page should position scientific inference through autonomous agents"
+  );
+  for (const [key, fallback] of Object.entries({
+    "definition.input.label": "研究者输入",
+    "loop.researcher.label": "人在闭环中",
+    "loop.evidence.mode": "证据",
+    "loop.context.mode": "建模",
+    "loop.plan.mode": "规划",
+    "loop.evaluate.mode": "验证",
+    "next.label": "关联研究方向",
+  })) {
+    const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const escapedFallback = fallback.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    assert.ok(
+      new RegExp(`data-i18n="${escapedKey}"[^>]*>${escapedFallback}<`).test(html),
+      `scientific inference page should use the Chinese fallback for ${key}`
+    );
+  }
+  assert.equal(
+    (html.match(/data-i18n-aria-label="aria\./g) || []).length,
+    4,
+    "scientific inference page should localize its four custom aria labels"
+  );
+  assert.ok(
+    /class="inference-model-formula"[^>]*role="img"[^>]*data-i18n-aria-label="aria\.definition\.formula"/.test(html),
+    "scientific inference formula should expose one localized accessible description"
+  );
+  const collaborationPathMatch = html.match(
+    /<div\s+class="inference-collaboration-path"[^>]*role="list"[^>]*data-i18n-aria-label="aria\.collaboration\.roles"[^>]*>([\s\S]*?)<\/div>\s*<div class="inference-outputs"/
+  );
+  assert.ok(collaborationPathMatch, "scientific inference collaboration path should be an accessible list");
+  assert.equal(
+    (collaborationPathMatch?.[1].match(/role="listitem"/g) || []).length,
+    3,
+    "scientific inference collaboration path should expose three list items"
   );
   assert.ok(
     !/class="[^"]*\binference-hero(?:-grid|-copy|-subtitle)?\b[^"]*"/.test(html),
@@ -2293,8 +2419,16 @@ const validateScientificInferencePage = () => {
   );
   assert.equal(
     (html.match(/<article class="inference-metric" role="listitem">/g) || []).length,
-    4,
-    "scientific inference page should contain four trust metrics"
+    6,
+    "scientific inference page should contain four scientific metrics and two agent autonomy metrics"
+  );
+  assert.ok(
+    /<span class="inference-card-label" data-i18n="definition\.model\.label">自主推演智能体<\/span>/.test(html),
+    "scientific inference page should identify the autonomous agent instead of a generic inference system"
+  );
+  assert.ok(
+    /<strong data-i18n="loop\.core\.title">自主推演智能体<\/strong>/.test(html),
+    "scientific inference loop should center the autonomous agent"
   );
   assert.ok(
     !/data-i18n="trust\.eyebrow"/.test(html),
@@ -2314,6 +2448,28 @@ const validateScientificInferencePage = () => {
 
   assert.ok(objectMatch, "scientific inference page should include a translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  const decodeFallback = (value) =>
+    value
+      .replaceAll("&amp;", "&")
+      .replaceAll("&quot;", '"')
+      .replaceAll("&#39;", "'")
+      .replaceAll("&lt;", "<")
+      .replaceAll("&gt;", ">")
+      .replace(/\s+/g, " ")
+      .trim();
+  const fallbackMismatches = [];
+  for (const match of html.matchAll(/<([a-z][\w-]*)\b[^>]*data-i18n="([^"]+)"[^>]*>([^<]*)<\/\1>/gi)) {
+    const key = match[2];
+    const fallback = decodeFallback(match[3]);
+    if (fallback !== context.translations.zh[key]) {
+      fallbackMismatches.push({ key, fallback, expected: context.translations.zh[key] });
+    }
+  }
+  assert.deepEqual(
+    fallbackMismatches,
+    [],
+    `scientific inference page should keep every initial text fallback aligned with Chinese translations:\n${JSON.stringify(fallbackMismatches, null, 2)}`
+  );
   assert.equal(
     context.translations.en["hero.kicker"],
     undefined,
@@ -2383,6 +2539,18 @@ const validateScientificInferencePage = () => {
   }
 
   assert.ok(/\.inference-loop\s*\{/.test(css), "ref.css: missing scientific inference loop layout");
+  assert.ok(
+    /\.inference-metrics\s*\{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/.test(css),
+    "ref.css: six inference metrics should use a balanced three-column desktop grid"
+  );
+  assert.ok(
+    /@media \(max-width:\s*1024px\)[\s\S]*?\.inference-metrics\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/.test(css),
+    "ref.css: inference metrics should use two columns on tablets"
+  );
+  assert.ok(
+    /@media \(max-width:\s*760px\)[\s\S]*?\.inference-metrics,[^}]*grid-template-columns:\s*1fr/.test(css),
+    "ref.css: inference metrics should collapse to one column on mobile"
+  );
   assert.ok(!css.includes(".inference-rail"), "ref.css: should remove the unused scientific inference workflow rail styles");
   assert.ok(/grid-template-areas:\s*"evidence context"/.test(css), "ref.css: inference loop should use the desktop grid");
   assert.ok(
