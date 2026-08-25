@@ -252,9 +252,7 @@ const validateNavigation = (relativePath) => {
   assert.deepEqual(
     navKeys,
     [
-      "nav.knowledge",
       "nav.aiReadyData",
-      "nav.data",
       "nav.inference",
       "nav.aiScientist",
       "nav.aiScience",
@@ -263,12 +261,18 @@ const validateNavigation = (relativePath) => {
     ],
     `${label}: navigation should match the main page link set`
   );
+  assert.ok(
+    !navKeys.includes("nav.data"),
+    `${label}: Scientific Data Modeling should not appear in the top navigation`
+  );
+  assert.ok(
+    !navKeys.includes("nav.knowledge"),
+    `${label}: Scientific Literature Mining should not appear in the top navigation`
+  );
 
   const expectedLinks = {
     "index.html": [
-      { key: "nav.knowledge", href: "./knowledge_memory/" },
       { key: "nav.aiReadyData", href: "./ai_ready_data/" },
-      { key: "nav.data", href: "./data_modeling/" },
       { key: "nav.inference", href: "./scientific_inference/" },
       { key: "nav.aiScientist", href: "./ai_scientist/" },
       { key: "nav.aiScience", href: "./science_of_ai/" },
@@ -276,9 +280,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.papers", href: "./papers/" },
     ],
     "knowledge_memory/index.html": [
-      { key: "nav.knowledge", href: "./" },
       { key: "nav.aiReadyData", href: "../ai_ready_data/" },
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
@@ -286,9 +288,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.papers", href: "../papers/" },
     ],
     "ai_ready_data/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.aiReadyData", href: "./" },
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
@@ -296,9 +296,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.papers", href: "../papers/" },
     ],
     "data_modeling/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.aiReadyData", href: "../ai_ready_data/" },
-      { key: "nav.data", href: "./" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
@@ -306,9 +304,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.papers", href: "../papers/" },
     ],
     "scientific_inference/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.aiReadyData", href: "../ai_ready_data/" },
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "./" },
       { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
@@ -316,9 +312,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.papers", href: "../papers/" },
     ],
     "ai_scientist/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.aiReadyData", href: "../ai_ready_data/" },
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScientist", href: "./" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
@@ -326,9 +320,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.papers", href: "../papers/" },
     ],
     "science_of_ai/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.aiReadyData", href: "../ai_ready_data/" },
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "./" },
@@ -336,9 +328,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.papers", href: "../papers/" },
     ],
     "projects/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.aiReadyData", href: "../ai_ready_data/" },
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
@@ -346,9 +336,7 @@ const validateNavigation = (relativePath) => {
       { key: "nav.papers", href: "../papers/" },
     ],
     "papers/index.html": [
-      { key: "nav.knowledge", href: "../knowledge_memory/" },
       { key: "nav.aiReadyData", href: "../ai_ready_data/" },
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
@@ -367,9 +355,7 @@ const validateNavigation = (relativePath) => {
     (match) => match[1]
   );
   const expectedCurrent = {
-    "knowledge_memory/index.html": "nav.knowledge",
     "ai_ready_data/index.html": "nav.aiReadyData",
-    "data_modeling/index.html": "nav.data",
     "scientific_inference/index.html": "nav.inference",
     "ai_scientist/index.html": "nav.aiScientist",
     "science_of_ai/index.html": "nav.aiScience",
@@ -418,11 +404,15 @@ const validateNavigation = (relativePath) => {
     "科学数据建模",
     `${label}: Chinese data navigation label should be 科学数据建模`
   );
-  assert.equal(navFallbacks["nav.data"], "科学数据建模", `${label}: data navigation fallback should be 科学数据建模`);
+  assert.equal(
+    navFallbacks["nav.data"],
+    undefined,
+    `${label}: Scientific Data Modeling should have no top-navigation fallback`
+  );
   assert.equal(
     navFallbacks["nav.knowledge"],
-    "科学文献挖掘",
-    `${label}: knowledge navigation fallback should be 科学文献挖掘`
+    undefined,
+    `${label}: Scientific Literature Mining should have no top-navigation fallback`
   );
   assert.equal(
     context.translations.en["nav.inference"],
