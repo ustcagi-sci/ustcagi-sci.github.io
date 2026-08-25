@@ -8,8 +8,10 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const pages = [
   "index.html",
   "knowledge_memory/index.html",
+  "ai_ready_data/index.html",
   "data_modeling/index.html",
   "scientific_inference/index.html",
+  "ai_scientist/index.html",
   "science_of_ai/index.html",
   "projects/index.html",
   "papers/index.html",
@@ -17,8 +19,10 @@ const pages = [
 const publicUrls = {
   "index.html": "https://ustcagi-sci.github.io/",
   "knowledge_memory/index.html": "https://ustcagi-sci.github.io/knowledge_memory/",
+  "ai_ready_data/index.html": "https://ustcagi-sci.github.io/ai_ready_data/",
   "data_modeling/index.html": "https://ustcagi-sci.github.io/data_modeling/",
   "scientific_inference/index.html": "https://ustcagi-sci.github.io/scientific_inference/",
+  "ai_scientist/index.html": "https://ustcagi-sci.github.io/ai_scientist/",
   "science_of_ai/index.html": "https://ustcagi-sci.github.io/science_of_ai/",
   "projects/index.html": "https://ustcagi-sci.github.io/projects/",
   "papers/index.html": "https://ustcagi-sci.github.io/papers/",
@@ -247,63 +251,106 @@ const validateNavigation = (relativePath) => {
 
   assert.deepEqual(
     navKeys,
-    ["nav.data", "nav.knowledge", "nav.inference", "nav.aiScience", "nav.projects", "nav.papers"],
+    [
+      "nav.knowledge",
+      "nav.aiReadyData",
+      "nav.data",
+      "nav.inference",
+      "nav.aiScientist",
+      "nav.aiScience",
+      "nav.projects",
+      "nav.papers",
+    ],
     `${label}: navigation should match the main page link set`
   );
 
   const expectedLinks = {
     "index.html": [
-      { key: "nav.data", href: "./data_modeling/" },
       { key: "nav.knowledge", href: "./knowledge_memory/" },
+      { key: "nav.aiReadyData", href: "./ai_ready_data/" },
+      { key: "nav.data", href: "./data_modeling/" },
       { key: "nav.inference", href: "./scientific_inference/" },
+      { key: "nav.aiScientist", href: "./ai_scientist/" },
       { key: "nav.aiScience", href: "./science_of_ai/" },
       { key: "nav.projects", href: "./projects/" },
       { key: "nav.papers", href: "./papers/" },
     ],
     "knowledge_memory/index.html": [
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "./" },
+      { key: "nav.aiReadyData", href: "../ai_ready_data/" },
+      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScientist", href: "../ai_scientist/" },
+      { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.projects", href: "../projects/" },
+      { key: "nav.papers", href: "../papers/" },
+    ],
+    "ai_ready_data/index.html": [
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiReadyData", href: "./" },
+      { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "data_modeling/index.html": [
-      { key: "nav.data", href: "./" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiReadyData", href: "../ai_ready_data/" },
+      { key: "nav.data", href: "./" },
       { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "scientific_inference/index.html": [
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiReadyData", href: "../ai_ready_data/" },
+      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "./" },
+      { key: "nav.aiScientist", href: "../ai_scientist/" },
+      { key: "nav.aiScience", href: "../science_of_ai/" },
+      { key: "nav.projects", href: "../projects/" },
+      { key: "nav.papers", href: "../papers/" },
+    ],
+    "ai_scientist/index.html": [
+      { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiReadyData", href: "../ai_ready_data/" },
+      { key: "nav.data", href: "../data_modeling/" },
+      { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScientist", href: "./" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "science_of_ai/index.html": [
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiReadyData", href: "../ai_ready_data/" },
+      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "./" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "projects/index.html": [
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiReadyData", href: "../ai_ready_data/" },
+      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "./" },
       { key: "nav.papers", href: "../papers/" },
     ],
     "papers/index.html": [
-      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.knowledge", href: "../knowledge_memory/" },
+      { key: "nav.aiReadyData", href: "../ai_ready_data/" },
+      { key: "nav.data", href: "../data_modeling/" },
       { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "./" },
@@ -321,8 +368,10 @@ const validateNavigation = (relativePath) => {
   );
   const expectedCurrent = {
     "knowledge_memory/index.html": "nav.knowledge",
+    "ai_ready_data/index.html": "nav.aiReadyData",
     "data_modeling/index.html": "nav.data",
     "scientific_inference/index.html": "nav.inference",
+    "ai_scientist/index.html": "nav.aiScientist",
     "science_of_ai/index.html": "nav.aiScience",
     "projects/index.html": "nav.projects",
     "papers/index.html": "nav.papers",
@@ -343,6 +392,21 @@ const validateNavigation = (relativePath) => {
     context.translations.zh["nav.knowledge"],
     "科学文献挖掘",
     `${label}: Chinese knowledge navigation label should be 科学文献挖掘`
+  );
+  assert.equal(
+    context.translations.en["nav.aiReadyData"],
+    "AI-Ready Data",
+    `${label}: English AI-Ready Data navigation label should remain AI-Ready Data`
+  );
+  assert.equal(
+    context.translations.zh["nav.aiReadyData"],
+    "AI-Ready Data",
+    `${label}: Chinese AI-Ready Data navigation label should remain AI-Ready Data`
+  );
+  assert.equal(
+    navFallbacks["nav.aiReadyData"],
+    "AI-Ready Data",
+    `${label}: AI-Ready Data navigation fallback should remain AI-Ready Data`
   );
   assert.equal(
     context.translations.en["nav.data"],
@@ -374,6 +438,21 @@ const validateNavigation = (relativePath) => {
     navFallbacks["nav.inference"],
     "科学推演智能体",
     `${label}: inference navigation fallback should be 科学推演智能体`
+  );
+  assert.equal(
+    context.translations.en["nav.aiScientist"],
+    "AI Scientist",
+    `${label}: English AI Scientist navigation label should remain AI Scientist`
+  );
+  assert.equal(
+    context.translations.zh["nav.aiScientist"],
+    "AI Scientist",
+    `${label}: Chinese AI Scientist navigation label should remain AI Scientist`
+  );
+  assert.equal(
+    navFallbacks["nav.aiScientist"],
+    "AI Scientist",
+    `${label}: AI Scientist navigation fallback should remain AI Scientist`
   );
   assert.equal(
     context.translations.en["nav.aiScience"],
@@ -581,16 +660,18 @@ const validateReadmeIdentity = () => {
   assert.ok(/^# USTC-AGI · AI for Science$/m.test(readme), "README.md: heading should match the site brand");
   for (const term of [
     "Scientific Literature Mining",
+    "Scientific AI-Ready Data",
     "Scientific Data Modeling",
     "Scientific Inference Agent",
+    "AI Scientist",
     "Science of AI",
     "Open Source Projects",
   ]) {
     assert.ok(readme.includes(term), `README.md: missing current research area ${term}`);
   }
   assert.ok(
-    readme.includes("seven bilingual main pages"),
-    "README.md: site structure should count the new bilingual projects page"
+    readme.includes("nine bilingual main pages"),
+    "README.md: site structure should count all bilingual main pages"
   );
   assert.ok(
     !/homepage for \*\*AI for Scientific Literature Mining\*\*/.test(readme),
@@ -1494,17 +1575,90 @@ const validatePapersYearLabels = () => {
   const context = {};
 
   assert.ok(year2026Match, "papers/index.html: missing 2026 year heading");
-  assert.equal(year2026Match[1], "Preprint", "papers/index.html: 2026 heading should be Preprint");
+  assert.equal(year2026Match[1], "2026", "papers/index.html: 2026 heading should be concise");
   assert.ok(year2025Match, "papers/index.html: missing 2025 year heading");
   assert.equal(year2025Match[1], "2025", "papers/index.html: 2025 heading should be concise");
 
   assert.ok(objectMatch, "papers/index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
 
-  assert.equal(context.translations.en["year.2026"], "Preprint", "papers/index.html: English 2026 heading should be Preprint");
-  assert.equal(context.translations.zh["year.2026"], "Preprint", "papers/index.html: Chinese 2026 heading should be Preprint");
+  assert.equal(context.translations.en["year.2026"], "2026", "papers/index.html: English 2026 heading should be concise");
+  assert.equal(context.translations.zh["year.2026"], "2026", "papers/index.html: Chinese 2026 heading should be concise");
   assert.equal(context.translations.en["year.2025"], "2025", "papers/index.html: English 2025 heading should be concise");
   assert.equal(context.translations.zh["year.2025"], "2025", "papers/index.html: Chinese 2025 heading should be concise");
+};
+
+const validateMind2ReportVenue = () => {
+  const papersHtml = readFileSync(resolve(root, "papers/index.html"), "utf8");
+  const projectHtml = readFileSync(resolve(root, "mind2report/index.html"), "utf8");
+  const homeHtml = readFileSync(resolve(root, "index.html"), "utf8");
+  const papersObjectMatch = papersHtml.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const homeObjectMatch = homeHtml.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const papersContext = {};
+  const homeContext = {};
+  const mind2ReportMatch = papersHtml.match(
+    /<p class="paper-meta" data-i18n="papers\.mind2report\.meta">([^<]+)<\/p>\s*<h3>Mind2Report: A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis<\/h3>[\s\S]*?<div class="paper-links">([\s\S]*?)<\/div>/
+  );
+
+  assert.ok(mind2ReportMatch, "papers/index.html: missing Mind2Report paper card");
+  assert.equal(
+    mind2ReportMatch[1],
+    "2026 · CIKM 2026 Accepted · L4 DeepResearch",
+    "papers/index.html: Mind2Report visible metadata should show CIKM 2026 acceptance"
+  );
+  assert.ok(
+    /href="https:\/\/arxiv\.org\/abs\/2601\.04879v1"[\s\S]*?>ArXiv<\/a>/.test(
+      mind2ReportMatch[2]
+    ),
+    "papers/index.html: Mind2Report should retain its arXiv link"
+  );
+
+  assert.ok(papersObjectMatch, "papers/index.html: missing translations object");
+  vm.runInNewContext(`translations = ${papersObjectMatch[1]};`, papersContext);
+  assert.equal(
+    papersContext.translations.en["papers.mind2report.meta"],
+    "2026 · CIKM 2026 Accepted · L4 DeepResearch",
+    "papers/index.html: English Mind2Report metadata should show CIKM 2026 acceptance"
+  );
+  assert.equal(
+    papersContext.translations.zh["papers.mind2report.meta"],
+    "2026 · CIKM 2026 已接收 · L4 DeepResearch",
+    "papers/index.html: Chinese Mind2Report metadata should show CIKM 2026 acceptance"
+  );
+
+  assert.ok(
+    /<title>Mind2Report — CIKM 2026 Accepted<\/title>/.test(projectHtml),
+    "mind2report/index.html: title should show CIKM 2026 acceptance"
+  );
+  assert.ok(
+    /<p class="kicker">CIKM 2026 Accepted · Cognitive Deep Research · Scientific Literature Intelligence<\/p>/.test(
+      projectHtml
+    ),
+    "mind2report/index.html: hero should show CIKM 2026 acceptance"
+  );
+
+  assert.ok(homeObjectMatch, "index.html: missing translations object");
+  vm.runInNewContext(`translations = ${homeObjectMatch[1]};`, homeContext);
+  assert.ok(
+    /<span class="status-badge" data-i18n="projects\.mind2report\.status">CIKM 2026 Accepted<\/span>/.test(
+      homeHtml
+    ),
+    "index.html: Mind2Report card should show CIKM 2026 acceptance"
+  );
+  assert.equal(
+    homeContext.translations.en["projects.mind2report.status"],
+    "CIKM 2026 Accepted",
+    "index.html: English Mind2Report status should show CIKM 2026 acceptance"
+  );
+  assert.equal(
+    homeContext.translations.zh["projects.mind2report.status"],
+    "CIKM 2026 已接收",
+    "index.html: Chinese Mind2Report status should show CIKM 2026 acceptance"
+  );
 };
 
 const validatePapersListHeaderRemoved = () => {
@@ -1677,19 +1831,20 @@ const validateMind2ReportCategory = () => {
   const categoryMatch = html.match(
     /<p class="paper-meta" data-i18n="papers\.mind2report\.meta">([^<]+)<\/p>/
   );
-  const expected = "2026 · arXiv Preprint · L4 DeepResearch";
   const context = {};
 
   assert.ok(categoryMatch, "papers/index.html: missing Mind2Report category");
-  assert.equal(categoryMatch[1], expected, "papers/index.html: Mind2Report should use DeepResearch");
+  assert.ok(
+    categoryMatch[1].includes("L4 DeepResearch"),
+    "papers/index.html: Mind2Report should preserve the DeepResearch category"
+  );
   assert.ok(objectMatch, "papers/index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
 
   for (const language of ["en", "zh"]) {
-    assert.equal(
-      context.translations[language]["papers.mind2report.meta"],
-      expected,
-      `papers/index.html: ${language} Mind2Report category should use DeepResearch`
+    assert.ok(
+      context.translations[language]["papers.mind2report.meta"].includes("L4 DeepResearch"),
+      `papers/index.html: ${language} Mind2Report category should preserve DeepResearch`
     );
   }
 };
@@ -2828,6 +2983,127 @@ const validateScientificLiteratureTerminology = () => {
   }
 };
 
+const validateAiScientistPage = () => {
+  const relativePath = "ai_scientist/index.html";
+  const absolutePath = resolve(root, relativePath);
+
+  assert.ok(existsSync(absolutePath), `${relativePath}: missing independent AI Scientist page`);
+
+  const html = readFileSync(absolutePath, "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    /<h1 data-i18n="hero\.title">AI Scientist<\/h1>/.test(html),
+    `${relativePath}: hero should identify the AI Scientist page`
+  );
+  assert.ok(
+    /Autonomous Epistemic Progress/.test(html),
+    `${relativePath}: page should foreground autonomous epistemic progress`
+  );
+  assert.equal(
+    (html.match(/data-i18n="levels\.l[1-5]\.title"/g) || []).length,
+    5,
+    `${relativePath}: page should contain the five supplied evolution levels`
+  );
+  assert.equal(
+    (html.match(/data-i18n="loop\.step[1-7]\.title"/g) || []).length,
+    7,
+    `${relativePath}: epistemic loop should contain seven state-changing stages`
+  );
+  assert.ok(
+    /data-i18n="human\.responsibility\.description"/.test(html),
+    `${relativePath}: page should preserve human scientific responsibility`
+  );
+
+  assert.ok(objectMatch, `${relativePath}: missing translations object`);
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["thesis.progress.title"],
+    "Autonomous Epistemic Progress",
+    `${relativePath}: English thesis should preserve the supplied concept`
+  );
+  assert.equal(
+    context.translations.zh["thesis.progress.title"],
+    "自主认知进展",
+    `${relativePath}: Chinese thesis should preserve the supplied concept`
+  );
+  assert.equal(
+    context.translations.en["levels.l5.title"],
+    "Autonomous Scientific Ecosystem",
+    `${relativePath}: level five should match the supplied evolution path`
+  );
+  assert.equal(
+    context.translations.zh["human.responsibility.description"],
+    "定义值得追求的问题、赋予研究价值、提供隐性知识、设定伦理边界，并对最终科学判断承担责任。",
+    `${relativePath}: Chinese human-role statement should match the supplied material`
+  );
+};
+
+const validateAiReadyDataPage = () => {
+  const relativePath = "ai_ready_data/index.html";
+  const absolutePath = resolve(root, relativePath);
+
+  assert.ok(existsSync(absolutePath), `${relativePath}: missing independent Scientific AI-Ready Data page`);
+
+  const html = readFileSync(absolutePath, "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    /<h1 data-i18n="hero\.title">Scientific AI-Ready Data<\/h1>/.test(html),
+    `${relativePath}: hero should identify the Scientific AI-Ready Data page`
+  );
+  assert.equal(
+    (html.match(/data-i18n="questions\.q[1-5]\.title"/g) || []).length,
+    5,
+    `${relativePath}: page should contain the five approved readiness questions`
+  );
+  assert.equal(
+    (html.match(/data-i18n="infrastructure\.layer[1-4]\.title"/g) || []).length,
+    4,
+    `${relativePath}: infrastructure should contain four layers`
+  );
+  assert.ok(
+    /data-i18n="definition\.dynamic"/.test(html),
+    `${relativePath}: page should define readiness as a dynamic task-conditioned state`
+  );
+  assert.ok(
+    /data-i18n="principles\.longTail\.description"/.test(html),
+    `${relativePath}: page should preserve genuine scientific long-tail phenomena`
+  );
+
+  assert.ok(objectMatch, `${relativePath}: missing translations object`);
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["questions.q1.title"],
+    "Ready for What?",
+    `${relativePath}: first question should match the approved framing`
+  );
+  assert.equal(
+    context.translations.en["questions.q5.title"],
+    "How to Stay Ready?",
+    `${relativePath}: fifth question should match the approved framing`
+  );
+  assert.equal(
+    context.translations.zh["definition.dynamic"],
+    "AI-Ready 不是数据集自身的静态标签，而是数据相对于科学任务、模型阶段、智能体能力和实验环境的动态准备状态。",
+    `${relativePath}: Chinese definition should match the approved task-conditioned framing`
+  );
+  assert.equal(
+    context.translations.en["infrastructure.layer4.title"],
+    "Feedback & Continuous Evolution",
+    `${relativePath}: fourth infrastructure layer should close the feedback loop`
+  );
+};
+
+validateAiReadyDataPage();
+validateAiScientistPage();
+
 for (const page of pages) {
   validatePage(page);
   validateBrandLabels(page);
@@ -2863,6 +3139,7 @@ validatePapersListHeaderRemoved();
 validateScholarQuestPaper();
 validateGeoPapers();
 validateMind2ReportCategory();
+validateMind2ReportVenue();
 validateChemTableVenueLink();
 validateScholarSumVenueLink();
 validateKnowledgeDiscoveryPage();

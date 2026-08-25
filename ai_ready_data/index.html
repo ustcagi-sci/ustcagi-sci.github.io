@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scientific AI-Ready Data | USTC-AGI</title>
+    <meta
+      name="description"
+      content="中国科大 AGI 团队关于 Scientific AI-Ready Data 的研究框架：以科学数据基础设施理解任务需求、评估准备度、诊断修复数据、提供数据服务并依据模型与实验反馈持续演化。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="Scientific AI-Ready Data | USTC-AGI" />
+    <meta
+      property="og:description"
+      content="面向科学任务、模型与智能体持续提供可理解、可验证、可追踪和可演化的数据基础设施。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ustcagi-sci.github.io/ai_ready_data/" />
+    <meta property="og:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Scientific AI-Ready Data | USTC-AGI" />
+    <meta
+      name="twitter:description"
+      content="A task-conditioned, measurable, repairable, serviceable, and continuously evolving scientific data infrastructure."
+    />
+    <meta name="twitter:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <link rel="canonical" href="https://ustcagi-sci.github.io/ai_ready_data/" />
+    <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body class="inference-page">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="USTC-AGI AI for Science">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="../literature-mining-logo.svg" alt="" />
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">USTC-AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">AI for Science</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../knowledge_memory/" data-i18n="nav.knowledge">科学文献挖掘</a>
+          <a href="./" aria-current="page" data-i18n="nav.aiReadyData">AI-Ready Data</a>
+          <a href="../data_modeling/" data-i18n="nav.data">科学数据建模</a>
+          <a href="../scientific_inference/" data-i18n="nav.inference">科学推演智能体</a>
+          <a href="../ai_scientist/" data-i18n="nav.aiScientist">AI Scientist</a>
+          <a href="../science_of_ai/" data-i18n="nav.aiScience">Science of AI</a>
+          <a href="../projects/" data-i18n="nav.projects">开源项目</a>
+          <a href="../papers/" data-i18n="nav.papers">论文列表</a>
+          <span class="nav-break" aria-hidden="true"></span>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero static-hero">
+      <div class="hero-content">
+        <h1 data-i18n="hero.title">Scientific AI-Ready Data</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          建设面向科学任务、模型与智能体的数据基础设施，让多模态科学数据能够被理解、评价、诊断、修复、调用，并在模型与实验反馈中持续演化。
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section id="definition" class="section">
+        <div class="section-header">
+          <h2 data-i18n="definition.title">AI-Ready 是任务条件化的动态准备状态</h2>
+          <p data-i18n="definition.description">
+            同一份科学数据对不同研究问题、模型能力和实验阶段可能具有完全不同的价值。判断数据是否 Ready，必须先说明它为谁服务、支持什么任务、受到哪些科学约束。
+          </p>
+        </div>
+
+        <div class="tldr">
+          <strong data-i18n="definition.label">核心定义：</strong>
+          <span data-i18n="definition.dynamic">AI-Ready 不是数据集自身的静态标签，而是数据相对于科学任务、模型阶段、智能体能力和实验环境的动态准备状态。</span>
+        </div>
+
+        <div class="inference-definition-grid">
+          <article class="inference-input-card">
+            <span class="inference-card-label" data-i18n="definition.static.label">Dataset-Centric</span>
+            <h3 data-i18n="definition.static.title">一次清洗、长期复用</h3>
+            <p data-i18n="definition.static.description">
+              把完整率、去重率和格式规范视为终点，容易忽略具体任务需要的科学语义、长尾覆盖、证据链、版本和动态反馈。
+            </p>
+          </article>
+
+          <div class="inference-definition-arrow" aria-hidden="true">→</div>
+
+          <article class="inference-model-card">
+            <span class="inference-card-label" data-i18n="definition.dynamic.label">Task-Conditioned Infrastructure</span>
+            <h3 data-i18n="definition.dynamic.title">按任务评价、按反馈演化</h3>
+            <p data-i18n="definition.dynamic.description">
+              把数据需求、准备度、修复过程、使用方式和反馈更新连接起来，使数据资产随科学问题和模型阶段持续适配。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="infrastructure" class="section highlights">
+        <div class="section-header">
+          <h2 data-i18n="infrastructure.title">科学数据基础设施是 AI for Science 的公共底座</h2>
+          <p data-i18n="infrastructure.description">
+            基础设施不只是存储数据，而是同时管理科学对象、语义、证据、质量、权限、接口和反馈，使数据能够稳定支撑模型训练、科学推理与实验决策。
+          </p>
+        </div>
+
+        <div class="stack-diagram" role="list">
+          <article class="stack-layer" role="listitem">
+            <span class="layer-index">Layer 1</span>
+            <div>
+              <strong data-i18n="infrastructure.layer1.title">Scientific Data Assets</strong>
+              <span data-i18n="infrastructure.layer1.description">统一组织文本、表格、图像、谱图与信号、时间序列、仿真数据、实验记录及其上下文。</span>
+            </div>
+          </article>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <article class="stack-layer" role="listitem">
+            <span class="layer-index">Layer 2</span>
+            <div>
+              <strong data-i18n="infrastructure.layer2.title">Semantics &amp; Governance</strong>
+              <span data-i18n="infrastructure.layer2.description">维护科学对象、单位、条件、关系、来源、许可、版本、质量标签和处理规则。</span>
+            </div>
+          </article>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <article class="stack-layer app" role="listitem">
+            <span class="layer-index">Layer 3</span>
+            <div>
+              <strong data-i18n="infrastructure.layer3.title">Intelligence &amp; Data Services</strong>
+              <span data-i18n="infrastructure.layer3.description">提供需求理解、准备度评估、数据诊断修复、检索选择、组合配比和可调用的数据服务接口。</span>
+            </div>
+          </article>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <article class="stack-layer eval" role="listitem">
+            <span class="layer-index">Layer 4</span>
+            <div>
+              <strong data-i18n="infrastructure.layer4.title">Feedback &amp; Continuous Evolution</strong>
+              <span data-i18n="infrastructure.layer4.description">依据模型误差、智能体轨迹、实验结果和研究者判断更新数据状态、价值与供应策略。</span>
+            </div>
+          </article>
+          <p class="stack-note" data-i18n="infrastructure.note">目标：让科学数据从静态文件集合演化为可持续运行的数据供给系统。</p>
+        </div>
+      </section>
+
+      <section id="five-questions" class="section">
+        <div class="section-header">
+          <h2 data-i18n="questions.title">贯穿 Scientific AI-Ready Data 的五个问题</h2>
+          <p data-i18n="questions.description">
+            五个问题形成闭环：先理解任务，再测量差距、修复数据、提供服务，最后让真实使用反馈持续改变下一轮数据供给。
+          </p>
+        </div>
+
+        <div class="inference-layers" role="list">
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">01</span>
+            <div>
+              <span class="inference-card-label" data-i18n="questions.q1.label">Task Demand</span>
+              <h3 data-i18n="questions.q1.title">Ready for What?</h3>
+              <p class="inference-question" data-i18n="questions.q1.subtitle">任务条件化的数据需求理解</p>
+              <p data-i18n="questions.q1.description">把研究问题、任务目标、模型阶段、数据模态、尺度范围、输出指标和科学约束形成可执行的数据需求契约。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">02</span>
+            <div>
+              <span class="inference-card-label" data-i18n="questions.q2.label">Readiness Assessment</span>
+              <h3 data-i18n="questions.q2.title">How Ready?</h3>
+              <p class="inference-question" data-i18n="questions.q2.subtitle">科学数据准备度评价</p>
+              <p data-i18n="questions.q2.description">围绕科学真实性、语义一致性、覆盖度、来源证据、质量不确定性、任务效用、合规性和时效性建立多维评价。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">03</span>
+            <div>
+              <span class="inference-card-label" data-i18n="questions.q3.label">Diagnosis &amp; Repair</span>
+              <h3 data-i18n="questions.q3.title">How to Make It Ready?</h3>
+              <p class="inference-question" data-i18n="questions.q3.subtitle">智能体化数据诊断、处理与修复</p>
+              <p data-i18n="questions.q3.description">调用结构解析、语义与单位对齐、异常识别、缺失处理、证据补全、合成增强和任务感知选择工具，缩小准备度差距。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">04</span>
+            <div>
+              <span class="inference-card-label" data-i18n="questions.q4.label">Data Service</span>
+              <h3 data-i18n="questions.q4.title">How to Use It?</h3>
+              <p class="inference-question" data-i18n="questions.q4.subtitle">面向模型和科学智能体的数据服务</p>
+              <p data-i18n="questions.q4.description">通过可追踪接口持续支持预训练、微调、推理、评测、检索增强、科学世界模型和实验决策，而不止交付一次性数据包。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">05</span>
+            <div>
+              <span class="inference-card-label" data-i18n="questions.q5.label">Continuous Evolution</span>
+              <h3 data-i18n="questions.q5.title">How to Stay Ready?</h3>
+              <p class="inference-question" data-i18n="questions.q5.subtitle">模型与实验反馈驱动的持续演化</p>
+              <p data-i18n="questions.q5.description">把错误模式、能力边界、智能体失败轨迹、实验新证据和研究者反馈写回数据版本、价值标签、配比策略与供应优先级。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="readiness" class="section highlights">
+        <div class="section-header">
+          <h2 data-i18n="readiness.title">准备度不是单一质量分数</h2>
+          <p data-i18n="readiness.description">
+            高质量不等于任务可用。科学数据准备度必须同时回答数据是否可信、是否覆盖关键空间、是否能被模型正确理解，以及是否真正改善目标任务。
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <article class="card">
+            <span class="eyebrow" data-i18n="readiness.fidelity.label">Scientific Fidelity</span>
+            <h3 data-i18n="readiness.fidelity.title">科学真实性</h3>
+            <p data-i18n="readiness.fidelity.description">数值、单位、结构、条件和关系符合领域规律，处理过程不会破坏真实科学含义。</p>
+          </article>
+          <article class="card">
+            <span class="eyebrow" data-i18n="readiness.semantics.label">Semantic Alignment</span>
+            <h3 data-i18n="readiness.semantics.title">语义一致性</h3>
+            <p data-i18n="readiness.semantics.description">跨来源、跨模态和跨尺度对象采用明确、可映射的科学语义、标识和上下文。</p>
+          </article>
+          <article class="card">
+            <span class="eyebrow" data-i18n="readiness.coverage.label">Coverage</span>
+            <h3 data-i18n="readiness.coverage.title">任务空间覆盖</h3>
+            <p data-i18n="readiness.coverage.description">数据覆盖关键变量、边界条件、罕见机制、失败案例与任务真正会遇到的分布变化。</p>
+          </article>
+          <article class="card">
+            <span class="eyebrow" data-i18n="readiness.provenance.label">Provenance</span>
+            <h3 data-i18n="readiness.provenance.title">来源与证据可追踪</h3>
+            <p data-i18n="readiness.provenance.description">每个数据对象都能回溯到来源、版本、处理步骤、责任主体、许可和证据强度。</p>
+          </article>
+          <article class="card">
+            <span class="eyebrow" data-i18n="readiness.utility.label">Task Utility</span>
+            <h3 data-i18n="readiness.utility.title">模型与任务效用</h3>
+            <p data-i18n="readiness.utility.description">数据在受控基线、固定切分和明确指标下，对训练、推理、评价或科学决策产生可复核增益。</p>
+          </article>
+          <article class="card">
+            <span class="eyebrow" data-i18n="readiness.evolution.label">Evolution</span>
+            <h3 data-i18n="readiness.evolution.title">持续供应与更新</h3>
+            <p data-i18n="readiness.evolution.description">数据能够随任务、模型、实验和政策变化更新，并保留差异、依赖关系与历史状态。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="principles" class="section">
+        <div class="section-header">
+          <h2 data-i18n="principles.title">科学数据治理必须守住四条边界</h2>
+          <p data-i18n="principles.description">
+            数据诊断与修复的目标是提高可用性和可解释性，而不是为了指标好看而抹平科学世界中的复杂性、异质性与不确定性。
+          </p>
+        </div>
+
+        <div class="inference-metrics" role="list">
+          <article class="inference-metric" role="listitem">
+            <span>01</span>
+            <h3 data-i18n="principles.longTail.title">保留真实长尾</h3>
+            <p data-i18n="principles.longTail.description">不把 AI-Ready 误解为零噪声；对真实罕见现象保留并标注，对明确错误进行纠正、隔离或删除。</p>
+          </article>
+          <article class="inference-metric" role="listitem">
+            <span>02</span>
+            <h3 data-i18n="principles.uncertainty.title">显式表达不确定性</h3>
+            <p data-i18n="principles.uncertainty.description">区分测量误差、缺失信息、模型推断和来源冲突，避免把估计值伪装成确定事实。</p>
+          </article>
+          <article class="inference-metric" role="listitem">
+            <span>03</span>
+            <h3 data-i18n="principles.leakage.title">控制泄漏与污染</h3>
+            <p data-i18n="principles.leakage.description">隔离训练、验证和测试证据，记录合成数据依赖与生成路径，防止结论或标签泄漏。</p>
+          </article>
+          <article class="inference-metric" role="listitem">
+            <span>04</span>
+            <h3 data-i18n="principles.audit.title">保留版本与处理证据</h3>
+            <p data-i18n="principles.audit.description">保存原始数据、修复建议、执行记录、版本差异与审批状态，使数据变化能够被审计和复现。</p>
+          </article>
+        </div>
+
+        <div class="inference-next">
+          <div>
+            <span class="inference-card-label" data-i18n="next.label">Connected Research</span>
+            <h3 data-i18n="next.title">从数据基础设施到自主科学发现</h3>
+            <p data-i18n="next.description">AI-Ready Data 提供可信数据底座，科学数据建模连接科学任务，科学推演组织验证路径，AI Scientist 推动知识状态持续变化。</p>
+          </div>
+          <div class="section-actions">
+            <a class="btn ghost" href="../data_modeling/" data-i18n="next.data">科学数据建模</a>
+            <a class="btn ghost" href="../scientific_inference/" data-i18n="next.inference">科学推演智能体</a>
+            <a class="btn ghost" href="../ai_scientist/" data-i18n="next.scientist">AI Scientist</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/ustc-ai4science" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "Scientific AI-Ready Data | USTC-AGI",
+          "meta.description":
+            "USTC AGI's framework for Scientific AI-Ready Data: infrastructure that understands task demand, assesses readiness, diagnoses and repairs data, provides data services, and evolves through model and experimental feedback.",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "Scientific Literature Mining",
+          "nav.aiReadyData": "AI-Ready Data",
+          "nav.data": "Scientific Data Modeling",
+          "nav.inference": "Scientific Inference Agent",
+          "nav.aiScientist": "AI Scientist",
+          "nav.aiScience": "Science of AI",
+          "nav.projects": "Open Source",
+          "nav.papers": "Publications",
+          "hero.title": "Scientific AI-Ready Data",
+          "hero.subtitle":
+            "Build scientific data infrastructure for tasks, models, and agents so multimodal scientific data can be understood, assessed, diagnosed, repaired, served, and continuously evolved through model and experimental feedback.",
+          "definition.title": "AI-Ready Is a Dynamic, Task-Conditioned State",
+          "definition.description":
+            "The same scientific data can have entirely different value for different questions, model capabilities, and experimental stages. To decide whether data are ready, first specify whom they serve, which task they support, and which scientific constraints apply.",
+          "definition.label": "Core definition:",
+          "definition.dynamic":
+            "AI-Ready is not a static label attached to a dataset; it is the dynamic state of data readiness relative to a scientific task, model stage, agent capability, and experimental environment.",
+          "definition.static.label": "Dataset-Centric",
+          "definition.static.title": "Clean Once, Reuse Indefinitely",
+          "definition.static.description":
+            "Treating completeness, deduplication, and normalized formats as the endpoint overlooks task-specific scientific semantics, long-tail coverage, evidence chains, versions, and feedback.",
+          "definition.dynamic.label": "Task-Conditioned Infrastructure",
+          "definition.dynamic.title": "Assess by Task, Evolve by Feedback",
+          "definition.dynamic.description":
+            "Connect data demand, readiness, repair, use, and feedback so data assets continually adapt to scientific questions and model stages.",
+          "infrastructure.title": "Scientific Data Infrastructure Is a Shared Foundation for AI for Science",
+          "infrastructure.description":
+            "Infrastructure does more than store data. It jointly manages scientific objects, semantics, evidence, quality, permissions, interfaces, and feedback so data can reliably support model training, scientific reasoning, and experimental decisions.",
+          "infrastructure.layer1.title": "Scientific Data Assets",
+          "infrastructure.layer1.description":
+            "Organize text, tables, images, spectra and signals, time series, simulation data, experimental records, and their context in a unified way.",
+          "infrastructure.layer2.title": "Semantics & Governance",
+          "infrastructure.layer2.description":
+            "Maintain scientific objects, units, conditions, relations, provenance, licenses, versions, quality labels, and processing rules.",
+          "infrastructure.layer3.title": "Intelligence & Data Services",
+          "infrastructure.layer3.description":
+            "Provide demand understanding, readiness assessment, diagnosis and repair, retrieval and selection, mixture allocation, and callable data-service interfaces.",
+          "infrastructure.layer4.title": "Feedback & Continuous Evolution",
+          "infrastructure.layer4.description":
+            "Update data state, value, and supply strategies from model errors, agent trajectories, experimental results, and researcher judgment.",
+          "infrastructure.note":
+            "Goal: evolve scientific data from a static collection of files into a continuously operating supply system.",
+          "questions.title": "Five Questions across the Scientific AI-Ready Data Lifecycle",
+          "questions.description":
+            "The five questions form a loop: understand the task, measure the gap, repair the data, provide services, and let real-world feedback change the next cycle of data supply.",
+          "questions.q1.label": "Task Demand",
+          "questions.q1.title": "Ready for What?",
+          "questions.q1.subtitle": "Task-conditioned data demand understanding",
+          "questions.q1.description":
+            "Turn the research question, task objective, model stage, data modalities, scale range, output metrics, and scientific constraints into an executable data-demand contract.",
+          "questions.q2.label": "Readiness Assessment",
+          "questions.q2.title": "How Ready?",
+          "questions.q2.subtitle": "Scientific data readiness assessment",
+          "questions.q2.description":
+            "Build multidimensional assessment around scientific fidelity, semantic consistency, coverage, provenance, quality uncertainty, task utility, compliance, and freshness.",
+          "questions.q3.label": "Diagnosis & Repair",
+          "questions.q3.title": "How to Make It Ready?",
+          "questions.q3.subtitle": "Agentic data diagnosis, processing, and repair",
+          "questions.q3.description":
+            "Invoke structural parsing, semantic and unit alignment, anomaly detection, missing-data handling, evidence completion, synthetic enhancement, and task-aware selection to close readiness gaps.",
+          "questions.q4.label": "Data Service",
+          "questions.q4.title": "How to Use It?",
+          "questions.q4.subtitle": "Data services for models and scientific agents",
+          "questions.q4.description":
+            "Continuously support pretraining, fine-tuning, inference, evaluation, retrieval augmentation, scientific world models, and experimental decisions through traceable interfaces rather than one-off data packages.",
+          "questions.q5.label": "Continuous Evolution",
+          "questions.q5.title": "How to Stay Ready?",
+          "questions.q5.subtitle": "Continuous evolution driven by model and experimental feedback",
+          "questions.q5.description":
+            "Write error patterns, capability boundaries, failed agent trajectories, new experimental evidence, and researcher feedback back into data versions, value labels, mixture strategies, and supply priorities.",
+          "readiness.title": "Readiness Is Not a Single Quality Score",
+          "readiness.description":
+            "High quality does not automatically mean task-ready. Scientific data readiness must jointly ask whether data are trustworthy, cover the critical space, can be interpreted correctly by models, and actually improve the target task.",
+          "readiness.fidelity.label": "Scientific Fidelity",
+          "readiness.fidelity.title": "Scientific Fidelity",
+          "readiness.fidelity.description":
+            "Values, units, structures, conditions, and relations obey domain rules, and processing does not destroy their scientific meaning.",
+          "readiness.semantics.label": "Semantic Alignment",
+          "readiness.semantics.title": "Semantic Alignment",
+          "readiness.semantics.description":
+            "Objects across sources, modalities, and scales use explicit, mappable scientific semantics, identifiers, and context.",
+          "readiness.coverage.label": "Coverage",
+          "readiness.coverage.title": "Task-Space Coverage",
+          "readiness.coverage.description":
+            "Data cover critical variables, boundary conditions, rare mechanisms, failures, and distribution shifts that the real task will encounter.",
+          "readiness.provenance.label": "Provenance",
+          "readiness.provenance.title": "Traceable Provenance and Evidence",
+          "readiness.provenance.description":
+            "Every data object can be traced to its source, version, processing steps, responsible party, license, and evidence strength.",
+          "readiness.utility.label": "Task Utility",
+          "readiness.utility.title": "Model and Task Utility",
+          "readiness.utility.description":
+            "Under controlled baselines, frozen splits, and explicit metrics, data yield reproducible gains for training, inference, evaluation, or scientific decisions.",
+          "readiness.evolution.label": "Evolution",
+          "readiness.evolution.title": "Continuous Supply and Updating",
+          "readiness.evolution.description":
+            "Data evolve with tasks, models, experiments, and policy while preserving differences, dependencies, and historical states.",
+          "principles.title": "Four Boundaries for Scientific Data Governance",
+          "principles.description":
+            "Diagnosis and repair should improve usability and interpretability, not flatten the complexity, heterogeneity, and uncertainty of the scientific world merely to improve dashboard metrics.",
+          "principles.longTail.title": "Preserve Genuine Long Tails",
+          "principles.longTail.description":
+            "Do not equate AI-Ready with zero noise. Preserve and label genuine rare phenomena; correct, isolate, or remove clear errors.",
+          "principles.uncertainty.title": "Represent Uncertainty Explicitly",
+          "principles.uncertainty.description":
+            "Distinguish measurement error, missing information, model inference, and source conflict rather than presenting estimates as certain facts.",
+          "principles.leakage.title": "Control Leakage and Contamination",
+          "principles.leakage.description":
+            "Separate training, validation, and test evidence, and record synthetic-data dependencies and generation paths to prevent conclusion or label leakage.",
+          "principles.audit.title": "Preserve Versions and Processing Evidence",
+          "principles.audit.description":
+            "Keep raw data, repair proposals, execution records, version differences, and approval state so every data change can be audited and reproduced.",
+          "next.label": "Connected Research",
+          "next.title": "From Data Infrastructure to Autonomous Scientific Discovery",
+          "next.description":
+            "AI-Ready Data provides a trusted foundation, scientific data modeling connects scientific tasks, scientific inference organizes validation paths, and AI Scientists drive continuous changes in knowledge state.",
+          "next.data": "Scientific Data Modeling",
+          "next.inference": "Scientific Inference Agent",
+          "next.scientist": "AI Scientist",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "Scientific AI-Ready Data | USTC-AGI",
+          "meta.description":
+            "中国科大 AGI 团队关于 Scientific AI-Ready Data 的研究框架：以科学数据基础设施理解任务需求、评估准备度、诊断修复数据、提供数据服务并依据模型与实验反馈持续演化。",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "科学文献挖掘",
+          "nav.aiReadyData": "AI-Ready Data",
+          "nav.data": "科学数据建模",
+          "nav.inference": "科学推演智能体",
+          "nav.aiScientist": "AI Scientist",
+          "nav.aiScience": "Science of AI",
+          "nav.projects": "开源项目",
+          "nav.papers": "论文列表",
+          "hero.title": "Scientific AI-Ready Data",
+          "hero.subtitle":
+            "建设面向科学任务、模型与智能体的数据基础设施，让多模态科学数据能够被理解、评价、诊断、修复、调用，并在模型与实验反馈中持续演化。",
+          "definition.title": "AI-Ready 是任务条件化的动态准备状态",
+          "definition.description":
+            "同一份科学数据对不同研究问题、模型能力和实验阶段可能具有完全不同的价值。判断数据是否 Ready，必须先说明它为谁服务、支持什么任务、受到哪些科学约束。",
+          "definition.label": "核心定义：",
+          "definition.dynamic":
+            "AI-Ready 不是数据集自身的静态标签，而是数据相对于科学任务、模型阶段、智能体能力和实验环境的动态准备状态。",
+          "definition.static.label": "以数据集为中心",
+          "definition.static.title": "一次清洗、长期复用",
+          "definition.static.description":
+            "把完整率、去重率和格式规范视为终点，容易忽略具体任务需要的科学语义、长尾覆盖、证据链、版本和动态反馈。",
+          "definition.dynamic.label": "任务条件化基础设施",
+          "definition.dynamic.title": "按任务评价、按反馈演化",
+          "definition.dynamic.description":
+            "把数据需求、准备度、修复过程、使用方式和反馈更新连接起来，使数据资产随科学问题和模型阶段持续适配。",
+          "infrastructure.title": "科学数据基础设施是 AI for Science 的公共底座",
+          "infrastructure.description":
+            "基础设施不只是存储数据，而是同时管理科学对象、语义、证据、质量、权限、接口和反馈，使数据能够稳定支撑模型训练、科学推理与实验决策。",
+          "infrastructure.layer1.title": "Scientific Data Assets",
+          "infrastructure.layer1.description":
+            "统一组织文本、表格、图像、谱图与信号、时间序列、仿真数据、实验记录及其上下文。",
+          "infrastructure.layer2.title": "Semantics & Governance",
+          "infrastructure.layer2.description":
+            "维护科学对象、单位、条件、关系、来源、许可、版本、质量标签和处理规则。",
+          "infrastructure.layer3.title": "Intelligence & Data Services",
+          "infrastructure.layer3.description":
+            "提供需求理解、准备度评估、数据诊断修复、检索选择、组合配比和可调用的数据服务接口。",
+          "infrastructure.layer4.title": "Feedback & Continuous Evolution",
+          "infrastructure.layer4.description":
+            "依据模型误差、智能体轨迹、实验结果和研究者判断更新数据状态、价值与供应策略。",
+          "infrastructure.note": "目标：让科学数据从静态文件集合演化为可持续运行的数据供给系统。",
+          "questions.title": "贯穿 Scientific AI-Ready Data 的五个问题",
+          "questions.description":
+            "五个问题形成闭环：先理解任务，再测量差距、修复数据、提供服务，最后让真实使用反馈持续改变下一轮数据供给。",
+          "questions.q1.label": "任务需求",
+          "questions.q1.title": "Ready for What?",
+          "questions.q1.subtitle": "任务条件化的数据需求理解",
+          "questions.q1.description":
+            "把研究问题、任务目标、模型阶段、数据模态、尺度范围、输出指标和科学约束形成可执行的数据需求契约。",
+          "questions.q2.label": "准备度评价",
+          "questions.q2.title": "How Ready?",
+          "questions.q2.subtitle": "科学数据准备度评价",
+          "questions.q2.description":
+            "围绕科学真实性、语义一致性、覆盖度、来源证据、质量不确定性、任务效用、合规性和时效性建立多维评价。",
+          "questions.q3.label": "诊断与修复",
+          "questions.q3.title": "How to Make It Ready?",
+          "questions.q3.subtitle": "智能体化数据诊断、处理与修复",
+          "questions.q3.description":
+            "调用结构解析、语义与单位对齐、异常识别、缺失处理、证据补全、合成增强和任务感知选择工具，缩小准备度差距。",
+          "questions.q4.label": "数据服务",
+          "questions.q4.title": "How to Use It?",
+          "questions.q4.subtitle": "面向模型和科学智能体的数据服务",
+          "questions.q4.description":
+            "通过可追踪接口持续支持预训练、微调、推理、评测、检索增强、科学世界模型和实验决策，而不止交付一次性数据包。",
+          "questions.q5.label": "持续演化",
+          "questions.q5.title": "How to Stay Ready?",
+          "questions.q5.subtitle": "模型与实验反馈驱动的持续演化",
+          "questions.q5.description":
+            "把错误模式、能力边界、智能体失败轨迹、实验新证据和研究者反馈写回数据版本、价值标签、配比策略与供应优先级。",
+          "readiness.title": "准备度不是单一质量分数",
+          "readiness.description":
+            "高质量不等于任务可用。科学数据准备度必须同时回答数据是否可信、是否覆盖关键空间、是否能被模型正确理解，以及是否真正改善目标任务。",
+          "readiness.fidelity.label": "Scientific Fidelity",
+          "readiness.fidelity.title": "科学真实性",
+          "readiness.fidelity.description": "数值、单位、结构、条件和关系符合领域规律，处理过程不会破坏真实科学含义。",
+          "readiness.semantics.label": "Semantic Alignment",
+          "readiness.semantics.title": "语义一致性",
+          "readiness.semantics.description": "跨来源、跨模态和跨尺度对象采用明确、可映射的科学语义、标识和上下文。",
+          "readiness.coverage.label": "Coverage",
+          "readiness.coverage.title": "任务空间覆盖",
+          "readiness.coverage.description": "数据覆盖关键变量、边界条件、罕见机制、失败案例与任务真正会遇到的分布变化。",
+          "readiness.provenance.label": "Provenance",
+          "readiness.provenance.title": "来源与证据可追踪",
+          "readiness.provenance.description": "每个数据对象都能回溯到来源、版本、处理步骤、责任主体、许可和证据强度。",
+          "readiness.utility.label": "Task Utility",
+          "readiness.utility.title": "模型与任务效用",
+          "readiness.utility.description": "数据在受控基线、固定切分和明确指标下，对训练、推理、评价或科学决策产生可复核增益。",
+          "readiness.evolution.label": "Evolution",
+          "readiness.evolution.title": "持续供应与更新",
+          "readiness.evolution.description": "数据能够随任务、模型、实验和政策变化更新，并保留差异、依赖关系与历史状态。",
+          "principles.title": "科学数据治理必须守住四条边界",
+          "principles.description":
+            "数据诊断与修复的目标是提高可用性和可解释性，而不是为了指标好看而抹平科学世界中的复杂性、异质性与不确定性。",
+          "principles.longTail.title": "保留真实长尾",
+          "principles.longTail.description":
+            "不把 AI-Ready 误解为零噪声；对真实罕见现象保留并标注，对明确错误进行纠正、隔离或删除。",
+          "principles.uncertainty.title": "显式表达不确定性",
+          "principles.uncertainty.description": "区分测量误差、缺失信息、模型推断和来源冲突，避免把估计值伪装成确定事实。",
+          "principles.leakage.title": "控制泄漏与污染",
+          "principles.leakage.description": "隔离训练、验证和测试证据，记录合成数据依赖与生成路径，防止结论或标签泄漏。",
+          "principles.audit.title": "保留版本与处理证据",
+          "principles.audit.description": "保存原始数据、修复建议、执行记录、版本差异与审批状态，使数据变化能够被审计和复现。",
+          "next.label": "关联研究",
+          "next.title": "从数据基础设施到自主科学发现",
+          "next.description": "AI-Ready Data 提供可信数据底座，科学数据建模连接科学任务，科学推演组织验证路径，AI Scientist 推动知识状态持续变化。",
+          "next.data": "科学数据建模",
+          "next.inference": "科学推演智能体",
+          "next.scientist": "AI Scientist",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
+        setLanguage(nextLanguage, true);
+      });
+    </script>
+  </body>
+</html>

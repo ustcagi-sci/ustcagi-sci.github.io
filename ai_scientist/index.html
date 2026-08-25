@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Scientist | USTC-AGI</title>
+    <meta
+      name="description"
+      content="中国科大 AGI 团队关于 AI Scientist 的研究愿景：构建能够持续感知科学世界、维护认知状态、诊断知识缺口、获取证据、提出并证伪假设的自主科学智能体。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="AI Scientist | USTC-AGI" />
+    <meta
+      property="og:description"
+      content="从自动生成论文走向自主认知进展，让科学问题从未知走向可审计、可复现、可持续演化的知识。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ustcagi-sci.github.io/ai_scientist/" />
+    <meta property="og:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AI Scientist | USTC-AGI" />
+    <meta
+      name="twitter:description"
+      content="From automated paper generation to autonomous epistemic progress."
+    />
+    <meta name="twitter:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <link rel="canonical" href="https://ustcagi-sci.github.io/ai_scientist/" />
+    <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body class="inference-page">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="USTC-AGI AI for Science">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="../literature-mining-logo.svg" alt="" />
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">USTC-AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">AI for Science</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../knowledge_memory/" data-i18n="nav.knowledge">科学文献挖掘</a>
+          <a href="../ai_ready_data/" data-i18n="nav.aiReadyData">AI-Ready Data</a>
+          <a href="../data_modeling/" data-i18n="nav.data">科学数据建模</a>
+          <a href="../scientific_inference/" data-i18n="nav.inference">科学推演智能体</a>
+          <a href="./" aria-current="page" data-i18n="nav.aiScientist">AI Scientist</a>
+          <a href="../science_of_ai/" data-i18n="nav.aiScience">Science of AI</a>
+          <a href="../projects/" data-i18n="nav.projects">开源项目</a>
+          <a href="../papers/" data-i18n="nav.papers">论文列表</a>
+          <span class="nav-break" aria-hidden="true"></span>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero static-hero">
+      <div class="hero-content">
+        <h1 data-i18n="hero.title">AI Scientist</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          不只是自动写论文，而是持续感知科学世界、维护科学认知状态、诊断知识缺口、主动获取证据、提出并证伪假设，最终推动知识状态发生变化的自主科学智能体。
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section id="thesis" class="section">
+        <div class="section-header">
+          <h2 data-i18n="thesis.title">从自动写论文，走向自主认知进展</h2>
+          <p data-i18n="thesis.description">
+            论文是科学过程的表达载体，而不是科学发现本身。AI Scientist 的目标不是更快地产生文本，而是自主推动科学认知状态发生可验证的变化。
+          </p>
+        </div>
+
+        <div class="tldr">
+          <strong data-i18n="thesis.statement.label">核心命题：</strong>
+          <span data-i18n="thesis.statement.text">真正值得研究的不是 Automated Paper Generation，而是 Autonomous Epistemic Progress。</span>
+        </div>
+
+        <div class="inference-definition-grid">
+          <article class="inference-input-card">
+            <span class="inference-card-label" data-i18n="thesis.paper.label">Output-Centric</span>
+            <h3 data-i18n="thesis.paper.title">Automated Paper Generation</h3>
+            <p data-i18n="thesis.paper.description">
+              围绕论文这一最终产物优化检索、写作、制图和排版，衡量重点往往是完成速度、文本质量与形式完整性。
+            </p>
+          </article>
+
+          <div class="inference-definition-arrow" aria-hidden="true">→</div>
+
+          <article class="inference-model-card">
+            <span class="inference-card-label" data-i18n="thesis.progress.label">Knowledge-State-Centric</span>
+            <h3 data-i18n="thesis.progress.title">自主认知进展</h3>
+            <p data-i18n="thesis.progress.description">
+              围绕科学问题的知识状态持续行动，使未知逐步转化为假设、证据、反例、边界与能够继续演化的科学知识。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="epistemic-loop" class="section highlights">
+        <div class="section-header">
+          <h2 data-i18n="loop.title">推动知识状态变化的自主科学闭环</h2>
+          <p data-i18n="loop.description">
+            AI Scientist 持续维护当前已知、未知、不确定与冲突的认知状态，并选择最有信息增益的下一步行动；每次行动都留下证据、条件、失败和状态更新记录。
+          </p>
+        </div>
+
+        <div class="inference-layers" role="list">
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">01</span>
+            <div>
+              <span class="inference-card-label" data-i18n="loop.step1.label">Perceive</span>
+              <h3 data-i18n="loop.step1.title">持续感知科学世界</h3>
+              <p data-i18n="loop.step1.description">接收论文、数据、实验观测、仿真结果和研究者反馈，追踪科学世界中的新增事实与异常信号。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">02</span>
+            <div>
+              <span class="inference-card-label" data-i18n="loop.step2.label">Represent</span>
+              <h3 data-i18n="loop.step2.title">维护科学认知状态</h3>
+              <p data-i18n="loop.step2.description">显式表示已有结论、证据强度、竞争性解释、适用边界、不确定性和未解决问题。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">03</span>
+            <div>
+              <span class="inference-card-label" data-i18n="loop.step3.label">Diagnose</span>
+              <h3 data-i18n="loop.step3.title">诊断知识缺口</h3>
+              <p data-i18n="loop.step3.description">识别当前解释不了的现象、相互冲突的证据、缺失的变量和最值得减少的不确定性。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">04</span>
+            <div>
+              <span class="inference-card-label" data-i18n="loop.step4.label">Acquire</span>
+              <h3 data-i18n="loop.step4.title">主动获取证据</h3>
+              <p data-i18n="loop.step4.description">在文献检索、数据分析、仿真和实验之间选择信息价值高且成本可控的证据获取路径。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">05</span>
+            <div>
+              <span class="inference-card-label" data-i18n="loop.step5.label">Hypothesize</span>
+              <h3 data-i18n="loop.step5.title">提出可证伪假设</h3>
+              <p data-i18n="loop.step5.description">形成能够解释现象、导出差异化预测并明确失败条件的候选机制，而不只是生成听起来合理的答案。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">06</span>
+            <div>
+              <span class="inference-card-label" data-i18n="loop.step6.label">Test &amp; Falsify</span>
+              <h3 data-i18n="loop.step6.title">验证、证伪与比较</h3>
+              <p data-i18n="loop.step6.description">设计区分性实验或仿真，比较竞争性解释，保留负结果，并依据观测校准置信度。</p>
+            </div>
+          </article>
+          <article class="inference-layer" role="listitem">
+            <span class="inference-layer-index">07</span>
+            <div>
+              <span class="inference-card-label" data-i18n="loop.step7.label">Update</span>
+              <h3 data-i18n="loop.step7.title">更新并沉淀科学知识</h3>
+              <p data-i18n="loop.step7.description">把确认、证伪、边界和新问题写回可审计的科研记忆，使下一轮研究从更新后的知识状态继续演化。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="evolution" class="section">
+        <div class="section-header">
+          <h2 data-i18n="levels.title">AI Scientist 的五级演化路径</h2>
+          <p data-i18n="levels.description">
+            能力从局部科研辅助逐步扩展到问题闭环、项目治理和科学协作网络；更高层级不仅需要更强模型，也需要长期记忆、可靠工具、资源治理和责任机制。
+          </p>
+        </div>
+
+        <div class="stack-diagram" role="list">
+          <article class="stack-layer" role="listitem">
+            <span class="layer-index">Level 1</span>
+            <div>
+              <strong data-i18n="levels.l1.title">Scientific Assistant</strong>
+              <span data-i18n="levels.l1.description">帮助人类完成读论文、写代码、数据分析、绘图和文字润色等局部科研任务。</span>
+            </div>
+          </article>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <article class="stack-layer" role="listitem">
+            <span class="layer-index">Level 2</span>
+            <div>
+              <strong data-i18n="levels.l2.title">AI Co-Scientist</strong>
+              <span data-i18n="levels.l2.description">围绕人类提出的问题综合文献、提出假设、设计实验、批判方案，并与科学家开展多轮讨论。</span>
+            </div>
+          </article>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <article class="stack-layer" role="listitem">
+            <span class="layer-index">Level 3</span>
+            <div>
+              <strong data-i18n="levels.l3.title">Autonomous AI Researcher</strong>
+              <span data-i18n="levels.l3.description">接收较宽泛的研究目标后，自主完成问题细化、实验实现、结果分析、假设更新和复现材料生成。</span>
+            </div>
+          </article>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <article class="stack-layer app" role="listitem">
+            <span class="layer-index">Level 4</span>
+            <div>
+              <strong data-i18n="levels.l4.title">AI Principal Investigator</strong>
+              <span data-i18n="levels.l4.description">管理多个长期项目，选择研究方向，组织人机团队，并配置数据、算力和实验资源。</span>
+            </div>
+          </article>
+          <div class="stack-connect" aria-hidden="true"></div>
+          <article class="stack-layer eval" role="listitem">
+            <span class="layer-index">Level 5</span>
+            <div>
+              <strong data-i18n="levels.l5.title">Autonomous Scientific Ecosystem</strong>
+              <span data-i18n="levels.l5.description">大量 AI Scientist 通过共享协议连接论文、数据、仿真平台与实验室，形成持续运行、相互协作和相互批判的科学发现网络。</span>
+            </div>
+          </article>
+          <p class="stack-note" data-i18n="levels.note">演化的核心不是文本产量，而是自主性、认知增益、验证能力与责任范围的共同提升。</p>
+        </div>
+      </section>
+
+      <section id="human-role" class="section highlights">
+        <div class="section-header">
+          <h2 data-i18n="human.title">人类科学家仍然定义科学的价值与边界</h2>
+          <p data-i18n="human.description">
+            自主性不意味着取消人的判断。能力越强，越需要明确哪些决定能够授权给智能体，哪些价值、风险与责任必须由人承担。
+          </p>
+        </div>
+
+        <div class="inference-collaboration-grid">
+          <div class="inference-collaboration-path" aria-label="Human scientist responsibilities">
+            <div>
+              <span>01</span>
+              <strong data-i18n="human.problem.title">定义值得追求的问题</strong>
+              <p data-i18n="human.problem.description">判断什么问题具有科学价值、社会意义与投入必要性。</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong data-i18n="human.knowledge.title">提供隐性知识与情境</strong>
+              <p data-i18n="human.knowledge.description">补充难以形式化的领域经验、实验直觉和现实约束。</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong data-i18n="human.boundary.title">设定伦理边界</strong>
+              <p data-i18n="human.boundary.description">明确不可接受的风险、资源使用、研究对象与行动权限。</p>
+            </div>
+          </div>
+
+          <div class="quote-block">
+            <strong data-i18n="human.responsibility.title">人类科学家的最终责任</strong>
+            <span data-i18n="human.responsibility.description">定义值得追求的问题、赋予研究价值、提供隐性知识、设定伦理边界，并对最终科学判断承担责任。</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="evaluation" class="section">
+        <div class="section-header">
+          <h2 data-i18n="evaluation.title">以认知进展，而不是论文数量评价 AI Scientist</h2>
+          <p data-i18n="evaluation.description">
+            一个系统是否推动了科学进展，需要检查它改变了什么知识状态、依据是什么、如何被复核，以及失败是否真正影响了下一轮研究。
+          </p>
+        </div>
+
+        <div class="inference-metrics" role="list">
+          <article class="inference-metric" role="listitem">
+            <span>01</span>
+            <h3 data-i18n="evaluation.audit.title">可审计</h3>
+            <p data-i18n="evaluation.audit.description">目标、证据、工具调用、状态变化和关键决策能够被追踪与检查。</p>
+          </article>
+          <article class="inference-metric" role="listitem">
+            <span>02</span>
+            <h3 data-i18n="evaluation.reproduce.title">可复现</h3>
+            <p data-i18n="evaluation.reproduce.description">研究环境、数据版本、实验步骤、分析过程和负结果得到完整保留。</p>
+          </article>
+          <article class="inference-metric" role="listitem">
+            <span>03</span>
+            <h3 data-i18n="evaluation.falsify.title">可证伪</h3>
+            <p data-i18n="evaluation.falsify.description">每个核心假设都给出能够推翻它的观测条件，并与替代解释进行比较。</p>
+          </article>
+          <article class="inference-metric" role="listitem">
+            <span>04</span>
+            <h3 data-i18n="evaluation.evolve.title">可演化</h3>
+            <p data-i18n="evaluation.evolve.description">确认、证伪与失败持续更新科研记忆，改变后续的问题排序和证据获取策略。</p>
+          </article>
+        </div>
+
+        <div class="inference-next">
+          <div>
+            <span class="inference-card-label" data-i18n="next.label">Connected Research</span>
+            <h3 data-i18n="next.title">AI Scientist 建立在三类研究能力之上</h3>
+            <p data-i18n="next.description">科学文献挖掘提供证据，科学数据建模连接真实世界，科学推演智能体组织可验证行动。</p>
+          </div>
+          <div class="section-actions">
+            <a class="btn ghost" href="../knowledge_memory/" data-i18n="next.knowledge">科学文献挖掘</a>
+            <a class="btn ghost" href="../data_modeling/" data-i18n="next.data">科学数据建模</a>
+            <a class="btn ghost" href="../scientific_inference/" data-i18n="next.inference">科学推演智能体</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/ustc-ai4science" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "AI Scientist | USTC-AGI",
+          "meta.description":
+            "USTC AGI's vision for AI Scientists: autonomous scientific agents that perceive the scientific world, maintain epistemic state, diagnose knowledge gaps, acquire evidence, and propose and falsify hypotheses.",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "Scientific Literature Mining",
+          "nav.aiReadyData": "AI-Ready Data",
+          "nav.data": "Scientific Data Modeling",
+          "nav.inference": "Scientific Inference Agent",
+          "nav.aiScientist": "AI Scientist",
+          "nav.aiScience": "Science of AI",
+          "nav.projects": "Open Source",
+          "nav.papers": "Publications",
+          "hero.title": "AI Scientist",
+          "hero.subtitle":
+            "Not merely an agent that writes papers, but an autonomous scientific agent that continuously perceives the scientific world, maintains epistemic state, diagnoses knowledge gaps, actively acquires evidence, proposes and falsifies hypotheses, and ultimately changes the state of knowledge.",
+          "thesis.title": "From Automated Papers to Autonomous Epistemic Progress",
+          "thesis.description":
+            "A paper is a medium for communicating science, not scientific discovery itself. The goal of an AI Scientist is not to produce text faster, but to autonomously drive verifiable changes in scientific knowledge state.",
+          "thesis.statement.label": "Core proposition:",
+          "thesis.statement.text":
+            "The real research target is not Automated Paper Generation, but Autonomous Epistemic Progress.",
+          "thesis.paper.label": "Output-Centric",
+          "thesis.paper.title": "Automated Paper Generation",
+          "thesis.paper.description":
+            "Optimize retrieval, writing, visualization, and formatting around the paper as the final artifact, with emphasis on speed, prose quality, and formal completeness.",
+          "thesis.progress.label": "Knowledge-State-Centric",
+          "thesis.progress.title": "Autonomous Epistemic Progress",
+          "thesis.progress.description":
+            "Act continuously on the knowledge state of a scientific problem, turning the unknown into hypotheses, evidence, counterexamples, boundaries, and knowledge that can keep evolving.",
+          "loop.title": "An Autonomous Scientific Loop That Changes Knowledge State",
+          "loop.description":
+            "An AI Scientist continuously maintains what is known, unknown, uncertain, and conflicting, then selects the next action with the greatest information value. Every action preserves its evidence, conditions, failures, and state updates.",
+          "loop.step1.label": "Perceive",
+          "loop.step1.title": "Continuously Perceive the Scientific World",
+          "loop.step1.description":
+            "Ingest papers, data, experimental observations, simulations, and researcher feedback while tracking new facts and anomalous signals.",
+          "loop.step2.label": "Represent",
+          "loop.step2.title": "Maintain Scientific Epistemic State",
+          "loop.step2.description":
+            "Explicitly represent current conclusions, evidence strength, competing explanations, applicability boundaries, uncertainties, and open questions.",
+          "loop.step3.label": "Diagnose",
+          "loop.step3.title": "Diagnose Knowledge Gaps",
+          "loop.step3.description":
+            "Identify unexplained phenomena, conflicting evidence, missing variables, and the uncertainties most worth reducing.",
+          "loop.step4.label": "Acquire",
+          "loop.step4.title": "Actively Acquire Evidence",
+          "loop.step4.description":
+            "Choose high-information, cost-aware evidence paths across literature search, data analysis, simulation, and experimentation.",
+          "loop.step5.label": "Hypothesize",
+          "loop.step5.title": "Formulate Falsifiable Hypotheses",
+          "loop.step5.description":
+            "Develop candidate mechanisms that explain observations, yield discriminating predictions, and state explicit failure conditions rather than merely plausible answers.",
+          "loop.step6.label": "Test & Falsify",
+          "loop.step6.title": "Test, Falsify, and Compare",
+          "loop.step6.description":
+            "Design discriminating experiments or simulations, compare competing explanations, preserve negative results, and calibrate confidence from observations.",
+          "loop.step7.label": "Update",
+          "loop.step7.title": "Update and Consolidate Scientific Knowledge",
+          "loop.step7.description":
+            "Write confirmations, falsifications, boundaries, and new questions into auditable research memory so the next cycle begins from an updated knowledge state.",
+          "levels.title": "A Five-Level Evolution Path for AI Scientists",
+          "levels.description":
+            "Capability expands from local research assistance to closed-loop inquiry, project governance, and scientific collaboration networks. Higher levels require not only stronger models but also durable memory, reliable tools, resource governance, and responsibility mechanisms.",
+          "levels.l1.title": "Scientific Assistant",
+          "levels.l1.description":
+            "Helps humans with local tasks such as reading papers, writing code, analyzing data, drawing figures, and polishing prose.",
+          "levels.l2.title": "AI Co-Scientist",
+          "levels.l2.description":
+            "Synthesizes literature, proposes hypotheses, designs experiments, critiques plans, and conducts iterative discussions around a human-defined question.",
+          "levels.l3.title": "Autonomous AI Researcher",
+          "levels.l3.description":
+            "Given a broad research goal, autonomously refines the problem, implements experiments, analyzes results, updates hypotheses, and produces reproducibility artifacts.",
+          "levels.l4.title": "AI Principal Investigator",
+          "levels.l4.description":
+            "Manages multiple long-term projects, selects research directions, organizes human–AI teams, and allocates data, compute, and experimental resources.",
+          "levels.l5.title": "Autonomous Scientific Ecosystem",
+          "levels.l5.description":
+            "Many AI Scientists connect papers, data, simulation platforms, and laboratories through shared protocols to form a continuously operating network of collaboration and mutual criticism.",
+          "levels.note":
+            "The core of evolution is not text volume, but the joint growth of autonomy, epistemic gain, validation capability, and responsibility.",
+          "human.title": "Human Scientists Still Define Scientific Value and Boundaries",
+          "human.description":
+            "Autonomy does not eliminate human judgment. The more capable the system becomes, the more clearly we must define which decisions can be delegated and which values, risks, and responsibilities must remain human.",
+          "human.problem.title": "Define Problems Worth Pursuing",
+          "human.problem.description":
+            "Judge which questions carry scientific value, social meaning, and sufficient reason for investment.",
+          "human.knowledge.title": "Provide Tacit Knowledge and Context",
+          "human.knowledge.description":
+            "Supply domain experience, experimental intuition, and real-world constraints that are difficult to formalize.",
+          "human.boundary.title": "Set Ethical Boundaries",
+          "human.boundary.description":
+            "Define unacceptable risks, resource use, research subjects, and action permissions.",
+          "human.responsibility.title": "The Ultimate Responsibility of Human Scientists",
+          "human.responsibility.description":
+            "Define problems worth pursuing, assign research value, provide tacit knowledge, set ethical boundaries, and remain accountable for final scientific judgments.",
+          "evaluation.title": "Evaluate AI Scientists by Epistemic Progress, Not Paper Counts",
+          "evaluation.description":
+            "To determine whether a system advances science, examine what knowledge state it changed, what evidence supports the change, how it can be checked, and whether failure truly alters the next research cycle.",
+          "evaluation.audit.title": "Auditable",
+          "evaluation.audit.description":
+            "Goals, evidence, tool calls, state changes, and critical decisions can be traced and inspected.",
+          "evaluation.reproduce.title": "Reproducible",
+          "evaluation.reproduce.description":
+            "Research environments, data versions, experimental procedures, analysis, and negative results are completely preserved.",
+          "evaluation.falsify.title": "Falsifiable",
+          "evaluation.falsify.description":
+            "Every central hypothesis states observations that could overturn it and is compared against alternative explanations.",
+          "evaluation.evolve.title": "Evolvable",
+          "evaluation.evolve.description":
+            "Confirmations, falsifications, and failures update research memory and alter future question priorities and evidence strategies.",
+          "next.label": "Connected Research",
+          "next.title": "AI Scientists Build on Three Research Capabilities",
+          "next.description":
+            "Scientific literature mining provides evidence, scientific data modeling connects to the real world, and scientific inference agents organize verifiable action.",
+          "next.knowledge": "Scientific Literature Mining",
+          "next.data": "Scientific Data Modeling",
+          "next.inference": "Scientific Inference Agent",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "AI Scientist | USTC-AGI",
+          "meta.description":
+            "中国科大 AGI 团队关于 AI Scientist 的研究愿景：构建能够持续感知科学世界、维护认知状态、诊断知识缺口、获取证据、提出并证伪假设的自主科学智能体。",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "科学文献挖掘",
+          "nav.aiReadyData": "AI-Ready Data",
+          "nav.data": "科学数据建模",
+          "nav.inference": "科学推演智能体",
+          "nav.aiScientist": "AI Scientist",
+          "nav.aiScience": "Science of AI",
+          "nav.projects": "开源项目",
+          "nav.papers": "论文列表",
+          "hero.title": "AI Scientist",
+          "hero.subtitle":
+            "不只是自动写论文，而是持续感知科学世界、维护科学认知状态、诊断知识缺口、主动获取证据、提出并证伪假设，最终推动知识状态发生变化的自主科学智能体。",
+          "thesis.title": "从自动写论文，走向自主认知进展",
+          "thesis.description":
+            "论文是科学过程的表达载体，而不是科学发现本身。AI Scientist 的目标不是更快地产生文本，而是自主推动科学认知状态发生可验证的变化。",
+          "thesis.statement.label": "核心命题：",
+          "thesis.statement.text":
+            "真正值得研究的不是 Automated Paper Generation，而是 Autonomous Epistemic Progress。",
+          "thesis.paper.label": "以产物为中心",
+          "thesis.paper.title": "Automated Paper Generation",
+          "thesis.paper.description":
+            "围绕论文这一最终产物优化检索、写作、制图和排版，衡量重点往往是完成速度、文本质量与形式完整性。",
+          "thesis.progress.label": "以知识状态为中心",
+          "thesis.progress.title": "自主认知进展",
+          "thesis.progress.description":
+            "围绕科学问题的知识状态持续行动，使未知逐步转化为假设、证据、反例、边界与能够继续演化的科学知识。",
+          "loop.title": "推动知识状态变化的自主科学闭环",
+          "loop.description":
+            "AI Scientist 持续维护当前已知、未知、不确定与冲突的认知状态，并选择最有信息增益的下一步行动；每次行动都留下证据、条件、失败和状态更新记录。",
+          "loop.step1.label": "感知",
+          "loop.step1.title": "持续感知科学世界",
+          "loop.step1.description":
+            "接收论文、数据、实验观测、仿真结果和研究者反馈，追踪科学世界中的新增事实与异常信号。",
+          "loop.step2.label": "表示",
+          "loop.step2.title": "维护科学认知状态",
+          "loop.step2.description":
+            "显式表示已有结论、证据强度、竞争性解释、适用边界、不确定性和未解决问题。",
+          "loop.step3.label": "诊断",
+          "loop.step3.title": "诊断知识缺口",
+          "loop.step3.description":
+            "识别当前解释不了的现象、相互冲突的证据、缺失的变量和最值得减少的不确定性。",
+          "loop.step4.label": "获取",
+          "loop.step4.title": "主动获取证据",
+          "loop.step4.description":
+            "在文献检索、数据分析、仿真和实验之间选择信息价值高且成本可控的证据获取路径。",
+          "loop.step5.label": "假设",
+          "loop.step5.title": "提出可证伪假设",
+          "loop.step5.description":
+            "形成能够解释现象、导出差异化预测并明确失败条件的候选机制，而不只是生成听起来合理的答案。",
+          "loop.step6.label": "验证与证伪",
+          "loop.step6.title": "验证、证伪与比较",
+          "loop.step6.description":
+            "设计区分性实验或仿真，比较竞争性解释，保留负结果，并依据观测校准置信度。",
+          "loop.step7.label": "更新",
+          "loop.step7.title": "更新并沉淀科学知识",
+          "loop.step7.description":
+            "把确认、证伪、边界和新问题写回可审计的科研记忆，使下一轮研究从更新后的知识状态继续演化。",
+          "levels.title": "AI Scientist 的五级演化路径",
+          "levels.description":
+            "能力从局部科研辅助逐步扩展到问题闭环、项目治理和科学协作网络；更高层级不仅需要更强模型，也需要长期记忆、可靠工具、资源治理和责任机制。",
+          "levels.l1.title": "Scientific Assistant",
+          "levels.l1.description":
+            "帮助人类完成读论文、写代码、数据分析、绘图和文字润色等局部科研任务。",
+          "levels.l2.title": "AI Co-Scientist",
+          "levels.l2.description":
+            "围绕人类提出的问题综合文献、提出假设、设计实验、批判方案，并与科学家开展多轮讨论。",
+          "levels.l3.title": "Autonomous AI Researcher",
+          "levels.l3.description":
+            "接收较宽泛的研究目标后，自主完成问题细化、实验实现、结果分析、假设更新和复现材料生成。",
+          "levels.l4.title": "AI Principal Investigator",
+          "levels.l4.description":
+            "管理多个长期项目，选择研究方向，组织人机团队，并配置数据、算力和实验资源。",
+          "levels.l5.title": "Autonomous Scientific Ecosystem",
+          "levels.l5.description":
+            "大量 AI Scientist 通过共享协议连接论文、数据、仿真平台与实验室，形成持续运行、相互协作和相互批判的科学发现网络。",
+          "levels.note":
+            "演化的核心不是文本产量，而是自主性、认知增益、验证能力与责任范围的共同提升。",
+          "human.title": "人类科学家仍然定义科学的价值与边界",
+          "human.description":
+            "自主性不意味着取消人的判断。能力越强，越需要明确哪些决定能够授权给智能体，哪些价值、风险与责任必须由人承担。",
+          "human.problem.title": "定义值得追求的问题",
+          "human.problem.description": "判断什么问题具有科学价值、社会意义与投入必要性。",
+          "human.knowledge.title": "提供隐性知识与情境",
+          "human.knowledge.description": "补充难以形式化的领域经验、实验直觉和现实约束。",
+          "human.boundary.title": "设定伦理边界",
+          "human.boundary.description": "明确不可接受的风险、资源使用、研究对象与行动权限。",
+          "human.responsibility.title": "人类科学家的最终责任",
+          "human.responsibility.description":
+            "定义值得追求的问题、赋予研究价值、提供隐性知识、设定伦理边界，并对最终科学判断承担责任。",
+          "evaluation.title": "以认知进展，而不是论文数量评价 AI Scientist",
+          "evaluation.description":
+            "一个系统是否推动了科学进展，需要检查它改变了什么知识状态、依据是什么、如何被复核，以及失败是否真正影响了下一轮研究。",
+          "evaluation.audit.title": "可审计",
+          "evaluation.audit.description": "目标、证据、工具调用、状态变化和关键决策能够被追踪与检查。",
+          "evaluation.reproduce.title": "可复现",
+          "evaluation.reproduce.description": "研究环境、数据版本、实验步骤、分析过程和负结果得到完整保留。",
+          "evaluation.falsify.title": "可证伪",
+          "evaluation.falsify.description": "每个核心假设都给出能够推翻它的观测条件，并与替代解释进行比较。",
+          "evaluation.evolve.title": "可演化",
+          "evaluation.evolve.description": "确认、证伪与失败持续更新科研记忆，改变后续的问题排序和证据获取策略。",
+          "next.label": "关联研究",
+          "next.title": "AI Scientist 建立在三类研究能力之上",
+          "next.description": "科学文献挖掘提供证据，科学数据建模连接真实世界，科学推演智能体组织可验证行动。",
+          "next.knowledge": "科学文献挖掘",
+          "next.data": "科学数据建模",
+          "next.inference": "科学推演智能体",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
+        setLanguage(nextLanguage, true);
+      });
+    </script>
+  </body>
+</html>
