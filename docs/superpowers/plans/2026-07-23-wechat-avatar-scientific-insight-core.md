@@ -35,7 +35,7 @@ Use case: logo-brand
 Asset type: personal WeChat avatar, square master image
 Primary request: Create a compact “Scientific Insight Core” emblem matching the visual language of an AI for Science research website.
 Scene/backdrop: a complete deep navy #061f45 background designed to become a clean circular avatar when WeChat crops the square image
-Subject: one bright cyan-blue insight core at the exact center; four equally important round nodes orbiting it, representing scientific data modeling, scientific literature mining, scientific inference, and Science of AI; two bold continuous orbital strokes connect the system; the lower negative space subtly reads as a simple open book, while the upper-right orbital motion forms a clear rising discovery path
+Subject: one bright cyan-blue insight core at the exact center; four equally important round nodes orbiting it, representing scientific data modeling, scientific literature intelligence, scientific inference, and Science of AI; two bold continuous orbital strokes connect the system; the lower negative space subtly reads as a simple open book, while the upper-right orbital motion forms a clear rising discovery path
 Style/medium: modern restrained flat vector-style logo, geometric, minimal, high contrast, crisp edges, professional scientific identity
 Composition/framing: 1:1 square, centered, near-symmetrical, all meaningful elements inside the central 70% circular safe area; the rising path may lean slightly toward the upper right; thick strokes and large nodes that remain readable at 64 × 64 pixels
 Lighting/mood: calm, intelligent, precise; only the central core may have a very subtle soft glow

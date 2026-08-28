@@ -8,6 +8,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const pages = [
   "index.html",
   "knowledge_memory/index.html",
+  "knowledge_memory/research_layout/index.html",
   "ai_ready_data/index.html",
   "data_modeling/index.html",
   "scientific_inference/index.html",
@@ -19,6 +20,8 @@ const pages = [
 const publicUrls = {
   "index.html": "https://ustcagi-sci.github.io/",
   "knowledge_memory/index.html": "https://ustcagi-sci.github.io/knowledge_memory/",
+  "knowledge_memory/research_layout/index.html":
+    "https://ustcagi-sci.github.io/knowledge_memory/research_layout/",
   "ai_ready_data/index.html": "https://ustcagi-sci.github.io/ai_ready_data/",
   "data_modeling/index.html": "https://ustcagi-sci.github.io/data_modeling/",
   "scientific_inference/index.html": "https://ustcagi-sci.github.io/scientific_inference/",
@@ -267,7 +270,7 @@ const validateNavigation = (relativePath) => {
   );
   assert.ok(
     !navKeys.includes("nav.knowledge"),
-    `${label}: Scientific Literature Mining should not appear in the top navigation`
+    `${label}: Scientific Literature Intelligence should not appear in the top navigation`
   );
 
   const expectedLinks = {
@@ -286,6 +289,14 @@ const validateNavigation = (relativePath) => {
       { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
+    ],
+    "knowledge_memory/research_layout/index.html": [
+      { key: "nav.aiReadyData", href: "../../ai_ready_data/" },
+      { key: "nav.inference", href: "../../scientific_inference/" },
+      { key: "nav.aiScientist", href: "../../ai_scientist/" },
+      { key: "nav.aiScience", href: "../../science_of_ai/" },
+      { key: "nav.projects", href: "../../projects/" },
+      { key: "nav.papers", href: "../../papers/" },
     ],
     "ai_ready_data/index.html": [
       { key: "nav.aiReadyData", href: "./" },
@@ -371,13 +382,13 @@ const validateNavigation = (relativePath) => {
 
   assert.equal(
     context.translations.en["nav.knowledge"],
-    "Scientific Literature Mining",
-    `${label}: English knowledge navigation label should be Scientific Literature Mining`
+    "Scientific Literature Intelligence",
+    `${label}: English knowledge navigation label should be Scientific Literature Intelligence`
   );
   assert.equal(
     context.translations.zh["nav.knowledge"],
-    "科学文献挖掘",
-    `${label}: Chinese knowledge navigation label should be 科学文献挖掘`
+    "科技文献智能",
+    `${label}: Chinese knowledge navigation label should be 科技文献智能`
   );
   assert.equal(
     context.translations.en["nav.aiReadyData"],
@@ -412,7 +423,7 @@ const validateNavigation = (relativePath) => {
   assert.equal(
     navFallbacks["nav.knowledge"],
     undefined,
-    `${label}: Scientific Literature Mining should have no top-navigation fallback`
+    `${label}: Scientific Literature Intelligence should have no top-navigation fallback`
   );
   assert.equal(
     context.translations.en["nav.inference"],
@@ -649,7 +660,7 @@ const validateReadmeIdentity = () => {
 
   assert.ok(/^# USTC-AGI · AI for Science$/m.test(readme), "README.md: heading should match the site brand");
   for (const term of [
-    "Scientific Literature Mining",
+    "Scientific Literature Intelligence",
     "Scientific AI-Ready Data",
     "Scientific Data Modeling",
     "Scientific Inference Agent",
@@ -660,12 +671,12 @@ const validateReadmeIdentity = () => {
     assert.ok(readme.includes(term), `README.md: missing current research area ${term}`);
   }
   assert.ok(
-    readme.includes("nine bilingual main pages"),
-    "README.md: site structure should count all bilingual main pages"
+    readme.includes("nine bilingual main pages plus one bilingual research-layout subpage"),
+    "README.md: site structure should describe the main pages and research-layout subpage"
   );
   assert.ok(
-    !/homepage for \*\*AI for Scientific Literature Mining\*\*/.test(readme),
-    "README.md: repository identity should not be limited to literature mining"
+    !/homepage for \*\*AI for Scientific Literature Intelligence\*\*/.test(readme),
+    "README.md: repository identity should not be limited to literature intelligence"
   );
 };
 
@@ -1170,12 +1181,12 @@ const validateHomeHierarchyTitle = () => {
   const context = {};
 
   assert.ok(
-    /<h2 data-i18n="hierarchy\.title">基于科学文献挖掘的知识发现<\/h2>/.test(html),
-    "index.html: hierarchy title should be 基于科学文献挖掘的知识发现"
+    /<h2 data-i18n="hierarchy\.title">基于科技文献智能的知识发现<\/h2>/.test(html),
+    "index.html: hierarchy title should be 基于科技文献智能的知识发现"
   );
   assert.ok(hierarchyMatch, "index.html: missing hierarchy section");
   assert.ok(
-    /<div class="section-actions">\s*<a class="btn ghost" href="\.\/knowledge_memory\/" data-i18n="hierarchy\.cta">Explore Scientific Literature Mining<\/a>\s*<\/div>/.test(
+    /<div class="section-actions">\s*<a class="btn ghost" href="\.\/knowledge_memory\/" data-i18n="hierarchy\.cta">Explore Scientific Literature Intelligence<\/a>\s*<\/div>/.test(
       hierarchyMatch[1]
     ),
     "index.html: hierarchy section should link to the scientific knowledge discovery page"
@@ -1185,22 +1196,22 @@ const validateHomeHierarchyTitle = () => {
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
   assert.equal(
     context.translations.en["hierarchy.title"],
-    "Knowledge Discovery through Scientific Literature Mining",
-    "index.html: English hierarchy title should be Knowledge Discovery through Scientific Literature Mining"
+    "Knowledge Discovery through Scientific Literature Intelligence",
+    "index.html: English hierarchy title should be Knowledge Discovery through Scientific Literature Intelligence"
   );
   assert.equal(
     context.translations.zh["hierarchy.title"],
-    "基于科学文献挖掘的知识发现",
-    "index.html: Chinese hierarchy title should be 基于科学文献挖掘的知识发现"
+    "基于科技文献智能的知识发现",
+    "index.html: Chinese hierarchy title should be 基于科技文献智能的知识发现"
   );
   assert.equal(
     context.translations.en["hierarchy.cta"],
-    "Explore Scientific Literature Mining",
+    "Explore Scientific Literature Intelligence",
     "index.html: English hierarchy CTA should be synchronized"
   );
   assert.equal(
     context.translations.zh["hierarchy.cta"],
-    "了解科学文献挖掘",
+    "了解科技文献智能",
     "index.html: Chinese hierarchy CTA should be synchronized"
   );
 };
@@ -1214,7 +1225,7 @@ const validateHomeAcademicCopy = () => {
   const expectedTranslations = {
     en: {
       "meta.description":
-        "USTC AGI research on scientific data modeling, scientific literature mining, scientific inference agents, and the Science of AI.",
+        "USTC AGI research on scientific data modeling, scientific literature intelligence, scientific inference agents, and the Science of AI.",
       "hero.subtitle":
         "Centered on the intelligent cognition of complex systems, we organize AI for Science into a three-layer research agenda: Scientific Task Solving, Scientific Law Discovery, and Science of AI. This agenda progresses from using AI to solve complex scientific problems efficiently, through the autonomous discovery of scientific laws and mechanisms, to investigating the fundamental principles governing AI's own learning, reasoning, and evolution.",
       "hierarchy.description":
@@ -1246,7 +1257,7 @@ const validateHomeAcademicCopy = () => {
     },
     zh: {
       "meta.description":
-        "中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学数据建模、科学文献挖掘、科学推演智能体与 Science of AI。",
+        "中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学数据建模、科技文献智能、科学推演智能体与 Science of AI。",
       "hero.subtitle":
         "围绕复杂系统智能认知，构建“科学任务求解—科学规律发现—Science of AI”三层 AI for Science 研究布局：从利用 AI 高效求解复杂科学问题，到借助 AI 自主发现科学规律与机制，再到探索人工智能自身学习、推理与演化的基本规律。",
       "hierarchy.description":
@@ -1299,7 +1310,7 @@ const validateHomeAcademicCopy = () => {
   );
 
   assert.ok(
-    /<meta\s+name="description"\s+content="中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学数据建模、科学文献挖掘、科学推演智能体与 Science of AI。"\s*\/>/.test(html),
+    /<meta\s+name="description"\s+content="中国科大 AGI 团队的 AI for Science 研究主页，聚焦科学数据建模、科技文献智能、科学推演智能体与 Science of AI。"\s*\/>/.test(html),
     "index.html: static metadata should use the revised academic framing"
   );
   assert.ok(
@@ -1534,20 +1545,20 @@ const validatePapersIdentity = () => {
   const context = {};
 
   assert.ok(
-    /<title>论文列表 \| 科学文献挖掘<\/title>/.test(html),
-    "papers/index.html: document title should use the current literature-mining identity"
+    /<title>论文列表 \| 科技文献智能<\/title>/.test(html),
+    "papers/index.html: document title should use the current literature-intelligence identity"
   );
   assert.ok(objectMatch, "papers/index.html: missing translations object");
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
   assert.equal(
     context.translations.en["meta.title"],
-    "Publications | Scientific Literature Mining",
-    "papers/index.html: English metadata should use Scientific Literature Mining"
+    "Publications | Scientific Literature Intelligence",
+    "papers/index.html: English metadata should use Scientific Literature Intelligence"
   );
   assert.equal(
     context.translations.zh["meta.title"],
-    "论文列表 | 科学文献挖掘",
-    "papers/index.html: Chinese metadata should use 科学文献挖掘"
+    "论文列表 | 科技文献智能",
+    "papers/index.html: Chinese metadata should use 科技文献智能"
   );
   assert.ok(
     !/科学知识获取|Scientific Knowledge Acquisition/.test(html),
@@ -1939,8 +1950,8 @@ const validateKnowledgeDiscoveryPage = () => {
 
   assert.ok(heroMatch, "knowledge_memory/index.html: missing hero section");
   assert.ok(
-    /<h1 data-i18n="hero\.title">科学文献挖掘<\/h1>/.test(heroMatch[1]),
-    "knowledge_memory/index.html: hero should introduce scientific literature mining"
+    /<h1 data-i18n="hero\.title">科技文献智能<\/h1>/.test(heroMatch[1]),
+    "knowledge_memory/index.html: hero should introduce scientific literature intelligence"
   );
   assert.ok(
     !/class="eyebrow"/.test(heroMatch[1]),
@@ -1959,8 +1970,8 @@ const validateKnowledgeDiscoveryPage = () => {
     "knowledge_memory/index.html: hero GitHub button should be removed"
   );
   assert.ok(
-    /<h2 data-i18n="intro\.title">基于科学文献挖掘的知识发现<\/h2>/.test(html),
-    "knowledge_memory/index.html: introduction should position knowledge discovery through scientific literature mining"
+    /<h2 data-i18n="intro\.title">基于科技文献智能的知识发现<\/h2>/.test(html),
+    "knowledge_memory/index.html: introduction should position knowledge discovery through scientific literature intelligence"
   );
   assert.ok(
     !/data-i18n="intro\.eyebrow"/.test(html),
@@ -1991,23 +2002,23 @@ const validateKnowledgeDiscoveryPage = () => {
   vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
   assert.equal(
     context.translations.en["meta.title"],
-    "Scientific Literature Mining",
-    "knowledge_memory/index.html: English metadata should match the literature-mining scope"
+    "Scientific Literature Intelligence",
+    "knowledge_memory/index.html: English metadata should match the literature-intelligence scope"
   );
   assert.equal(
     context.translations.zh["meta.title"],
-    "科学文献挖掘",
-    "knowledge_memory/index.html: Chinese metadata should match the literature-mining scope"
+    "科技文献智能",
+    "knowledge_memory/index.html: Chinese metadata should match the literature-intelligence scope"
   );
   assert.equal(
     context.translations.en["intro.title"],
-    "Knowledge Discovery through Scientific Literature Mining",
-    "knowledge_memory/index.html: English introduction should match the literature-mining knowledge-discovery framing"
+    "Knowledge Discovery through Scientific Literature Intelligence",
+    "knowledge_memory/index.html: English introduction should match the literature-intelligence knowledge-discovery framing"
   );
   assert.equal(
     context.translations.zh["intro.title"],
-    "基于科学文献挖掘的知识发现",
-    "knowledge_memory/index.html: Chinese introduction should match the literature-mining knowledge-discovery framing"
+    "基于科技文献智能的知识发现",
+    "knowledge_memory/index.html: Chinese introduction should match the literature-intelligence knowledge-discovery framing"
   );
   for (const language of ["en", "zh"]) {
     assert.equal(
@@ -2963,13 +2974,108 @@ const validateDirectionsPageRemoved = () => {
 };
 
 const validateScientificLiteratureTerminology = () => {
-  const retiredTerm = "\u79d1\u6280\u6587\u732e";
+  const retiredChinese = "\u79d1\u5b66\u6587\u732e\u6316\u6398";
+  const retiredEnglish = ["Scientific Literature", "Mining"].join(" ");
   for (const relativePath of Object.keys(publicUrls)) {
     const html = readFileSync(resolve(root, relativePath), "utf8");
     assert.ok(
-      !html.includes(retiredTerm),
-      `${relativePath}: retired literature term should be replaced with 科学文献`
+      !html.includes(retiredChinese),
+      `${relativePath}: retired Chinese literature identity should be replaced with 科技文献智能`
     );
+    assert.ok(
+      !html.toLowerCase().includes(retiredEnglish.toLowerCase()),
+      `${relativePath}: retired English literature identity should be replaced with Scientific Literature Intelligence`
+    );
+  }
+
+  const relativePath = "knowledge_memory/index.html";
+  const html = readFileSync(resolve(root, relativePath), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    /<h1 data-i18n="hero\.title">科技文献智能<\/h1>/.test(html),
+    `${relativePath}: Chinese hero should use 科技文献智能`
+  );
+  assert.ok(objectMatch, `${relativePath}: missing translations object`);
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["meta.title"],
+    "Scientific Literature Intelligence",
+    `${relativePath}: English identity should use Scientific Literature Intelligence`
+  );
+  assert.equal(
+    context.translations.zh["meta.title"],
+    "科技文献智能",
+    `${relativePath}: Chinese identity should use 科技文献智能`
+  );
+};
+
+const validateLiteratureResearchLayoutPage = () => {
+  const relativePath = "knowledge_memory/research_layout/index.html";
+  const absolutePath = resolve(root, relativePath);
+
+  assert.ok(existsSync(absolutePath), `${relativePath}: missing bilingual research-layout subpage`);
+
+  const html = readFileSync(absolutePath, "utf8");
+  const parentHtml = readFileSync(resolve(root, "knowledge_memory/index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    /<h1 data-i18n="hero\.title">科技文献智能研究布局<\/h1>/.test(html),
+    `${relativePath}: hero should introduce the Scientific Literature Intelligence research layout`
+  );
+  assert.deepEqual(
+    [...html.matchAll(/class="layout-stage-code">([^<]+)<\/span>/g)].map((match) => match[1]),
+    ["Search", "Extract", "Discover"],
+    `${relativePath}: research flow should use Search, Extract, and Discover`
+  );
+  assert.equal(
+    (html.match(/class="layout-stage"/g) || []).length,
+    3,
+    `${relativePath}: research flow should contain exactly three stages`
+  );
+  for (const project of ["PaperScout", "ScholarQuest", "PaperArena", "Mind2Report"]) {
+    assert.ok(html.includes(project), `${relativePath}: missing portfolio mapping for ${project}`);
+  }
+  assert.ok(
+    /data-i18n="priorities\.extraction\.title"/.test(html) &&
+      /data-i18n="priorities\.discovery\.title"/.test(html),
+    `${relativePath}: page should identify the two next research priorities`
+  );
+  assert.ok(
+    !/<section id="positioning"/.test(html),
+    `${relativePath}: removed personal research positioning section should not be rendered`
+  );
+  assert.ok(
+    /href="\.\/research_layout\/" data-i18n="intro\.layoutCta">查看研究布局<\/a>/.test(parentHtml),
+    "knowledge_memory/index.html: parent page should link to the research-layout subpage"
+  );
+
+  assert.ok(objectMatch, `${relativePath}: missing translations object`);
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["meta.title"],
+    "Scientific Literature Intelligence Research Layout",
+    `${relativePath}: English metadata should identify the research layout`
+  );
+  assert.equal(
+    context.translations.zh["meta.title"],
+    "科技文献智能研究布局",
+    `${relativePath}: Chinese metadata should identify the research layout`
+  );
+  for (const language of ["en", "zh"]) {
+    for (const key of Object.keys(context.translations[language])) {
+      assert.ok(
+        !key.startsWith("positioning."),
+        `${relativePath}: stale ${language} personal positioning translation should be removed`
+      );
+    }
   }
 };
 
@@ -3091,6 +3197,7 @@ const validateAiReadyDataPage = () => {
   );
 };
 
+validateLiteratureResearchLayoutPage();
 validateAiReadyDataPage();
 validateAiScientistPage();
 

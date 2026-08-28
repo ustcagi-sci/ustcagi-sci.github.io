@@ -5,7 +5,7 @@ This repository hosts the USTC-AGI research homepage for AI for Science:
 
 ## Research Areas
 
-- **Scientific Literature Mining** — retrieval, document understanding, evidence synthesis, and testable hypothesis formation.
+- **Scientific Literature Intelligence** — retrieval, document understanding, evidence synthesis, and testable hypothesis formation.
 - **Scientific AI-Ready Data** — task-conditioned readiness assessment, data diagnosis and repair, model- and agent-facing data services, and continuous evolution through model and experimental feedback.
 - **Scientific Data Modeling** — structured modeling for tabular data, time series, experiments, and observations.
 - **Scientific Inference Agent** — evidence-grounded reasoning, experiment planning, simulation, and verification.
@@ -15,7 +15,7 @@ This repository hosts the USTC-AGI research homepage for AI for Science:
 
 ## Site Structure
 
-The site is built as static HTML and CSS. The nine bilingual main pages share `ref.css` and inline translation dictionaries; `mind2report/` is an independent project page. Run the site checks before publishing:
+The site is built as static HTML and CSS. The nine bilingual main pages plus one bilingual research-layout subpage share `ref.css` and inline translation dictionaries; `mind2report/` is an independent project page. The research-layout page lives at `knowledge_memory/research_layout/` and presents Scientific Literature Intelligence as Search → Extract → Discover. Run the site checks before publishing:
 
 ```bash
 node scripts/verify-i18n.mjs

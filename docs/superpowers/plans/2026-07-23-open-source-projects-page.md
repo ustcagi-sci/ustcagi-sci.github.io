@@ -190,13 +190,13 @@ Add `"nav.projects": "Open Source"` and `"nav.projects": "开源项目"` to ever
 Use this description on all seven bilingual pages and Mind2Report:
 
 ```text
-欢迎围绕 AI for Science、科学数据建模、科学文献挖掘、科学推演智能体、Science of AI 与开源项目开展交流合作。
+欢迎围绕 AI for Science、科学数据建模、科技文献智能、科学推演智能体、Science of AI 与开源项目开展交流合作。
 ```
 
 English:
 
 ```text
-We welcome collaborations on AI for Science, scientific data modeling, scientific literature mining, scientific inference agents, the Science of AI, and open-source projects.
+We welcome collaborations on AI for Science, scientific data modeling, scientific literature intelligence, scientific inference agents, the Science of AI, and open-source projects.
 ```
 
 Update `validateUnifiedFooters()` with the same exact markup and translations.
