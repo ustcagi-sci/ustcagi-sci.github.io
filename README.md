@@ -11,11 +11,12 @@ This repository hosts the USTC-AGI research homepage for AI for Science:
 - **Scientific Inference Agent** — evidence-grounded reasoning, experiment planning, simulation, and verification.
 - **AI Scientist** — autonomous epistemic progress through knowledge-state tracking, evidence acquisition, hypothesis falsification, and auditable scientific learning.
 - **Science of AI** — empirical and theoretical study of learning, reasoning, emergence, and intelligent systems.
+- **ScienceStar** — a scientific AI platform vision connecting scientists with discoverable, understandable, and orchestratable research capabilities.
 - **Open Source Projects** — reusable evidence infrastructure, research agents, benchmarks, and scientific tools.
 
 ## Site Structure
 
-The site is built as static HTML and CSS. The nine bilingual main pages plus one bilingual research-layout subpage share `ref.css` and inline translation dictionaries; `mind2report/` is an independent project page. The research-layout page lives at `knowledge_memory/research_layout/` and presents Scientific Literature Intelligence as Search → Extract → Discover. Run the site checks before publishing:
+The site is built as static HTML and CSS. The ten bilingual main pages plus one bilingual research-layout subpage share `ref.css` and inline translation dictionaries; `mind2report/` is an independent project page. The research-layout page lives at `knowledge_memory/research_layout/` and presents Scientific Literature Intelligence as Search → Extract → Discover. The `scistar/` page introduces the ScienceStar platform vision through tool discovery, scientific capability routing, and tool orchestration. Run the site checks before publishing:
 
 ```bash
 node scripts/verify-i18n.mjs

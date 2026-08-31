@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>科星 ScienceStar | 科学智能工具平台</title>
+    <meta
+      name="description"
+      content="科星 ScienceStar 的平台理念：连接科学家与科学智能，从工具发现走向工具协同，让科学智能触手可及。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="科星 ScienceStar | 科学智能工具平台" />
+    <meta
+      property="og:description"
+      content="连接科学家与科学智能，从科学智能工具门户走向科研工作台与科学智能操作系统。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ustcagi-sci.github.io/scistar/" />
+    <meta property="og:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="科星 ScienceStar | 科学智能工具平台" />
+    <meta
+      name="twitter:description"
+      content="连接科学家与科学智能，从工具发现走向工具协同。"
+    />
+    <meta name="twitter:image" content="https://ustcagi-sci.github.io/literature-mining-logo.svg" />
+    <link rel="canonical" href="https://ustcagi-sci.github.io/scistar/" />
+    <link rel="icon" href="../literature-mining-logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../ref.css" />
+  </head>
+  <body class="scistar-page">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="logo" href="../index.html" aria-label="USTC-AGI AI for Science">
+          <span class="logo-mark" aria-hidden="true">
+            <img src="../literature-mining-logo.svg" alt="" />
+          </span>
+          <span class="logo-copy">
+            <span class="logo-title" data-i18n="brand.title">USTC-AGI</span>
+            <span class="logo-subtitle" data-i18n="brand.subtitle">AI for Science</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../ai_ready_data/" data-i18n="nav.aiReadyData">AI-Ready Data</a>
+          <a href="../scientific_inference/" data-i18n="nav.inference">科学推演智能体</a>
+          <a href="../ai_scientist/" data-i18n="nav.aiScientist">AI Scientist</a>
+          <a href="../science_of_ai/" data-i18n="nav.aiScience">Science of AI</a>
+          <a href="../projects/" data-i18n="nav.projects">开源项目</a>
+          <a href="../papers/" data-i18n="nav.papers">论文列表</a>
+          <span class="nav-break" aria-hidden="true"></span>
+          <button
+            class="language-toggle"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch to English"
+            aria-pressed="true"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero scistar-hero">
+      <div class="scistar-hero-inner">
+        <div class="scistar-hero-copy">
+          <p class="scistar-kicker" data-i18n="hero.kicker">SCIENTIFIC AI PLATFORM · 平台愿景</p>
+          <h1 data-i18n="hero.title">科星 ScienceStar</h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">
+            连接科学家与科学智能，让科研人员能够发现、理解、使用并组合适合其科研任务的 AI 能力。
+          </p>
+          <div class="scistar-hero-slogan">
+            <span aria-hidden="true">✦</span>
+            <strong data-i18n="hero.slogan">汇聚科学星火，点亮科研未来。</strong>
+          </div>
+          <p class="scistar-vision-note" data-i18n="hero.note">
+            本页呈现 ScienceStar 的平台思想与长期方向，不代表所有规划能力已经上线。
+          </p>
+        </div>
+
+        <div
+          class="scistar-orbit"
+          role="img"
+          data-i18n-aria-label="aria.orbit"
+          aria-label="科星连接科学家、科研任务与科学智能工具"
+        >
+          <div class="scistar-orbit-ring ring-one"></div>
+          <div class="scistar-orbit-ring ring-two"></div>
+          <div class="scistar-orbit-core">
+            <span class="scistar-core-star">✦</span>
+            <strong>ScienceStar</strong>
+            <small data-i18n="hero.core">SCIENTIST ↔ INTELLIGENCE</small>
+          </div>
+          <span class="scistar-orbit-node node-scientist">Scientist</span>
+          <span class="scistar-orbit-node node-tool">Tool</span>
+          <span class="scistar-orbit-node node-model">Model</span>
+          <span class="scistar-orbit-node node-workflow">Workflow</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="why" class="section">
+        <div class="section-header">
+          <h2 data-i18n="why.title">科研 AI 的关键问题正在改变</h2>
+          <p data-i18n="why.description">
+            当模型、软件、Agent、API 与科研服务快速增长，稀缺的不再只是工具本身，而是找到适配能力并让它们共同完成科研任务的路径。
+          </p>
+        </div>
+
+        <div class="scistar-opportunity-flow">
+          <article class="scistar-opportunity-card">
+            <span class="scistar-opportunity-code">Tool Availability</span>
+            <h3 data-i18n="why.availability.title">有没有工具？</h3>
+            <p data-i18n="why.availability.description">科学智能能力从稀缺走向丰富，更多任务开始拥有可用模型、软件和服务。</p>
+          </article>
+          <div class="scistar-flow-arrow" aria-hidden="true">→</div>
+          <article class="scistar-opportunity-card is-focus">
+            <span class="scistar-opportunity-code">Tool Discovery</span>
+            <h3 data-i18n="why.discovery.title">应该使用什么？</h3>
+            <p data-i18n="why.discovery.description">科研人员需要依据领域、任务、数据与约束发现并比较真正适合的科学工具。</p>
+          </article>
+          <div class="scistar-flow-arrow" aria-hidden="true">→</div>
+          <article class="scistar-opportunity-card">
+            <span class="scistar-opportunity-code">Tool Orchestration</span>
+            <h3 data-i18n="why.orchestration.title">怎样组合起来？</h3>
+            <p data-i18n="why.orchestration.description">复杂科研任务需要多个工具按正确顺序协同，并保留过程、来源与验证结果。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="origin" class="section highlights">
+        <div class="section-header">
+          <h2 data-i18n="origin.title">一个不变的产品原点</h2>
+          <p data-i18n="origin.description">
+            科星不是通用 AI 工具列表，而是面向科学家的科学智能工具平台：从科研问题出发，建立人与科学能力之间可理解、可选择、可组合的连接。
+          </p>
+        </div>
+
+        <div class="scistar-connection" role="img" data-i18n-aria-label="aria.connection" aria-label="科学家与科学智能之间的双向连接">
+          <div class="scistar-connection-party">
+            <span class="scistar-connection-index">01</span>
+            <strong>Scientist</strong>
+            <small data-i18n="origin.scientist">提出问题、约束与科研目标</small>
+          </div>
+          <div class="scistar-connection-bridge">
+            <span>↔</span>
+            <small>ScienceStar</small>
+          </div>
+          <div class="scistar-connection-party">
+            <span class="scistar-connection-index">02</span>
+            <strong>Scientific Intelligence</strong>
+            <small data-i18n="origin.intelligence">模型、工具、数据、Agent 与 Workflow</small>
+          </div>
+        </div>
+
+        <div class="scistar-capability-chain" aria-label="Scientific capability routing chain">
+          <span data-i18n="origin.chain.problem">Scientific Problem</span>
+          <b aria-hidden="true">→</b>
+          <span data-i18n="origin.chain.task">Scientific Task</span>
+          <b aria-hidden="true">→</b>
+          <span data-i18n="origin.chain.capability">AI Capability</span>
+          <b aria-hidden="true">→</b>
+          <span data-i18n="origin.chain.tool">Scientific Tool</span>
+          <b aria-hidden="true">→</b>
+          <span data-i18n="origin.chain.workflow">Workflow</span>
+        </div>
+
+        <p class="scistar-boundary" data-i18n="boundary.statement">工具导航是科星的冷启动入口，而不是终局。</p>
+      </section>
+
+      <section id="evolution" class="section">
+        <div class="section-header">
+          <h2 data-i18n="evolution.title">从入口走向科学智能基础设施</h2>
+          <p data-i18n="evolution.description">
+            科星沿着“发现能力—使用能力—组合能力”逐层演进，每一层都建立在上一层可靠工具描述与真实科研使用数据之上。
+          </p>
+        </div>
+
+        <div class="scistar-evolution-grid">
+          <article class="scistar-evolution-card">
+            <span class="scistar-evolution-index">01</span>
+            <span class="scistar-evolution-name">Scientific AI Portal</span>
+            <h3 data-i18n="evolution.portal.title">科学智能工具门户</h3>
+            <p data-i18n="evolution.portal.description">让科研人员找到、理解和比较面向不同科学问题的模型、工具、数据与服务。</p>
+            <strong data-i18n="evolution.portal.question">解决：有什么、在哪里、用哪个？</strong>
+          </article>
+          <article class="scistar-evolution-card">
+            <span class="scistar-evolution-index">02</span>
+            <span class="scistar-evolution-name">Scientific AI Workspace</span>
+            <h3 data-i18n="evolution.workspace.title">科学智能工作台</h3>
+            <p data-i18n="evolution.workspace.description">把文献、数据、模型、代码和科学软件带入同一科研上下文，支持连续任务执行。</p>
+            <strong data-i18n="evolution.workspace.question">解决：怎样在真实研究中使用？</strong>
+          </article>
+          <article class="scistar-evolution-card">
+            <span class="scistar-evolution-index">03</span>
+            <span class="scistar-evolution-name">Scientific Intelligence OS</span>
+            <h3 data-i18n="evolution.os.title">科学智能操作系统</h3>
+            <p data-i18n="evolution.os.description">理解科研目标，组织工具、模型与数据形成可追踪、可验证、可复用的科学工作流。</p>
+            <strong data-i18n="evolution.os.question">解决：怎样组合能力完成科研任务？</strong>
+          </article>
+        </div>
+      </section>
+
+      <section id="modes" class="section highlights">
+        <div class="section-header">
+          <h2 data-i18n="modes.title">两种模式，一张科学工具图谱</h2>
+          <p data-i18n="modes.description">
+            Explore 帮助科研人员发现能力，Orchestrate 帮助科研人员组织能力；二者通过统一的科学任务与工具关系连接。
+          </p>
+        </div>
+
+        <div class="scistar-mode-grid">
+          <article class="scistar-mode-card explore-mode">
+            <div class="scistar-mode-head">
+              <span>EXPLORE</span>
+              <strong data-i18n="modes.explore.title">发现科学智能</strong>
+            </div>
+            <p data-i18n="modes.explore.description">
+              从科研问题出发，按学科、科研任务与 AI 能力检索、比较并理解可用工具。
+            </p>
+            <div class="scistar-mode-path" data-i18n="modes.explore.path">Search → Recommend → Compare → Understand</div>
+          </article>
+          <article class="scistar-mode-card orchestrate-mode">
+            <div class="scistar-mode-head">
+              <span>ORCHESTRATE</span>
+              <strong data-i18n="modes.orchestrate.title">编排科学智能</strong>
+            </div>
+            <p data-i18n="modes.orchestrate.description">
+              理解目标并分解任务，选择和调用工具，组织结果与验证记录，逐步形成可复用 Workflow。
+            </p>
+            <div class="scistar-mode-path" data-i18n="modes.orchestrate.path">Understand → Plan → Route → Execute → Verify</div>
+          </article>
+        </div>
+      </section>
+
+      <section id="engine" class="section">
+        <div class="section-header">
+          <h2 data-i18n="engine.title">长期价值来自三者闭环</h2>
+          <p data-i18n="engine.description">
+            工具清单容易复制，真正持续积累的是工具能力结构、科研需求理解以及在真实任务中形成的组合与验证经验。
+          </p>
+        </div>
+
+        <div class="scistar-engine-grid">
+          <article class="scistar-engine-card">
+            <span class="scistar-engine-letter">T</span>
+            <h3 data-i18n="engine.graph.title">Scientific Tool Graph</h3>
+            <p data-i18n="engine.graph.description">描述工具解决什么任务、适用于什么领域、依赖哪些模型和数据，以及能够与哪些能力组合。</p>
+            <strong data-i18n="engine.graph.answer">回答：有什么？</strong>
+          </article>
+          <article class="scistar-engine-card">
+            <span class="scistar-engine-letter">S</span>
+            <h3 data-i18n="engine.profile.title">Scientist Profile</h3>
+            <p data-i18n="engine.profile.description">理解科研领域、研究问题、数据模态、方法偏好与当前任务上下文，形成个性化能力匹配。</p>
+            <strong data-i18n="engine.profile.answer">回答：谁需要什么？</strong>
+          </article>
+          <article class="scistar-engine-card">
+            <span class="scistar-engine-letter">O</span>
+            <h3 data-i18n="engine.orchestration.title">Tool Orchestration</h3>
+            <p data-i18n="engine.orchestration.description">把工具选择、调用顺序、数据流、版本、参数、来源与验证过程组织为可靠科研工作流。</p>
+            <strong data-i18n="engine.orchestration.answer">回答：怎样真正用起来？</strong>
+          </article>
+        </div>
+
+        <div class="scistar-engine-equation" aria-label="ScienceStar intelligence engine">
+          <span>Tool Graph</span>
+          <b>×</b>
+          <span>Scientist Profile</span>
+          <b>×</b>
+          <span>Tool Orchestration</span>
+        </div>
+      </section>
+
+      <section id="mission" class="section scistar-mission-section">
+        <div class="scistar-mission">
+          <p class="scistar-kicker" data-i18n="mission.kicker">LONG-TERM MISSION · 长期使命</p>
+          <h2 data-i18n="mission.title">让科学智能触手可及</h2>
+          <p data-i18n="mission.description">
+            科星希望成为科学家进入 AI for Science 世界的入口：理解科研任务，发现合适能力，组合可信工具，帮助更多研究者把科学问题转化为可执行、可验证的研究过程。
+          </p>
+          <strong data-i18n="mission.statement">Make Scientific Intelligence Accessible to Every Scientist.</strong>
+          <div class="scistar-mission-path">
+            <span>Scientific AI Portal</span>
+            <b aria-hidden="true">→</b>
+            <span>Scientific AI Workspace</span>
+            <b aria-hidden="true">→</b>
+            <span>Scientific Intelligence OS</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div class="footer-actions">
+        <a class="btn primary" href="mailto:mycheng@ustc.edu.cn" data-i18n="footer.email">邮件联系</a>
+        <a class="btn ghost" href="https://github.com/ustc-ai4science" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-note">
+        © <span id="year"></span> <span data-i18n="footer.note">USTC AGI · 采用协议</span>
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          "meta.title": "ScienceStar | Scientific AI Platform",
+          "meta.description":
+            "ScienceStar connects scientists with scientific intelligence, evolving from tool discovery toward reliable orchestration of scientific capabilities.",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "Scientific Literature Intelligence",
+          "nav.aiReadyData": "AI-Ready Data",
+          "nav.data": "Scientific Data Modeling",
+          "nav.inference": "Scientific Inference Agent",
+          "nav.aiScientist": "AI Scientist",
+          "nav.aiScience": "Science of AI",
+          "nav.projects": "Open Source",
+          "nav.papers": "Publications",
+          "hero.kicker": "SCIENTIFIC AI PLATFORM · PLATFORM VISION",
+          "hero.title": "ScienceStar",
+          "hero.subtitle":
+            "Connect scientists with scientific intelligence so researchers can discover, understand, use, and compose the AI capabilities best suited to their scientific tasks.",
+          "hero.slogan": "Gather sparks of science. Illuminate the future of research.",
+          "hero.note":
+            "This page presents the platform idea and long-term direction of ScienceStar; it does not imply that every planned capability is already available.",
+          "hero.core": "SCIENTIST ↔ INTELLIGENCE",
+          "aria.orbit": "ScienceStar connects scientists, research tasks, and scientific intelligence tools",
+          "why.title": "The Key Question in Scientific AI Is Changing",
+          "why.description":
+            "As models, software, agents, APIs, and scientific services multiply, the scarce resource is no longer tools alone, but a path to match the right capabilities and make them work together on research tasks.",
+          "why.availability.title": "Does a tool exist?",
+          "why.availability.description":
+            "Scientific AI capabilities are becoming abundant, and more tasks now have usable models, software, and services.",
+          "why.discovery.title": "Which capability should I use?",
+          "why.discovery.description":
+            "Researchers need to discover and compare tools that truly fit their domain, task, data, and constraints.",
+          "why.orchestration.title": "How should they work together?",
+          "why.orchestration.description":
+            "Complex research tasks require multiple tools to cooperate in the right order while retaining process, provenance, and validation results.",
+          "origin.title": "One Product Principle Remains Constant",
+          "origin.description":
+            "ScienceStar is not a generic AI tool list. It is a scientific intelligence platform for scientists, creating understandable, selectable, and composable connections from research problems to scientific capabilities.",
+          "origin.scientist": "Defines questions, constraints, and research goals",
+          "origin.intelligence": "Models, tools, data, agents, and workflows",
+          "origin.chain.problem": "Scientific Problem",
+          "origin.chain.task": "Scientific Task",
+          "origin.chain.capability": "AI Capability",
+          "origin.chain.tool": "Scientific Tool",
+          "origin.chain.workflow": "Workflow",
+          "aria.connection": "A bidirectional connection between scientists and scientific intelligence",
+          "boundary.statement": "Tool navigation is ScienceStar's cold-start entry, not its destination.",
+          "evolution.title": "From an Entry Point to Scientific Intelligence Infrastructure",
+          "evolution.description":
+            "ScienceStar evolves through discovering, using, and composing capabilities. Each level depends on trustworthy tool descriptions and real research-use evidence from the previous level.",
+          "evolution.portal.title": "Scientific Intelligence Portal",
+          "evolution.portal.description":
+            "Help researchers find, understand, and compare models, tools, data, and services for different scientific problems.",
+          "evolution.portal.question": "Answers: what exists, where is it, and which one fits?",
+          "evolution.workspace.title": "Scientific Intelligence Workspace",
+          "evolution.workspace.description":
+            "Bring literature, data, models, code, and scientific software into one research context for continuous task execution.",
+          "evolution.workspace.question": "Answers: how can it be used in real research?",
+          "evolution.os.title": "Scientific Intelligence Operating System",
+          "evolution.os.description":
+            "Understand research goals and organize tools, models, and data into traceable, verifiable, and reusable scientific workflows.",
+          "evolution.os.question": "Answers: how can capabilities complete a research task together?",
+          "modes.title": "Two Modes, One Scientific Tool Graph",
+          "modes.description":
+            "Explore helps researchers discover capabilities; Orchestrate helps organize them. Both are connected through a shared representation of scientific tasks and tools.",
+          "modes.explore.title": "Discover Scientific Intelligence",
+          "modes.explore.description":
+            "Start from a research problem and search, compare, and understand available tools by scientific domain, research task, and AI capability.",
+          "modes.explore.path": "Search → Recommend → Compare → Understand",
+          "modes.orchestrate.title": "Orchestrate Scientific Intelligence",
+          "modes.orchestrate.description":
+            "Understand goals, decompose tasks, select and invoke tools, and organize results and validation records into reusable workflows.",
+          "modes.orchestrate.path": "Understand → Plan → Route → Execute → Verify",
+          "engine.title": "Long-Term Value Emerges from a Three-Part Loop",
+          "engine.description":
+            "Tool lists are easy to copy. What compounds is a structured understanding of capabilities, research needs, and the composition and validation experience created in real tasks.",
+          "engine.graph.title": "Scientific Tool Graph",
+          "engine.graph.description":
+            "Describe which tasks a tool solves, where it applies, which models and data it depends on, and which capabilities it can compose with.",
+          "engine.graph.answer": "Answers: what is available?",
+          "engine.profile.title": "Scientist Profile",
+          "engine.profile.description":
+            "Understand research domains, problems, data modalities, method preferences, and current task context for personalized capability matching.",
+          "engine.profile.answer": "Answers: who needs what?",
+          "engine.orchestration.title": "Tool Orchestration",
+          "engine.orchestration.description":
+            "Organize tool selection, invocation order, data flow, versions, parameters, provenance, and validation into reliable research workflows.",
+          "engine.orchestration.answer": "Answers: how can it truly be used?",
+          "mission.kicker": "LONG-TERM MISSION",
+          "mission.title": "Make Scientific Intelligence Accessible",
+          "mission.description":
+            "ScienceStar aims to become an entry point into AI for Science: understand research tasks, discover suitable capabilities, compose trustworthy tools, and help more researchers turn scientific questions into executable and verifiable processes.",
+          "mission.statement": "Make Scientific Intelligence Accessible to Every Scientist.",
+          "footer.email": "Email Us",
+          "footer.note": "USTC AGI · Licensed under"
+        },
+        zh: {
+          "meta.title": "科星 ScienceStar | 科学智能工具平台",
+          "meta.description":
+            "科星 ScienceStar 的平台理念：连接科学家与科学智能，从工具发现走向工具协同，让科学智能触手可及。",
+          "brand.title": "USTC-AGI",
+          "brand.subtitle": "AI for Science",
+          "nav.knowledge": "科技文献智能",
+          "nav.aiReadyData": "AI-Ready Data",
+          "nav.data": "科学数据建模",
+          "nav.inference": "科学推演智能体",
+          "nav.aiScientist": "AI Scientist",
+          "nav.aiScience": "Science of AI",
+          "nav.projects": "开源项目",
+          "nav.papers": "论文列表",
+          "hero.kicker": "SCIENTIFIC AI PLATFORM · 平台愿景",
+          "hero.title": "科星 ScienceStar",
+          "hero.subtitle":
+            "连接科学家与科学智能，让科研人员能够发现、理解、使用并组合适合其科研任务的 AI 能力。",
+          "hero.slogan": "汇聚科学星火，点亮科研未来。",
+          "hero.note": "本页呈现 ScienceStar 的平台思想与长期方向，不代表所有规划能力已经上线。",
+          "hero.core": "SCIENTIST ↔ INTELLIGENCE",
+          "aria.orbit": "科星连接科学家、科研任务与科学智能工具",
+          "why.title": "科研 AI 的关键问题正在改变",
+          "why.description":
+            "当模型、软件、Agent、API 与科研服务快速增长，稀缺的不再只是工具本身，而是找到适配能力并让它们共同完成科研任务的路径。",
+          "why.availability.title": "有没有工具？",
+          "why.availability.description": "科学智能能力从稀缺走向丰富，更多任务开始拥有可用模型、软件和服务。",
+          "why.discovery.title": "应该使用什么？",
+          "why.discovery.description": "科研人员需要依据领域、任务、数据与约束发现并比较真正适合的科学工具。",
+          "why.orchestration.title": "怎样组合起来？",
+          "why.orchestration.description": "复杂科研任务需要多个工具按正确顺序协同，并保留过程、来源与验证结果。",
+          "origin.title": "一个不变的产品原点",
+          "origin.description":
+            "科星不是通用 AI 工具列表，而是面向科学家的科学智能工具平台：从科研问题出发，建立人与科学能力之间可理解、可选择、可组合的连接。",
+          "origin.scientist": "提出问题、约束与科研目标",
+          "origin.intelligence": "模型、工具、数据、Agent 与 Workflow",
+          "origin.chain.problem": "Scientific Problem",
+          "origin.chain.task": "Scientific Task",
+          "origin.chain.capability": "AI Capability",
+          "origin.chain.tool": "Scientific Tool",
+          "origin.chain.workflow": "Workflow",
+          "aria.connection": "科学家与科学智能之间的双向连接",
+          "boundary.statement": "工具导航是科星的冷启动入口，而不是终局。",
+          "evolution.title": "从入口走向科学智能基础设施",
+          "evolution.description":
+            "科星沿着“发现能力—使用能力—组合能力”逐层演进，每一层都建立在上一层可靠工具描述与真实科研使用数据之上。",
+          "evolution.portal.title": "科学智能工具门户",
+          "evolution.portal.description": "让科研人员找到、理解和比较面向不同科学问题的模型、工具、数据与服务。",
+          "evolution.portal.question": "解决：有什么、在哪里、用哪个？",
+          "evolution.workspace.title": "科学智能工作台",
+          "evolution.workspace.description": "把文献、数据、模型、代码和科学软件带入同一科研上下文，支持连续任务执行。",
+          "evolution.workspace.question": "解决：怎样在真实研究中使用？",
+          "evolution.os.title": "科学智能操作系统",
+          "evolution.os.description": "理解科研目标，组织工具、模型与数据形成可追踪、可验证、可复用的科学工作流。",
+          "evolution.os.question": "解决：怎样组合能力完成科研任务？",
+          "modes.title": "两种模式，一张科学工具图谱",
+          "modes.description":
+            "Explore 帮助科研人员发现能力，Orchestrate 帮助科研人员组织能力；二者通过统一的科学任务与工具关系连接。",
+          "modes.explore.title": "发现科学智能",
+          "modes.explore.description": "从科研问题出发，按学科、科研任务与 AI 能力检索、比较并理解可用工具。",
+          "modes.explore.path": "Search → Recommend → Compare → Understand",
+          "modes.orchestrate.title": "编排科学智能",
+          "modes.orchestrate.description":
+            "理解目标并分解任务，选择和调用工具，组织结果与验证记录，逐步形成可复用 Workflow。",
+          "modes.orchestrate.path": "Understand → Plan → Route → Execute → Verify",
+          "engine.title": "长期价值来自三者闭环",
+          "engine.description":
+            "工具清单容易复制，真正持续积累的是工具能力结构、科研需求理解以及在真实任务中形成的组合与验证经验。",
+          "engine.graph.title": "Scientific Tool Graph",
+          "engine.graph.description": "描述工具解决什么任务、适用于什么领域、依赖哪些模型和数据，以及能够与哪些能力组合。",
+          "engine.graph.answer": "回答：有什么？",
+          "engine.profile.title": "Scientist Profile",
+          "engine.profile.description": "理解科研领域、研究问题、数据模态、方法偏好与当前任务上下文，形成个性化能力匹配。",
+          "engine.profile.answer": "回答：谁需要什么？",
+          "engine.orchestration.title": "Tool Orchestration",
+          "engine.orchestration.description": "把工具选择、调用顺序、数据流、版本、参数、来源与验证过程组织为可靠科研工作流。",
+          "engine.orchestration.answer": "回答：怎样真正用起来？",
+          "mission.kicker": "LONG-TERM MISSION · 长期使命",
+          "mission.title": "让科学智能触手可及",
+          "mission.description":
+            "科星希望成为科学家进入 AI for Science 世界的入口：理解科研任务，发现合适能力，组合可信工具，帮助更多研究者把科学问题转化为可执行、可验证的研究过程。",
+          "mission.statement": "Make Scientific Intelligence Accessible to Every Scientist.",
+          "footer.email": "邮件联系",
+          "footer.note": "USTC AGI · 采用协议"
+        }
+      };
+
+      const getStoredLanguage = () => {
+        try {
+          return localStorage.getItem("preferredLanguage");
+        } catch {
+          return null;
+        }
+      };
+
+      const storeLanguage = (language) => {
+        try {
+          localStorage.setItem("preferredLanguage", language);
+        } catch {
+          // Ignore storage restrictions in private or file-based browsing modes.
+        }
+      };
+
+      const getInitialLanguage = () => {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLanguage = params.get("lang");
+
+        if (translations[requestedLanguage]) {
+          return requestedLanguage;
+        }
+
+        const storedLanguage = getStoredLanguage();
+        return translations[storedLanguage] ? storedLanguage : "zh";
+      };
+
+      const setLanguage = (language, persist = false) => {
+        const copy = translations[language] || translations.en;
+        const toggle = document.getElementById("language-toggle");
+        const description = document.querySelector('meta[name="description"]');
+
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.language = language;
+        document.title = copy["meta.title"];
+
+        if (description) {
+          description.setAttribute("content", copy["meta.description"]);
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[key]) {
+            element.textContent = copy[key];
+          }
+        });
+
+        document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+          const key = element.dataset.i18nAriaLabel;
+          if (copy[key]) {
+            element.setAttribute("aria-label", copy[key]);
+          }
+        });
+
+        if (toggle) {
+          const isChinese = language === "zh";
+          toggle.textContent = isChinese ? "EN" : "中文";
+          toggle.setAttribute("aria-pressed", String(isChinese));
+          toggle.setAttribute("aria-label", isChinese ? "Switch to English" : "切换到中文版");
+        }
+
+        if (persist) {
+          storeLanguage(language);
+        }
+      };
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      setLanguage(getInitialLanguage());
+      document.getElementById("language-toggle").addEventListener("click", () => {
+        const nextLanguage = document.documentElement.dataset.language === "zh" ? "en" : "zh";
+        setLanguage(nextLanguage, true);
+      });
+    </script>
+  </body>
+</html>

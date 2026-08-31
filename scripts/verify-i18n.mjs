@@ -14,6 +14,7 @@ const pages = [
   "scientific_inference/index.html",
   "ai_scientist/index.html",
   "science_of_ai/index.html",
+  "scistar/index.html",
   "projects/index.html",
   "papers/index.html",
 ];
@@ -27,6 +28,7 @@ const publicUrls = {
   "scientific_inference/index.html": "https://ustcagi-sci.github.io/scientific_inference/",
   "ai_scientist/index.html": "https://ustcagi-sci.github.io/ai_scientist/",
   "science_of_ai/index.html": "https://ustcagi-sci.github.io/science_of_ai/",
+  "scistar/index.html": "https://ustcagi-sci.github.io/scistar/",
   "projects/index.html": "https://ustcagi-sci.github.io/projects/",
   "papers/index.html": "https://ustcagi-sci.github.io/papers/",
   "mind2report/index.html": "https://ustcagi-sci.github.io/mind2report/",
@@ -335,6 +337,14 @@ const validateNavigation = (relativePath) => {
       { key: "nav.inference", href: "../scientific_inference/" },
       { key: "nav.aiScientist", href: "../ai_scientist/" },
       { key: "nav.aiScience", href: "./" },
+      { key: "nav.projects", href: "../projects/" },
+      { key: "nav.papers", href: "../papers/" },
+    ],
+    "scistar/index.html": [
+      { key: "nav.aiReadyData", href: "../ai_ready_data/" },
+      { key: "nav.inference", href: "../scientific_inference/" },
+      { key: "nav.aiScientist", href: "../ai_scientist/" },
+      { key: "nav.aiScience", href: "../science_of_ai/" },
       { key: "nav.projects", href: "../projects/" },
       { key: "nav.papers", href: "../papers/" },
     ],
@@ -671,7 +681,7 @@ const validateReadmeIdentity = () => {
     assert.ok(readme.includes(term), `README.md: missing current research area ${term}`);
   }
   assert.ok(
-    readme.includes("nine bilingual main pages plus one bilingual research-layout subpage"),
+    readme.includes("ten bilingual main pages plus one bilingual research-layout subpage"),
     "README.md: site structure should describe the main pages and research-layout subpage"
   );
   assert.ok(
@@ -3013,6 +3023,89 @@ const validateScientificLiteratureTerminology = () => {
   );
 };
 
+const validateScienceStarPage = () => {
+  const relativePath = "scistar/index.html";
+  const absolutePath = resolve(root, relativePath);
+
+  assert.ok(existsSync(absolutePath), `${relativePath}: missing bilingual ScienceStar page`);
+
+  const html = readFileSync(absolutePath, "utf8");
+  const homeHtml = readFileSync(resolve(root, "index.html"), "utf8");
+  const objectMatch = html.match(
+    /const translations = (\{[\s\S]*?\n      \});\n\n      const getStoredLanguage/
+  );
+  const context = {};
+
+  assert.ok(
+    /<h1 data-i18n="hero\.title">科星 ScienceStar<\/h1>/.test(html),
+    `${relativePath}: hero should introduce 科星 ScienceStar`
+  );
+  assert.deepEqual(
+    [...html.matchAll(/class="scistar-opportunity-code">([^<]+)<\/span>/g)].map(
+      (match) => match[1]
+    ),
+    ["Tool Availability", "Tool Discovery", "Tool Orchestration"],
+    `${relativePath}: opportunity flow should move from availability to orchestration`
+  );
+  assert.deepEqual(
+    [...html.matchAll(/class="scistar-evolution-name">([^<]+)<\/span>/g)].map(
+      (match) => match[1]
+    ),
+    ["Scientific AI Portal", "Scientific AI Workspace", "Scientific Intelligence OS"],
+    `${relativePath}: platform evolution should contain the three approved levels`
+  );
+  assert.ok(
+    html.includes("Scientist") && html.includes("Scientific Intelligence"),
+    `${relativePath}: page should preserve the core Scientist to Scientific Intelligence connection`
+  );
+  assert.ok(
+    /data-i18n="modes\.explore\.title"/.test(html) &&
+      /data-i18n="modes\.orchestrate\.title"/.test(html),
+    `${relativePath}: page should distinguish Explore and Orchestrate modes`
+  );
+  assert.ok(
+    /data-i18n="boundary\.statement">工具导航是科星的冷启动入口，而不是终局。<\/p>/.test(
+      html
+    ),
+    `${relativePath}: page should state that tool navigation is an entry rather than the end state`
+  );
+  assert.ok(
+    /<a class="btn ghost" href="\.\/scistar\/" data-i18n="scistar\.cta">了解科星 ScienceStar<\/a>/.test(
+      homeHtml
+    ),
+    "index.html: homepage should link to the ScienceStar vision page"
+  );
+
+  assert.ok(objectMatch, `${relativePath}: missing translations object`);
+  vm.runInNewContext(`translations = ${objectMatch[1]};`, context);
+  assert.equal(
+    context.translations.en["meta.title"],
+    "ScienceStar | Scientific AI Platform",
+    `${relativePath}: English metadata should identify the ScienceStar platform vision`
+  );
+  assert.equal(
+    context.translations.zh["meta.title"],
+    "科星 ScienceStar | 科学智能工具平台",
+    `${relativePath}: Chinese metadata should identify the ScienceStar platform vision`
+  );
+  for (const [key, value] of [
+    ["engine.graph.title", "Scientific Tool Graph"],
+    ["engine.profile.title", "Scientist Profile"],
+    ["engine.orchestration.title", "Tool Orchestration"],
+  ]) {
+    assert.equal(
+      context.translations.en[key],
+      value,
+      `${relativePath}: English engine label ${key} should match the approved concept`
+    );
+    assert.equal(
+      context.translations.zh[key],
+      value,
+      `${relativePath}: Chinese engine label ${key} should preserve the approved English concept`
+    );
+  }
+};
+
 const validateLiteratureResearchLayoutPage = () => {
   const relativePath = "knowledge_memory/research_layout/index.html";
   const absolutePath = resolve(root, relativePath);
@@ -3197,6 +3290,7 @@ const validateAiReadyDataPage = () => {
   );
 };
 
+validateScienceStarPage();
 validateLiteratureResearchLayoutPage();
 validateAiReadyDataPage();
 validateAiScientistPage();
