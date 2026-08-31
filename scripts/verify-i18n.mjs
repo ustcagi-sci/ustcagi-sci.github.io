@@ -2778,6 +2778,14 @@ const validateProjectsPage = () => {
       "project.mind2report.type": "Deep Research Agent",
       "project.paperarena.type": "Agent Evaluation Benchmark",
       "project.chemtable.type": "Chemical Table Benchmark",
+      "scistar.kicker": "SCIENTIFIC AI PLATFORM · SCIENCESTAR",
+      "scistar.title": "Connecting Scientists with Scientific Intelligence",
+      "scistar.description":
+        "Starting from scientific problems, ScienceStar helps researchers discover, understand, and combine AI models, tools, data, and services that fit their work—evolving from a scientific AI portal toward a research workspace and scientific intelligence infrastructure.",
+      "scistar.idea.discovery": "Discover capabilities suited to research tasks",
+      "scistar.idea.connection": "Connect scientists with scientific tools",
+      "scistar.idea.orchestration": "Organize traceable scientific workflows",
+      "scistar.cta": "Explore ScienceStar",
       "catalog.license":
         "Licensing, dependencies, and usage terms follow the current License and documentation in each repository.",
       "collaboration.title": "Turn Research Capabilities into Reusable Open Components",
@@ -2797,6 +2805,14 @@ const validateProjectsPage = () => {
       "project.mind2report.type": "深度研究智能体",
       "project.paperarena.type": "智能体评测基准",
       "project.chemtable.type": "化学表格评测工具",
+      "scistar.kicker": "SCIENTIFIC AI PLATFORM · 科星",
+      "scistar.title": "连接科学家与科学智能",
+      "scistar.description":
+        "科星 ScienceStar 从科研问题出发，帮助科研人员发现、理解并组合适合其任务的 AI 模型、工具、数据与服务，逐步从科学智能工具门户走向科研工作台与科学智能基础设施。",
+      "scistar.idea.discovery": "发现适配科研任务的能力",
+      "scistar.idea.connection": "连接科学家与科学工具",
+      "scistar.idea.orchestration": "组织可追踪的科研工作流",
+      "scistar.cta": "了解科星 ScienceStar",
       "catalog.license": "项目的许可、依赖与使用条件以各仓库当前的 License 和文档为准。",
       "collaboration.title": "让科研能力成为可复用的开放组件",
     },
@@ -2812,6 +2828,19 @@ const validateProjectsPage = () => {
     (html.match(/<article class="project-card">/g) || []).length,
     6,
     "projects/index.html: project catalog should contain exactly six project cards"
+  );
+  const overviewStart = html.indexOf('<section id="overview"');
+  const scistarStart = html.indexOf('<section id="scistar"');
+  const catalogStart = html.indexOf('<section id="catalog"');
+  assert.ok(
+    overviewStart !== -1 && overviewStart < scistarStart && scistarStart < catalogStart,
+    "projects/index.html: ScienceStar entry should sit between the overview and project catalog"
+  );
+  assert.ok(
+    /<a class="btn ghost" href="\.\.\/scistar\/" data-i18n="scistar\.cta">了解科星 ScienceStar<\/a>/.test(
+      html
+    ),
+    "projects/index.html: ScienceStar entry should link to the local platform vision page"
   );
   assert.ok(
     !/stargazers_count|star-count|GitHub Stars/.test(html),

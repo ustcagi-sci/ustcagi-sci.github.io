@@ -214,3 +214,46 @@ git status --short
 
 Expected: only the intended ScienceStar page, homepage entry, shared styles, route metadata, README, verifier and design/plan documents are modified.
 
+### Task 6: Add the ScienceStar entry to the open-source catalog
+
+**Files:**
+- Modify: `projects/index.html`
+- Modify: `scripts/verify-i18n.mjs`
+- Modify: `docs/superpowers/specs/2026-08-31-sciencestar-vision-page-design.md`
+
+- [x] **Step 1: Add a failing catalog contract**
+
+Extend `validateProjectsPage()` to require a dedicated `#scistar` section before `#catalog`, the local `../scistar/` CTA, seven `scistar.*` translation keys in Chinese and English, and the existing three groups and six project cards to remain unchanged.
+
+- [x] **Step 2: Run the verifier and confirm the missing-entry failure**
+
+Run:
+
+```bash
+node scripts/verify-i18n.mjs
+```
+
+Expected: FAIL because the open-source page has no ScienceStar entry section.
+
+- [x] **Step 3: Add the bilingual ScienceStar platform entry**
+
+Reuse the homepage `scistar-home-section` module between `#overview` and `#catalog`, preserving its three core ideas and changing the CTA to this relative link:
+
+```html
+<a class="btn ghost" href="../scistar/" data-i18n="scistar.cta">了解科星 ScienceStar</a>
+```
+
+- [x] **Step 4: Reuse the shared responsive layout**
+
+Do not add new CSS. Confirm the existing `.scistar-home-*` rules provide the two-column desktop and one-column mobile layout on the projects page.
+
+- [x] **Step 5: Run complete verification**
+
+Run:
+
+```bash
+node scripts/verify-i18n.mjs
+git diff --check
+```
+
+Expected: both commands exit `0`; browser checks show the entry between overview and catalog on desktop and mobile, and the CTA opens `/scistar/`.
